@@ -27,7 +27,6 @@ LTE_Settings.Config.SIB1NPDSCH.Enable = 'Off';
 %LTE_Settings.Config.NPDCCH.Enable = 'Off';
 LTE_Settings.Config.OperationMode = 'GuardBand';
 [NB_Frames,NB_Symbols,NB_Info] = LTE_Settings.generateWaveform;
- 
 % displayResourceGrid(LTE_Settings); figure
 %% ETU Rayleigh AWGN Channel %%
 % Making ETU Rayleigh Channel %
@@ -41,47 +40,54 @@ channel.InitTime = 0;
 channel.InitPhase = 'Random';
 channel.ModelType = 'GMEDS';
 channel.NTerms = 16;
-%LTE_Frames_R = lteFadingChannel(channel,NB_Frames);
-%Time_Domain_Signal = awgn(LTE_Frames_R,20);
+LTE_Frames_R = lteFadingChannel(channel,NB_Frames);
+Time_Domain_Signal = awgn(NB_Frames,20);
 %% Coarse Synchronization %%
 Code_Cover = [ 1 1 1 1 -1 -1 1 1 1 -1 1 ]';       % Defined in standard
 Nw = 19200;                                       % n. of samples / frame
 Ns = 137;                                         % n. of samples / symbol
-Window = Ns*11;                                   % n. of samples in window (11 NPSS Symbols) = 1507
-Code_Cover_Idx = zeros(Nw,1);
- 
- 
-Rk = zeros(Nw,1);
-Rk_avg = zeros(Nw,1);
+Window = Ns*10;                                   % n. of samples in window (11 NPSS Symbols) = 1507
+
+% Multiplying by the Code Cover %
 counter = 0;
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%% FIX THIS BLOCK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for Idx = 1:Ns:Nw
     counter = counter + 1;
     if (counter < 4)
         continue;
-    elseif (counter > 14)
+    elseif (counter >= 14)
         counter = 0;
     else
-        for Itr = Idx : Idx+Ns
-            NB_Frames(Itr,1) = NB_Frames(Itr,1) * Code_Cover(counter-3,1);
+        for Itr = Idx : 1 : Idx+Ns
+            Time_Domain_Signal(Itr,1) = Time_Domain_Signal(Itr,1) * Code_Cover(counter-3,1);
         end
     end
 end
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Calculating The Rk Metric %
+Rk = zeros(Nw,1);
 for Idx = 1 : Nw
     for k = Idx : Idx + Window
-        Rk(Idx,1) = Rk(Idx,1) + (NB_Frames(k,1)) * conj(NB_Frames(k+Ns,1));
+        Rk(Idx,1) = Rk(Idx,1) + (Time_Domain_Signal(k,1)) * conj(Time_Domain_Signal(k+Ns,1));
     end
 end
- 
-for Idx = 1 : Nw
-        Rk_avg(Idx,1) = (1-0.75) * Rk_avg(Idx,1) + 0.75 * Rk(Idx,1);
+
+% Downsampling from 128 point to 16 point %
+Down_Sampled_Rk = zeros((Nw/16),1);
+counter = 1;
+for Idx = 1 : 16 : Nw
+    Down_Sampled_Rk(counter,1) = Rk(Idx,1);
+    counter = counter + 1;
 end
- 
-x_axis = 1:Nw;
-draw = plot (x_axis,abs(Rk_avg(:,1)));
-datatip(draw,'DataIndex',10002);    % Expected Correct Window
-[M,I] = max(abs(Rk(:,1)));
+
+% Averaging the Rk Metric %
+Rk_avg = zeros(size(Down_Sampled_Rk,1),1);
+for Idx = 1 : size(Rk_avg,1)
+        Rk_avg(Idx,1) = (1-0.75) * Rk_avg(Idx,1) + 0.75 * Down_Sampled_Rk(Idx,1);
+end
+
+x_axis = 1:(Nw/16);
+draw = plot (x_axis,abs(Rk_avg(:,1)));s
+datatip(draw,'DataIndex',626);    % Expected Correct Window
+[M,I] = max(abs(Rk_avg(:,1)));
 datatip(draw,'DataIndex',I);
+grid on;
