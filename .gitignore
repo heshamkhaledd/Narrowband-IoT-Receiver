@@ -30,7 +30,7 @@
 #*.dcp(checkpoint files)
 !*.dcp
 !*.vds
-!*.pb
+*.pb
 #All bd comments and layout coordinates are stored within .ui
 !*.ui
 !*.ooc
@@ -48,8 +48,8 @@
 #########
 #MIG
 #########
-!*.prj
-!*.mem
+*.prj
+*.mem
 #########
 #Project files
 #########
@@ -66,22 +66,23 @@
 #########
 #TCL - files
 #########
-!*.tcl
+*.tcl
 #########
 #Journal - files
 #########
-!*.jou
+*.jou
 #########
 #Reports
 #########
 !*.rpt
-!*.txt
+*.txt
 !*.vdi
 #########
 #C-files
 #########
-!*.c
+*.c
 !*.h
 !*.elf
 !*.bmm
 !*.xmp
+glbl.v
