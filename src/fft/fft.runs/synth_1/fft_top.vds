@@ -1,0 +1,484 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sun Mar 20 05:18:38 2022
+# Process ID: 20792
+# Current directory: D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.runs/synth_1
+# Command line: vivado.exe -log fft_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fft_top.tcl
+# Log file: D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.runs/synth_1/fft_top.vds
+# Journal file: D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source fft_top.tcl -notrace
+Command: synth_design -top fft_top -part xc7s100fgga676-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7s100'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s100'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 19184 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 565.047 ; gain = 185.176
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'fft_top' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fft_top.v:22]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter SDF_1_Addr bound to: 4 - type: integer 
+	Parameter SDF_2_Addr bound to: 2 - type: integer 
+	Parameter SDF_3_Addr bound to: 1 - type: integer 
+	Parameter SDF_4_Addr bound to: 1 - type: integer 
+	Parameter ROMAddr bound to: 3 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'fft_ctrl' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fft_ctrl.v:22]
+	Parameter TWIDDLE_LENGTH bound to: 7 - type: integer 
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter SDF_1_Addr bound to: 4 - type: integer 
+	Parameter SDF_2_Addr bound to: 2 - type: integer 
+	Parameter SDF_3_Addr bound to: 1 - type: integer 
+	Parameter SDF_4_Addr bound to: 1 - type: integer 
+WARNING: [Synth 8-5788] Register r_cycleStart4_reg in module fft_ctrl is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fft_ctrl.v:84]
+INFO: [Synth 8-6155] done synthesizing module 'fft_ctrl' (1#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fft_ctrl.v:22]
+WARNING: [Synth 8-689] width (3) of port connection 'twiddleAddr' does not match port width (7) of module 'fft_ctrl' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fft_top.v:78]
+INFO: [Synth 8-6157] synthesizing module 'butterfly_1' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_1.v:22]
+	Parameter SDF_LENGTH bound to: 8 - type: integer 
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'fixed_add' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fixed_add.v:4]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+WARNING: [Synth 8-3936] Found unconnected internal register 'interNum_reg' and it is trimmed from '17' to '16' bits. [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fixed_add.v:17]
+INFO: [Synth 8-6155] done synthesizing module 'fixed_add' (2#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fixed_add.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'butterfly_1' (3#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_1.v:22]
+INFO: [Synth 8-6157] synthesizing module 'butterfly_2' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_2.v:21]
+	Parameter SDF_LENGTH bound to: 4 - type: integer 
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+WARNING: [Synth 8-567] referenced signal 'I_in' should be on the sensitivity list [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_2.v:68]
+WARNING: [Synth 8-567] referenced signal 'Q_in' should be on the sensitivity list [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_2.v:68]
+INFO: [Synth 8-6155] done synthesizing module 'butterfly_2' (4#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_2.v:21]
+INFO: [Synth 8-6157] synthesizing module 'fft_ROM' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fft_ROM.v:22]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter ROM_LENGTH bound to: 7 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fft_ROM' (5#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fft_ROM.v:22]
+INFO: [Synth 8-6157] synthesizing module 'cmplx_mul' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/cmplx_mul.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+WARNING: [Synth 8-3936] Found unconnected internal register 'r_interMultiplication3_reg' and it is trimmed from '32' to '26' bits. [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/cmplx_mul.v:82]
+WARNING: [Synth 8-3936] Found unconnected internal register 'r_interMultiplication1_reg' and it is trimmed from '32' to '26' bits. [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/cmplx_mul.v:74]
+WARNING: [Synth 8-3936] Found unconnected internal register 'r_interMultiplication2_reg' and it is trimmed from '32' to '26' bits. [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/cmplx_mul.v:75]
+INFO: [Synth 8-6155] done synthesizing module 'cmplx_mul' (6#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/cmplx_mul.v:23]
+INFO: [Synth 8-6157] synthesizing module 'butterfly_1__parameterized0' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_1.v:22]
+	Parameter SDF_LENGTH bound to: 2 - type: integer 
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'butterfly_1__parameterized0' (6#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_1.v:22]
+INFO: [Synth 8-6157] synthesizing module 'butterfly_2__parameterized0' [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_2.v:21]
+	Parameter SDF_LENGTH bound to: 1 - type: integer 
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+WARNING: [Synth 8-567] referenced signal 'I_in' should be on the sensitivity list [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_2.v:68]
+WARNING: [Synth 8-567] referenced signal 'Q_in' should be on the sensitivity list [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_2.v:68]
+WARNING: [Synth 8-4767] Trying to implement RAM 'r_sdf_ram_I_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Only 1 word in RAM 
+RAM "r_sdf_ram_I_reg" dissolved into registers
+WARNING: [Synth 8-4767] Trying to implement RAM 'r_sdf_ram_Q_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
+Reason is one or more of the following :
+	1: Only 1 word in RAM 
+RAM "r_sdf_ram_Q_reg" dissolved into registers
+INFO: [Synth 8-6155] done synthesizing module 'butterfly_2__parameterized0' (6#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/butterfly_2.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'fft_top' (7#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fft_top.v:22]
+WARNING: [Synth 8-3331] design butterfly_1__parameterized0 has unconnected port sdf_addr[1]
+WARNING: [Synth 8-3331] design butterfly_2 has unconnected port sdf_addr[3]
+WARNING: [Synth 8-3331] design butterfly_2 has unconnected port sdf_addr[2]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[7]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[6]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[5]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[4]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[3]
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 628.207 ; gain = 248.336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 628.207 ; gain = 248.336
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7s100fgga676-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 628.207 ; gain = 248.336
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7s100fgga676-2
+INFO: [Synth 8-5544] ROM "twiddleAddr" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.srcs/sources_1/new/fixed_add.v:26]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 628.207 ; gain = 248.336
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     17 Bit       Adders := 21    
+	   2 Input     16 Bit       Adders := 27    
+	   2 Input      4 Bit       Adders := 3     
+	   2 Input      2 Bit       Adders := 1     
+	   2 Input      1 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 10    
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 4     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 13    
++---RAMs : 
+	              128 Bit         RAMs := 2     
+	               64 Bit         RAMs := 2     
+	               32 Bit         RAMs := 2     
++---Muxes : 
+	   2 Input     26 Bit        Muxes := 3     
+	   2 Input     16 Bit        Muxes := 101   
+	   8 Input     16 Bit        Muxes := 2     
+	   2 Input      4 Bit        Muxes := 2     
+	  16 Input      3 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module fft_ctrl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 3     
+	   2 Input      2 Bit       Adders := 1     
+	   2 Input      1 Bit       Adders := 1     
++---Registers : 
+	                7 Bit    Registers := 1     
+	                4 Bit    Registers := 4     
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 13    
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 2     
+	  16 Input      3 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+Module fixed_add 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     17 Bit       Adders := 1     
+	   2 Input     16 Bit       Adders := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 3     
+Module butterfly_1 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 2     
++---RAMs : 
+	              128 Bit         RAMs := 2     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 4     
+Module butterfly_2 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 2     
++---RAMs : 
+	               64 Bit         RAMs := 2     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 6     
+Module fft_ROM 
+Detailed RTL Component Info : 
++---Muxes : 
+	   8 Input     16 Bit        Muxes := 2     
+Module cmplx_mul 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 6     
++---Muxes : 
+	   2 Input     26 Bit        Muxes := 3     
+	   2 Input     16 Bit        Muxes := 18    
+Module butterfly_1__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 2     
++---RAMs : 
+	               32 Bit         RAMs := 2     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 4     
+Module butterfly_2__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 4     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 6     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 160 (col length:80)
+BRAMs: 240 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+DSP Report: Generating DSP r_interMultiplication22, operation Mode is: A*B.
+DSP Report: operator r_interMultiplication22 is absorbed into DSP r_interMultiplication22.
+DSP Report: Generating DSP r_interMultiplication12, operation Mode is: A*B.
+DSP Report: operator r_interMultiplication12 is absorbed into DSP r_interMultiplication12.
+DSP Report: Generating DSP r_interMultiplication32, operation Mode is: A*B.
+DSP Report: operator r_interMultiplication32 is absorbed into DSP r_interMultiplication32.
+WARNING: [Synth 8-3331] design butterfly_1__parameterized0 has unconnected port sdf_addr[1]
+WARNING: [Synth 8-3331] design butterfly_2 has unconnected port sdf_addr[3]
+WARNING: [Synth 8-3331] design butterfly_2 has unconnected port sdf_addr[2]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[7]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[6]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[5]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[4]
+WARNING: [Synth 8-3331] design butterfly_1 has unconnected port sdf_addr[3]
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\FFT_CTRL/r_cycleROM_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\FFT_CTRL/r_cycleROM_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\FFT_CTRL/r_cycleROM_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\FFT_CTRL/r_cycleROM_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\FFT_CTRL/sdf_4_addr_reg[0] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 772.133 ; gain = 392.262
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++------------+---------------------+-----------+----------------------+-----------------+
+|Module Name | RTL Object          | Inference | Size (Depth x Width) | Primitives      | 
++------------+---------------------+-----------+----------------------+-----------------+
+|fft_top     | BF1/r_sdf_ram_I_reg | Implied   | 8 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF1/r_sdf_ram_Q_reg | Implied   | 8 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF2/r_sdf_ram_I_reg | Implied   | 4 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF2/r_sdf_ram_Q_reg | Implied   | 4 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF3/r_sdf_ram_I_reg | Implied   | 2 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF3/r_sdf_ram_Q_reg | Implied   | 2 x 16               | RAM16X1S x 16   | 
++------------+---------------------+-----------+----------------------+-----------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping  Report (see note below)
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|cmplx_mul   | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul   | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul   | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 779.715 ; gain = 399.844
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping  Report
++------------+---------------------+-----------+----------------------+-----------------+
+|Module Name | RTL Object          | Inference | Size (Depth x Width) | Primitives      | 
++------------+---------------------+-----------+----------------------+-----------------+
+|fft_top     | BF1/r_sdf_ram_I_reg | Implied   | 8 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF1/r_sdf_ram_Q_reg | Implied   | 8 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF2/r_sdf_ram_I_reg | Implied   | 4 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF2/r_sdf_ram_Q_reg | Implied   | 4 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF3/r_sdf_ram_I_reg | Implied   | 2 x 16               | RAM16X1S x 16   | 
+|fft_top     | BF3/r_sdf_ram_Q_reg | Implied   | 2 x 16               | RAM16X1S x 16   | 
++------------+---------------------+-----------+----------------------+-----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 779.906 ; gain = 400.035
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY4   |   140|
+|3     |DSP48E1  |     3|
+|4     |LUT1     |   113|
+|5     |LUT2     |   242|
+|6     |LUT3     |   209|
+|7     |LUT4     |   127|
+|8     |LUT5     |   131|
+|9     |LUT6     |   146|
+|10    |RAM16X1S |    96|
+|11    |FDCE     |    15|
+|12    |FDPE     |    11|
+|13    |FDRE     |   131|
+|14    |FDSE     |    30|
+|15    |IBUF     |    35|
+|16    |OBUF     |    33|
++------+---------+------+
+
+Report Instance Areas: 
++------+----------------+----------------------------+------+
+|      |Instance        |Module                      |Cells |
++------+----------------+----------------------------+------+
+|1     |top             |                            |  1463|
+|2     |  BF1           |butterfly_1                 |   342|
+|3     |    CMPLX_ADD_1 |fixed_add_14                |    67|
+|4     |    CMPLX_ADD_2 |fixed_add_15                |    56|
+|5     |    CMPLX_ADD_3 |fixed_add_16                |    60|
+|6     |    CMPLX_ADD_4 |fixed_add_17                |    59|
+|7     |  BF2           |butterfly_2                 |   297|
+|8     |    CMPLX_ADD_1 |fixed_add_10                |    21|
+|9     |    CMPLX_ADD_2 |fixed_add_11                |    36|
+|10    |    CMPLX_ADD_3 |fixed_add_12                |    21|
+|11    |    CMPLX_ADD_4 |fixed_add_13                |    36|
+|12    |  BF3           |butterfly_1__parameterized0 |   256|
+|13    |    CMPLX_ADD_1 |fixed_add_6                 |    20|
+|14    |    CMPLX_ADD_2 |fixed_add_7                 |    20|
+|15    |    CMPLX_ADD_3 |fixed_add_8                 |    41|
+|16    |    CMPLX_ADD_4 |fixed_add_9                 |    20|
+|17    |  BF4           |butterfly_2__parameterized0 |   145|
+|18    |    CMPLX_ADD_1 |fixed_add_2                 |     4|
+|19    |    CMPLX_ADD_2 |fixed_add_3                 |    24|
+|20    |    CMPLX_ADD_3 |fixed_add_4                 |    20|
+|21    |    CMPLX_ADD_4 |fixed_add_5                 |    21|
+|22    |  CMPLX_MUL     |cmplx_mul                   |   252|
+|23    |    ADDER_2     |fixed_add                   |    99|
+|24    |    ADDER_4     |fixed_add_0                 |     4|
+|25    |    ADDER_5     |fixed_add_1                 |    40|
+|26    |  FFT_CTRL      |fft_ctrl                    |   102|
++------+----------------+----------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 28 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+Synthesis Optimization Complete : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 780.738 ; gain = 400.867
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 239 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 894.105 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 96 instances were transformed.
+  RAM16X1S => RAM32X1S (RAMS32): 96 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+34 Infos, 28 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:28 ; elapsed = 00:00:30 . Memory (MB): peak = 894.105 ; gain = 538.125
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 894.105 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'D:/Graduation Project/Narrowband-IoT-Receiver/src/fft/fft.runs/synth_1/fft_top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file fft_top_utilization_synth.rpt -pb fft_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun Mar 20 05:19:16 2022...
