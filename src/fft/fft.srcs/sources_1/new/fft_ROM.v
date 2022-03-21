@@ -21,9 +21,9 @@
 
 module fft_ROM #(parameter DATA_WIDTH = 16, parameter ROM_LENGTH = 7)
 (
-        input [2:0] twiddleAddr,
-        output reg [DATA_WIDTH-1:0] twiddleFactorI,
-        output reg [DATA_WIDTH-1:0] twiddleFactorQ
+        input  [2:0] twiddleAddr,
+        output reg signed [DATA_WIDTH-1:0] twiddleFactorI,
+        output reg signed [DATA_WIDTH-1:0] twiddleFactorQ
     );
 
 reg [DATA_WIDTH-1:0] r_TwiddleRom [ROM_LENGTH-1:0];
@@ -38,31 +38,31 @@ begin
                 
         3'b001: begin
                     twiddleFactorI = 946;
-                    twiddleFactorQ = 65144;
+                    twiddleFactorQ = -392;
                 end
                 
         3'b010: begin
                     twiddleFactorI = 724;
-                    twiddleFactorQ = 64812;
+                    twiddleFactorQ = -724;
                 end
         
         3'b011: begin
                     twiddleFactorI = 392;
-                    twiddleFactorQ = 64590;
+                    twiddleFactorQ = -946;
                 end
                 
         3'b100: begin
                     twiddleFactorI = 0;
-                    twiddleFactorQ = 64512;
+                    twiddleFactorQ = -1024;
                 end
                 
        3'b101: begin
-                    twiddleFactorI = 64812;
-                    twiddleFactorQ = 64812;
+                    twiddleFactorI = -724;
+                    twiddleFactorQ = -724;
                end
                
        3'b110: begin
-                    twiddleFactorI = 64590;
+                    twiddleFactorI = -946;
                     twiddleFactorQ = 392;
                end
                

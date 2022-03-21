@@ -19,15 +19,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module butterfly_1#(parameter SDF_LENGTH = 8,parameter DATA_WIDTH = 16)
+module butterfly_1#(parameter SDF_LENGTH = 8,parameter DATA_WIDTH = 16,parameter SDF_Addr = 3)
 (
-    input                       clk,
-    input [DATA_WIDTH-1:0]      I_in,
-    input [DATA_WIDTH-1:0]      Q_in,
-    input [SDF_LENGTH-1:0]      sdf_addr,
-    input                       active_state,
-    output reg [DATA_WIDTH-1:0] I_out,
-    output reg [DATA_WIDTH-1:0] Q_out
+    input                              clk,
+    input signed [DATA_WIDTH-1:0]      I_in,
+    input signed [DATA_WIDTH-1:0]      Q_in,
+    input signed [SDF_Addr-1:0]      sdf_addr,
+    input                              active_state,
+    output reg signed [DATA_WIDTH-1:0] I_out,
+    output reg signed [DATA_WIDTH-1:0] Q_out
     );
 
 reg [DATA_WIDTH-1:0] r_sdf_ram_I [SDF_LENGTH-1:0];
@@ -66,19 +66,19 @@ always@(posedge clk)
 begin
     if (!active_state)
         begin    
-            I_out <= r_sdf_ram_I[sdf_addr];
-            Q_out <= r_sdf_ram_Q[sdf_addr];
+            I_out = r_sdf_ram_I[sdf_addr];
+            Q_out = r_sdf_ram_Q[sdf_addr];
                     
-            r_sdf_ram_I[sdf_addr] <= I_in;
-            r_sdf_ram_Q[sdf_addr] <= Q_in;
+            r_sdf_ram_I[sdf_addr] = I_in;
+            r_sdf_ram_Q[sdf_addr] = Q_in;
         end
     else
         begin
-            I_out <= CMPLX_ADD_1R;
-            Q_out <= CMPLX_ADD_2R;
+            I_out = CMPLX_ADD_1R;
+            Q_out = CMPLX_ADD_2R;
             
-            r_sdf_ram_I[sdf_addr] <= CMPLX_ADD_3R;
-            r_sdf_ram_Q[sdf_addr] <= CMPLX_ADD_4R;
+            r_sdf_ram_I[sdf_addr] = CMPLX_ADD_3R;
+            r_sdf_ram_Q[sdf_addr] = CMPLX_ADD_4R;
         end
 end
 endmodule

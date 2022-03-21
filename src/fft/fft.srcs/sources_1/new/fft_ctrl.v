@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////////////////
  
  
-module fft_ctrl#(parameter TWIDDLE_LENGTH = 7, parameter DATA_WIDTH = 16, parameter SDF_1_Addr = 4, parameter SDF_2_Addr = 2, parameter SDF_3_Addr = 1, parameter SDF_4_Addr = 1)
+module fft_ctrl#(parameter TWIDDLE_LENGTH = 7, parameter DATA_WIDTH = 16, parameter SDF_1_Addr = 4, parameter SDF_2_Addr = 2, parameter SDF_3_Addr = 2, parameter SDF_4_Addr = 1)
 (
         input clk,
         input rstn,
@@ -42,8 +42,9 @@ reg [3:0] r_cycleROM;
 reg [3:0] r_cycleCounter1;
 reg [3:0] r_cycleCounter2;
 reg [1:0] r_cycleCounter3;
-reg r_cycleCounter4;
- 
+reg  r_cycleCounter4;
+reg [1:0] r_cycleCounter44;
+
 reg r_cycleStart2;
 reg r_cycleStart3;
 reg r_cycleStart4;
@@ -65,25 +66,19 @@ begin
             s6 <= 0;
             twiddleAddr <= 0;
             r_cycleROM <= 0;
-            r_cycleCounter1 <= 15;
-            r_cycleCounter2 <= 15;
-            r_cycleCounter3 <= 3;
-            r_cycleCounter4 <= 1;
+            r_cycleCounter1 <= 0;
+            r_cycleCounter2 <= 0;
+            r_cycleCounter3 <= 0;
+            r_cycleCounter4 <= 0;
             r_cycleStart2 <= 0;
             r_cycleStart3 <= 0;
+            r_cycleStart4 <= 0;
+            r_cycleCounter44 <= 0;
         end
      else
         begin
             if (fftEn)
                 begin                        
-                    r_cycleCounter1 = r_cycleCounter1 + 1;
-                    if (r_cycleStart2)
-                        r_cycleCounter2 = r_cycleCounter2 + 1;
-                    if (r_cycleStart3)
-                        r_cycleCounter3 = r_cycleCounter3 + 1;
-                    if (r_cycleStart4)
-                        r_cycleCounter4 = r_cycleCounter4 + 1;
-                        
                     if (r_cycleCounter1 < 8)
                         begin
                             s1 = 0;
@@ -99,7 +94,6 @@ begin
                         begin
                             s1 = 0;
                             sdf_1_addr = 0;
-                            r_cycleStart2 = 0;
                         end
                     
                    if (r_cycleCounter2 < 4)
@@ -112,8 +106,8 @@ begin
                         begin
                             s2 = 0;
                             s3 = 1;
-                            sdf_2_addr = r_cycleCounter2 - 4;
                             r_cycleStart3 = 1;
+                            sdf_2_addr = r_cycleCounter2 - 4;
                         end
                     else if (r_cycleCounter2 >=8 && r_cycleCounter2 < 12)
                         begin
@@ -132,14 +126,13 @@ begin
                             s2 = 0;
                             s3 = 0;
                             sdf_2_addr = 0;
-                            r_cycleStart3 = 0;
                         end
                     if (r_cycleCounter3 < 2)
                         begin
                             s4 = 0;
                             sdf_3_addr = r_cycleCounter3;
                         end
-                    else if (r_cycleCounter1 >= 2 && r_cycleCounter1 < 4)
+                    else if (r_cycleCounter3 >= 2 && r_cycleCounter3 < 4)
                         begin
                             r_cycleStart4 = 1;
                             s4 = 1;
@@ -149,22 +142,34 @@ begin
                         begin
                             s4 = 0;
                             sdf_3_addr = 0;
-                            r_cycleStart4 = 0;
                         end
-                    if (r_cycleCounter3 == 1'b1)
-                        s5 = 1;
-                    else
-                        s5 = 0;
-                    if (r_cycleCounter4 < 1)
+                    if (r_cycleStart4)
                         begin
-                            s6 = 0;
-                            sdf_4_addr = 0;
+                            if (r_cycleCounter44 == 2'b11)
+                                s5 = 1;
+                            else
+                                s5 = 0;
                         end
                     else
+                        begin
+                            s5 = 0;
+                        end
+                        
+                    if (r_cycleCounter4 < 0)
+                        begin
+                                s6 = 0;
+                                sdf_4_addr = 0;
+                        end
+                    else if (r_cycleCounter4 > 0)
                         begin
                             s6 = 1;
                             fftValid = 1;
                             sdf_4_addr = 0;
+                        end
+                    else
+                        begin
+                                s6 = 0;
+                                sdf_4_addr = 0;
                         end
                     case (r_cycleROM)
                         0: begin
@@ -231,6 +236,20 @@ begin
                                 twiddleAddr = 3'b110;
                            end                    
                     endcase
+                    
+                    r_cycleCounter1 = r_cycleCounter1 + 1;
+                    if (r_cycleStart2)
+                        r_cycleCounter2 = r_cycleCounter2 + 1;
+                    if (r_cycleStart3)
+                        begin
+                            r_cycleCounter3 = r_cycleCounter3 + 1;
+                            r_cycleROM = r_cycleROM + 1;
+                        end
+                    if (r_cycleStart4)
+                        begin
+                            r_cycleCounter4 = r_cycleCounter4 + 1;
+                            r_cycleCounter44 = r_cycleCounter44 + 1;
+                        end
                 end
         end
 end

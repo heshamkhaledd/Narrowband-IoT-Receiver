@@ -24,16 +24,16 @@ module fft_top #(parameter DATA_WIDTH = 16)
     input                       clk,
     input                       rstn,
     input                       fftEn,
-    input  [DATA_WIDTH-1:0]     I_in,
-    input  [DATA_WIDTH-1:0]     Q_in,
-    output [DATA_WIDTH-1:0]     I_out,
-    output [DATA_WIDTH-1:0]     Q_out,
+    input  signed [DATA_WIDTH-1:0]     I_in,
+    input  signed [DATA_WIDTH-1:0]     Q_in,
+    output signed [DATA_WIDTH-1:0]     I_out,
+    output signed [DATA_WIDTH-1:0]     Q_out,
     output                      fftValid
     );
 
 localparam SDF_1_Addr = 4;
 localparam SDF_2_Addr = 2;
-localparam SDF_3_Addr = 1;
+localparam SDF_3_Addr = 2;
 localparam SDF_4_Addr = 1;
 localparam ROMAddr = 3;
 
@@ -60,7 +60,7 @@ wire [DATA_WIDTH-1:0] CMPLX_out_Q;
 wire [DATA_WIDTH-1:0] BF3_out_I;
 wire [DATA_WIDTH-1:0] BF3_out_Q;
 
-fft_ctrl#(7,16,4,2,1,1) FFT_CTRL (    .clk(clk),
+fft_ctrl#(7,16,4,2,2,1) FFT_CTRL (    .clk(clk),
                                       .rstn(rstn),
                                       .fftEn(fftEn),
                                       .s1(s1),
@@ -77,7 +77,7 @@ fft_ctrl#(7,16,4,2,1,1) FFT_CTRL (    .clk(clk),
                                       .twiddleAddr(twiddleAddr)
                                       );
                           
-butterfly_1#(8,16) BF1 (.clk(clk),
+butterfly_1#(8,16,3) BF1 (.clk(clk),
                         .I_in(I_in),
                         .Q_in(Q_in),
                         .sdf_addr(sdf_1_addr),
@@ -86,7 +86,7 @@ butterfly_1#(8,16) BF1 (.clk(clk),
                         .Q_out(BF1_out_Q)
                         );
                         
-butterfly_2#(4,16) BF2 (.clk(clk),
+butterfly_2#(4,16,1) BF2 (.clk(clk),
                         .I_in(BF1_out_I),
                         .Q_in(BF1_out_Q),
                         .sdf_addr(sdf_2_addr),
@@ -101,15 +101,15 @@ fft_ROM#(16,7) FFT_ROM ( .twiddleAddr(twiddleAddr),
                          .twiddleFactorQ(CMPLX_in_Q)
                          );
 
-cmplx_mul #(16) CMPLX_MUL (.real_1(CMPLX_in_I),
-                           .real_2(BF2_out_I),
-                           .imag_1(CMPLX_in_Q),
-                           .imag_2(BF2_out_Q),
-                           .realOut(CMPLX_out_I),
-                           .imagOut(CMPLX_out_Q)
+cmplx_mul CMPLX_MUL       (.ar(CMPLX_in_I),
+                           .ai(CMPLX_in_Q),
+                           .br(BF2_out_I),
+                           .bi(BF2_out_Q),
+                           .yr(CMPLX_out_I),
+                           .yi(CMPLX_out_Q)
                            );
 
-butterfly_1#(2,16) BF3 (.clk(clk),
+butterfly_1#(2,16,1) BF3 (.clk(clk),
                         .I_in(CMPLX_out_I),
                         .Q_in(CMPLX_out_Q),
                         .sdf_addr(sdf_3_addr),
@@ -118,7 +118,7 @@ butterfly_1#(2,16) BF3 (.clk(clk),
                         .Q_out(BF3_out_Q)
                         );
                         
-butterfly_2#(1,16) BF4 (.clk(clk),
+butterfly_2#(1,16,0) BF4 (.clk(clk),
                         .I_in(BF3_out_I),
                         .Q_in(BF3_out_Q),
                         .sdf_addr(sdf_4_addr),

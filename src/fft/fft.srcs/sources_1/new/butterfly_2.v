@@ -18,16 +18,16 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
  
-module butterfly_2#(parameter SDF_LENGTH = 4,parameter DATA_WIDTH = 16)
+module butterfly_2#(parameter SDF_LENGTH = 4,parameter DATA_WIDTH = 16, parameter SDF_Addr = 1)
 (
     input                       clk,
-    input [DATA_WIDTH-1:0]      I_in,
-    input [DATA_WIDTH-1:0]      Q_in,
-    input [SDF_LENGTH-1:0]      sdf_addr,
+    input signed [DATA_WIDTH-1:0]      I_in,
+    input signed [DATA_WIDTH-1:0]      Q_in,
+    input signed [SDF_Addr:0]        sdf_addr,
     input                       active_state,
     input                       j_mul,                  
-    output reg [DATA_WIDTH-1:0] I_out,
-    output reg [DATA_WIDTH-1:0] Q_out
+    output reg signed [DATA_WIDTH-1:0] I_out,
+    output reg signed [DATA_WIDTH-1:0] Q_out
     );
  
 reg [DATA_WIDTH-1:0] r_sdf_ram_I [SDF_LENGTH-1:0];
