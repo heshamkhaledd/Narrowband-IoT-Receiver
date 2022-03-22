@@ -69,13 +69,13 @@ always@(j_mul)
 begin
     if (!j_mul)
         begin
-            interMux1 = I_in;
-            interMux2 = Q_in;
+            interMux1 <= I_in;
+            interMux2 <= Q_in;
         end
     else
         begin
-            interMux1 = Q_in;
-            interMux2 = I_in;
+            interMux1 <= Q_in;
+            interMux2 <= I_in;
         end
 end
 

@@ -42,30 +42,26 @@ fft_top#(16) UUT ( .clk(clk),
                    );
 initial begin
 clk = 1;
-rstn = 1;
+rstn = 0;
 fftEn = 0;
-I_in = 0;
-Q_in = 0;
 end
 
 
 always #10 clk = ~clk;
 
 initial begin
-#20
-rstn = 0;
-#20
-rstn = 1;
-fftEn = 1;
-I_in = 1;
-Q_in = 1;
-#20
-I_in = 2;
-Q_in = -2;
-#20
-I_in = 3;
-Q_in = 3;
-#20
+@(posedge clk)
+rstn <= 1;
+fftEn <= 1;
+I_in <= 1;
+Q_in <= 1;
+@(posedge clk)
+I_in <= 2;
+Q_in <= -2;
+@(posedge clk)
+I_in <= 3;
+Q_in <= 3;
+@(posedge clk)
 I_in = -4;
 Q_in = -4;
 #20

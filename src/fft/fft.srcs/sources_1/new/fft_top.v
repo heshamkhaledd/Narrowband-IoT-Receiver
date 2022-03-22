@@ -31,7 +31,7 @@ module fft_top #(parameter DATA_WIDTH = 16)
     output                      fftValid
     );
 
-localparam SDF_1_Addr = 4;
+localparam SDF_1_Addr = 3;
 localparam SDF_2_Addr = 2;
 localparam SDF_3_Addr = 2;
 localparam SDF_4_Addr = 1;
@@ -60,7 +60,7 @@ wire [DATA_WIDTH-1:0] CMPLX_out_Q;
 wire [DATA_WIDTH-1:0] BF3_out_I;
 wire [DATA_WIDTH-1:0] BF3_out_Q;
 
-fft_ctrl#(7,16,4,2,2,1) FFT_CTRL (    .clk(clk),
+fft_ctrl#(7,16,3,2,2,1) FFT_CTRL (    .clk(clk),
                                       .rstn(rstn),
                                       .fftEn(fftEn),
                                       .s1(s1),
@@ -109,7 +109,7 @@ cmplx_mul CMPLX_MUL       (.ar(CMPLX_in_I),
                            .yi(CMPLX_out_Q)
                            );
 
-butterfly_1#(2,16,1) BF3 (.clk(clk),
+butterfly_1#(2,16,2) BF3 (.clk(clk),
                         .I_in(CMPLX_out_I),
                         .Q_in(CMPLX_out_Q),
                         .sdf_addr(sdf_3_addr),
