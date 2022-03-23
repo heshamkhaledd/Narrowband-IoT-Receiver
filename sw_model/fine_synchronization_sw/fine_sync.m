@@ -33,12 +33,8 @@ y_abs= abs(y);      %passing absolute values
 % prediv and divider
 if (x_abs<y_abs)
     z= x_abs/y_abs;
-    num = signx;
-    den = signy;
 else 
     z=y_abs/x_abs;
-    num = signy;
-    den = signx;
 end
 % core
 if ((0<z) && (z<=0.25))
@@ -48,20 +44,20 @@ elseif ((0.25<z) && (z<=0.5))
 elseif((0.5<z) && (z<=0.75))
     theta=40*z+6.5;
 elseif((0.75 <z) && (z<=1))
-    theta = 32*z+16; 
+    theta = 32*z+13; 
 end
 % Refine Angle
 if (x_abs<y_abs)
     theta = 90-theta;
 end
-if ((num == 1) && (den == 1))
+if ((signx == 1) && (signy == 1))       %First Quad
     theta_final=theta;
-elseif ((num == -1) && (den == 1))
-    theta_final=90+theta;
-elseif ((num == -1) && (den == -1))
-    theta_final=180+theta;   
-elseif ((num == 1) && (den == -1))
-    theta_final=270+theta;
+elseif ((signx == -1) && (signy == 1))  %Second Quad
+    theta_final=180-theta;
+elseif ((signx == -1) && (signy == -1)) %Third Quad
+    theta_final=theta-180;   
+elseif ((signx == 1) && (signy == -1))  %Fourth Quad
+    theta_final=-theta;
 end
 CFO_calculated=theta_final;
-CFO_correct=atan2d(x,y);
+CFO_correct=atan2d(y,x);
