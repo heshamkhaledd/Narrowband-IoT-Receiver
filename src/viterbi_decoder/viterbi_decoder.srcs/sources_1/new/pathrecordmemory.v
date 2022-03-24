@@ -23,11 +23,10 @@
 module pathrecordmemory(    input [63:0] selectedPaths,    
                             input rstn,
                             input clk,
-                            input [11:0]columnAddress1,
+                            input enable,
+                            input [11:0]columnAddress,
                             input rw,
-                            input [11:0]columnAddress2,
-                            input [5:0]rowAddress,
-                            output storedContent);
+                            output [63:0]storedContent);
   /*
     Discription: Path record memory is a memory that consists from 64 rows and 2560 columns.
                 It can be accessed using 2 ways:
@@ -42,33 +41,30 @@ module pathrecordmemory(    input [63:0] selectedPaths,
         output storedContent       -> output stored bit in the memory to Traceback unit
   */
                             
-         reg r_memArray[63:0][0:2559];
+         reg [63:0]r_memArray[0:2559];
          integer i,j;
-         reg r_storedContent;
+         reg [63:0]r_storedContent;
          assign storedContent=r_storedContent;
          always@(posedge clk or negedge rstn)
          begin
             if(~rstn)
             begin
-                for(i=0;i<64;i=i+1)
+                for(j=0;j<2560;j=j+1)
                 begin
-                    for(j=0;j<2560;j=j+1)
-                    begin
-                        r_memArray[i][j]=2560'd0;
-                    end
+                    r_memArray[j]=64'd0;
                 end
             end
             else
             begin
-                if(rw)  //rw =1 -> read
+                if(enable)
                 begin
-                    r_storedContent <= r_memArray[rowAddress][columnAddress2];
-                end
-                else // writing
-                begin
-                    for(i=0;i<64;i=i+1)
+                    if(rw)  //rw =1 -> read
                     begin
-                        r_memArray[i][columnAddress1]<=selectedPaths[i];
+                        r_storedContent <= r_memArray[columnAddress];
+                    end
+                    else // writing
+                    begin
+                        r_memArray[columnAddress]<=selectedPaths;
                     end
                 end
             end

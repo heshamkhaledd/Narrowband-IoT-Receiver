@@ -25,43 +25,39 @@ module pathrecordmemory_tb;
  reg [63:0] selectedPaths;
  reg rstn;
  reg clk;
- reg [11:0]columnAddress1;
+ reg [11:0]columnAddress;
  reg rw;
- reg [5:0]rowAddress;
- wire storedContent;
- reg [11:0] columnAddress2;
-    pathrecordmemory UUT (   .selectedPaths(selectedPaths),.rstn(rstn),.clk(clk),.columnAddress1(columnAddress1),.rw(rw),.columnAddress2(columnAddress2),.rowAddress(rowAddress),.storedContent(storedContent) );                        
+ wire [63:0] storedContent;
+ reg enable;
+    pathrecordmemory UUT (   .selectedPaths(selectedPaths),.rstn(rstn),.clk(clk),.enable(enable),.columnAddress(columnAddress),.rw(rw),.storedContent(storedContent) );                        
+
+    
     initial
     begin
-         clk=0;
+         clk=1;
          rstn=0;
          rw=0;
-         columnAddress1= 12'd0;
-         rowAddress = 6'd0;
-         #130; #260;
+         columnAddress= 12'd0;
+         enable =0;
+         #260;
+         enable=1;
          rstn=1;
          selectedPaths = 64'hAAAAAAAAAAAAAAAF;
-         columnAddress1= 12'd0;
-         rw=0;
+         columnAddress= 12'd0;
+         rw=0; //write
          #260;
+         rw=0; //write
+         selectedPaths= 64'hABCDEFABCDEFABCD;
+         columnAddress=12'd1;
+         #260;
+         
          rw=1; 
-         columnAddress2= 12'd0;
-         rowAddress = 6'd1;
-         #130;
-         if(storedContent == 1'b1)
-         begin
-            $display("Saved correctly and read correctly"); 
-         end
-         #130;
-         
-         columnAddress2= 12'd0;
-         rowAddress = 6'd62;
-         #130;
-         if(storedContent == 1'b0)
-         begin
-            $display("Saved correctly and read correctly");
-         end
-         
+         columnAddress= 12'd0;
+         #260;
+         rw=1;
+         columnAddress=12'd1;
+         #260;
+                  
          
          
     end
