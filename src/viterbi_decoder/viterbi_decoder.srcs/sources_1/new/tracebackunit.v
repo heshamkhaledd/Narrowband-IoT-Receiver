@@ -102,7 +102,10 @@ module tracebackunit(   input clk,
                         r_cuValid<=1'b1;
                         r_initState<=r_rowGenerator;
                         r_lifoValid<=1'b0;
-                        r_currState<=IDLE;
+                        if(enable==1'b0)
+                        begin
+                            r_currState<=IDLE;
+                        end
                     end
                 endcase
             end

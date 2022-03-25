@@ -30,6 +30,7 @@ module lifo( input clk,
        reg r_dataOut;
        reg [2559:0]r_lifoMemory;
        reg [11:0]r_counter;
+       reg [11:0]r_counter2;
        assign dataOut=r_dataOut;
               
        always@(posedge clk or negedge rstn)
@@ -52,16 +53,18 @@ module lifo( input clk,
                 end
                 else if(validOut==1'b1)
                 begin
-                   r_dataOut<=r_lifoMemory[r_counter];
-                   if(r_counter!=tbs)
+                   r_dataOut<=r_lifoMemory[r_counter2];
+                   if(r_counter2<tbs)
                    begin
-                        r_counter<=r_counter+1;
+                        r_counter2<=r_counter2+1;
                    end
                 end
                 else
                 begin
                    r_counter<=tbs;
+                   r_counter2<=12'b0;
                 end 
+
             end
        end
 endmodule
