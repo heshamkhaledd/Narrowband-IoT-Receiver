@@ -52,7 +52,7 @@ top UUT(        .clk(clk),
     tbs=12'd0;
     msg=3'd0;
     enable=1'b0;
-    $readmemb("test1.txt",mem1); 
+    $readmemb("test1.dat",mem1); 
     #260
     rstn=1'b1;
     #260;
