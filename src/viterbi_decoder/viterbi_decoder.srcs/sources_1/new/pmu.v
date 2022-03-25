@@ -22,7 +22,7 @@
 
 module pmu( input [127:0]branchMetrics,
             input [511:0]pathMetrics,
-            output [63:0] survived,
+            output [31:0] survived,
             output [255:0]updatedMetrics);
 acs A1(.branch_0(branchMetrics[127:126]),.path_0(pathMetrics[511:504]),.branch_1(branchMetrics[125:124]),.path_1(pathMetrics[503:496]),.survivor(survived[31]),.survivedMetric(updatedMetrics[255:248]));
 acs A2(.branch_0(branchMetrics[123:122]),.path_0(pathMetrics[495:488]),.branch_1(branchMetrics[121:120]),.path_1(pathMetrics[487:480]),.survivor(survived[30]),.survivedMetric(updatedMetrics[247:240]));
