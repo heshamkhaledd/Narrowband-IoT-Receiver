@@ -47,63 +47,64 @@ fftEn = 0;
 end
 
 
-always #10 clk = ~clk;
+always #130 clk = ~clk;
 
 initial begin
-@(posedge clk)
-rstn <= 1;
-fftEn <= 1;
-I_in <= 1;
-Q_in <= 1;
-@(posedge clk)
-I_in <= 2;
-Q_in <= -2;
-@(posedge clk)
-I_in <= 3;
-Q_in <= 3;
-@(posedge clk)
-I_in = -4;
-Q_in = -4;
-#20
-I_in = 5;
-Q_in = 5;
-#20
-I_in = 1;
-Q_in = 1;
-#20
-I_in = 2;
-Q_in = -2;
-#20
-I_in = 3;
-Q_in = 3;
-#20
-I_in = -4;
-Q_in = -4;
-#20
-I_in = 5;
-Q_in = 5;
-#20
-I_in = 1;
-Q_in = 1;
-#20
-I_in = 2;
-Q_in = -2;
-#20
-I_in = 3;
-Q_in = 3;
-#20
-I_in = -4;
-Q_in = -4;
-#20
-I_in = 5;
-Q_in = 5;
-#20
-I_in = -3;
-Q_in = -3;
+#260
+rstn = 1;
+fftEn = 1;
+#130
+I_in = 512;
+Q_in = 410;
+#260
+I_in = 307;
+Q_in = -205;
+#260
+I_in = -205;
+Q_in = 512;
+#260
+I_in = -410;
+Q_in = -205;
+#260
+I_in = 307;
+Q_in = 102;
+#260
+I_in = 205;
+Q_in = -410;
+#260
+I_in = 410;
+Q_in = -205;
+#260
+I_in = 102;
+Q_in = 205;
+#260
+I_in = -307;
+Q_in = -307;
+#260
+I_in = 205;
+Q_in = 307;
+#260
+I_in = 512;
+Q_in = 205;
+#260
+I_in = 410;
+Q_in = -205;
+#260
+I_in = -102;
+Q_in = 205;
+#260
+I_in = -102;
+Q_in = -102;
+#260
+I_in = 205;
+Q_in = 205;
+#260
+I_in = 307;
+Q_in = 512;
 end
 
 initial begin
-#20
+#1000
 $finish;
 end
 endmodule

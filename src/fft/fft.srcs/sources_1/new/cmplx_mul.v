@@ -16,7 +16,7 @@ reg signed [31:0] r_aibi;
 reg signed [31:0] r_arbi;
 reg signed [31:0] r_aibr;  
 reg signed [15:0] r_resR;
-reg signed [15:0] r_resI;    
+reg signed [15:0] r_resI;   
     
 
     /* Assignments  */
@@ -34,6 +34,7 @@ reg signed [15:0] r_resI;
             // Result
             r_resR = r_arbr[25:10] - r_aibi[25:10];     // Over happen while having oppositte signs and result follows subtrahend
             r_resI = r_aibr[25:10] + r_arbi[25:10];     // Overflow if both have same sign and result have other sign
+            
             
     end
         

@@ -47,60 +47,59 @@ always #10 clk = ~clk;
 
 
 initial begin
-#20 
 @(posedge clk)
 I_in = 0;
 sdf_addr = 0;
-#40
+@(posedge clk)
 I_in = 1;
 sdf_addr = 1;
-#40
+@(posedge clk)
 I_in = 2;
 sdf_addr = 2;
-#40
+@(posedge clk)
 I_in = 3;
 sdf_addr = 3;
-#40
+@(posedge clk)
 I_in = 4;
 sdf_addr = 4;
-#40
+@(posedge clk)
 I_in = 5;
 sdf_addr = 5;
-#40
+@(posedge clk)
 I_in = 6;
 sdf_addr = 6;
-#40
+@(posedge clk)
 I_in = 7;
 sdf_addr = 7;
-#40
+@(posedge clk)
 active_state = 1;
 I_in = 0;
 sdf_addr = 0;
-#20
+@(posedge clk)
 I_in = 0;
 sdf_addr = 1;
-#20
+@(posedge clk)
 I_in = 0;
 sdf_addr = 2;
-#20
+@(posedge clk)
 I_in = 0;
 sdf_addr = 3;
-#20
+@(posedge clk)
 I_in = 0;
 sdf_addr = 4;
-#20
+@(posedge clk)
 I_in = 0;
 sdf_addr = 5;
-#20
+@(posedge clk)
 I_in = 0;
 sdf_addr = 6;
-#20
+@(posedge clk)
 I_in = 0;
 sdf_addr = 7;
 end
 
 initial begin
-#20
+#1000
 $finish;
 end
 

@@ -36,7 +36,7 @@ Sampling_Time = 1/(1.92e6);
 Doppler_Shift = 5; % Max. Doppler Shift of diffuse components (5 Hz)
 Delay_Vector = [0 50 120 200 230 500 1600 2300 5000].*1e-9; % Channel Paths
 Gain_Vector = [-1 -1 -1 0 0 0 -3 -5 -7]; % Average Path Gains (dB)
-SNR = -15; % Signal-To-Noise Ratio (dB)
+SNR = 15; % Signal-To-Noise Ratio (dB)
  
 channel = comm.RayleighChannel( 'SampleRate', Sampling_Frequency, ...
                                 'PathDelays', Delay_Vector, ...
