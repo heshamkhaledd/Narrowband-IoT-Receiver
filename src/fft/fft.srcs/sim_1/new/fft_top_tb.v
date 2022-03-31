@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 03/21/2022 09:19:20 PM
+// Create Date: 03/21/2022 02:45:58 AM
 // Design Name: 
-// Module Name: butterfly_1_tb
+// Module Name: fft_top_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,40 +20,40 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module fft_top_tb#(parameter DATA_WIDTH = 16, parameter SDF_LENGTH = 8)();
+module fft_top_tb#(parameter DATA_WIDTH = 16)();
 
 reg clk;
 reg rstn;
 reg fftEn;
-reg signed [DATA_WIDTH-1:0]      I_in;
-reg signed [DATA_WIDTH-1:0]      Q_in;
-wire signed [DATA_WIDTH-1:0] I_out;
-wire signed [DATA_WIDTH-1:0] Q_out;
+reg signed [DATA_WIDTH-1:0]     I_in;
+reg signed [DATA_WIDTH-1:0]     Q_in;
+wire signed [DATA_WIDTH-1:0]     I_out;
+wire signed [DATA_WIDTH-1:0]     Q_out;
 wire fftValid;
 
-fft_top#(16)      UUT (.clk(clk),
-                       .rstn(rstn),
-                       .fftEn(fftEn),
-                       .I_in(I_in),
-                       .Q_in(Q_in),
-                       .fftValid(fftValid),
-                       .I_out(I_out),
-                       .Q_out(Q_out)
-                        );
+fft_top#(16) UUT ( .clk(clk),
+                   .rstn(rstn),
+                   .fftEn(fftEn),
+                   .I_in(I_in),
+                   .Q_in(Q_in),
+                   .I_out(I_out),
+                   .Q_out(Q_out),
+                   .fftValid(fftValid)
+                   );
 initial begin
 clk = 1;
 rstn = 0;
+fftEn = 0;
 end
+
 
 always #130 clk = ~clk;
 
-
 initial begin
-#260
-rstn = 1;
-#260
-fftEn = 1;
 #130
+rstn = 1;
+fftEn = 1;
+#260
 I_in = 512;
 Q_in = 410;
 #260
@@ -101,9 +101,10 @@ Q_in = 205;
 #260
 I_in = 307;
 Q_in = 512;
-#5200
-fftEn = 0;
-#780
+end
+
+initial begin
+#1000
 $finish;
 end
 endmodule
