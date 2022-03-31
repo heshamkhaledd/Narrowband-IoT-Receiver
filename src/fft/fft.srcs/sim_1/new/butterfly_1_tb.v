@@ -26,7 +26,7 @@ reg clk;
 reg signed [DATA_WIDTH-1:0]      I_in;
 reg signed [DATA_WIDTH-1:0]      Q_in;
 reg  [SDF_Addr-1:0]              sdf_addr;
-reg                              active_state;
+reg                              activeState;
 wire signed [DATA_WIDTH-1:0] I_out;
 wire signed [DATA_WIDTH-1:0] Q_out;
 
@@ -34,73 +34,68 @@ butterfly_1#(8,16,3) UUT (.clk(clk),
                           .I_in(I_in),
                           .Q_in(Q_in),
                           .sdf_addr(sdf_addr),
-                          .active_state(active_state),
+                          .activeState(activeState),
                           .I_out(I_out),
                           .Q_out(Q_out)
                           );
 initial begin
 clk = 1;
-active_state = 0;
+activeState = 0;
 end
 
-always #10 clk = ~clk;
+always #130 clk = ~clk;
 
 
 initial begin
-@(posedge clk)
+#130
 I_in = 0;
 sdf_addr = 0;
-@(posedge clk)
+#260
 I_in = 1;
 sdf_addr = 1;
-@(posedge clk)
+#260
 I_in = 2;
 sdf_addr = 2;
-@(posedge clk)
+#260
 I_in = 3;
 sdf_addr = 3;
-@(posedge clk)
+#260
 I_in = 4;
 sdf_addr = 4;
-@(posedge clk)
+#260
 I_in = 5;
 sdf_addr = 5;
-@(posedge clk)
+#260
 I_in = 6;
 sdf_addr = 6;
-@(posedge clk)
+#260
 I_in = 7;
 sdf_addr = 7;
-@(posedge clk)
-active_state = 1;
+#260
+activeState = 1;
 I_in = 0;
 sdf_addr = 0;
-@(posedge clk)
+#260
 I_in = 0;
 sdf_addr = 1;
-@(posedge clk)
+#260
 I_in = 0;
 sdf_addr = 2;
-@(posedge clk)
+#260
 I_in = 0;
 sdf_addr = 3;
-@(posedge clk)
+#260
 I_in = 0;
 sdf_addr = 4;
-@(posedge clk)
+#260
 I_in = 0;
 sdf_addr = 5;
-@(posedge clk)
+#260
 I_in = 0;
 sdf_addr = 6;
-@(posedge clk)
+#260
 I_in = 0;
 sdf_addr = 7;
-end
-
-initial begin
-#1000
-$finish;
 end
 
 endmodule

@@ -50,10 +50,10 @@ end
 always #130 clk = ~clk;
 
 initial begin
-#260
+#130
 rstn = 1;
 fftEn = 1;
-#130
+#260
 I_in = 512;
 Q_in = 410;
 #260

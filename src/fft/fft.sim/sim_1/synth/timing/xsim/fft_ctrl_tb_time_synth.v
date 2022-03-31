@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Sat Mar 26 06:47:01 2022
+// Date        : Mon Mar 28 10:36:41 2022
 // Host        : Jarvis running 64-bit major release  (build 9200)
 // Command     : write_verilog -mode timesim -nolib -sdf_anno true -force -file {D:/Graduation
 //               Project/Narrowband-IoT-Receiver/src/fft/fft.sim/sim_1/synth/timing/xsim/fft_ctrl_tb_time_synth.v}

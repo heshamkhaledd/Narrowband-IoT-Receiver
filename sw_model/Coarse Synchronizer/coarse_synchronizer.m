@@ -8,7 +8,7 @@ close all; clear; clc; rng('shuffle');
 %   -> Sampling Rate:   1.92 MHz
 %   -> IFFT Points:     128
  
-N_Frames = 80; % Number of required Narrowband LTE Frames to be generated
+N_Frames = 1; % Number of required Narrowband LTE Frames to be generated
  
 LTE_preset = 'R.NB.6';
 LTE_Settings = NBIoTDownlinkWaveformGenerator(LTE_preset);  

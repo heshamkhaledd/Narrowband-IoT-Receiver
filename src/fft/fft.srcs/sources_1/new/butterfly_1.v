@@ -35,22 +35,29 @@ reg [DATA_WIDTH-1:0] r_sdf_ram_Q [SDF_LENGTH-1:0];
 
 always@(posedge clk)
 begin
+                   if (!activeState)
+                        begin
+                            r_sdf_ram_I[sdf_addr] <= I_in;
+                            r_sdf_ram_Q[sdf_addr] <= Q_in;
+                        end
+                   else
+                        begin
+                            r_sdf_ram_I[sdf_addr] <= r_sdf_ram_I[sdf_addr] - I_in;
+                            r_sdf_ram_Q[sdf_addr] <= r_sdf_ram_Q[sdf_addr] - Q_in;
+                        end
+end
+
+always@(posedge clk)
+begin
                     if (!activeState)
                         begin
                             I_out <= r_sdf_ram_I[sdf_addr];
                             Q_out <= r_sdf_ram_Q[sdf_addr];
-                            
-                            r_sdf_ram_I[sdf_addr] <= I_in;
-                            r_sdf_ram_Q[sdf_addr] <= Q_in;
-        
                         end
                     else
                         begin
                             I_out <= r_sdf_ram_I[sdf_addr] + I_in;
                             Q_out <= r_sdf_ram_Q[sdf_addr] + Q_in;
-                            
-                            r_sdf_ram_I[sdf_addr] <= r_sdf_ram_I[sdf_addr] - I_in;
-                            r_sdf_ram_Q[sdf_addr] <= r_sdf_ram_Q[sdf_addr] - Q_in;
                         end
 end
 endmodule

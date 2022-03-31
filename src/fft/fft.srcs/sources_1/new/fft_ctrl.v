@@ -98,7 +98,7 @@ begin
 end
 
 // FFT Stage (1) next state evaluating
-always @(r_currentState_BF1 or r_cycleCounter or r_addGen1)
+always @(*)
 begin
       case(r_currentState_BF1)
             rstnState:      begin
