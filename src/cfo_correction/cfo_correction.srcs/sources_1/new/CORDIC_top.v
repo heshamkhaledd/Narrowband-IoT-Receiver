@@ -26,30 +26,30 @@ module CORDIC_top(
         input   cfo_en,
         input   [15:0] inReal,
         input   [15:0] inImg,
-        input   [16:0] coarseOffset,
+        input   [18:0] coarseOffset,
         input   [18:0] fineOffset,
         output  reg [15:0] outReal,
         output  reg [15:0] outImg,
         output  cfo_valid
     );
-    reg  [19:0] desiredAngle;
-    reg [19:0] currentAngle;
+    wire  [19:0] desiredAngle;
+    wire [20:0] currentAngle;
     wire muxSel1;
     wire muxSel2;
     wire muxSel3;
     wire [3:0] romAddress;
     wire [3:0] iterCounter;
-    wire [15:0] theta;
+    wire [19:0] theta;
     wire writeEnable;
     reg  [19:0] outMux1;
     reg  [15:0] outMux2;
     reg  [15:0] outMux3;
-    reg  [15:0] outShifter1;
-    reg  [15:0] outShifter2;
+    wire  [15:0] outShifter1;
+    wire  [15:0] outShifter2;
     reg  [15:0] inRegister1;
     reg  [15:0] inRegister2;
-    reg  [16:0] outAdder1;
-    reg  [16:0] outAdder2;
+    wire  [16:0] outAdder1;
+    wire  [16:0] outAdder2;
     
     CFO_ctrl CTRL (.clk(clk),
                    .rstn(rstn),
@@ -64,22 +64,22 @@ module CORDIC_top(
     CFO_ROM ROM (.romAddress(romAddress),      
                  .theta(theta));
                  
-    fixed_add#(19) adder1(.num1(coarseOffset),
-                          .num2(fineOffset),
+    fixed_add#(19) adder1(.num_1(coarseOffset),
+                          .num_2(fineOffset),
                           .numOut(desiredAngle),
                           .opSelect(1'b0));
       
-    fixed_add#(19) adder2(.num1(outMux1),
-                          .num2(theta),
+    fixed_add#(20) adder2(.num_1(outMux1),
+                          .num_2(theta),
                           .numOut(currentAngle),
-                          .opSelect(~outMux1[19])); 
+                         .opSelect(~outMux1[19])); 
                           
-    fixed_add#(16) adder3(.num1(inRegister1),
-                          .num2(outShifter2),
+    fixed_add#(16) adder3(.num_1(inRegister1),
+                          .num_2(outShifter2),
                           .numOut(outAdder1),
                           .opSelect(outMux1[19])); 
-    fixed_add#(16) adder4(.num1(inRegister2),
-                          .num2(outShifter1),
+    fixed_add#(16) adder4(.num_1(inRegister2),
+                          .num_2(outShifter1),
                           .numOut(outAdder2),
                           .opSelect(outMux1[19]));                        
    CFO_shifter     shifter1(.inData(inRegister1),

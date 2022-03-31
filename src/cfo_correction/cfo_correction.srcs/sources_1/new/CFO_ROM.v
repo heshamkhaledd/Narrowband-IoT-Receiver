@@ -22,7 +22,7 @@
 
 module CFO_ROM(
     input  [3:0] romAddress,
-    output reg [15:0] theta
+    output reg [19:0] theta
     );
     always@(*)
     begin

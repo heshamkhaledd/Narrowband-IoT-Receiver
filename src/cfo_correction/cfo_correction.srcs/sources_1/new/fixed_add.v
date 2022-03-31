@@ -14,10 +14,10 @@ reg [DATA_WIDTH:0]      interNum;
 reg [DATA_WIDTH-1:0]    input1Num;
 reg [DATA_WIDTH-1:0]    input2Num;
 
-assign numOut = interNum[DATA_WIDTH-1:0];
+assign numOut = interNum;
 
 
-always @(*)
+always @(num_1 or num_2 )
 begin
 
     input1Num = num_1;
@@ -25,9 +25,12 @@ begin
     
    if (opSelect == 1'b1)
         begin
-            input2Num = ~input2Num + 1;          
+           interNum = input1Num - input2Num;          
         end  
-    interNum = input1Num + input2Num;
+   else if (opSelect == 1'b0)
+        begin
+            interNum = input1Num + input2Num;
+        end
 
 
     
