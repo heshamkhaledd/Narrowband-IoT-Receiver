@@ -19,52 +19,114 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module fft_ROM #(parameter DATA_WIDTH = 16, parameter ROM_LENGTH = 7)
+module fft_ROM #(parameter DATA_WIDTH = 16)
 (
-        input  [2:0] twiddleAddr,
+        input clk,
+        input rstn,
+        input fftEn,
         output reg signed [DATA_WIDTH-1:0] twiddleFactorI,
         output reg signed [DATA_WIDTH-1:0] twiddleFactorQ
     );
 
-reg [DATA_WIDTH-1:0] r_TwiddleRom [ROM_LENGTH-1:0];
+reg [4:0] cycleCounter;
 
-always@(*)
+always @(posedge clk, negedge rstn)
 begin
-    case (twiddleAddr)
-        3'b000: begin
-                    twiddleFactorI = 1024;
-                    twiddleFactorQ = 0;
-                end
+    if (!rstn)
+        begin
+            cycleCounter <= 0;
+        end
+    else if (fftEn)
+        begin
+            cycleCounter <= cycleCounter + 1;
+        end
+    else
+        begin
+            cycleCounter <= 0;
+        end    
+end
+
+always@(cycleCounter)
+begin
+    case (cycleCounter)
+        15: begin
+                twiddleFactorI = 1024;
+                twiddleFactorQ = 0;
+            end
                 
-        3'b001: begin
-                    twiddleFactorI = 946;
-                    twiddleFactorQ = -392;
-                end
+        16: begin
+                twiddleFactorI = 1024;
+                twiddleFactorQ = 0;
+            end
                 
-        3'b010: begin
-                    twiddleFactorI = 724;
-                    twiddleFactorQ = -724;
-                end
+        17: begin
+                twiddleFactorI = 1024;
+                twiddleFactorQ = 0;
+            end
+                
+        18: begin
+                twiddleFactorI = 1024;
+                twiddleFactorQ = 0;
+            end
+                
+        19: begin
+                twiddleFactorI = 1024;
+                twiddleFactorQ = 0;
+            end
+        20: begin
+                twiddleFactorI = 724;
+                twiddleFactorQ = -724;
+            end
+                
+        21: begin
+                twiddleFactorI = 0;
+                twiddleFactorQ = -1024;
+            end
         
-        3'b011: begin
-                    twiddleFactorI = 392;
-                    twiddleFactorQ = -946;
-                end
+        22: begin
+                twiddleFactorI = -724;
+                twiddleFactorQ = -724;
+            end
                 
-        3'b100: begin
-                    twiddleFactorI = 0;
-                    twiddleFactorQ = -1024;
-                end
+        23: begin
+                twiddleFactorI = 1024;
+                twiddleFactorQ = 0;
+            end
                 
-       3'b101: begin
-                    twiddleFactorI = -724;
-                    twiddleFactorQ = -724;
-               end
+        24: begin
+                twiddleFactorI = 946;
+                twiddleFactorQ = -392;
+            end
                
-       3'b110: begin
-                    twiddleFactorI = -946;
-                    twiddleFactorQ = 392;
-               end
+        25: begin
+                twiddleFactorI = 724;
+                twiddleFactorQ = -724;
+            end
+        
+        26: begin
+                twiddleFactorI = 392;
+                twiddleFactorQ = -946;
+            end
+               
+        27: begin
+                twiddleFactorI = 1024;
+                twiddleFactorQ = 0;
+            end
+        
+        28: begin
+                twiddleFactorI = 392;
+                twiddleFactorQ = -946;
+            end
+            
+        29: begin
+                twiddleFactorI = -724;
+                twiddleFactorQ = -724;
+            end
+            
+        30: begin
+                twiddleFactorI = -946;
+                twiddleFactorQ = 392;
+            end
                
        default: begin
                     twiddleFactorI = 1024;
@@ -72,6 +134,5 @@ begin
                 end
         
     endcase
-end    
-
+end 
 endmodule

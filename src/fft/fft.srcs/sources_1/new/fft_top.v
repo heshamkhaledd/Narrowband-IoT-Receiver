@@ -1,16 +1,17 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: Si-Vision
-// Engineer: Hesham Khaled & Youssef Taha
+// Company: 
+// Engineer: 
 // 
-// Create Date: 03/17/2022 07:28:36 AM
-// Design Name: DIF SDF Radix 2^2 FFT Verilog Implementation
+// Create Date: 03/29/2022 08:34:14 PM
+// Design Name: 
 // Module Name: fft_top
-// Project Name: NB-IoT Receiver
-// Target Devices: Virtex-7 VC709 Evaluation Platform
-// Tool Versions: Vivado 2019.1
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
 // 
-// Dependencies: None
+// Dependencies: 
 // 
 // Revision:
 // Revision 0.01 - File Created
@@ -19,112 +20,117 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module fft_top #(parameter DATA_WIDTH = 16)
+module fft_top#(parameter DATA_WIDTH = 16)
 (
-    input                       clk,
-    input                       rstn,
-    input                       fftEn,
-    input  signed [DATA_WIDTH-1:0]     I_in,
-    input  signed [DATA_WIDTH-1:0]     Q_in,
-    output signed [DATA_WIDTH-1:0]     I_out,
-    output signed [DATA_WIDTH-1:0]     Q_out,
-    output                      fftValid
+    input clk,
+    input rstn,
+    input fftEn,
+    input   signed [DATA_WIDTH-1:0] I_in,
+    input   signed [DATA_WIDTH-1:0] Q_in,
+    output reg fftValid,
+    output reg  signed [DATA_WIDTH-1:0] I_out,
+    output reg  signed [DATA_WIDTH-1:0] Q_out         
     );
 
-localparam SDF_1_Addr = 3;
-localparam SDF_2_Addr = 2;
-localparam SDF_3_Addr = 2;
-localparam SDF_4_Addr = 1;
-localparam ROMAddr = 3;
+wire [DATA_WIDTH-1:0] I_out_BF1;
+wire [DATA_WIDTH-1:0] Q_out_BF1;
+wire [DATA_WIDTH-1:0] I_out_BF2;
+wire [DATA_WIDTH-1:0] Q_out_BF2;
 
-wire s1;
-wire s2;
-wire s3;
-wire s4;
-wire s5;
-wire s6;
-wire [SDF_1_Addr-1:0] sdf_1_addr;
-wire [SDF_2_Addr-1:0] sdf_2_addr;
-wire [SDF_3_Addr-1:0] sdf_3_addr;
-wire [SDF_4_Addr-1:0] sdf_4_addr;
-wire [ROMAddr-1:0]    twiddleAddr;
+wire [DATA_WIDTH-1:0] I_out_ROM;
+wire [DATA_WIDTH-1:0] Q_out_ROM;
+wire [DATA_WIDTH-1:0] I_out_MUL;
+wire [DATA_WIDTH-1:0] Q_out_MUL;
 
-wire [DATA_WIDTH-1:0] BF1_out_I;
-wire [DATA_WIDTH-1:0] BF1_out_Q;
-wire [DATA_WIDTH-1:0] BF2_out_I;
-wire [DATA_WIDTH-1:0] BF2_out_Q;
-wire [DATA_WIDTH-1:0] CMPLX_in_I;
-wire [DATA_WIDTH-1:0] CMPLX_in_Q;
-wire [DATA_WIDTH-1:0] CMPLX_out_I;
-wire [DATA_WIDTH-1:0] CMPLX_out_Q;
-wire [DATA_WIDTH-1:0] BF3_out_I;
-wire [DATA_WIDTH-1:0] BF3_out_Q;
+wire [DATA_WIDTH-1:0] I_out_BF3;
+wire [DATA_WIDTH-1:0] Q_out_BF3;
+wire [DATA_WIDTH-1:0] I_out_BF4;
+wire [DATA_WIDTH-1:0] Q_out_BF4;
 
-fft_ctrl#(7,16,3,2,2,1) FFT_CTRL (    .clk(clk),
-                                      .rstn(rstn),
-                                      .fftEn(fftEn),
-                                      .s1(s1),
-                                      .s2(s2),
-                                      .s3(s3),
-                                      .s4(s4),
-                                      .s5(s5),
-                                      .s6(s6),
-                                      .fftValid(fftValid),
-                                      .sdf_1_addr(sdf_1_addr),
-                                      .sdf_2_addr(sdf_2_addr),
-                                      .sdf_3_addr(sdf_3_addr),
-                                      .sdf_4_addr(sdf_4_addr),
-                                      .twiddleAddr(twiddleAddr)
-                                      );
-                          
-butterfly_1#(8,16,3) BF1 (.clk(clk),
+wire RST;
+reg [5:0] cycleCounter;
+
+assign RST = !fftEn;
+
+fft_stage1 #(16,8) BF1 (.clk(clk),
+                        .rstn(rstn),
+                        .fftEn(fftEn),
                         .I_in(I_in),
                         .Q_in(Q_in),
-                        .sdf_addr(sdf_1_addr),
-                        .activeState(s1),
-                        .I_out(BF1_out_I),
-                        .Q_out(BF1_out_Q)
+                        .I_out(I_out_BF1),
+                        .Q_out(Q_out_BF1)
                         );
                         
-butterfly_2#(4,16,1) BF2 (.clk(clk),
-                        .I_in(BF1_out_I),
-                        .Q_in(BF1_out_Q),
-                        .sdf_addr(sdf_2_addr),
-                        .activeState(s3),
-                        .j_mul(s2),
-                        .I_out(BF2_out_I),
-                        .Q_out(BF2_out_Q)
+fft_stage2 #(16,4) BF2 (.clk(clk),
+                        .rstn(rstn),
+                        .fftEn(fftEn),
+                        .I_in(I_out_BF1),
+                        .Q_in(Q_out_BF1),
+                        .I_out(I_out_BF2),
+                        .Q_out(Q_out_BF2)
                         );
                         
-fft_ROM#(16,7) FFT_ROM ( .twiddleAddr(twiddleAddr),
-                         .twiddleFactorI(CMPLX_in_I),
-                         .twiddleFactorQ(CMPLX_in_Q)
-                         );
+fft_ROM #(16)      ROM (.clk(clk),
+                        .rstn(rstn),
+                        .fftEn(fftEn),
+                        .twiddleFactorI(I_out_ROM),
+                        .twiddleFactorQ(Q_out_ROM)
+                        );
+                        
+cmplx_mul    CMPLX_MUL (.ar(I_out_ROM),
+                        .ai(Q_out_ROM),
+                        .br(I_out_BF2),
+                        .bi(Q_out_BF2),
+                        .yr(I_out_MUL),
+                        .yi(Q_out_MUL)
+                        );
+                        
+fft_stage3 #(16,2) BF3 (.clk(clk),
+                        .rstn(rstn),
+                        .fftEn(fftEn),
+                        .I_in(I_out_MUL),
+                        .Q_in(Q_out_MUL),
+                        .I_out(I_out_BF3),
+                        .Q_out(Q_out_BF3)
+                        );
+                        
+fft_stage4 #(16)   BF4 (.clk(clk),
+                        .rstn(rstn),
+                        .fftEn(fftEn),
+                        .I_in(I_out_BF3),
+                        .Q_in(Q_out_BF3),
+                        .I_out(I_out_BF4),
+                        .Q_out(Q_out_BF4)
+                        );
+                        
+always@ (posedge clk, negedge rstn)
+begin
+    if (!rstn || RST)
+        begin
+            I_out <= 0;
+            Q_out <= 0;
+            cycleCounter <= 0;
+        end
+        
+    else if (fftEn)
+        begin
+            I_out <= I_out_BF4;
+            Q_out <= Q_out_BF4;
+            cycleCounter <= cycleCounter + 1;
+        end
+   else
+        begin
+            I_out <= 0;
+            Q_out <= 0;
+            cycleCounter <= 0;
+        end
+end
 
-cmplx_mul CMPLX_MUL       (.ar(CMPLX_in_I),
-                           .ai(CMPLX_in_Q),
-                           .br(BF2_out_I),
-                           .bi(BF2_out_Q),
-                           .yr(CMPLX_out_I),
-                           .yi(CMPLX_out_Q)
-                           );
-
-butterfly_1#(2,16,2) BF3 (.clk(clk),
-                        .I_in(CMPLX_out_I),
-                        .Q_in(CMPLX_out_Q),
-                        .sdf_addr(sdf_3_addr),
-                        .activeState(s4),
-                        .I_out(BF3_out_I),
-                        .Q_out(BF3_out_Q)
-                        );
-                        
-butterfly_2#(1,16,0) BF4 (.clk(clk),
-                        .I_in(BF3_out_I),
-                        .Q_in(BF3_out_Q),
-                        .sdf_addr(sdf_4_addr),
-                        .activeState(s6),
-                        .j_mul(s5),
-                        .I_out(I_out),
-                        .Q_out(Q_out)
-                        );
+always @(posedge clk)
+begin
+    if (cycleCounter > 18 && cycleCounter < 36)
+        fftValid <= 1;
+    else
+        fftValid <= 0;
+end                      
 endmodule
