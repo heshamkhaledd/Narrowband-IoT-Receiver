@@ -52,8 +52,8 @@ wire [DATA_WIDTH-1:0] BF1_out_I;
 wire [DATA_WIDTH-1:0] BF1_out_Q;
 wire [DATA_WIDTH-1:0] BF2_out_I;
 wire [DATA_WIDTH-1:0] BF2_out_Q;
-wire [DATA_WIDTH-1:0] CMPLX_in_I;
-wire [DATA_WIDTH-1:0] CMPLX_in_Q;
+wire [DATA_WIDTH-1:0] ROM_in_I;
+wire [DATA_WIDTH-1:0] ROM_in_Q;
 wire [DATA_WIDTH-1:0] CMPLX_out_I;
 wire [DATA_WIDTH-1:0] CMPLX_out_Q;
 wire [DATA_WIDTH-1:0] BF3_out_I;
@@ -96,12 +96,12 @@ butterfly_2 #(16,4,1) BF2 (.clk(clk),
                            );
                         
 fft_ROM #(16,7) FFT_ROM (.twiddleAddr(twiddleAddr),
-                         .twiddleFactor_I(CMPLX_in_I),
-                         .twiddleFactor_Q(CMPLX_in_Q)
+                         .twiddleFactor_I(ROM_in_I),
+                         .twiddleFactor_Q(ROM_in_Q)
                          );
 
-cmplx_mul CMPLX_MUL       (.Ar(CMPLX_in_I),
-                           .Ai(CMPLX_in_Q),
+cmplx_mul CMPLX_MUL       (.Ar(ROM_in_I),
+                           .Ai(ROM_in_Q),
                            .Br(BF2_out_I),
                            .Bi(BF2_out_Q),
                            .Yr(CMPLX_out_I),
