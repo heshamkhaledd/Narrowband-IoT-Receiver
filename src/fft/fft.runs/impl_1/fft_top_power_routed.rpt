@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Fri Apr  1 18:02:22 2022
+| Date             : Sat Apr  2 00:00:43 2022
 | Host             : Jarvis running 64-bit major release  (build 9200)
 | Command          : report_power -file fft_top_power_routed.rpt -pb fft_top_power_summary_routed.pb -rpx fft_top_power_routed.rpx
 | Design           : fft_top
@@ -53,13 +53,13 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |    <0.001 |        3 |       --- |             --- |
-| CLB Logic                |    <0.001 |      956 |       --- |             --- |
-|   LUT as Logic           |    <0.001 |      615 |    230400 |            0.27 |
+| CLB Logic                |    <0.001 |     1022 |       --- |             --- |
+|   LUT as Logic           |    <0.001 |      623 |    230400 |            0.27 |
 |   LUT as Distributed RAM |    <0.001 |       48 |    101760 |            0.05 |
 |   CARRY8                 |    <0.001 |       48 |     28800 |            0.17 |
-|   Register               |    <0.001 |      160 |    460800 |            0.03 |
+|   Register               |    <0.001 |      224 |    460800 |            0.05 |
 |   Others                 |     0.000 |       18 |       --- |             --- |
-| Signals                  |    <0.001 |      857 |       --- |             --- |
+| Signals                  |    <0.001 |      938 |       --- |             --- |
 | DSPs                     |    <0.001 |        4 |      1728 |            0.23 |
 | I/O                      |     0.011 |       68 |       360 |           18.89 |
 | Static Power             |     0.592 |          |           |                 |

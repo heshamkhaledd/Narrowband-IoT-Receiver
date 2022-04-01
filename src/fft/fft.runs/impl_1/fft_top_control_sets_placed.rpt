@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Fri Apr  1 18:00:16 2022
+| Date         : Fri Apr  1 23:58:36 2022
 | Host         : Jarvis running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file fft_top_control_sets_placed.rpt
 | Design       : fft_top
@@ -58,8 +58,8 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             129 |           21 |
-| No           | No                    | Yes                    |              31 |           12 |
+| No           | No                    | No                     |             193 |           35 |
+| No           | No                    | Yes                    |              31 |           10 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
@@ -73,8 +73,8 @@ Table of Contents
 +----------------+---------------+------------------+------------------+----------------+
 |  Clock Signal  | Enable Signal | Set/Reset Signal | Slice Load Count | Bel Load Count |
 +----------------+---------------+------------------+------------------+----------------+
-|  clk_IBUF_BUFG |               | rstn_IBUF_inst/O |               12 |             31 |
-|  clk_IBUF_BUFG |               |                  |               27 |            225 |
+|  clk_IBUF_BUFG |               | rstn_IBUF_inst/O |               10 |             31 |
+|  clk_IBUF_BUFG |               |                  |               41 |            289 |
 +----------------+---------------+------------------+------------------+----------------+
 
 
