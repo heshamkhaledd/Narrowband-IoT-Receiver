@@ -30,11 +30,11 @@ module fft_top #(parameter DATA_WIDTH = 16)
     output fftValid
     );
 
-localparam p_sdfAddr_1 = 3;
-localparam p_sdfAddr_2 = 2;
-localparam p_sdfAddr_3 = 2;
-localparam p_sdfAddr_4 = 1;
-localparam p_romAddr = 3;
+localparam p_sdfAddr_1  = 3;
+localparam p_sdfAddr_2  = 2;
+localparam p_sdfAddr_3  = 1;
+localparam p_sdfAddr_4  = 1;
+localparam p_romAddr    = 3;
 
 wire s1;
 wire s2;
@@ -59,7 +59,7 @@ wire [DATA_WIDTH-1:0] CMPLX_out_Q;
 wire [DATA_WIDTH-1:0] BF3_out_I;
 wire [DATA_WIDTH-1:0] BF3_out_Q;
 
-fft_ctrl #(16,7,3,2,2,1) FFT_CTRL (.clk(clk),
+fft_ctrl #(16,7,3,2,1,1) FFT_CTRL (.clk(clk),
                                    .rstn(rstn),
                                    .fftEn(fftEn),
                                    .s1(s1),
@@ -108,7 +108,7 @@ cmplx_mul CMPLX_MUL       (.Ar(ROM_in_I),
                            .Yi(CMPLX_out_Q)
                            );
 
-butterfly_1 #(16,2,2) BF3 (.clk(clk),
+butterfly_1 #(16,2,1) BF3 (.clk(clk),
                            .I_in(CMPLX_out_I),
                            .Q_in(CMPLX_out_Q),
                            .sdfAddr(sdfAddr_3),
