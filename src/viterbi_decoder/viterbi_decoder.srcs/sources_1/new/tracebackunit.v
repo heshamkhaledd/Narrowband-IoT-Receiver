@@ -32,7 +32,7 @@ module tracebackunit(   input clk,
       parameter IDLE = 3'b001;
       parameter ADDRESS_GEN = 3'b010;
       parameter STATE_OUT=  3'b100;
-      reg [3:0] r_currState;
+      reg [2:0] r_currState;
       reg r_cuValid;
       reg r_decodedToLifo;
       reg r_lifoValid;
@@ -50,6 +50,7 @@ module tracebackunit(   input clk,
       begin
             if(~rstn)
             begin
+                r_rowGenerator<=6'd0;
                 r_currState<=IDLE;
                 r_cuValid<=1'b0;
                 r_lifoValid<=1'b0;
