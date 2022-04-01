@@ -28,6 +28,6 @@ module maxcomparator(
     output [7:0] dataOut,
     output [5:0] locationOut
     );
-    assign locationOut = data1>data2? location1:location2 ;
-    assign dataOut = data1>data2? data1:data2;
+    assign locationOut = data1>=data2? location1:location2 ;
+    assign dataOut = data1>=data2? data1:data2;
 endmodule

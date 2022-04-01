@@ -25,6 +25,6 @@ module hamming_distance( input [2:0]in1,
                          output [1:0]metric);
     wire [2:0]w_xnorResult;
     assign w_xnorResult= ~(in1 ^ in2);
-    assign metric = w_xnorResult[0]+w_xnorResult[2]+w_xnorResult[2];
+    assign metric = w_xnorResult[0]+w_xnorResult[1]+w_xnorResult[2];
 
 endmodule

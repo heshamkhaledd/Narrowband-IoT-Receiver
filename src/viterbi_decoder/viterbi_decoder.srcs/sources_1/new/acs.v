@@ -38,7 +38,7 @@ module acs( input [1:0] branch_0,
       
       always@(*)
       begin
-        if(w_firstPathResult > w_secondPathResult)
+        if(w_firstPathResult >= w_secondPathResult)
         begin
              r_survivedMetric = w_firstPathResult;
              r_survivor = 1'b0 ;

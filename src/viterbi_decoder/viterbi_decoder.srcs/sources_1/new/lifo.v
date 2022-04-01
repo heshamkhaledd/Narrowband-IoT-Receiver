@@ -40,6 +40,7 @@ module lifo( input clk,
                 r_dataOut<=1'b0;
                 r_lifoMemory<=2560'd0;
                 r_counter<=1'b0;
+                r_counter2<=1'b0;
             end
             else
             begin

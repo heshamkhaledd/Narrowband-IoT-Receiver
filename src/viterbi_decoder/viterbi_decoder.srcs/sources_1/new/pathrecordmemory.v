@@ -21,7 +21,6 @@
 
 
 module pathrecordmemory(    input [63:0] selectedPaths,    
-                            input rstn,
                             input clk,
                             input enable,
                             input [11:0]columnAddress,
@@ -42,35 +41,30 @@ module pathrecordmemory(    input [63:0] selectedPaths,
   */
                             
          reg [63:0]r_memArray[0:2559];
-         integer i,j;
          reg [63:0]r_storedContent;
+         reg [63:0] r_internalReg;
          assign storedContent=r_storedContent;
-         always@(posedge clk or negedge rstn)
+         always@(posedge clk )
          begin
-            if(~rstn)
-            begin
-                for(j=0;j<2560;j=j+1)
-                begin
-                    r_memArray[j]=64'd0;
-                end
-            end
-            else
-            begin
                 if(enable)
                 begin
                     if(rw)  //rw =1 -> read
                     begin
                         r_storedContent <= r_memArray[columnAddress];
+//                        r_internalReg<=r_memArray[columnAddress];
+//                        r_storedContent<=r_internalReg;
                     end
                     else // writing
                     begin
                         r_memArray[columnAddress]<=selectedPaths;
                     end
                 end
-            end
+                else
+                begin
+                       //r_storedContent<=64'd0;
+                end
          end
-         
-        
+          
 endmodule
 
 

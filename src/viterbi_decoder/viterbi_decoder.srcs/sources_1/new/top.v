@@ -27,7 +27,9 @@ module top(     input clk,
                 input enable,
                 output crcValid,
                 output decodedOut,
-                output matcherRepeat   );
+                output matcherRepeat );
+                  
+
       //Control unit enable signals for all modules
       wire cu_memEnable;               
       wire [11:0]cu_columnAddress;
@@ -37,9 +39,10 @@ module top(     input clk,
       wire cu_lifoOut;
       wire cu_pathMetricsEnable;
       wire cu_pathMetricsReset;
-               
+
       wire [127:0]bmu0;
-      wire [127:0]bmu1;          
+      wire [127:0]bmu1;  
+
      //branch metric unit instantiation           
      bmu U1(    .msg(msg),       
                 .bmu0(bmu0),
@@ -48,16 +51,18 @@ module top(     input clk,
      //Path Metrics Memory
      wire [511:0]w_pmuIn;
      wire [511:0]w_pmuUpdated;     
- 
     
      pathmetrics U4(   .clk(clk),
-                    .rstn(rstn||cu_pathMetricsReset),
+                    .rstn(/*rstn*/ cu_pathMetricsReset),
                     .enable(cu_pathMetricsEnable),
                     .path_t1(w_pmuUpdated),
                     .path_t0(w_pmuIn) );
      // Path Metric unit instantiation
      // PMU0
      wire [63:0]w_survivedPaths;
+
+     reg [127:0]bmu0_PM;
+     reg [127:0]bmu1_PM;
      pmu U2( .branchMetrics(bmu0),
              .pathMetrics(w_pmuIn),
              .survived(w_survivedPaths[63:32]),
@@ -72,7 +77,6 @@ module top(     input clk,
      // Path Record Memory
      wire [63:0]w_recordStored;
      pathrecordmemory U5(    .selectedPaths(w_survivedPaths),    
-                            .rstn(rstn),
                             .clk(clk),
                             .enable(cu_memEnable),
                             .columnAddress(cu_columnAddress),
@@ -117,11 +121,11 @@ module top(     input clk,
                       .rateDematcherRepeat(matcherRepeat),
                       .pathMetricsEnable(cu_pathMetricsEnable),
                       .pathMetricsReset(cu_pathMetricsReset)  );  
-       reg r_crcValid;
-       assign crcValid=r_crcValid;
-       always@(posedge clk)
-       begin               
-            r_crcValid <=cu_lifoOut;           
-      end
+       assign crcValid=cu_lifoOut;
+
+         
+         
+         
+         
          
 endmodule

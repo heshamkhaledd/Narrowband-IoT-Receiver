@@ -131,7 +131,14 @@ module controlunit( input clk,
                         r_traceBackEnable<=1'b0;
                         r_columnAddress<=r_columnAddress+1'b1;
                         r_memEnable<=1'b1;
-                        r_pathMetricsEnable<=1'b1;
+                        if(r_columnAddress==tbs-1)
+                        begin
+                            r_pathMetricsEnable<=1'b0;
+                        end
+                        else
+                        begin
+                            r_pathMetricsEnable<=1'b1;
+                        end
                         r_rw=1'b0;
                     end
                 end

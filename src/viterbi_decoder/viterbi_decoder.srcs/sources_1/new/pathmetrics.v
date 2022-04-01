@@ -26,11 +26,10 @@ module pathmetrics( input clk,
                     input [511:0] path_t1,
                     output [511:0] path_t0);
      reg [511:0] Q;  
-     reg r_winValid;
      reg [2:0]r_counter;
      wire [7:0]r_minValue;
      
-     getmin m1( .dataIn(Q),.minValue(r_minValue));
+    getmin m1( .dataIn(Q),.minValue(r_minValue));
      assign path_t0 = Q;
 
      always@(posedge clk , negedge rstn)
@@ -38,7 +37,6 @@ module pathmetrics( input clk,
         if(~rstn)
         begin
             Q<=512'd0;
-            r_winValid <= 1'b0;
             r_counter<=3'b0;
         end
         else
@@ -121,7 +119,7 @@ module pathmetrics( input clk,
             end
             else
             begin
-                Q<=Q;
+                r_counter<=3'd0;
             end
 
         end
