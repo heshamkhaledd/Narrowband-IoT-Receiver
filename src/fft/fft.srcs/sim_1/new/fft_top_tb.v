@@ -50,10 +50,11 @@ end
 always #130 clk = ~clk;
 
 initial begin
-#130
-rstn = 1;
-fftEn = 1;
 #260
+rstn = 1;
+#260
+fftEn = 1;
+#130
 I_in = 512;
 Q_in = 410;
 #260
@@ -101,10 +102,9 @@ Q_in = 205;
 #260
 I_in = 307;
 Q_in = 512;
-end
-
-initial begin
-#1000
+#5200
+fftEn = 0;
+#760
 $finish;
 end
 endmodule

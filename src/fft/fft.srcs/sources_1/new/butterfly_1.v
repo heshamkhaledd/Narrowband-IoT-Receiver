@@ -18,46 +18,37 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-module butterfly_1#(parameter SDF_LENGTH = 8,parameter DATA_WIDTH = 16,parameter SDF_Addr = 3)
+module butterfly_1 #(parameter DATA_WIDTH = 16, parameter SDF_LENGTH = 8, parameter SDF_ADDR = 3)
 (
-    input                              clk,
-    input signed [DATA_WIDTH-1:0]      I_in,
-    input signed [DATA_WIDTH-1:0]      Q_in,
-    input  [SDF_Addr-1:0]              sdf_addr,
-    input                              activeState,
+    input clk,
+    input signed [DATA_WIDTH-1:0] I_in,
+    input signed [DATA_WIDTH-1:0] Q_in,
+    input [SDF_ADDR-1:0] sdfAddr,
+    input activeState,
     output reg signed [DATA_WIDTH-1:0] I_out,
     output reg signed [DATA_WIDTH-1:0] Q_out
     );
 
-reg [DATA_WIDTH-1:0] r_sdf_ram_I [SDF_LENGTH-1:0];
-reg [DATA_WIDTH-1:0] r_sdf_ram_Q [SDF_LENGTH-1:0];
+reg [DATA_WIDTH-1:0] r_delayLine_I [SDF_LENGTH-1:0];
+reg [DATA_WIDTH-1:0] r_delayLine_Q [SDF_LENGTH-1:0];
 
 always@(posedge clk)
 begin
-                   if (!activeState)
-                        begin
-                            r_sdf_ram_I[sdf_addr] <= I_in;
-                            r_sdf_ram_Q[sdf_addr] <= Q_in;
-                        end
-                   else
-                        begin
-                            r_sdf_ram_I[sdf_addr] <= r_sdf_ram_I[sdf_addr] - I_in;
-                            r_sdf_ram_Q[sdf_addr] <= r_sdf_ram_Q[sdf_addr] - Q_in;
-                        end
-end
-
-always@(posedge clk)
-begin
-                    if (!activeState)
-                        begin
-                            I_out <= r_sdf_ram_I[sdf_addr];
-                            Q_out <= r_sdf_ram_Q[sdf_addr];
-                        end
-                    else
-                        begin
-                            I_out <= r_sdf_ram_I[sdf_addr] + I_in;
-                            Q_out <= r_sdf_ram_Q[sdf_addr] + Q_in;
-                        end
+    if (!activeState)
+        begin
+            I_out <= r_delayLine_I[sdfAddr];
+            Q_out <= r_delayLine_Q[sdfAddr];
+                            
+            r_delayLine_I[sdfAddr] <= I_in;
+            r_delayLine_Q[sdfAddr] <= Q_in;
+        end
+    else
+        begin
+            I_out <= r_delayLine_I[sdfAddr] + I_in;
+            Q_out <= r_delayLine_Q[sdfAddr] + Q_in;
+                            
+            r_delayLine_I[sdfAddr] <= r_delayLine_I[sdfAddr] - I_in;
+            r_delayLine_Q[sdfAddr] <= r_delayLine_Q[sdfAddr] - Q_in;
+        end
 end
 endmodule
