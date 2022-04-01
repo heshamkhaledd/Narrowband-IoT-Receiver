@@ -372,7 +372,7 @@ end
 // Sequential always block to compute the value of fftValid
 always@(posedge clk)
 begin
-    if(r_cycleCounter > 18 && r_cycleCounter < 35)
+    if(r_cycleCounter > 17 && r_cycleCounter < 35)
         fftValid <= 1;
     else
         fftValid <= 0;

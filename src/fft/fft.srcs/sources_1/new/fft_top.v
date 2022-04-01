@@ -23,10 +23,10 @@ module fft_top #(parameter DATA_WIDTH = 16)
     input clk,
     input rstn,
     input fftEn,
-    input signed [DATA_WIDTH-1:0]     I_in,
-    input signed [DATA_WIDTH-1:0]     Q_in,
-    output signed [DATA_WIDTH-1:0]     I_out,
-    output signed [DATA_WIDTH-1:0]     Q_out,
+    input signed [DATA_WIDTH-1:0] I_in,
+    input signed [DATA_WIDTH-1:0] Q_in,
+    output signed [DATA_WIDTH-1:0] I_out,
+    output signed [DATA_WIDTH-1:0] Q_out,
     output fftValid
     );
 
