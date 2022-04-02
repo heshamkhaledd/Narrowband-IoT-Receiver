@@ -35,7 +35,8 @@ module controlunit( input clk,
                     output lifoOut,
                     output rateDematcherRepeat,
                     output pathMetricsEnable,
-                    output pathMetricsReset);
+                    output pathMetricsReset,
+                    output [5:0]FS_maxLocation);
       // Viterbi states
       // 1- calculate and write in path record memory (for #tbs cycles)
       // 2- start traceback unit and read from path record memory (for #tbs cycles)
@@ -68,14 +69,17 @@ module controlunit( input clk,
     // internal signals
     reg [1:0]r_operationCounter;
     wire [5:0]w_maxLocation;
+    assign FS_maxLocation=w_maxLocation;
     getmax U1( .dataIn(finalMetrics),.maxLocation(w_maxLocation));  // instantiation of get max module that takes the final metrics from 
                                            //path metrics and outputs the index of the maximum metric
     assign maxIdx = r_maxIdx;
     assign pathMetricsReset=r_pathMetricsReset;
+    reg r_enter;
     always@(posedge clk or negedge rstn)
     begin
         if(~rstn)
         begin
+            r_enter=1'b1;
             r_pathMetricsReset<=1'b0;
             r_memEnable<=1'b0;
             r_traceBackEnable<=1'b0;
@@ -119,7 +123,7 @@ module controlunit( input clk,
                     begin
                         r_currState<=TRACEBACK_READ;
                         r_rw=1'b1;
-                        r_traceBackEnable<=1'b1;
+//                        r_traceBackEnable<=1'b1;
                         r_memEnable<=1'b1;
                         r_maxIdx<=w_maxLocation;
                         r_columnAddress<=r_columnAddress;
@@ -133,7 +137,7 @@ module controlunit( input clk,
                         r_memEnable<=1'b1;
                         if(r_columnAddress==tbs-1)
                         begin
-                            r_pathMetricsEnable<=1'b0;
+//                            r_pathMetricsEnable<=1'b0;
                         end
                         else
                         begin
@@ -144,6 +148,13 @@ module controlunit( input clk,
                 end
                 TRACEBACK_READ:
                 begin
+                if(r_enter==1'b1)
+                begin
+                    r_traceBackEnable<=1'b1;
+                    r_enter=1'b0;
+                    r_maxIdx<=w_maxLocation;
+                end
+                else begin
                     if(r_columnAddress == 12'd0)
                     begin
                         r_traceBackEnable<=1'b0;
@@ -154,6 +165,7 @@ module controlunit( input clk,
                     begin
                         r_columnAddress<=r_columnAddress-1'b1;
                     end
+                end
                 end
                 OUT_CONTROL:
                 begin

@@ -34,8 +34,10 @@ wire matcherRepeat;
 //reg data[0:2559] ;
 //reg  originalData[0:2559];
 reg [11:0]j;
-
-
+wire [5:0]FS_initState;
+wire [5:0]FS_maxIdx;
+wire [63:0]FS_survivedPaths;
+wire [5:0]FS_maxLocation;
 top UUT(        .clk(clk),
                 .rstn(rstn),
                 .tbs(tbs),
@@ -43,7 +45,11 @@ top UUT(        .clk(clk),
                 .enable(enable),
                 .crcValid(crcValid),
                 .decodedOut(decodedOut),
-                .matcherRepeat(matcherRepeat) );
+                .matcherRepeat(matcherRepeat),
+                .FS_survivedPaths(FS_survivedPaths),
+                .FS_initState(FS_initState),
+                .FS_maxIdx(FS_maxIdx),
+                .FS_maxLocation(FS_maxLocation) );
  always #130 clk=~clk;
  reg [2:0]mem1[0:9];
 // reg [2:0]mem2[0:2559];

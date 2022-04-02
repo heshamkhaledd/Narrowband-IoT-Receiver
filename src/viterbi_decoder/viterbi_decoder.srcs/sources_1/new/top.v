@@ -27,7 +27,12 @@ module top(     input clk,
                 input enable,
                 output crcValid,
                 output decodedOut,
-                output matcherRepeat );
+                output matcherRepeat,
+                output [63:0]FS_survivedPaths,
+                output [5:0] FS_initState,
+                output [5:0]FS_maxIdx,
+                output [5:0]FS_maxLocation
+                );
                   
 
       //Control unit enable signals for all modules
@@ -42,7 +47,7 @@ module top(     input clk,
 
       wire [127:0]bmu0;
       wire [127:0]bmu1;  
-
+       assign FS_maxIdx=cu_maxIdx;
      //branch metric unit instantiation           
      bmu U1(    .msg(msg),       
                 .bmu0(bmu0),
@@ -51,7 +56,7 @@ module top(     input clk,
      //Path Metrics Memory
      wire [511:0]w_pmuIn;
      wire [511:0]w_pmuUpdated;     
-    
+
      pathmetrics U4(   .clk(clk),
                     .rstn(/*rstn*/ cu_pathMetricsReset),
                     .enable(cu_pathMetricsEnable),
@@ -60,9 +65,8 @@ module top(     input clk,
      // Path Metric unit instantiation
      // PMU0
      wire [63:0]w_survivedPaths;
+    assign FS_survivedPaths=w_survivedPaths;
 
-     reg [127:0]bmu0_PM;
-     reg [127:0]bmu1_PM;
      pmu U2( .branchMetrics(bmu0),
              .pathMetrics(w_pmuIn),
              .survived(w_survivedPaths[63:32]),
@@ -85,6 +89,7 @@ module top(     input clk,
      // Traceback Unit
      wire w_decodedToLifo;
      wire [5:0]w_initState;
+     assign FS_initState=w_initState;
      wire w_cuValid;
      wire w_lifoValidSave;
      tracebackunit U6(   .clk(clk),
@@ -109,7 +114,7 @@ module top(     input clk,
                       .rstn(rstn),
                       .enable(enable),
                       .tbs(tbs),
-                      .finalMetrics(w_pmuUpdated),       
+                      .finalMetrics(w_pmuIn),       
                       .initState(w_initState),           
                       .initStateValid(w_cuValid),  //inputs    
                       .memEnable(cu_memEnable),               
@@ -120,7 +125,8 @@ module top(     input clk,
                       .lifoOut(cu_lifoOut),
                       .rateDematcherRepeat(matcherRepeat),
                       .pathMetricsEnable(cu_pathMetricsEnable),
-                      .pathMetricsReset(cu_pathMetricsReset)  );  
+                      .pathMetricsReset(cu_pathMetricsReset),
+                      .FS_maxLocation(FS_maxLocation)  );  
        assign crcValid=cu_lifoOut;
 
          
