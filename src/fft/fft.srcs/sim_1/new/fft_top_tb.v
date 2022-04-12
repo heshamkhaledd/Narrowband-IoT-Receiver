@@ -46,65 +46,35 @@ rstn = 0;
 fftEn = 0;
 end
 
-
 always #130 clk = ~clk;
+
+integer fd;
+initial begin
+fd = $fopen("fft_input.txt", "r");
+if (fd)
+    $display("Input File was opened succesfully!\n");
+else
+    begin
+        $display("Cannot Read Input File!\n");
+        $finish;
+    end
+end  
 
 initial begin
 #260
 rstn = 1;
 #260
 fftEn = 1;
+// Keep Reading Until end of file is found
+while (! $feof(fd) ) begin
 #130
-I_in = 512;
-Q_in = 410;
-#260
-I_in = 307;
-Q_in = -205;
-#260
-I_in = -205;
-Q_in = 512;
-#260
-I_in = -410;
-Q_in = -205;
-#260
-I_in = 307;
-Q_in = 102;
-#260
-I_in = 205;
-Q_in = -410;
-#260
-I_in = 410;
-Q_in = -205;
-#260
-I_in = 102;
-Q_in = 205;
-#260
-I_in = -307;
-Q_in = -307;
-#260
-I_in = 205;
-Q_in = 307;
-#260
-I_in = 512;
-Q_in = 205;
-#260
-I_in = 410;
-Q_in = -205;
-#260
-I_in = -102;
-Q_in = 205;
-#260
-I_in = -102;
-Q_in = -102;
-#260
-I_in = 205;
-Q_in = 205;
-#260
-I_in = 307;
-Q_in = 512;
+$fscanf(fd, "%d %d", I_in, Q_in);
+#130;
+end
 #5200
 fftEn = 0;
 #760
+$fclose(fd);
 $finish;
 end
 endmodule

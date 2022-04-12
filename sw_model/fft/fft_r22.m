@@ -2,7 +2,7 @@
 %%%%% FFT Engine (SDF DIF Radix 2^2) simulation file %%%%%
 close all; clear; clc; rng('shuffle');
 %% Generating Input and Twiddle Factors %%
-input = [5+4i ; 3-2i ; -2+5i ; -4-2i ; 3+1i ; 2-4i ; 4-2i ; 1+2i ; -3-3i ; 2+3i ; 5+2i ;4-2i ; -1+2i; -1-1i ; 2+2i ; 3+5i].*10e-2; %(randi([0 9],[16,1])+1j*randi([0 9],[16,1])).*10e-2;
+input = (randi([0 9],[16,1])+1j*randi([0 9],[16,1])).*10e-2;
 input_I = real(input); % Input's I-Branch 
 input_Q = imag(input); % Input's Q-Branch
 
@@ -168,6 +168,4 @@ Error_Q = ((imag(output_SW_fx) - imag(out_Stage4_fx)) ./ imag(output_SW_fx))*100
 %% Exporting Input to Verilog Testbench %%
 input_fx(:,1) = int16(round(real(input) .* 2^10));
 input_fx(:,2) = int16(round(imag(input) .* 2^10));
-fileID = fopen(fileDirectory ,'w');
 dlmwrite('../../src/fft/fft_input.txt', input_fx, ' ');
-fclose(fileID);
