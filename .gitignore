@@ -73,7 +73,7 @@
 #########
 #Reports
 #########
-*.rpt
+!*.rpt
 *.txt
 !*.vdi
 #########
@@ -87,7 +87,3 @@
 glbl.v
 !*.dat
 *.dcp
-*sim_1
-*impl_1
-*synth_1
-*wt
