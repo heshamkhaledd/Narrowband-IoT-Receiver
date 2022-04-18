@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef Galal
 // 
 // Create Date: 03/24/2022 06:08:46 PM
-// Design Name: 
+// Design Name: viterbi_decoder
 // Module Name: lifo
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Last-In-First-Out Memory that saves the decoded path and passes it to next block
 // 
 // Dependencies: 
 // 
@@ -19,7 +19,18 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+/*
+    Inputs: 
+            clk,rstn: general inputs to the block
+            dataIn:  decoded bits coming from traceback unit
+            validSave: valid signal from traceback unit to save the decoded bits
+            validOut: valid signal from control unit to output the decoded bits to next blocks
+            [11:0]tbs: upperlayer parameter indicates the size of the bits
+    Outputs:
+            dataOut: output data to next block
+    Description:
+           This memory stores the data from the traceback unit then outputs it using LIFO scheme as the traceback unit decodes the last bits first
+*/
 module lifo( input clk,
              input rstn,
              input dataIn,

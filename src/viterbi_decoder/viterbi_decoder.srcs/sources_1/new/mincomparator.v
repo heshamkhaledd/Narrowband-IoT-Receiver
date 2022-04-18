@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef Galal
 // 
 // Create Date: 03/19/2022 07:22:07 PM
-// Design Name: 
-// Module Name: comparator
-// Project Name: 
+// Design Name: viterbi_decoder
+// Module Name: mincomparator
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -19,7 +19,13 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+/*
+    Inputs: 
+              [7:0]data1,data2: input 2 registers to compare between them 
+    Outputs:
+              [7:0]dataOut: minimum value of the 2 input registers
+               
+*/
 module mincomparator(
     input [7:0] data1,
     input [7:0] data2,

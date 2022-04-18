@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef Galal
 // 
 // Create Date: 03/25/2022 03:24:05 PM
-// Design Name: 
+// Design Name: viterbi_decoder
 // Module Name: top_tb
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: test bench of the decoder
 // 
 // Dependencies: 
 // 
@@ -31,13 +31,9 @@ reg enable;
 wire crcValid;
 wire decodedOut;
 wire matcherRepeat;
-//reg data[0:2559] ;
-//reg  originalData[0:2559];
+reg  originalData[0:2559];
 reg [11:0]j;
-wire [5:0]FS_initState;
-wire [5:0]FS_maxIdx;
-wire [63:0]FS_survivedPaths;
-wire [5:0]FS_maxLocation;
+
 top UUT(        .clk(clk),
                 .rstn(rstn),
                 .tbs(tbs),
@@ -45,15 +41,10 @@ top UUT(        .clk(clk),
                 .enable(enable),
                 .crcValid(crcValid),
                 .decodedOut(decodedOut),
-                .matcherRepeat(matcherRepeat),
-                .FS_survivedPaths(FS_survivedPaths),
-                .FS_initState(FS_initState),
-                .FS_maxIdx(FS_maxIdx),
-                .FS_maxLocation(FS_maxLocation) );
+                .matcherRepeat(matcherRepeat) );
  always #130 clk=~clk;
- reg [2:0]mem1[0:9];
-// reg [2:0]mem2[0:2559];
-// reg [2:0]mem3[0:9];
+ reg [2:0]mem2[0:2559];
+ reg data[0:2559];
  reg matcherRepeat1;
  integer i;
  initial
@@ -65,15 +56,14 @@ top UUT(        .clk(clk),
     tbs=12'd0;
     msg=3'd0;
     enable=1'b0;
-    $readmemb("test1.txt",mem1); 
-//    $readmemb("test2.dat",mem2);
-//    $readmemb("test2_databits.dat",originalData);
-//    $readmemb("test3.dat",mem3);
+    $readmemb("test2.dat",mem2);    // for test case 2
+    $readmemb("test2_originalData.dat",originalData);
     
     #260 
     rstn=1'b1;
     #260;
-    
+
+// First test case (10 bits only)     
     enable=1'b1;
     tbs=12'd9;
     #130;
@@ -96,65 +86,60 @@ top UUT(        .clk(clk),
     msg=3'd3;
     #260;
     msg=3'd2;
-//    for(i=0;i<10;i=i+1)
-//    begin
-//        msg=mem1[i];
-//        #260;
-//    end
-#260;
-    enable=1'b0;
-
-//    enable=1'b1;
-//    tbs=12'd2559;
-//    for(i=0;i<2560;i=i+1)
-//    begin
-//        msg=mem2[i];
-//        #260;
-//    end
-//    enable=1'b0;
-//    enable=1'b1;
-//    tbs=12'd9;
-//    for(i=0;i<10;i=i+1)
-//    begin
-//        msg=mem3[i];
-//        #20;
-//    end
-//    enable=1'b0;
-//    i=0;
-    
-    
-
-
-    
-    
-    
-    
-    
+    #260;
+    enable=1'b0;      
+//Expected decodedOut for 1st test case = 10 0000 1110
+    #7800;
+// second test case: full size
+    #130;
+    enable=1'b1;
+    tbs=12'd2559;
+    #130;
+    for(i=0;i<2560;i=i+1)
+    begin
+        msg=mem2[i];
+        #260;
+    end
+    enable=1'b0;  
+     
  end   
 
+// handling matcherRepeat signal
  always@(*)
  begin
     if(matcherRepeat1==1'b1)
     begin
         enable=1'b1;
-        tbs=12'd9;
+        tbs=12'd2559;
+        #130;
         for(i=0;i<10;i=i+1)
         begin
-            msg=mem1[i];
+            msg=mem2[i];
             #260;
         end
         matcherRepeat1=1'b0;
         enable=1'b0;
     end
  end
-          
+
+      reg r_storeout;
       always@(posedge clk)
       begin
-//        if(crcValid==1'b1)
-//        begin
-//            data[j]<=decodedOut;
-//            j<=j+1;
-//        end
+        if(crcValid==1'b1)  // storing the decoded output in a variable to compare with original data
+        begin
+            r_storeout<=1'b1;
+        end
+        else
+        begin
+            j<=0;
+            r_storeout<=1'b0;
+        end
+        
+        if(r_storeout==1'b1)
+        begin
+            data[j]<=decodedOut;
+            j<=j+1;
+        end
         if(matcherRepeat==1'b1)
         begin
             matcherRepeat1<=1'b1;

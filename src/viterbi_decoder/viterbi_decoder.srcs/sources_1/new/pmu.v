@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef Galal
 // 
 // Create Date: 03/18/2022 10:12:12 PM
-// Design Name: 
+// Design Name: viterbi_decoder
 // Module Name: pmu
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Path metric unit 
 // 
 // Dependencies: 
 // 
@@ -19,11 +19,23 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+/*
+    Inputs: 
+              [127:0]branchMetrics: Input branch metrics calculated from BMU
+              [511:0]pathMetrics: Path metrics saved in the register 
+    Outputs:
+              [31:0] survived: survived metrics that will be saved in the path record memory (0 for upper path, 1 for lower path)
+              [255:0] updatedMetrics: updated path metrics to be stored in the path metrics register
+    Description:
+            two modules of this block will be instantiated as this block only generates half of the required outputs (32 path records and 32 updated metrics)
+          
+*/
 module pmu( input [127:0]branchMetrics,
             input [511:0]pathMetrics,
             output [31:0] survived,
             output [255:0]updatedMetrics);
+   // Instantiation of 32 Add-Compare-Select (ACS) blocks         
+   
 acs A1(.branch_0(branchMetrics[127:126]),.path_0(pathMetrics[511:504]),.branch_1(branchMetrics[125:124]),.path_1(pathMetrics[503:496]),.survivor(survived[31]),.survivedMetric(updatedMetrics[255:248]));
 acs A2(.branch_0(branchMetrics[123:122]),.path_0(pathMetrics[495:488]),.branch_1(branchMetrics[121:120]),.path_1(pathMetrics[487:480]),.survivor(survived[30]),.survivedMetric(updatedMetrics[247:240]));
 acs A3(.branch_0(branchMetrics[119:118]),.path_0(pathMetrics[479:472]),.branch_1(branchMetrics[117:116]),.path_1(pathMetrics[471:464]),.survivor(survived[29]),.survivedMetric(updatedMetrics[239:232]));

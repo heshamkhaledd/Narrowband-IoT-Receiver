@@ -1,15 +1,19 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef Galal
 // 
 // Create Date: 03/20/2022 04:23:30 PM
-// Design Name: 
+// Design Name: viterbi_decoder
 // Module Name: tracebackunit
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Traceback unit that:
+//                    1. gets the final state of the winning path
+//                    2. reads from path record memory to traceback to reach the initial state of the winning path
+//                    3. sends the decoded bits to be saved in the lifo
+//                    4. outputs the initial state to control unit
 // 
 // Dependencies: 
 // 
@@ -19,7 +23,24 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+/*
+    Inputs: 
+            clk,rstn,enable: general inputs to the block
+            [63:0] recordStored: 64 bits indicates the previous path was coming from upper or lower branch
+            [5:0] maxIdx: the index of the maximum value stored in the path metrics memory (final state of winning path)
+            
+    Outputs:
+            decodedToLifo: decoded bits to be saved in the LIFO memory
+            lifoValid: Valid signal to lifo to get data
+            [5:0]initState: initial state of the winning path after finishing traceback. This will be sent to the control unit
+            cuValid: Valid signal to control unit to indicate that the data in the initState bus is valid 
+    Description:
+           A finite state machine based design that has the following states:
+           IDLE: the decoder is still recording the survived paths in the memory
+           ADDRESS_GEN: the traceback operation starts and the row generator is working 
+                        to generate the previous states and decode this path while reaching the initial state
+           STATE_OUT: outputing the initial state to control unit
+*/
 module tracebackunit(   input clk,
                         input rstn,
                         input enable,
@@ -33,19 +54,20 @@ module tracebackunit(   input clk,
       parameter ADDRESS_GEN = 3'b010;
       parameter STATE_OUT=  3'b100;
       reg [2:0] r_currState;
+      
       reg r_cuValid;
       reg r_decodedToLifo;
       reg r_lifoValid;
 
       reg [5:0]r_rowGenerator;
       reg [5:0]r_initState;
-      reg r_inCount;
 
       assign cuValid = r_cuValid;
       assign decodedToLifo =r_decodedToLifo;
       assign lifoValid=r_lifoValid;
       assign initState=r_initState;
 
+      
       always@(posedge clk or negedge rstn)
       begin
             if(~rstn)
@@ -64,6 +86,7 @@ module tracebackunit(   input clk,
                     begin
                         if(~enable)
                         begin
+                            r_rowGenerator<=6'd0;
                             r_currState<=IDLE;
                             r_cuValid<=1'b0;
                             r_lifoValid<=1'b0;
@@ -78,8 +101,13 @@ module tracebackunit(   input clk,
                     end
                     ADDRESS_GEN:
                     begin
-                        r_rowGenerator<= (r_rowGenerator<<1) + recordStored[63-r_rowGenerator];
-                        if(r_rowGenerator<32)
+                        // getting the previous state from the current state and the value saved in the memory
+                        // ex: current state 32 (10000) After shifting right (00000) 
+                        //     then adding the value saved in the memory we get (00000) or (00001) (previous states 0 or 1)
+                        r_rowGenerator<= (r_rowGenerator<<1) + recordStored[63-r_rowGenerator];  
+                        
+                        // Decoding
+                        if(r_rowGenerator<32) // if the current state is less than 32 then the corresponding data bit is 0
                         begin
                             r_lifoValid<=1'b1;
                             r_decodedToLifo<=1'b0;
@@ -100,8 +128,8 @@ module tracebackunit(   input clk,
                     end
                     STATE_OUT:
                     begin
-                        r_cuValid<=1'b1;
-                        r_initState<=r_rowGenerator;
+                        r_cuValid<=1'b1;            // valid signal for initial state
+                        r_initState<=r_rowGenerator; //The initial state 
                         r_lifoValid<=1'b0;
                         if(enable==1'b0)
                         begin

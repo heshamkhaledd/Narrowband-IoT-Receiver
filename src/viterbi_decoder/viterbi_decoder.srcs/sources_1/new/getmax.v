@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef Galal
 // 
 // Create Date: 03/19/2022 07:17:37 PM
-// Design Name: 
+// Design Name: viterbi_decoder
 // Module Name: getmax
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Tree-shaped comparators that takes 64 registers to find the location of maximum stored value
 // 
 // Dependencies: 
 // 
@@ -19,6 +19,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+/*
+    Inputs: 
+              [511:0]dataIn: input 64 registers 
+    Outputs:
+              [5:0]maxLocation: location of the maximum value stored in the registers
+               
+    Description: 5 Levels of comparators (32->16->8->4->2) to compare all values together to find the maximum location in the registers
+                instantiation of maxcomparator module that takes 2 values and outputs the value and the location of the maximum one 
+*/
 
 module getmax( input [511:0]dataIn,
                output [5:0]maxLocation);

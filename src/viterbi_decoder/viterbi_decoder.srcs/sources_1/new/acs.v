@@ -4,12 +4,12 @@
 // Engineer:  Youssef Galal
 // 
 // Create Date: 03/18/2022 10:15:26 PM
-// Design Name:  Add-Compare-Select Unit used in path metric unit
+// Design Name: viterbi_decoder
 // Module Name: acs
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Add-Compare-Select Unit used in path metric unit
 // 
 // Dependencies: 
 // 
@@ -19,6 +19,22 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+/*
+    Inputs: 
+            [1:0] branch_0: branch metric 0
+            [7:0] path_0: path metric 0
+            [1:0] branch_1: branch metric 1
+            [7:0] path_1: path metric 1
+    Outputs:
+            survivor: survived path (0 if upper path, 1 if lower path)
+            [7:0] survivedMetric: path metric of the survived path
+    Description:
+           Example: path to next state 0 has two previous branches from previous state 0 and 1, these branches have come from their paths
+                    this module adds the branch metrics to the previous path for both paths then compares them and selects the larger one to be survived path
+                    
+                    (previous path for current state 0 + branch metric) --(next state 0)          
+                    (previous path for current state 1 + branch metric) _/
+*/
 
 module acs( input [1:0] branch_0,
             input [7:0] path_0,
@@ -26,11 +42,13 @@ module acs( input [1:0] branch_0,
             input [7:0] path_1,
             output survivor,
             output [7:0] survivedMetric);
-      wire [7:0] w_firstPathResult;
-      wire [7:0] w_secondPathResult;
+      wire [7:0] w_firstPathResult; 
+      wire [7:0] w_secondPathResult; 
       reg r_survivor;
       reg [7:0] r_survivedMetric;
-      assign w_firstPathResult = branch_0 + path_0;    
+      
+      //1. Add operation
+      assign w_firstPathResult = branch_0 + path_0;   // adding branch metric to path metric for both paths  
       assign w_secondPathResult = branch_1 + path_1;
       
       assign survivor = r_survivor;
@@ -38,12 +56,13 @@ module acs( input [1:0] branch_0,
       
       always@(*)
       begin
-        if(w_firstPathResult >= w_secondPathResult)
+        //2&3. Compare and Select operations
+        if(w_firstPathResult >= w_secondPathResult)     // upper path wins
         begin
-             r_survivedMetric = w_firstPathResult;
+             r_survivedMetric = w_firstPathResult;    
              r_survivor = 1'b0 ;
         end
-        else
+        else                // lower path wins
         begin
              r_survivedMetric = w_secondPathResult;
              r_survivor = 1'b1 ;        

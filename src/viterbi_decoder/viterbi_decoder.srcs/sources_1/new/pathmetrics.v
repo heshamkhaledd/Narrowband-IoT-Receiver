@@ -4,12 +4,12 @@
 // Engineer: Youssef Galal
 // 
 // Create Date: 03/19/2022 05:50:16 PM
-// Design Name: 
+// Design Name: Viterbi_decoder
 // Module Name: pathmetrics
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: Accumulator register that saves the path metrics
+// Description: Accumulator register that saves the path metrics from path metric unit
 // 
 // Dependencies: 
 // 
@@ -19,16 +19,25 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+/*
+    Inputs: 
+              clk,rstn,enable: default input signals to the block  
+              path_t1: new metrics that will be saved in the accumulator
+    Outputs:
+               path_t0: old metrics that is passed at t=0 to PMU
+               
 
+*/
 module pathmetrics( input clk,
                     input rstn,
                     input enable,
                     input [511:0] path_t1,
                     output [511:0] path_t0);
      reg [511:0] Q;  
-     reg [2:0]r_counter;
+     reg [2:0]r_counter;    //counter that manages the axis change operation to avoid register overflow
      wire [7:0]r_minValue;
      
+    // instantiation of getmin module that finds the minimum value store in this register
     getmin m1( .dataIn(Q),.minValue(r_minValue));
      assign path_t0 = Q;
 
@@ -43,7 +52,9 @@ module pathmetrics( input clk,
         begin
             if(enable)
             begin
-                if(r_counter == 3'b111)
+                // Axis change operation is subtracting the minimum value stored in the register to avoid register overflow
+                // every 7 cycles it starts the operation
+                if(r_counter == 3'b111) 
                 begin
                     r_counter <= 3'b000;
                     Q[511:504]<=path_t1[511:504]-r_minValue;
@@ -113,7 +124,7 @@ module pathmetrics( input clk,
                 end
                 else
                 begin
-                    Q<=path_t1;
+                    Q<=path_t1; // passing the value if the counter didn't count 7 cycles
                     r_counter<= r_counter+1;
                 end
             end

@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef Galal
 // 
 // Create Date: 03/24/2022 07:57:32 PM
-// Design Name: 
+// Design Name: viterbi_decoder
 // Module Name: controlunit
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Control unit of the viterbi decoder that implements the Wrap Around Viterbi Algorithm
 // 
 // Dependencies: 
 // 
@@ -18,7 +18,37 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
+/*
+    Inputs: 
+            clk,rstn,enable: general inputs to the block
+            [11:0]tbs: upperlayer parameter indicates the size of the bits
+            [511:0]finalMetrics: final metrics from path metrics register to get the winning path's final state      
+            [5:0]initState: initial state caluclated from traceback unit          
+            initStateValid: valid signal from traceback unit to indicate that the data in the initState bus is valid  
+    Outputs:
+            [11:0]columnAddress  : Address to access the path record memory
+            rw                   : read-write signal to path record memory
+            [5:0]maxIdx          : winning path's final state sent to traceback unit
+            traceBackEnable      : enable signal to traceback unit
+            lifoOut              : valid signal to lifo to output the decoded bits
+            rateDematcherRepeat  : Signal to rate matcher to repeat sending the message again
+            pathMetricsEnable    : enable signal to path metrics register
+            pathMetricsReset     : reset signal to path metrics register
+    Description:
+           FSM that has the following states:
+                1. IDLE:
+                    Idle state of the entire decoder
+                2. CALCULATE_WRITE:
+                    Calculating the branch metric, path metric and survived path.
+                    Saving the survived path in the path record memory
+                3. TRACEBACK_READ:
+                    Reading from the path record memory and generating the initial state using traceback unit
+                4. OUT_CONTROL:
+                    Implementing the Wrap-Around Viterbi Algorithm
+                            if the winning path is not a tail biting path we request the message to decode again 
+                            with having the path metrics from previous decoding iteration saved in the path metrics register
+                            This is done for 4 iterations then we output the decoded data from last iteration what so ever
+*/
 
 module controlunit( input clk,
                     input rstn,
@@ -27,7 +57,6 @@ module controlunit( input clk,
                     input [511:0]finalMetrics,       //final path metrics
                     input [5:0]initState,           // from Traceback unit
                     input initStateValid,           // valid
-                    output memEnable,               //memory related
                     output [11:0]columnAddress,
                     output rw,
                     output [5:0]maxIdx,             //traceback related
@@ -35,8 +64,7 @@ module controlunit( input clk,
                     output lifoOut,
                     output rateDematcherRepeat,
                     output pathMetricsEnable,
-                    output pathMetricsReset,
-                    output [5:0]FS_maxLocation);
+                    output pathMetricsReset);
       // Viterbi states
       // 1- calculate and write in path record memory (for #tbs cycles)
       // 2- start traceback unit and read from path record memory (for #tbs cycles)
@@ -57,7 +85,6 @@ module controlunit( input clk,
     reg r_pathMetricsEnable;
     reg r_pathMetricsReset;
     reg [5:0]r_maxIdx;
-    assign memEnable=r_memEnable;
     assign columnAddress=r_columnAddress;
     assign rw=r_rw;
     assign maxIdx=r_maxIdx;
@@ -66,12 +93,13 @@ module controlunit( input clk,
     assign rateDematcherRepeat=r_rateDematcherRepeat;
     assign pathMetricsEnable= r_pathMetricsEnable;
     assign pathMetricsReset=r_pathMetricsReset;
+    
     // internal signals
     reg [1:0]r_operationCounter;
     wire [5:0]w_maxLocation;
-    assign FS_maxLocation=w_maxLocation;
-    getmax U1( .dataIn(finalMetrics),.maxLocation(w_maxLocation));  // instantiation of get max module that takes the final metrics from 
-                                           //path metrics and outputs the index of the maximum metric
+    getmax U1( .dataIn(finalMetrics),.maxLocation(w_maxLocation));  
+    // instantiation of get max module that takes the final metrics from 
+    //path metrics and outputs the index of the maximum metric
     assign maxIdx = r_maxIdx;
     assign pathMetricsReset=r_pathMetricsReset;
     reg r_enter;
@@ -81,11 +109,10 @@ module controlunit( input clk,
         begin
             r_enter=1'b1;
             r_pathMetricsReset<=1'b0;
-            r_memEnable<=1'b0;
             r_traceBackEnable<=1'b0;
             r_maxIdx<=6'd0;
             r_columnAddress<=12'd0;
-            r_rw<=1'b0;
+            r_rw<=1'b1;
             r_pathMetricsEnable<=1'b0;
             r_lifoOut<=1'b0;
             r_rateDematcherRepeat<=1'b0;
@@ -100,15 +127,14 @@ module controlunit( input clk,
                     if(enable)
                     begin
                         r_currState<=CALCULATE_WRITE;
-                        r_memEnable<=1'b1;
                         r_pathMetricsEnable<=1'b1;
                     end
                     else
                     begin       
-                        r_memEnable<=1'b0;
                         r_pathMetricsEnable<=1'b0;
                         r_currState<= IDLE;
                     end
+                    r_enter=1'b1;
                     r_pathMetricsReset<=1'b1;
                     r_maxIdx<=6'd0;
                     r_traceBackEnable<=1'b0;
@@ -123,8 +149,6 @@ module controlunit( input clk,
                     begin
                         r_currState<=TRACEBACK_READ;
                         r_rw=1'b1;
-//                        r_traceBackEnable<=1'b1;
-                        r_memEnable<=1'b1;
                         r_maxIdx<=w_maxLocation;
                         r_columnAddress<=r_columnAddress;
                         r_pathMetricsEnable<=1'b0;
@@ -134,15 +158,7 @@ module controlunit( input clk,
                     begin
                         r_traceBackEnable<=1'b0;
                         r_columnAddress<=r_columnAddress+1'b1;
-                        r_memEnable<=1'b1;
-                        if(r_columnAddress==tbs-1)
-                        begin
-//                            r_pathMetricsEnable<=1'b0;
-                        end
-                        else
-                        begin
-                            r_pathMetricsEnable<=1'b1;
-                        end
+                        r_pathMetricsEnable<=1'b1;
                         r_rw=1'b0;
                     end
                 end
@@ -158,7 +174,6 @@ module controlunit( input clk,
                     if(r_columnAddress == 12'd0)
                     begin
                         r_traceBackEnable<=1'b0;
-                        r_memEnable<=1'b0;
                         r_currState<=OUT_CONTROL;
                     end
                     else

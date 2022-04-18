@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Youssef Galal
 // 
 // Create Date: 03/19/2022 07:18:26 PM
-// Design Name: 
+// Design Name: viterbi_decoder
 // Module Name: getmin
-// Project Name: 
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Tree-shaped comparators that takes 64 registers to find the minimum stored value
 // 
 // Dependencies: 
 // 
@@ -19,7 +19,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+/*
+    Inputs: 
+              [511:0]dataIn: input 64 registers 
+    Outputs:
+              [7:0]minValue: output minimum value stored in these registers
+               
+    Description: 5 Levels of comparators (32->16->8->4->2) to compare all values together to find the minimum value
+                instantiation of mincomparator module that takes 2 values and outputs the smaller value
+*/
 module getmin( input [511:0]dataIn,
                output [7:0]minValue);
 wire [7:0] w_data1;

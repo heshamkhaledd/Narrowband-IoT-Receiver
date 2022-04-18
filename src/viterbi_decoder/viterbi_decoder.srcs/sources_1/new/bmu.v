@@ -4,9 +4,9 @@
 // Engineer: Youssef Galal
 // 
 // Create Date: 03/18/2022 03:40:37 PM
-// Design Name: Branch metric unit 
+// Design Name: Viterbi_decoder 
 // Module Name: bmu
-// Project Name: Narrowband IoT Downlink shared channel receiver
+// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -19,11 +19,25 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+/*
+    Inputs: 
+              [2:0] msg: input 3-bit message 
+        
+    Outputs:
+               bmu0:  Branch metrics for the next 32 branches in the trellis diagram (next state 0:31)
+               bmu1:  Branch metrics for the next 32 branches in the trellis diagram (next state 32:63)
 
-module bmu(     input  [2:0] msg,       // input message
-                output [127:0]bmu0,bmu1  // output metrics given 0 and 1 for all states
+*/
+module bmu(     input  [2:0] msg,       
+                output [127:0]bmu0,bmu1  
                 ); 
-// Branch metrics given 0 for all 64 states
+                
+// Instantiation of hamming distance calculator module that generates the branch metrics for all possible branches (128)
+// Hamming distance output is 2 bits as it's the output of a full adder
+// Bmu0 is the all branches from all states that indicate that the real data is 0
+// bmu1 is the all branches from all states that indicate that the real data is 1 (check the trellis structure/outputs in matlab)
+
+//1. Branch metrics given 0 for all 64 states ( .in2 is hard coded depending on the type of the encoder)
 hamming_distance h1( .in1(msg), .in2(3'd0),.metric(bmu0[127:126]));
 hamming_distance h2( .in1(msg), .in2(3'd7),.metric(bmu0[125:124]));
 hamming_distance h3( .in1(msg), .in2(3'd4),.metric(bmu0[123:122]));
@@ -89,7 +103,7 @@ hamming_distance h62( .in1(msg), .in2(3'd4),.metric(bmu0[5:4]));
 hamming_distance h63( .in1(msg), .in2(3'd7),.metric(bmu0[3:2]));
 hamming_distance h64( .in1(msg), .in2(3'd0),.metric(bmu0[1:0]));
 
-// Branch Metrics given 1 for all 64 states
+//2. Branch Metrics given 1 for all 64 states
 hamming_distance h65( .in1(msg), .in2(3'd7),.metric(bmu1[127:126]));
 hamming_distance h66( .in1(msg), .in2(3'd0),.metric(bmu1[125:124]));
 hamming_distance h67( .in1(msg), .in2(3'd3),.metric(bmu1[123:122]));
