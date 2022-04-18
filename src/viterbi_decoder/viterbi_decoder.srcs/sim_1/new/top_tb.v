@@ -44,7 +44,6 @@ top UUT(        .clk(clk),
                 .matcherRepeat(matcherRepeat) );
  always #130 clk=~clk;
  reg [2:0]mem2[0:2559];
- reg data[0:2559];
  reg matcherRepeat1;
  integer i;
  initial
@@ -125,21 +124,6 @@ top UUT(        .clk(clk),
       reg r_storeout;
       always@(posedge clk)
       begin
-        if(crcValid==1'b1)  // storing the decoded output in a variable to compare with original data
-        begin
-            r_storeout<=1'b1;
-        end
-        else
-        begin
-            j<=0;
-            r_storeout<=1'b0;
-        end
-        
-        if(r_storeout==1'b1)
-        begin
-            data[j]<=decodedOut;
-            j<=j+1;
-        end
         if(matcherRepeat==1'b1)
         begin
             matcherRepeat1<=1'b1;
