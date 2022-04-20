@@ -20,21 +20,21 @@
 
 module fft_ctrl #(parameter DATA_WIDTH = 16, parameter TWIDDLE_LENGTH = 7, parameter SDF_1_ADDR = 3, parameter SDF_2_ADDR = 2, parameter SDF_3_ADDR = 2, parameter SDF_4_ADDR = 1)
 (
-        input clk,
-        input rstn,
-        input fftEn,
-        output reg s1,
-        output reg s2,
-        output reg s3,
-        output reg s4,
-        output reg s5,
-        output reg s6,
-        output reg fftValid,
-        output reg [SDF_1_ADDR-1:0] sdfAddr_1,
-        output reg [SDF_2_ADDR-1:0] sdfAddr_2,
-        output reg [SDF_3_ADDR-1:0] sdfAddr_3,
-        output reg [SDF_4_ADDR-1:0] sdfAddr_4,
-        output reg [2:0] twiddleAddr
+        input i_clk,
+        input i_rstn,
+        input i_fftEn,
+        output reg o_s1,
+        output reg o_s2,
+        output reg o_s3,
+        output reg o_s4,
+        output reg o_s5,
+        output reg o_s6,
+        output reg o_fftValid,
+        output reg [SDF_1_ADDR-1:0] o_sdfAddr_1,
+        output reg [SDF_2_ADDR-1:0] o_sdfAddr_2,
+        output reg [SDF_3_ADDR-1:0] o_sdfAddr_3,
+        output reg [SDF_4_ADDR-1:0] o_sdfAddr_4,
+        output reg [2:0] o_twiddleAddr
     );
 
 // State Definitions
@@ -60,24 +60,24 @@ reg [3:0] r_nextState_BF3;
 reg [3:0] r_nextState_BF4;
 
 wire w_RST;
-assign w_RST = !fftEn;
+assign w_RST = !i_fftEn;
 
 // Sequential always block to either reset update the pipline stages states
-always @(posedge clk, negedge rstn)
+always @(posedge i_clk, negedge i_rstn)
 begin
-    if (!rstn || w_RST)
+    if (!i_rstn || w_RST)
         begin
             r_currentState_BF1 <= p_rstnState;
             r_currentState_BF2 <= p_rstnState;
             r_currentState_BF3 <= p_rstnState;
             r_currentState_BF4 <= p_rstnState;
 
-            r_cycleCounter <= 0;
-            r_addGen1 <= 15;
-            r_addGen2 <= 30;
-            r_addGen3 <= 1;
+            r_cycleCounter <= 6'd0;
+            r_addGen1 <= 4'd15;
+            r_addGen2 <= 5'd30;
+            r_addGen3 <= 2'd1;
         end
-    else if (fftEn)
+    else if (i_fftEn)
         begin
             r_currentState_BF1 <= r_nextState_BF1;
             r_currentState_BF2 <= r_nextState_BF2;             
@@ -98,27 +98,27 @@ always @(*)
 begin
     case(r_currentState_BF1)
         p_rstnState:    begin
-                            if (r_cycleCounter == 0)
+                            if (r_cycleCounter == 6'd0)
                                 r_nextState_BF1 = p_rstnState;
-                            else if (r_cycleCounter < 25)
+                            else if (r_cycleCounter < 6'd25)
                                 r_nextState_BF1 = p_bufferState;
-                            else if (r_cycleCounter >= 25)
+                            else if (r_cycleCounter >= 6'd25)
                                 r_nextState_BF1 = p_rstnState;
                             else
                                 r_nextState_BF1 = p_rstnState;
                         end
             
         p_bufferState:  begin
-                            if (r_cycleCounter >= 24)
+                            if (r_cycleCounter >= 6'd24)
                                 r_nextState_BF1 = p_rstnState;
-                            else if(r_addGen1 < 7)
+                            else if(r_addGen1 < 4'd7)
                                 r_nextState_BF1 = p_bufferState;
                             else
                                 r_nextState_BF1 = p_activeState;
                         end
                             
         p_activeState:  begin
-                            if(r_addGen1 >= 8 && r_addGen1 < 15)
+                            if(r_addGen1 >= 4'd8 && r_addGen1 < 4'd15)
                                 r_nextState_BF1 = p_activeState;
                             else
                                 r_nextState_BF1 = p_bufferState;
@@ -135,23 +135,23 @@ always @(*)
 begin
     case(r_currentState_BF1)
         p_rstnState:    begin
-                            s1 = 0;
-                            sdfAddr_1 = 0;
+                            o_s1 = 1'b0;
+                            o_sdfAddr_1 = 3'd0;
                         end
                    
         p_bufferState:  begin
-                            s1 = 0;
-                            sdfAddr_1 = r_addGen1;
+                            o_s1 = 1'b0;
+                            o_sdfAddr_1 = r_addGen1;
                         end
                    
         p_activeState:  begin
-                            s1 = 1;
-                            sdfAddr_1 = r_addGen1 - 8;
+                            o_s1 = 1'b1;
+                            o_sdfAddr_1 = r_addGen1 - 8;
                         end
                             
         default:    begin
-                            s1 = 0;
-                            sdfAddr_1 = 0;
+                            o_s1 = 1'b0;
+                            o_sdfAddr_1 = 3'd0;
                     end
     endcase    
 end
@@ -161,34 +161,34 @@ always @(*)
 begin
     case(r_currentState_BF2)
         p_rstnState:    begin
-                            if (r_cycleCounter < 8 || r_cycleCounter >= 29)
+                            if (r_cycleCounter < 6'd8 || r_cycleCounter >= 6'd29)
                                 r_nextState_BF2 = p_rstnState;
                             else
                                 r_nextState_BF2 = p_bufferState;
                         end
             
         p_bufferState:  begin
-                            if (r_cycleCounter >= 29)
+                            if (r_cycleCounter >= 6'd29)
                                 r_nextState_BF2 = p_rstnState;
-                            else if(r_addGen2 < 11 || (r_addGen2 >= 16 && r_addGen2 < 19) || (r_addGen2 >= 24 && r_addGen2 < 27))
+                            else if(r_addGen2 < 5'd11 || (r_addGen2 >= 5'd16 && r_addGen2 < 5'd19) || (r_addGen2 >= 5'd24 && r_addGen2 < 5'd27))
                                 r_nextState_BF2 = p_bufferState;
-                            else if (r_addGen2 >= 11 && r_addGen2 < 14)
+                            else if (r_addGen2 >= 5'd11 && r_addGen2 < 5'd14)
                                 r_nextState_BF2 = p_activeState;
-                            else if (r_addGen2 >= 0 && r_addGen2 < 3)
+                            else if (r_addGen2 >= 5'd0 && r_addGen2 < 5'd3)
                                 r_nextState_BF2 = p_bufferState;
                             else 
                                 r_nextState_BF2 = p_activeStateJ;                           
                         end
                             
         p_activeState:  begin
-                            if(r_addGen2 >= 12 && r_addGen2 < 15)
+                            if(r_addGen2 >= 5'd12 && r_addGen2 < 5'd15)
                                 r_nextState_BF2 = p_activeState;
                             else
                                 r_nextState_BF2 = p_bufferState;
                         end
                             
         p_activeStateJ: begin
-                            if (r_addGen2 >= 20 && r_addGen2 < 23)
+                            if (r_addGen2 >= 5'd20 && r_addGen2 < 5'd23)
                                 r_nextState_BF2 = p_activeStateJ;
                             else
                                 r_nextState_BF2 = p_bufferState;
@@ -206,36 +206,36 @@ always @(*)
 begin
     case(r_currentState_BF2)
         p_rstnState:    begin
-                            s2 = 0;
-                            s3 = 0;
-                            sdfAddr_2 = 0;
+                            o_s2 = 1'b0;
+                            o_s3 = 1'b0;
+                            o_sdfAddr_2 = 2'd0;
                         end
                             
         p_bufferState:  begin
-                            s2 = 0;
-                            s3 = 0;
-                            if (r_addGen2 < 4)
-                                sdfAddr_2 = r_addGen2;
+                            o_s2 = 1'b0;
+                            o_s3 = 1'b0;
+                            if (r_addGen2 < 5'd4)
+                                o_sdfAddr_2 = r_addGen2;
                             else
-                                sdfAddr_2 = r_addGen2 - 8;
+                                o_sdfAddr_2 = r_addGen2 - 8;
                         end
                             
         p_activeState:  begin
-                            s2 = 0;
-                            s3 = 1;
-                            sdfAddr_2 = r_addGen2 - 4;
+                            o_s2 = 1'b0;
+                            o_s3 = 1'b1;
+                            o_sdfAddr_2 = r_addGen2 - 4;
                         end
                             
         p_activeStateJ: begin
-                            s2 = 1;
-                            s3 = 1;
-                            sdfAddr_2 = r_addGen2 - 12;
+                            o_s2 = 1'b1;
+                            o_s3 = 1'b1;
+                            o_sdfAddr_2 = r_addGen2 - 12;
                         end
                             
         default:    begin
-                            s2 = 0;
-                            s3 = 0;
-                            sdfAddr_2 = 0;
+                            o_s2 = 1'b0;
+                            o_s3 = 1'b0;
+                            o_sdfAddr_2 = 2'd0;
                     end                      
     endcase        
 end
@@ -245,23 +245,23 @@ always @(*)
 begin
     case(r_currentState_BF3)
         p_rstnState:    begin
-                            if (r_cycleCounter < 14 || r_cycleCounter >= 32)
+                            if (r_cycleCounter < 6'd14 || r_cycleCounter >= 6'd32)
                                 r_nextState_BF3 = p_rstnState;
                             else
                                 r_nextState_BF3 = p_bufferState;
                         end
             
         p_bufferState:  begin
-                            if (r_cycleCounter >= 32)
+                            if (r_cycleCounter >= 6'd32)
                                 r_nextState_BF3 = p_rstnState;
-                            else if(r_addGen3 < 1)
+                            else if(r_addGen3 < 2'd1)
                                 r_nextState_BF3 = p_bufferState;
                             else
                                 r_nextState_BF3 = p_activeState;
                         end
                             
         p_activeState:  begin
-                            if(r_addGen3 >= 2 && r_addGen3 < 3)
+                            if(r_addGen3 >= 2'd2 && r_addGen3 < 2'd3)
                                 r_nextState_BF3 = p_activeState;
                             else
                                 r_nextState_BF3 = p_bufferState;
@@ -278,23 +278,23 @@ always @(*)
 begin
     case(r_currentState_BF3)
         p_rstnState:    begin
-                            s4 = 0;
-                            sdfAddr_3 = 0;
+                            o_s4 = 1'b0;
+                            o_sdfAddr_3 = 2'd0;
                         end
                             
         p_bufferState:  begin
-                            s4 = 0;
-                            sdfAddr_3 = r_addGen3;
+                            o_s4 = 1'b0;
+                            o_sdfAddr_3 = r_addGen3;
                         end
                             
         p_activeState:  begin
-                            s4 = 1;
-                            sdfAddr_3 = r_addGen3 - 2;
+                            o_s4 = 1'b1;
+                            o_sdfAddr_3 = r_addGen3 - 2;
                         end
                             
         default:    begin
-                            s4 = 0;
-                            sdfAddr_3 = 0;
+                            o_s4 = 1'b0;
+                            o_sdfAddr_3 = 2'd0;
                     end
     endcase
 end
@@ -304,16 +304,16 @@ always @(*)
 begin
     case(r_currentState_BF4)
         p_rstnState:    begin
-                            if (r_cycleCounter < 17 || r_cycleCounter >= 33)
+                            if (r_cycleCounter < 6'd17 || r_cycleCounter >= 6'd33)
                                 r_nextState_BF4 = p_rstnState;
                             else
                                 r_nextState_BF4 = p_bufferState;
                         end
             
         p_bufferState:  begin
-                            if (r_cycleCounter >= 33)
+                            if (r_cycleCounter >= 6'd33)
                                 r_nextState_BF4 = p_rstnState;
-                            else if (r_addGen3 == 1)
+                            else if (r_addGen3 == 2'd1)
                                 r_nextState_BF4 = p_activeStateJ;
                             else
                                 r_nextState_BF4 = p_activeState;
@@ -338,115 +338,115 @@ always @(*)
 begin
     case(r_currentState_BF4)
         p_rstnState:    begin
-                            s5 = 0;
-                            s6 = 0;
-                            sdfAddr_4 = 0;
+                            o_s5 = 1'b0;
+                            o_s6 = 1'b0;
+                            o_sdfAddr_4 = 1'b0;
                         end
                             
         p_bufferState:  begin
-                            s5 = 0;
-                            s6 = 0;
-                            sdfAddr_4 = 0;
+                            o_s5 = 1'b0;
+                            o_s6 = 1'b0;
+                            o_sdfAddr_4 = 1'b0;
                         end
                             
         p_activeState:  begin
-                            s5 = 0;
-                            s6 = 1;
-                            sdfAddr_4 = 0;
+                            o_s5 = 1'b0;
+                            o_s6 = 1'b1;
+                            o_sdfAddr_4 = 1'b0;
                         end
                             
         p_activeStateJ: begin
-                            s5 = 1;
-                            s6 = 1;
-                            sdfAddr_4 = 0;
+                            o_s5 = 1'b1;
+                            o_s6 = 1'b1;
+                            o_sdfAddr_4 = 1'b0;
                         end
             
         default:    begin
-                            s5 = 0;
-                            s6 = 0;
-                            sdfAddr_4 = 0;
+                            o_s5 = 1'b0;
+                            o_s6 = 1'b0;
+                            o_sdfAddr_4 = 1'b0;
                     end        
     endcase      
 end
 
 // Sequential always block to compute the value of fftValid
-always@(posedge clk)
+always@(posedge i_clk)
 begin
-    if(r_cycleCounter > 18 && r_cycleCounter < 36)
-        fftValid <= 1;
+    if(r_cycleCounter > 6'd18 && r_cycleCounter < 6'd36)
+        o_fftValid <= 1'b1;
     else
-        fftValid <= 0;
+        o_fftValid <= 1'b0;
 end
 
 always@(*)
 begin
     case (r_cycleCounter)
         15: begin
-                twiddleAddr = 3'b000;
+                o_twiddleAddr = 3'b000;
             end
                                        
         16: begin
-                twiddleAddr = 3'b000;
+                o_twiddleAddr = 3'b000;
             end
                                        
         17: begin
-                twiddleAddr = 3'b000;
+                o_twiddleAddr = 3'b000;
             end
                                        
         18: begin
-                twiddleAddr = 3'b000;
+                o_twiddleAddr = 3'b000;
             end
                                        
         19: begin
-                twiddleAddr = 3'b000;
+                o_twiddleAddr = 3'b000;
             end
                                     
         20: begin
-                twiddleAddr = 3'b010;
+                o_twiddleAddr = 3'b010;
             end
                                        
         21: begin
-                twiddleAddr = 3'b100;
+                o_twiddleAddr = 3'b100;
             end
                                        
         22: begin
-                twiddleAddr = 3'b101;
+                o_twiddleAddr = 3'b101;
             end
                                        
         23: begin
-                twiddleAddr = 3'b000;
+                o_twiddleAddr = 3'b000;
             end
                                        
         24: begin
-                twiddleAddr = 3'b001;
+                o_twiddleAddr = 3'b001;
             end
                                        
         25: begin
-                twiddleAddr = 3'b010;
+                o_twiddleAddr = 3'b010;
             end
                                        
         26: begin
-                twiddleAddr = 3'b011;
+                o_twiddleAddr = 3'b011;
             end 
                                          
         27: begin
-                twiddleAddr = 3'b000;
+                o_twiddleAddr = 3'b000;
             end
                                              
         28: begin
-                twiddleAddr = 3'b011;
+                o_twiddleAddr = 3'b011;
             end
                                        
         29: begin
-                twiddleAddr = 3'b101;
+                o_twiddleAddr = 3'b101;
             end 
                                                
         30: begin
-                twiddleAddr = 3'b110;
+                o_twiddleAddr = 3'b110;
             end
                 
         default: begin
-                    twiddleAddr = 3'b000;
+                    o_twiddleAddr = 3'b000;
                  end                 
         endcase
 end

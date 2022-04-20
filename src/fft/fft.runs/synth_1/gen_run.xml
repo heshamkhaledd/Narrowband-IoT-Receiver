@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xczu7ev-ffvc1156-2-e" LaunchTime="1648850020">
+<GenRun Id="synth_1" LaunchPart="xczu7ev-ffvc1156-2-e" LaunchTime="1650416935">
   <File Type="PA-TCL" Name="fft_top.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="fft_top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="fft_top_reports.tcl"/>
   <File Type="RDS-RDS" Name="fft_top.vds"/>
   <File Type="RDS-UTIL" Name="fft_top_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="fft_top_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="fft_top.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="fft_top_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="fft_top_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/butterfly_1.v">

@@ -20,110 +20,124 @@
 
 module fft_top #(parameter DATA_WIDTH = 16)
 (
-    input clk,
-    input rstn,
-    input fftEn,
-    input signed [DATA_WIDTH-1:0] I_in,
-    input signed [DATA_WIDTH-1:0] Q_in,
-    output signed [DATA_WIDTH-1:0] I_out,
-    output signed [DATA_WIDTH-1:0] Q_out,
-    output fftValid
+    input i_clk,
+    input i_rstn,
+    input i_fftEn,
+    input signed [DATA_WIDTH-1:0] i_I,
+    input signed [DATA_WIDTH-1:0] i_Q,
+    output signed [DATA_WIDTH-1:0] o_I,
+    output signed [DATA_WIDTH-1:0] o_Q,
+    output o_fftValid
     );
 
-localparam p_sdfAddr_1  = 3;
-localparam p_sdfAddr_2  = 2;
-localparam p_sdfAddr_3  = 1;
-localparam p_sdfAddr_4  = 1;
-localparam p_romAddr    = 3;
+localparam SDF_1_ADDR  = 3;
+localparam SDF_2_ADDR  = 2;
+localparam SDF_3_ADDR  = 1;
+localparam SDF_4_ADDR  = 1;
+localparam ROM_ADDR    = 3;
 
-wire s1;
-wire s2;
-wire s3;
-wire s4;
-wire s5;
-wire s6;
-wire [p_sdfAddr_1 - 1:0] sdfAddr_1;
-wire [p_sdfAddr_2 - 1:0] sdfAddr_2;
-wire [p_sdfAddr_3 - 1:0] sdfAddr_3;
-wire [p_sdfAddr_4 - 1:0] sdfAddr_4;
-wire [p_romAddr-1:0]    twiddleAddr;
+wire w_actSelect_BF1;
+wire w_actSelect_BF2;
+wire w_actJSelect_BF2;
+wire w_actSelect_BF3;
+wire w_actSelect_BF4;
+wire w_actJSelect_BF4;
+wire [SDF_1_ADDR - 1:0] w_sdfAddr_1;
+wire [SDF_2_ADDR - 1:0] w_sdfAddr_2;
+wire [SDF_3_ADDR - 1:0] w_sdfAddr_3;
+wire [SDF_4_ADDR - 1:0] w_sdfAddr_4;
+wire [ROM_ADDR - 1:0]   w_twiddleAddr;
 
-wire [DATA_WIDTH-1:0] BF1_out_I;
-wire [DATA_WIDTH-1:0] BF1_out_Q;
-wire [DATA_WIDTH-1:0] BF2_out_I;
-wire [DATA_WIDTH-1:0] BF2_out_Q;
-wire [DATA_WIDTH-1:0] ROM_in_I;
-wire [DATA_WIDTH-1:0] ROM_in_Q;
-wire [DATA_WIDTH-1:0] CMPLX_out_I;
-wire [DATA_WIDTH-1:0] CMPLX_out_Q;
-wire [DATA_WIDTH-1:0] BF3_out_I;
-wire [DATA_WIDTH-1:0] BF3_out_Q;
+wire [DATA_WIDTH-1:0] w_BF1_out_I;
+wire [DATA_WIDTH-1:0] w_BF1_out_Q;
+wire [DATA_WIDTH-1:0] w_BF2_out_I;
+wire [DATA_WIDTH-1:0] w_BF2_out_Q;
+wire [DATA_WIDTH-1:0] w_ROM_in_I;
+wire [DATA_WIDTH-1:0] w_ROM_in_Q;
+wire [DATA_WIDTH-1:0] w_CMPLX_out_I;
+wire [DATA_WIDTH-1:0] w_CMPLX_out_Q;
+wire [DATA_WIDTH-1:0] w_BF3_out_I;
+wire [DATA_WIDTH-1:0] w_BF3_out_Q;
 
-fft_ctrl #(16,7,3,2,1,1) FFT_CTRL (.clk(clk),
-                                   .rstn(rstn),
-                                   .fftEn(fftEn),
-                                   .s1(s1),
-                                   .s2(s2),
-                                   .s3(s3),
-                                   .s4(s4),
-                                   .s5(s5),
-                                   .s6(s6),
-                                   .fftValid(fftValid),
-                                   .sdfAddr_1(sdfAddr_1),
-                                   .sdfAddr_2(sdfAddr_2),
-                                   .sdfAddr_3(sdfAddr_3),
-                                   .sdfAddr_4(sdfAddr_4),
-                                   .twiddleAddr(twiddleAddr)
-                                   );
+fft_ctrl #(.DATA_WIDTH(16),.TWIDDLE_LENGTH(7),.SDF_1_ADDR(3),.SDF_2_ADDR(2),.SDF_3_ADDR(1),.SDF_4_ADDR(1)) 
+u_FFT_CTRL 
+            (.i_clk(i_clk),
+             .i_rstn(i_rstn),
+             .i_fftEn(i_fftEn),
+             .o_s1(w_actSelect_BF1),
+             .o_s2(w_actJSelect_BF2),
+             .o_s3(w_actSelect_BF2),
+             .o_s4(w_actSelect_BF3),
+             .o_s5(w_actJSelect_BF4),
+             .o_s6(w_actSelect_BF4),
+             .o_fftValid(o_fftValid),
+             .o_sdfAddr_1(w_sdfAddr_1),
+             .o_sdfAddr_2(w_sdfAddr_2),
+             .o_sdfAddr_3(w_sdfAddr_3),
+             .o_sdfAddr_4(w_sdfAddr_4),
+             .o_twiddleAddr(w_twiddleAddr)
+             );
                           
-butterfly_1 #(16,8,3) BF1 (.clk(clk),
-                           .I_in(I_in),
-                           .Q_in(Q_in),
-                           .sdfAddr(sdfAddr_1),
-                           .activeState(s1),
-                           .I_out(BF1_out_I),
-                           .Q_out(BF1_out_Q)
-                           );
+butterfly_1 #(.DATA_WIDTH(16),.SDF_LENGTH(8),.SDF_ADDR(3)) 
+u_BF1
+            (.i_clk(i_clk),
+             .i_I(i_I),
+             .i_Q(i_Q),
+             .i_sdfAddr(w_sdfAddr_1),
+             .i_activeState(w_actSelect_BF1),
+             .o_I(w_BF1_out_I),
+             .o_Q(w_BF1_out_Q)
+             );
                         
-butterfly_2 #(16,4,1) BF2 (.clk(clk),
-                           .I_in(BF1_out_I),
-                           .Q_in(BF1_out_Q),
-                           .sdfAddr(sdfAddr_2),
-                           .activeState(s3),
-                           .jMul(s2),
-                           .I_out(BF2_out_I),
-                           .Q_out(BF2_out_Q)
-                           );
+butterfly_2 #(.DATA_WIDTH(16),.SDF_LENGTH(4),.SDF_ADDR(1))
+u_BF2 
+            (.i_clk(i_clk),
+             .i_I(w_BF1_out_I),
+             .i_Q(w_BF1_out_Q),
+             .i_sdfAddr(w_sdfAddr_2),
+             .i_activeState(w_actSelect_BF2),
+             .i_jMul(w_actJSelect_BF2),
+             .o_I(w_BF2_out_I),
+             .o_Q(w_BF2_out_Q)
+             );
                         
-fft_ROM #(16,7) FFT_ROM (.twiddleAddr(twiddleAddr),
-                         .twiddleFactor_I(ROM_in_I),
-                         .twiddleFactor_Q(ROM_in_Q)
-                         );
+fft_ROM #(.DATA_WIDTH(16),.ROM_LENGTH(7))
+u_FFT_ROM
+            (.i_twiddleAddr(w_twiddleAddr),
+             .o_twiddleFactor_I(w_ROM_in_I),
+             .o_twiddleFactor_Q(w_ROM_in_Q)
+             );
 
-cmplx_mul CMPLX_MUL       (.Ar(ROM_in_I),
-                           .Ai(ROM_in_Q),
-                           .Br(BF2_out_I),
-                           .Bi(BF2_out_Q),
-                           .Yr(CMPLX_out_I),
-                           .Yi(CMPLX_out_Q)
-                           );
+cmplx_mul #(.DATA_WIDTH(16)) 
+u_CMPLX_MUL
+            (.i_Ar(w_ROM_in_I),
+             .i_Ai(w_ROM_in_Q),
+             .i_Br(w_BF2_out_I),
+             .i_Bi(w_BF2_out_Q),
+             .o_Yr(w_CMPLX_out_I),
+             .o_Yi(w_CMPLX_out_Q)
+             );
 
-butterfly_1 #(16,2,1) BF3 (.clk(clk),
-                           .I_in(CMPLX_out_I),
-                           .Q_in(CMPLX_out_Q),
-                           .sdfAddr(sdfAddr_3),
-                           .activeState(s4),
-                           .I_out(BF3_out_I),
-                           .Q_out(BF3_out_Q)
-                           );
+butterfly_1 #(.DATA_WIDTH(16),.SDF_LENGTH(2),.SDF_ADDR(1))
+u_BF3 
+            (.i_clk(i_clk),
+             .i_I(w_CMPLX_out_I),
+             .i_Q(w_CMPLX_out_Q),
+             .i_sdfAddr(w_sdfAddr_3),
+             .i_activeState(w_actSelect_BF3),
+             .o_I(w_BF3_out_I),
+             .o_Q(w_BF3_out_Q)
+             );
                         
-butterfly_2 #(16,1,0) BF4 (.clk(clk),
-                           .I_in(BF3_out_I),
-                           .Q_in(BF3_out_Q),
-                           .sdfAddr(sdfAddr_4),
-                           .activeState(s6),
-                           .jMul(s5),
-                           .I_out(I_out),
-                           .Q_out(Q_out)
-                           );
+butterfly_2 #(.DATA_WIDTH(16),.SDF_LENGTH(1),.SDF_ADDR(0)) 
+u_BF4 
+            (.i_clk(i_clk),
+             .i_I(w_BF3_out_I),
+             .i_Q(w_BF3_out_Q),
+             .i_sdfAddr(w_sdfAddr_4),
+             .i_activeState(w_actSelect_BF4),
+             .i_jMul(w_actJSelect_BF4),
+             .o_I(o_I),
+             .o_Q(o_Q)
+             );
 endmodule

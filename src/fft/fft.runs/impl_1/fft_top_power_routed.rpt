@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Sat Apr  2 00:00:43 2022
+| Date             : Wed Apr 20 03:16:43 2022
 | Host             : Jarvis running 64-bit major release  (build 9200)
 | Command          : report_power -file fft_top_power_routed.rpt -pb fft_top_power_summary_routed.pb -rpx fft_top_power_routed.rpx
 | Design           : fft_top
@@ -148,7 +148,7 @@ Table of Contents
 +-------+--------+-----------------+
 | Clock | Domain | Constraint (ns) |
 +-------+--------+-----------------+
-| clk   | clk    |           260.0 |
+| clk   | i_clk  |           260.0 |
 +-------+--------+-----------------+
 
 

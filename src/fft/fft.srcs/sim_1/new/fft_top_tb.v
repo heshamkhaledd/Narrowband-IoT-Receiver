@@ -22,31 +22,33 @@
 
 module fft_top_tb#(parameter DATA_WIDTH = 16)();
 
-reg clk;
-reg rstn;
-reg fftEn;
-reg signed [DATA_WIDTH-1:0]     I_in;
-reg signed [DATA_WIDTH-1:0]     Q_in;
-wire signed [DATA_WIDTH-1:0]     I_out;
-wire signed [DATA_WIDTH-1:0]     Q_out;
-wire fftValid;
+reg i_clk;
+reg i_rstn;
+reg i_fftEn;
+reg signed [DATA_WIDTH-1:0]  i_I;
+reg signed [DATA_WIDTH-1:0]  i_Q;
+wire signed [DATA_WIDTH-1:0] o_I;
+wire signed [DATA_WIDTH-1:0] o_Q;
+wire o_fftValid;
 
-fft_top#(16) UUT ( .clk(clk),
-                   .rstn(rstn),
-                   .fftEn(fftEn),
-                   .I_in(I_in),
-                   .Q_in(Q_in),
-                   .I_out(I_out),
-                   .Q_out(Q_out),
-                   .fftValid(fftValid)
-                   );
+fft_top#(.DATA_WIDTH(16))
+UUT
+            (.i_clk(i_clk),
+             .i_rstn(i_rstn),
+             .i_fftEn(i_fftEn),
+             .i_I(i_I),
+             .i_Q(i_Q),
+             .o_I(o_I),
+             .o_Q(o_Q),
+             .o_fftValid(o_fftValid)
+             );
 initial begin
-clk = 1;
-rstn = 0;
-fftEn = 0;
+i_clk = 1;
+i_rstn = 0;
+i_fftEn = 0;
 end
 
-always #130 clk = ~clk;
+always #130 i_clk = ~i_clk;
 
 integer fd;
 initial begin
@@ -62,17 +64,17 @@ end
 
 initial begin
 #260
-rstn = 1;
+i_rstn = 1;
 #260
-fftEn = 1;
+i_fftEn = 1;
 // Keep Reading Until end of file is found
 while (! $feof(fd) ) begin
 #130
-$fscanf(fd, "%d %d", I_in, Q_in);
+$fscanf(fd, "%d %d", i_I, i_Q);
 #130;
 end
 #5200
-fftEn = 0;
+i_fftEn = 0;
 #760
 $fclose(fd);
 $finish;

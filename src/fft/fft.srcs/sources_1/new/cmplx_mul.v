@@ -17,13 +17,14 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module cmplx_mul (
-	input signed [15:0] Ar,
-	input signed [15:0] Ai,
-	input signed [15:0] Br,
-	input signed [15:0] Bi,
-	output [15:0] Yr,
-	output [15:0] Yi
+module cmplx_mul #(parameter DATA_WIDTH = 16)
+(
+	input signed [DATA_WIDTH-1:0] i_Ar,
+	input signed [DATA_WIDTH-1:0] i_Ai,
+	input signed [DATA_WIDTH-1:0] i_Br,
+	input signed [DATA_WIDTH-1:0] i_Bi,
+	output [DATA_WIDTH-1:0] o_Yr,
+	output [DATA_WIDTH-1:0] o_Yi
     );
     
 // Regitsers
@@ -35,18 +36,19 @@ reg signed [15:0] r_resR;
 reg signed [15:0] r_resI;   
 
 // Assignments  
-assign Yr = r_resR;
-assign Yi = r_resI;
+assign o_Yr = r_resR;
+assign o_Yi = r_resI;
 
 always @(*)
 begin
 // Multiplication 
-    r_ArBr = Ar*Br;
-    r_AiBi = Ai*Bi;
-    r_ArBi = Ar*Bi;
-    r_AiBr = Ai*Br;
+    r_ArBr = i_Ar*i_Br;
+    r_AiBi = i_Ai*i_Bi;
+    r_ArBi = i_Ar*i_Bi;
+    r_AiBr = i_Ai*i_Br;
 
 // Result: (a+jb)(c+jd) = (ac-bd) + j(bc+ad)
+// No need to hold the value in a 17 bit register because NB-LTE sample values never exceeds the maximum limit
     r_resR = r_ArBr[25:10] - r_AiBi[25:10];
     r_resI = r_AiBr[25:10] + r_ArBi[25:10]; 
 end

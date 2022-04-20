@@ -21,54 +21,54 @@
 
 module fft_ROM #(parameter DATA_WIDTH = 16, parameter ROM_LENGTH = 7)
 (
-    input [2:0] twiddleAddr,
-    output reg signed [DATA_WIDTH-1:0] twiddleFactor_I,
-    output reg signed [DATA_WIDTH-1:0] twiddleFactor_Q
+    input [2:0] i_twiddleAddr,
+    output reg signed [DATA_WIDTH-1:0] o_twiddleFactor_I,
+    output reg signed [DATA_WIDTH-1:0] o_twiddleFactor_Q
     );
 
 reg [DATA_WIDTH-1:0] r_TwiddleRom [ROM_LENGTH-1:0];
 
 always@(*)
 begin
-    case (twiddleAddr)
+    case (i_twiddleAddr)
         3'b000: begin
-                    twiddleFactor_I = 1024;
-                    twiddleFactor_Q = 0;
+                    o_twiddleFactor_I = 16'd1024;
+                    o_twiddleFactor_Q = 16'd0;
                 end
                 
         3'b001: begin
-                    twiddleFactor_I = 946;
-                    twiddleFactor_Q = -392;
+                    o_twiddleFactor_I = 16'd946;
+                    o_twiddleFactor_Q = -16'd392;
                 end
                 
         3'b010: begin
-                    twiddleFactor_I = 724;
-                    twiddleFactor_Q = -724;
+                    o_twiddleFactor_I = 16'd724;
+                    o_twiddleFactor_Q = -16'd724;
                 end
         
         3'b011: begin
-                    twiddleFactor_I = 392;
-                    twiddleFactor_Q = -946;
+                    o_twiddleFactor_I = 16'd392;
+                    o_twiddleFactor_Q = -16'd946;
                 end
                 
         3'b100: begin
-                    twiddleFactor_I = 0;
-                    twiddleFactor_Q = -1024;
+                    o_twiddleFactor_I = 16'd0;
+                    o_twiddleFactor_Q = -16'd1024;
                 end
                 
        3'b101: begin
-                    twiddleFactor_I = -724;
-                    twiddleFactor_Q = -724;
+                    o_twiddleFactor_I = -16'd724;
+                    o_twiddleFactor_Q = -16'd724;
                end
                
        3'b110: begin
-                    twiddleFactor_I = -946;
-                    twiddleFactor_Q = 392;
+                    o_twiddleFactor_I = -16'd946;
+                    o_twiddleFactor_Q = 16'd392;
                end
                
        default: begin
-                    twiddleFactor_I = 1024;
-                    twiddleFactor_Q = 0;
+                    o_twiddleFactor_I = 16'd1024;
+                    o_twiddleFactor_Q = 16'd0;
                 end
     endcase
 end    
