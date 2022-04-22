@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Mon Apr 18 01:39:00 2022
+| Date         : Fri Apr 22 14:31:39 2022
 | Host         : Youssef-Dell running 64-bit major release  (build 9200)
 | Command      : report_methodology -file top_methodology_drc_routed.rpt -pb top_methodology_drc_routed.pb -rpx top_methodology_drc_routed.rpx
 | Design       : top
@@ -23,15 +23,21 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 20
+             Violations found: 34
 +-----------+----------+-------------------------------+------------+
 | Rule      | Severity | Description                   | Violations |
 +-----------+----------+-------------------------------+------------+
-| TIMING-18 | Warning  | Missing input or output delay | 20         |
+| LUTAR-1   | Warning  | LUT drives async reset alert  | 1          |
+| TIMING-18 | Warning  | Missing input or output delay | 33         |
 +-----------+----------+-------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
+LUTAR-1#1 Warning
+LUT drives async reset alert  
+LUT cell U8/r_counterChangeAxis[2]_i_2, with 2 or more inputs, drives asynchronous preset/clear pin(s) U4/Q_reg[0]/CLR, U4/Q_reg[100]/CLR, U4/Q_reg[101]/CLR, U4/Q_reg[102]/CLR, U4/Q_reg[103]/CLR, U4/Q_reg[104]/CLR, U4/Q_reg[105]/CLR, U4/Q_reg[106]/CLR, U4/Q_reg[107]/CLR, U4/Q_reg[108]/CLR, U4/Q_reg[109]/CLR, U4/Q_reg[10]/CLR, U4/Q_reg[110]/CLR, U4/Q_reg[111]/CLR, U4/Q_reg[112]/CLR (the first 15 of 515 listed). The LUT may glitch and trigger an unexpected reset, even if it is a properly timed path.
+Related violations: <none>
+
 TIMING-18#1 Warning
 Missing input or output delay  
 An input delay is missing on enable relative to clock(s) clk
@@ -130,6 +136,71 @@ Related violations: <none>
 TIMING-18#20 Warning
 Missing input or output delay  
 An output delay is missing on matcherRepeat relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#21 Warning
+Missing input or output delay  
+An output delay is missing on test_final[0] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#22 Warning
+Missing input or output delay  
+An output delay is missing on test_final[1] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#23 Warning
+Missing input or output delay  
+An output delay is missing on test_final[2] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#24 Warning
+Missing input or output delay  
+An output delay is missing on test_final[3] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#25 Warning
+Missing input or output delay  
+An output delay is missing on test_final[4] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#26 Warning
+Missing input or output delay  
+An output delay is missing on test_final[5] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#27 Warning
+Missing input or output delay  
+An output delay is missing on test_init[0] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#28 Warning
+Missing input or output delay  
+An output delay is missing on test_init[1] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#29 Warning
+Missing input or output delay  
+An output delay is missing on test_init[2] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#30 Warning
+Missing input or output delay  
+An output delay is missing on test_init[3] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#31 Warning
+Missing input or output delay  
+An output delay is missing on test_init[4] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#32 Warning
+Missing input or output delay  
+An output delay is missing on test_init[5] relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#33 Warning
+Missing input or output delay  
+An output delay is missing on test_traceBackEnable relative to clock(s) clk
 Related violations: <none>
 
 
