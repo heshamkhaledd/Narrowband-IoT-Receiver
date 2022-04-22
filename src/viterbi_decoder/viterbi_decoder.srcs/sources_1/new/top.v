@@ -21,16 +21,16 @@
 
 /*
     Inputs: 
-               clk: clock signal for the system
-               rstn: global reset (negedge)
-        [11:0] tbs: Transport block size (0->2560)
-        [2:0]  msg: input message to the system (3-bits in parallel)
-               enable: Valid signal from the previous block
+               i_clk: clock signal for the system
+               i_rstn: global reset (negedge)
+        [11:0] i_tbs: Transport block size (0->2560)
+        [2:0]  i_msg: input message to the system (3-bits in parallel)
+               i_enable: Valid signal from the previous block
         
     Outputs:
-               crcValid: Valid signal for CRC block
-               decodedOut: output decoded bits to CRC block
-               matcherRepeat: Signal sent to rate matcher to send the input message again in case of failed iteration  
+               o_crcValid: Valid signal for CRC block
+               o_decodedOut: output decoded bits to CRC block
+               o_matcherRepeat: Signal sent to rate matcher to send the input message again in case of failed iteration  
 */
 module top(     input clk,
                 input rstn,
@@ -39,7 +39,10 @@ module top(     input clk,
                 input enable,
                 output crcValid,
                 output decodedOut,
-                output matcherRepeat
+                output matcherRepeat,
+                output [5:0] test_init,
+                output [5:0] test_final,
+                output test_traceBackEnable
                 );
                   
       
@@ -55,86 +58,105 @@ module top(     input clk,
       wire [127:0]bmu0;                 // Branch metrics for the next 32 branches in the trellis diagram (next state 0:31)
       wire [127:0]bmu1;                 // Branch metrics for the next 32 branches in the trellis diagram (next state 32:63)
      // 1. branch metric unit instantiation           
-     bmu U1(    .msg(msg),       
-                .bmu0(bmu0),
-                .bmu1(bmu1) );    
+     bmu U1(    .i_msg(msg),       
+                .o_bmu0(bmu0),
+                .o_bmu1(bmu1) );    
      
      //2. Path Metrics Memory
      wire [511:0]w_pmuIn;
      wire [511:0]w_pmuUpdated;     
 
-     pathmetrics U4(   .clk(clk),
-                    .rstn(/*rstn*/ cu_pathMetricsReset),
-                    .enable(cu_pathMetricsEnable),
-                    .path_t1(w_pmuUpdated),
-                    .path_t0(w_pmuIn) );
+     pathmetrics U4(   .i_clk(clk),
+                    .i_rstn(rstn && cu_pathMetricsReset),
+                    .i_enable(cu_pathMetricsEnable),
+                    .i_path_t1(w_pmuUpdated),
+                    .o_path_t0(w_pmuIn) );
      //3. Path Metric unit instantiation
      // PMU0
      wire [63:0]w_survivedPaths; // Survived paths that will be saved in the path record memory
 
-     pmu U2( .branchMetrics(bmu0),
-             .pathMetrics(w_pmuIn),
-             .survived(w_survivedPaths[63:32]),
-             .updatedMetrics(w_pmuUpdated[511:256]));
+     pmu U2( .i_branchMetrics(bmu0),
+             .i_pathMetrics(w_pmuIn),
+             .o_survived(w_survivedPaths[63:32]),
+             .o_updatedMetrics(w_pmuUpdated[511:256]));
      //PMU1
-     pmu U3( .branchMetrics(bmu1),
-             .pathMetrics(w_pmuIn),
-             .survived(w_survivedPaths[31:0]),
-             .updatedMetrics(w_pmuUpdated[255:0]));
+     pmu U3( .i_branchMetrics(bmu1),
+             .i_pathMetrics(w_pmuIn),
+             .o_survived(w_survivedPaths[31:0]),
+             .o_updatedMetrics(w_pmuUpdated[255:0]));
 
        
      //4. Path Record Memory
      wire [63:0]w_recordStored;  // read bus from the record memory to Traceback unit
-     pathrecordmemory U5(    .selectedPaths(w_survivedPaths),    
-                            .clk(clk),
-                            //.enable(cu_memEnable),
-                            .columnAddress(cu_columnAddress),
-                            .rw(cu_rw),
-                            .storedContent(w_recordStored) );               
+     pathrecordmemory U5(    .i_selectedPaths(w_survivedPaths),    
+                            .i_clk(clk),
+                            .i_columnAddress(cu_columnAddress),
+                            .i_rw(cu_rw),
+                            .o_storedContent(w_recordStored) );  
+                               
+         wire [5:0]w_maxLocation;
+    // instantiation of get max module that takes the final metrics from 
+    //path metrics and outputs the index of the maximum metric
+    reg [511:0]pmuIN;
+    always@(posedge clk)
+    begin
+        pmuIN<=w_pmuIn;
+    end
+    getmax u_1( .i_dataIn(pmuIN),
+                .o_maxLocation(w_maxLocation));  
+//    reg [5:0]r_maxLocation;
+//    always@(posedge clk)
+//    begin
+//        r_maxLocation<=w_maxLocation;
+//    end         
      //5. Traceback Unit
      wire w_decodedToLifo;  // decoded bits to be saved in the LIFO while performing traceback operation
      wire [5:0]w_initState; // initial state that will be sent to control unit to compare it with final state (maxIdx)
      wire w_cuValid;        // valid signal for initial state
      wire w_lifoValidSave;  // valid signal to LIFO to start storing decoded bits
-     tracebackunit U6(   .clk(clk),
-                        .rstn(rstn),
-                        .enable(cu_traceBackEnable),
-                        .recordStored(w_recordStored),
-                        .maxIdx(cu_maxIdx),
-                        .decodedToLifo(w_decodedToLifo),
-                        .lifoValid(w_lifoValidSave),
-                        .initState(w_initState),
-                        .cuValid(w_cuValid) );     
+     tracebackunit U6(   .i_clk(clk),
+                        .i_rstn(rstn),
+                        .i_enable(cu_traceBackEnable),
+                        .i_recordStored(w_recordStored),
+                        .i_maxIdx(w_maxLocation),
+                        .o_decodedToLifo(w_decodedToLifo),
+                        .o_lifoValid(w_lifoValidSave),
+                        .o_initState(w_initState),
+                        .o_cuValid(w_cuValid) );     
       //6. LIFO
-      lifo U7(   .clk(clk),
-                 .rstn(rstn),
-                 .dataIn(w_decodedToLifo),
-                 .validSave(w_lifoValidSave),
-                 .validOut(cu_lifoOut),
-                 .tbs(tbs),
-                 .dataOut(decodedOut) );    
+      lifo U7(   .i_clk(clk),
+                 .i_rstn(rstn),
+                 .i_dataIn(w_decodedToLifo),
+                 .i_validSave(w_lifoValidSave),
+                 .i_validOut(cu_lifoOut),
+                 .i_tbs(tbs),
+                 .o_dataOut(decodedOut) );    
                                       
       //7. Control Unit instantiation          
-     controlunit U8 ( .clk(clk),
-                      .rstn(rstn),
-                      .enable(enable),
-                      .tbs(tbs),
-                      .finalMetrics(w_pmuIn),       
-                      .initState(w_initState),           
-                      .initStateValid(w_cuValid),  //inputs                 
-                      .columnAddress(cu_columnAddress),
-                      .rw(cu_rw),
-                      .maxIdx(cu_maxIdx),             
-                      .traceBackEnable(cu_traceBackEnable),
-                      .lifoOut(cu_lifoOut),
-                      .rateDematcherRepeat(matcherRepeat),
-                      .pathMetricsEnable(cu_pathMetricsEnable),
-                      .pathMetricsReset(cu_pathMetricsReset)  );  
+     controlunit U8 ( .i_clk(clk),
+                      .i_rstn(rstn),
+                      .i_enable(enable),
+                      .i_tbs(tbs),
+                      .i_maxIdx(w_maxLocation),
+                      //.i_finalMetrics(w_pmuIn),       
+                      .i_initState(w_initState),           
+                      .i_initStateValid(w_cuValid),                  
+                      .o_columnAddress(cu_columnAddress),
+                      .o_rw(cu_rw),
+                     // .o_maxIdx(cu_maxIdx),             
+                      .o_traceBackEnable(cu_traceBackEnable),
+                      .o_lifoOut(cu_lifoOut),
+                      .o_rateDematcherRepeat(matcherRepeat),
+                      .o_pathMetricsEnable(cu_pathMetricsEnable),
+                      .o_pathMetricsReset(cu_pathMetricsReset)  );  
                       
        assign crcValid=cu_lifoOut;  // CRC Valid signal to send the decoded bits to CRC
-
-         
-         
+       
+      // assign maxIdx =cu_maxIdx;
+         assign test_init=w_initState;
+         assign test_final=w_maxLocation;
+        
+         assign test_traceBackEnable=cu_traceBackEnable;
          
          
          

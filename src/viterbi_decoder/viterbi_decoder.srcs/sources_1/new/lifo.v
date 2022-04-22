@@ -21,62 +21,62 @@
 
 /*
     Inputs: 
-            clk,rstn: general inputs to the block
-            dataIn:  decoded bits coming from traceback unit
-            validSave: valid signal from traceback unit to save the decoded bits
-            validOut: valid signal from control unit to output the decoded bits to next blocks
-            [11:0]tbs: upperlayer parameter indicates the size of the bits
+            i_clk,i_rstn: general inputs to the block
+            i_dataIn:  decoded bits coming from traceback unit
+            i_validSave: valid signal from traceback unit to save the decoded bits
+            i_validOut: valid signal from control unit to output the decoded bits to next blocks
+            [11:0]i_tbs: upperlayer parameter indicates the size of the bits
     Outputs:
-            dataOut: output data to next block
+            o_dataOut: output data to next block
     Description:
            This memory stores the data from the traceback unit then outputs it using LIFO scheme as the traceback unit decodes the last bits first
 */
-module lifo( input clk,
-             input rstn,
-             input dataIn,
-             input validSave,
-             input validOut,
-             input [11:0]tbs,
-             output dataOut);
+module lifo( input i_clk,
+             input i_rstn,
+             input i_dataIn,
+             input i_validSave,
+             input i_validOut,
+             input [11:0]i_tbs,
+             output o_dataOut);
        reg r_dataOut;
-       reg [2559:0]r_lifoMemory;
-       reg [11:0]r_counter;
-       reg [11:0]r_counter2;
-       assign dataOut=r_dataOut;
+       (* ram_style = "block" *)  reg r_lifoMemory[2559:0];
+       reg [11:0]r_counterWrite;     // This counter is used to store the input data from traceback unit
+       reg [11:0]r_counterRead;     // This counter is used to output the data from the lifo memory
+       assign o_dataOut=r_dataOut;
               
-       always@(posedge clk or negedge rstn)
+       always@(posedge i_clk /*or negedge i_rstn*/)
        begin
-            if(~rstn)
-            begin
-                r_dataOut<=1'b0;
-                r_lifoMemory<=2560'd0;
-                r_counter<=1'b0;
-                r_counter2<=1'b0;
-            end
-            else
-            begin
-                if(validSave==1'b1)
+//            if(~i_rstn)
+//            begin
+//                r_dataOut<=1'b0;
+//                r_counterWrite<=1'b0;
+//                r_counterRead<=1'b0;
+//            end
+//            else
+//            begin
+                if(i_validSave==1'b1)
                 begin
-                    r_lifoMemory[r_counter]<=dataIn;
-                    if(r_counter!=1'b0)
+                    r_lifoMemory[r_counterWrite]<=i_dataIn;
+                    if(r_counterWrite!=12'd0)
                     begin
-                        r_counter<=r_counter-1;
+                        r_counterWrite<=r_counterWrite-1;
                     end
                 end
-                else if(validOut==1'b1)
+                else if(i_validOut==1'b1)
                 begin
-                   r_dataOut<=r_lifoMemory[r_counter2];
-                   if(r_counter2<tbs)
+                   r_dataOut<=r_lifoMemory[r_counterRead];
+                   if(r_counterRead<i_tbs)
                    begin
-                        r_counter2<=r_counter2+1;
+                        r_counterRead<=r_counterRead+1;
                    end
                 end
                 else
                 begin
-                   r_counter<=tbs;
-                   r_counter2<=12'b0;
+                   r_counterWrite<=i_tbs;
+                   r_counterRead<=12'd0;
+                   r_dataOut<=1'b0;
                 end 
 
-            end
+//            end
        end
 endmodule

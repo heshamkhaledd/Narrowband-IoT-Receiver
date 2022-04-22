@@ -25,15 +25,15 @@
 
 /*
     Inputs: 
-            clk,rstn,enable: general inputs to the block
-            [63:0] recordStored: 64 bits indicates the previous path was coming from upper or lower branch
-            [5:0] maxIdx: the index of the maximum value stored in the path metrics memory (final state of winning path)
+            i_clk,i_rstn,i_enable: general inputs to the block
+            [63:0] i_recordStored: 64 bits indicates the previous path was coming from upper or lower branch
+            [5:0] i_maxIdx: the index of the maximum value stored in the path metrics memory (final state of winning path)
             
     Outputs:
-            decodedToLifo: decoded bits to be saved in the LIFO memory
-            lifoValid: Valid signal to lifo to get data
-            [5:0]initState: initial state of the winning path after finishing traceback. This will be sent to the control unit
-            cuValid: Valid signal to control unit to indicate that the data in the initState bus is valid 
+            o_decodedToLifo: decoded bits to be saved in the LIFO memory
+            o_lifoValid: Valid signal to lifo to get data
+            [5:0]o_initState: initial state of the winning path after finishing traceback. This will be sent to the control unit
+            o_cuValid: Valid signal to control unit to indicate that the data in the initState bus is valid 
     Description:
            A finite state machine based design that has the following states:
            IDLE: the decoder is still recording the survived paths in the memory
@@ -41,15 +41,15 @@
                         to generate the previous states and decode this path while reaching the initial state
            STATE_OUT: outputing the initial state to control unit
 */
-module tracebackunit(   input clk,
-                        input rstn,
-                        input enable,
-                        input [63:0]recordStored,
-                        input [5:0]maxIdx,
-                        output decodedToLifo,
-                        output lifoValid,
-                        output [5:0]initState,
-                        output cuValid);
+module tracebackunit(   input i_clk,
+                        input i_rstn,
+                        input i_enable,
+                        input [63:0]i_recordStored,
+                        input [5:0]i_maxIdx,
+                        output o_decodedToLifo,
+                        output o_lifoValid,
+                        output [5:0]o_initState,
+                        output o_cuValid);
       parameter IDLE = 3'b001;
       parameter ADDRESS_GEN = 3'b010;
       parameter STATE_OUT=  3'b100;
@@ -62,15 +62,15 @@ module tracebackunit(   input clk,
       reg [5:0]r_rowGenerator;
       reg [5:0]r_initState;
 
-      assign cuValid = r_cuValid;
-      assign decodedToLifo =r_decodedToLifo;
-      assign lifoValid=r_lifoValid;
-      assign initState=r_initState;
+      assign o_cuValid = r_cuValid;
+      assign o_decodedToLifo =r_decodedToLifo;
+      assign o_lifoValid=r_lifoValid;
+      assign o_initState=r_initState;
 
       
-      always@(posedge clk or negedge rstn)
+      always@(posedge i_clk or negedge i_rstn)
       begin
-            if(~rstn)
+            if(~i_rstn)
             begin
                 r_rowGenerator<=6'd0;
                 r_currState<=IDLE;
@@ -84,7 +84,7 @@ module tracebackunit(   input clk,
                 case(r_currState)
                     IDLE:
                     begin
-                        if(~enable)
+                        if(~i_enable)
                         begin
                             r_rowGenerator<=6'd0;
                             r_currState<=IDLE;
@@ -96,7 +96,7 @@ module tracebackunit(   input clk,
                         else
                         begin
                             r_currState<= ADDRESS_GEN;
-                            r_rowGenerator<=maxIdx;
+                            r_rowGenerator<=i_maxIdx;
                         end
                     end
                     ADDRESS_GEN:
@@ -104,10 +104,10 @@ module tracebackunit(   input clk,
                         // getting the previous state from the current state and the value saved in the memory
                         // ex: current state 32 (10000) After shifting right (00000) 
                         //     then adding the value saved in the memory we get (00000) or (00001) (previous states 0 or 1)
-                        r_rowGenerator<= (r_rowGenerator<<1) + recordStored[63-r_rowGenerator];  
+                        r_rowGenerator<= (r_rowGenerator<<1) + i_recordStored[63-r_rowGenerator];  
                         
                         // Decoding
-                        if(r_rowGenerator<32) // if the current state is less than 32 then the corresponding data bit is 0
+                        if(r_rowGenerator<6'd32) // if the current state is less than 32 then the corresponding data bit is 0
                         begin
                             r_lifoValid<=1'b1;
                             r_decodedToLifo<=1'b0;
@@ -117,7 +117,7 @@ module tracebackunit(   input clk,
                             r_lifoValid<=1'b1;
                             r_decodedToLifo<=1'b1;                        
                         end
-                        if(enable==1'b0)
+                        if(i_enable==1'b0)
                         begin
                             r_currState<=STATE_OUT;
                         end
@@ -131,10 +131,14 @@ module tracebackunit(   input clk,
                         r_cuValid<=1'b1;            // valid signal for initial state
                         r_initState<=r_rowGenerator; //The initial state 
                         r_lifoValid<=1'b0;
-                        if(enable==1'b0)
+                        if(i_enable==1'b0)
                         begin
                             r_currState<=IDLE;
                         end
+                    end
+                    default:
+                    begin
+                        r_currState<=IDLE;
                     end
                 endcase
             end

@@ -21,21 +21,21 @@
 
 /*
     Inputs: 
-              [7:0]data1,data2: input 2 registers data 
-              [5:0]location1,location2: input 2 locations of corresponding data
+              [7:0]i_data1,i_data2: input 2 registers data 
+              [5:0]i_location1,i_location2: input 2 locations of corresponding data
     Outputs:
-              [7:0]dataOut: output maximum value
-              [5:0]locationOut: output maximum location
+              [7:0]o_dataOut: output maximum value
+              [5:0]o_locationOut: output maximum location
                
 */
 module maxcomparator(
-    input [7:0] data1,
-    input [7:0] data2,
-    input [5:0] location1,
-    input [5:0] location2,
-    output [7:0] dataOut,
-    output [5:0] locationOut
+    input [7:0] i_data1,
+    input [7:0] i_data2,
+    input [5:0] i_location1,
+    input [5:0] i_location2,
+    output [7:0] o_dataOut,
+    output [5:0] o_locationOut
     );
-    assign locationOut = data1>=data2? location1:location2 ;
-    assign dataOut = data1>=data2? data1:data2;
+    assign o_locationOut = i_data1>=i_data2? i_location1:i_location2 ;
+    assign o_dataOut = i_data1>=i_data2? i_data1:i_data2;
 endmodule

@@ -24,33 +24,32 @@ Discription: Path record memory is a memory that consists from 64 rows and 2560 
             It can be accessed using 2 ways:
                                         1. writing in it the selected path from ACS module (PMU). writing is column by column (64 bits written in 1 clk)
                                         2. reading from it using the traceback memory. reading is done by one element at a time so we access the memory using column and row addresses 
-    input [63:0] selectedPaths -> selected paths (up or down) from the Path metric unit   
-    input clk,                 -> clock signal
-    input enable,              -> enable signal
-    input [11:0]columnAddress, -> address of the column in the memory
-    input rw,                  -> Read signal (1=read) (0=write)
-    input [5:0]rowAddress,     -> Row address used when reading
-    output storedContent       -> output stored bit in the memory to Traceback unit
+    input [63:0] i_selectedPaths -> selected paths (up or down) from the Path metric unit   
+    input i_clk,                 -> clock signal
+    input i_enable,              -> enable signal
+    input [11:0]i_columnAddress, -> address of the column in the memory
+    input i_rw,                  -> Read signal (1=read) (0=write)
+    input [5:0]i_rowAddress,     -> Row address used when reading
+    output o_storedContent       -> output stored bit in the memory to Traceback unit
 */
-module pathrecordmemory(    input [63:0] selectedPaths,    
-                            input clk,
-                            input [11:0]columnAddress,
-                            input rw,
-                            output [63:0]storedContent);
+module pathrecordmemory(    input [63:0] i_selectedPaths,    
+                            input i_clk,
+                            input [11:0]i_columnAddress,
+                            input i_rw,
+                            output [63:0]o_storedContent);
          
-        (* ram_style = "block" *) reg [63:0]r_memArray[0:2559];
+        (* ram_style = "block" *)  reg [63:0]r_memArray[0:2559];
          reg [63:0]r_storedContent;
-         reg [63:0] r_internalReg;
-         assign storedContent=r_storedContent;
-         always@(posedge clk )
+         assign o_storedContent=r_storedContent;
+         always@(posedge i_clk )
          begin
-                if(rw)  //rw =1 -> read
+                if(i_rw == 1'b0)  //rw =0 -> read
                 begin
-                    r_storedContent <= r_memArray[columnAddress];
+                    r_storedContent <= r_memArray[i_columnAddress];
                 end
                 else // writing
                 begin
-                    r_memArray[columnAddress]<=selectedPaths;
+                    r_memArray[i_columnAddress]<=i_selectedPaths;
                 end
          end
           

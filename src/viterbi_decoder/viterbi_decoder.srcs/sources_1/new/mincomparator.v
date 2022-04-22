@@ -21,16 +21,16 @@
 
 /*
     Inputs: 
-              [7:0]data1,data2: input 2 registers to compare between them 
+              [7:0]i_data1,i_data2: input 2 registers to compare between them 
     Outputs:
-              [7:0]dataOut: minimum value of the 2 input registers
+              [7:0]o_dataOut: minimum value of the 2 input registers
                
 */
 module mincomparator(
-    input [7:0] data1,
-    input [7:0] data2,
-    output [7:0] dataOut
+    input [7:0] i_data1,
+    input [7:0] i_data2,
+    output [7:0] o_dataOut
     );
     
-   assign dataOut =  data1<data2 ? data1:data2;  
+   assign o_dataOut =  i_data1<i_data2 ? i_data1:i_data2;  
 endmodule

@@ -33,7 +33,9 @@ wire decodedOut;
 wire matcherRepeat;
 reg  originalData[0:2559];
 reg [11:0]j;
-
+wire [5:0] test_init;
+wire [5:0]test_final;
+wire test_traceBackEnable;
 top UUT(        .clk(clk),
                 .rstn(rstn),
                 .tbs(tbs),
@@ -41,7 +43,10 @@ top UUT(        .clk(clk),
                 .enable(enable),
                 .crcValid(crcValid),
                 .decodedOut(decodedOut),
-                .matcherRepeat(matcherRepeat) );
+                .matcherRepeat(matcherRepeat),
+                .test_init(test_init),
+                .test_final(test_final),
+                .test_traceBackEnable(test_traceBackEnable) );
  always #130 clk=~clk;
  reg [2:0]mem2[0:2559];
  reg matcherRepeat1;
@@ -121,7 +126,6 @@ top UUT(        .clk(clk),
     end
  end
 
-      reg r_storeout;
       always@(posedge clk)
       begin
         if(matcherRepeat==1'b1)

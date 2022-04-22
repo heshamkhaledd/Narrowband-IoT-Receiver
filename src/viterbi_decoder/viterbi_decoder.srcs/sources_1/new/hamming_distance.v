@@ -21,18 +21,18 @@
 
 /*
     Inputs: 
-              [2:0] in1,in2: 3 bits input  
+              [2:0] i_in1,i_in2: 3 bits input  
         
     Outputs:
-               metric:  2 bit output that indicates the distance between the two inputs
+               o_metric:  2 bit output that indicates the distance between the two inputs
                
 
 */
-module hamming_distance( input [2:0]in1,
-                         input [2:0]in2,
-                         output [1:0]metric);
+module hamming_distance( input [2:0]i_in1,
+                         input [2:0]i_in2,
+                         output [1:0]o_metric);
     wire [2:0]w_xnorResult;
-    assign w_xnorResult= ~(in1 ^ in2);  //XNOR operation
-    assign metric = w_xnorResult[0]+w_xnorResult[1]+w_xnorResult[2]; // Full Adder operation
+    assign w_xnorResult= ~(i_in1 ^ i_in2);  //XNOR operation
+    assign o_metric = w_xnorResult[0]+w_xnorResult[1]+w_xnorResult[2]; // Full Adder operation
 
 endmodule
