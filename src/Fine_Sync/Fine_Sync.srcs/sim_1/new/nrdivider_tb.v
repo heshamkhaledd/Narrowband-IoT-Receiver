@@ -30,7 +30,7 @@ module nrdivider_tb#(parameter DATA_WIDTH =16)();
     wire[DATA_WIDTH-1:0] quotient;
     
    
-    nrdivider#(16) UUT (.clk(clk),
+    fine_sync_nrdivider#(16) UUT (.clk(clk),
                       .reset(reset),
                       .enable(enable),
                       .num(num),

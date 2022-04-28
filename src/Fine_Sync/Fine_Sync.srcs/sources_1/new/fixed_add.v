@@ -17,9 +17,8 @@ wire [DATA_WIDTH-1:0]    input2Num;
 
 
 assign numOut = interNum[DATA_WIDTH-1:0];
-
 assign input1Num = num_1;
-assign input2Num = (opSelect)? ~num_2 + 1'b1 : num_2;
+assign input2Num = (opSelect)? ~num_2 + 1'b1 : num_2; //Ali: make it + - simply
 assign interNum/*_P*/ = input1Num + input2Num;
 //assign interNum =(((input1Num[DATA_WIDTH -1] == input2Num[DATA_WIDTH -1]) == interNum_P[DATA_WIDTH-1]) || (input1Num[DATA_WIDTH -1] != input2Num[DATA_WIDTH -1])  )?interNum_P:((input1Num[DATA_WIDTH -1] == input2Num[DATA_WIDTH -1]) == 1'b0)?16'b0111_1111_1111_1111:16'b1000_0000_0000_0001;
 

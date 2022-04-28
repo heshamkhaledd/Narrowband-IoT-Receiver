@@ -30,7 +30,7 @@ wire [DATA_WIDTH-1:0] realOut;
 wire [DATA_WIDTH-1:0] imagOut;
 
 
-cmplx_mul  #(16) UUT (.real_1(real_1),
+fine_sync_cmplx_mul  #(16) UUT (.real_1(real_1),
                       .real_2(real_2),
                       .imag_1(imag_1),
                       .imag_2(imag_2),

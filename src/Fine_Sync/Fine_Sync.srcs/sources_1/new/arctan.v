@@ -20,9 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module arctan#(parameter DATA_WIDTH=16, A=2'b00,     //idle
-                                        B=2'b01,     //init
-                                        C=2'b10)(    //running
+module fine_sync_arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
+                                                  INIT      = 2'b01,     //init
+                                                  DIVISION  = 2'b10)(    //dividing
     input clk,
     input reset,
     input enable,
@@ -43,7 +43,7 @@ module arctan#(parameter DATA_WIDTH=16, A=2'b00,     //idle
     wire [DATA_WIDTH-1:0] w_imagAbs;
     wire [DATA_WIDTH-1:0] w_num;
     wire [DATA_WIDTH-1:0] w_den;
-    wire [DATA_WIDTH-1:0] w_quotient;
+    wire /*[(DATA_WIDTH/2)+2:0]*/[DATA_WIDTH-1:0] w_quotient;
     reg  [DATA_WIDTH+1:0] r_core;
     wire [DATA_WIDTH+2:0] w_theta_1stq;
     wire [DATA_WIDTH+1:0] w_theta_comp;
@@ -70,19 +70,19 @@ module arctan#(parameter DATA_WIDTH=16, A=2'b00,     //idle
     
     assign rfo = w_theta_final;
     
-    fixed_add #(18) ADDER_1( .opSelect(1'b1),
+    fixed_add #(18) u_fixed_add1( .opSelect(1'b1),
                               .num_1(18'b01_0110_1000_0000_0000),
                               .num_2(r_core),
                               .numOut(w_theta_comp)
     );
     
-    fixed_add #(19) ADDER_2( .opSelect(opSelect),
+    fixed_add #(19) u_fixed_add2( .opSelect(opSelect),
                               .num_1(value1),
                               .num_2(value2),
                               .numOut(w_theta_final)
     );
     
-    nrdivider #(16) div1( .clk(clk),
+    fine_sync_nrdivider #(16) u_fine_sync_nrdivider( .clk(clk),
                           .reset(reset),  
                           .enable(enable),
                           .init(r_init),
@@ -96,7 +96,7 @@ module arctan#(parameter DATA_WIDTH=16, A=2'b00,     //idle
     begin
         if(w_quotient<=16'b0000_0001_0000_0000)     //samller than 0.25
         begin
-            r_core = {4'b0,w_quotient,5'b0}+{5'b0,w_quotient,4'b0}+{6'b0,w_quotient,3'b0};
+            r_core = {4'b0,w_quotient,5'b0}+{5'b0,w_quotient,4'b0}+{6'b0,w_quotient,3'b0};              // no need to take carry into account as it will not bw generated from the divider
         end
         else if(w_quotient<=16'b0000_0010_0000_0000)        //smaller than 0.5
         begin
@@ -163,7 +163,7 @@ module arctan#(parameter DATA_WIDTH=16, A=2'b00,     //idle
     begin
     if (!reset) 
     begin
-        current_state <= A;        
+        current_state <= IDLE;        
     end
     else
     begin 
@@ -174,24 +174,24 @@ module arctan#(parameter DATA_WIDTH=16, A=2'b00,     //idle
     always @(*)
     begin
         case (current_state)
-        A:
+        IDLE:
         begin
-        next_state =(enable)? B :A;
+        next_state =(enable)? INIT :IDLE;
         r_init = (enable)?1'b1:1'b0;
         end
-        B:
+        INIT:
         begin
-        next_state =C;
+        next_state =DIVISION;
         r_init = 1'b0;
         end
-        C:
+        DIVISION:
         begin
-        next_state =(enable)? C :A;
+        next_state =(enable)? DIVISION :IDLE;
         r_init = 1'b0;
         end
         default: 
         begin
-        next_state = A;
+        next_state = IDLE;
         r_init = 1'b0;
         end
         endcase

@@ -30,7 +30,7 @@ module arctan_tb#(parameter DATA_WIDTH =16)();
     wire [DATA_WIDTH+2:0] rfo;
     
    
-    arctan#(16) UUT (.clk(clk),
+    fine_sync_arctan#(16) UUT (.clk(clk),
                       .reset(reset),
                       .enable(enable),
                       .acc_real(acc_real),

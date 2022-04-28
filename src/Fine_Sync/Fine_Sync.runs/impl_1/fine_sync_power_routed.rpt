@@ -1,13 +1,13 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Tue Apr 19 07:58:14 2022
+| Date             : Thu Apr 28 22:57:14 2022
 | Host             : DESKTOP-ICG9OBG running 64-bit major release  (build 9200)
 | Command          : report_power -file fine_sync_power_routed.rpt -pb fine_sync_power_summary_routed.pb -rpx fine_sync_power_routed.rpx
 | Design           : fine_sync
-| Device           : xc7z020clg484-1
+| Device           : xczu7ev-ffvc1156-2-e
 | Design State     : routed
-| Grade            : commercial
+| Grade            : extended
 | Process          : typical
 | Characterization : Production
 -------------------------------------------------------------------------------------------------------------------------------------------------
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.107        |
+| Total On-Chip Power (W)  | 0.627        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.002        |
-| Device Static (W)        | 0.104        |
-| Effective TJA (C/W)      | 11.5         |
-| Max Ambient (C)          | 83.8         |
-| Junction Temperature (C) | 26.2         |
+| Dynamic (W)              | 0.035        |
+| Device Static (W)        | 0.592        |
+| Effective TJA (C/W)      | 1.0          |
+| Max Ambient (C)          | 99.4         |
+| Junction Temperature (C) | 25.6         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -53,46 +53,58 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |     1727 |       --- |             --- |
-|   LUT as Logic |    <0.001 |     1318 |     53200 |            2.48 |
-|   CARRY4       |    <0.001 |      222 |     13300 |            1.67 |
-|   Register     |    <0.001 |       82 |    106400 |            0.08 |
-|   Others       |     0.000 |       38 |       --- |             --- |
-| Signals        |    <0.001 |     1818 |       --- |             --- |
-| DSPs           |    <0.001 |        9 |       220 |            4.09 |
-| I/O            |    <0.001 |      180 |       200 |           90.00 |
-| Static Power   |     0.104 |          |           |                 |
-| Total          |     0.107 |          |           |                 |
+| CLB Logic      |    <0.001 |      660 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      350 |    230400 |            0.15 |
+|   CARRY8       |    <0.001 |       32 |     28800 |            0.11 |
+|   Register     |    <0.001 |      215 |    460800 |            0.05 |
+|   Others       |     0.000 |       23 |       --- |             --- |
+| Signals        |    <0.001 |      900 |       --- |             --- |
+| DSPs           |    <0.001 |       12 |      1728 |            0.69 |
+| I/O            |     0.035 |      244 |       360 |           67.78 |
+| Static Power   |     0.592 |          |           |                 |
+| Total          |     0.627 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
 1.2 Power Supply Summary
 ------------------------
 
-+-----------+-------------+-----------+-------------+------------+
-| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
-+-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.009 |       0.001 |      0.007 |
-| Vccaux    |       1.800 |     0.010 |       0.000 |      0.010 |
-| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
-| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
-| Vcco18    |       1.800 |     0.001 |       0.000 |      0.001 |
-| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
-| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
-| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
-| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |
-| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
-| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
-| MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccpint   |       1.000 |     0.016 |       0.000 |      0.016 |
-| Vccpaux   |       1.800 |     0.010 |       0.000 |      0.010 |
-| Vccpll    |       1.800 |     0.003 |       0.000 |      0.003 |
-| Vcco_ddr  |       1.500 |     0.000 |       0.000 |      0.000 |
-| Vcco_mio0 |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vcco_mio1 |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
-+-----------+-------------+-----------+-------------+------------+
++-----------------+-------------+-----------+-------------+------------+
+| Source          | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
++-----------------+-------------+-----------+-------------+------------+
+| Vccint          |       0.850 |     0.136 |       0.001 |      0.135 |
+| Vccint_io       |       0.850 |     0.070 |       0.000 |      0.070 |
+| Vccbram         |       0.850 |     0.002 |       0.000 |      0.002 |
+| Vccaux          |       1.800 |     0.148 |       0.000 |      0.148 |
+| Vccaux_io       |       1.800 |     0.073 |       0.018 |      0.055 |
+| Vcco33          |       3.300 |     0.000 |       0.000 |      0.000 |
+| Vcco25          |       2.500 |     0.000 |       0.000 |      0.000 |
+| Vcco18          |       1.800 |     0.001 |       0.001 |      0.000 |
+| Vcco15          |       1.500 |     0.000 |       0.000 |      0.000 |
+| Vcco135         |       1.350 |     0.000 |       0.000 |      0.000 |
+| Vcco12          |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vcco10          |       1.000 |     0.000 |       0.000 |      0.000 |
+| Vccadc          |       1.800 |     0.008 |       0.000 |      0.008 |
+| VCC_PSINTFP     |       0.850 |     0.000 |       0.000 |      0.000 |
+| VCC_PSINTLP     |       0.850 |     0.005 |       0.000 |      0.005 |
+| VPS_MGTRAVCC    |       0.850 |     0.000 |       0.000 |      0.000 |
+| VCC_PSINTFP_DDR |       0.850 |     0.000 |       0.000 |      0.000 |
+| VCC_PSPLL       |       1.200 |     0.002 |       0.000 |      0.002 |
+| VPS_MGTRAVTT    |       1.800 |     0.000 |       0.000 |      0.000 |
+| VCCO_PSDDR_504  |       1.200 |     0.000 |       0.000 |      0.000 |
+| VCC_PSAUX       |       1.800 |     0.002 |       0.000 |      0.002 |
+| VCC_PSBATT      |       1.200 |     0.000 |       0.000 |      0.000 |
+| VCC_PSDDR_PLL   |       1.800 |     0.000 |       0.000 |      0.000 |
+| VCCO_PSIO0_500  |       3.300 |     0.000 |       0.000 |      0.000 |
+| VCCO_PSIO1_501  |       3.300 |     0.000 |       0.000 |      0.000 |
+| VCCO_PSIO2_502  |       3.300 |     0.000 |       0.000 |      0.000 |
+| VCCO_PSIO3_503  |       3.300 |     0.000 |       0.000 |      0.000 |
+| VCC_PSADC       |       1.800 |     0.002 |       0.000 |      0.002 |
+| VCCINT_VCU      |       0.900 |     0.025 |       0.000 |      0.025 |
+| MGTAVcc         |       0.900 |     0.000 |       0.000 |      0.000 |
+| MGTAVtt         |       1.200 |     0.000 |       0.000 |      0.000 |
+| MGTVccaux       |       1.800 |     0.000 |       0.000 |      0.000 |
++-----------------+-------------+-----------+-------------+------------+
 
 
 1.3 Confidence Level
@@ -117,16 +129,16 @@ Table of Contents
 2.1 Environment
 ---------------
 
-+-----------------------+------------------------+
-| Ambient Temp (C)      | 25.0                   |
-| ThetaJA (C/W)         | 11.5                   |
-| Airflow (LFM)         | 250                    |
-| Heat Sink             | none                   |
-| ThetaSA (C/W)         | 0.0                    |
-| Board Selection       | medium (10"x10")       |
-| # of Board Layers     | 8to11 (8 to 11 Layers) |
-| Board Temperature (C) | 25.0                   |
-+-----------------------+------------------------+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 1.0                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 1.5                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
 
 
 2.2 Clock Constraints
@@ -148,7 +160,7 @@ Table of Contents
 +-----------+-----------+
 | Name      | Power (W) |
 +-----------+-----------+
-| fine_sync |     0.002 |
+| fine_sync |     0.035 |
 +-----------+-----------+
 
 

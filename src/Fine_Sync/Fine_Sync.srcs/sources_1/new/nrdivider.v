@@ -19,14 +19,14 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module nrdivider#(parameter DATA_WIDTH=16)(
+module fine_sync_nrdivider#(parameter DATA_WIDTH=16)(
     input clk,
     input reset,
     input enable,
     input init,
     input [DATA_WIDTH-1:0] num,
     input [DATA_WIDTH-1:0] den,
-    output[DATA_WIDTH-1:0] quotient
+    output/*[(DATA_WIDTH/2)+2:0]*/[DATA_WIDTH-1:0] quotient
     );
     
     reg [DATA_WIDTH-1:0] r_quotient;
@@ -39,12 +39,12 @@ module nrdivider#(parameter DATA_WIDTH=16)(
     
     
     assign opSelect=~r_remainder[DATA_WIDTH-2];
-    assign quotient = r_quotient;
+    assign quotient = r_quotient[(DATA_WIDTH/2)+2:0];
     
-    fixed_add #(16,6,10) ADDER_3( .opSelect(opSelect),
-                              .num_1({r_remainder[DATA_WIDTH-2:0],r_quotient[DATA_WIDTH-1]}),
-                              .num_2(r_divisior),
-                              .numOut(add)
+    fixed_add #(16,6,10) u_fixed_add1( .opSelect(opSelect),
+                                       .num_1({r_remainder[DATA_WIDTH-2:0],r_quotient[DATA_WIDTH-1]}),
+                                       .num_2(r_divisior),
+                                       .numOut(add)
     );
     
 	
