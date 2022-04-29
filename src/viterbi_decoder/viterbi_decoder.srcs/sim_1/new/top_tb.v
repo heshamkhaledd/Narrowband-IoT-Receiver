@@ -35,7 +35,11 @@ reg  originalData[0:2559];
 reg [11:0]j;
 wire [5:0] test_init;
 wire [5:0]test_final;
-wire test_traceBackEnable;
+wire test_pathmetricsenable;
+wire [11:0]test_memoryAddress;
+wire [63:0]test_memoryDataOut;
+reg [63:0]test_memoryDataIn;
+
 top UUT(        .clk(clk),
                 .rstn(rstn),
                 .tbs(tbs),
@@ -46,7 +50,10 @@ top UUT(        .clk(clk),
                 .matcherRepeat(matcherRepeat),
                 .test_init(test_init),
                 .test_final(test_final),
-                .test_traceBackEnable(test_traceBackEnable) );
+                 .test_pathmetricsenable(test_pathmetricsenable),
+                 .test_memoryAddress(test_memoryAddress),
+                 .test_memoryDataOut(test_memoryDataOut));
+//                 .test_memoryDataIn(test_memoryDataIn));
  always #130 clk=~clk;
  reg [2:0]mem2[0:2559];
  reg matcherRepeat1;
@@ -91,22 +98,70 @@ top UUT(        .clk(clk),
     #260;
     msg=3'd2;
     #260;
-    enable=1'b0;      
+    enable=1'b0;    
+    #16490;
+//    test_memoryDataIn=64'h73445b71c5723146;
+//    #260;    
+//    test_memoryDataIn=64'h5c051b44355c9503;
+//    #260;    
+//    test_memoryDataIn=64'h077c041b583f03b5;
+//    #260;    
+//    test_memoryDataIn=64'h9be4f003e802a3c0;
+//    #260;    
+//    test_memoryDataIn=64'h217aac3a88270bec;
+//    #260;    
+//    test_memoryDataIn=64'hb20a8c306e31720c;
+//    #260;    
+//    test_memoryDataIn=64'h4d50310c728d4fb1;
+//    #260;    
+//    test_memoryDataIn=64'h0473314c728d4cb1;
+//    #260;    
+//    test_memoryDataIn=64'h02e44027e41b27d8;
+//    #260;        
+//    test_memoryDataIn=64'he41b27d81be4d827;
+//    #260;
 //Expected decodedOut for 1st test case = 10 0000 1110
     #7800;
+    // First test case (10 bits only)     
+//    enable=1'b1;
+//    tbs=12'd9;
+//    #130;
+//    msg= 3'd7;
+//    #260
+//    msg=3'd0;
+//    #260
+//    msg=3'd5;
+//    #260
+//    msg=3'd5;
+//    #260
+//    msg = 3'd6;
+//    #260
+//    msg =3'd4;
+//    #260
+//    msg=3'd0;
+//    #260
+//    msg=3'd4;
+//    #260;
+//    msg=3'd3;
+//    #260;
+//    msg=3'd2;
+//    #260;
+//    enable=1'b0;    
 // second test case: full size
-    #130;
-    enable=1'b1;
-    tbs=12'd2559;
-    #130;
-    for(i=0;i<2560;i=i+1)
-    begin
-        msg=mem2[i];
-        #260;
-    end
-    enable=1'b0;  
+
+//    #130;
+//    enable=1'b1;
+//    tbs=12'd2559;
+//    #130;
+//    for(i=0;i<2560;i=i+1)
+//    begin
+//        msg=mem2[i];
+//        #260;
+//    end
+//    enable=1'b0;  
      
  end   
+
 
 // handling matcherRepeat signal
  always@(*)
@@ -114,7 +169,7 @@ top UUT(        .clk(clk),
     if(matcherRepeat1==1'b1)
     begin
         enable=1'b1;
-        tbs=12'd2559;
+        tbs=12'd14;
         #130;
         for(i=0;i<10;i=i+1)
         begin

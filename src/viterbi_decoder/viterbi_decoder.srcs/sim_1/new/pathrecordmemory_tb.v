@@ -28,8 +28,7 @@ module pathrecordmemory_tb;
  reg [11:0]columnAddress;
  reg rw;
  wire [63:0] storedContent;
- reg enable;
-    pathrecordmemory UUT (   .selectedPaths(selectedPaths),.rstn(rstn),.clk(clk),.enable(enable),.columnAddress(columnAddress),.rw(rw),.storedContent(storedContent) );                        
+    pathrecordmemory UUT (   .i_selectedPaths(selectedPaths),.i_clk(clk),.i_columnAddress(columnAddress),.i_rw(rw),.o_storedContent(storedContent) );                        
 
     
     initial
@@ -38,25 +37,23 @@ module pathrecordmemory_tb;
          rstn=0;
          rw=0;
          columnAddress= 12'd0;
-         enable =0;
          #260;
-         enable=1;
-         rstn=1;
          selectedPaths = 64'hAAAAAAAAAAAAAAAF;
          columnAddress= 12'd0;
-         rw=0; //write
+         rw=1; //write
          #260;
-         rw=0; //write
+         rw=1; //write
          selectedPaths= 64'hABCDEFABCDEFABCD;
          columnAddress=12'd1;
          #260;
          
-         rw=1; 
+         rw=0; 
          columnAddress= 12'd0;
          #260;
-         rw=1;
+         rw=0;
          columnAddress=12'd1;
          #260;
+         columnAddress=12'd0;
                   
          
          

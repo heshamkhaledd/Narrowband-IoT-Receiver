@@ -32,28 +32,21 @@
            This memory stores the data from the traceback unit then outputs it using LIFO scheme as the traceback unit decodes the last bits first
 */
 module lifo( input i_clk,
-             input i_rstn,
              input i_dataIn,
              input i_validSave,
              input i_validOut,
              input [11:0]i_tbs,
              output o_dataOut);
        reg r_dataOut;
-       (* ram_style = "block" *)  reg r_lifoMemory[2559:0];
+      /*(* ram_style = "block" *)*/  
+      /*(* ram_style = "uram" *)*/ reg r_lifoMemory[0:2559];
        reg [11:0]r_counterWrite;     // This counter is used to store the input data from traceback unit
        reg [11:0]r_counterRead;     // This counter is used to output the data from the lifo memory
        assign o_dataOut=r_dataOut;
               
-       always@(posedge i_clk /*or negedge i_rstn*/)
+       always@(posedge i_clk )
        begin
-//            if(~i_rstn)
-//            begin
-//                r_dataOut<=1'b0;
-//                r_counterWrite<=1'b0;
-//                r_counterRead<=1'b0;
-//            end
-//            else
-//            begin
+
                 if(i_validSave==1'b1)
                 begin
                     r_lifoMemory[r_counterWrite]<=i_dataIn;

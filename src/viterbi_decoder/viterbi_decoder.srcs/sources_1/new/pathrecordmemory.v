@@ -32,27 +32,35 @@ Discription: Path record memory is a memory that consists from 64 rows and 2560 
     input [5:0]i_rowAddress,     -> Row address used when reading
     output o_storedContent       -> output stored bit in the memory to Traceback unit
 */
-module pathrecordmemory(    input [63:0] i_selectedPaths,    
+module pathrecordmemory (    input [63:0] i_selectedPaths,    
                             input i_clk,
                             input [11:0]i_columnAddress,
                             input i_rw,
                             output [63:0]o_storedContent);
          
-        (* ram_style = "block" *)  reg [63:0]r_memArray[0:2559];
+        (* ram_style = "bram" *)  reg [63:0]r_memArray[0:559];
          reg [63:0]r_storedContent;
+        reg [63:0]r_storedContent1;
+        reg[63:0]r_storedContent2;
          assign o_storedContent=r_storedContent;
          always@(posedge i_clk )
          begin
                 if(i_rw == 1'b0)  //rw =0 -> read
                 begin
                     r_storedContent <= r_memArray[i_columnAddress];
+
                 end
                 else // writing
                 begin
                     r_memArray[i_columnAddress]<=i_selectedPaths;
                 end
          end
-          
+         
+//          always@(posedge i_clk)
+//          begin
+//            r_storedContent1<=r_storedContent2;
+//            r_storedContent<=r_storedContent1;
+//          end
 endmodule
 
 
