@@ -59,11 +59,11 @@ module fine_sync_tb#(parameter DATA_WIDTH = 16)();
     wire [DATA_WIDTH-1:0] Q_N2_registered;
 	
 	wire arctanEnable;
-	wire accEnable;*/
+	wire accEnable;
 	wire [DATA_WIDTH-1:0] mul_real;
 	wire [DATA_WIDTH-1:0] mul_imag;
 	wire [DATA_WIDTH-1:0] acc_real;
-    wire [DATA_WIDTH-1:0] acc_imag;
+    wire [DATA_WIDTH-1:0] acc_imag;*/
     
     integer i,j;
     
@@ -87,7 +87,7 @@ fine_sync  #(16) UUT1 (.clk(clk),
                       .o_NRS_generated_address1(o_NRS_generated_address1),
                       .o_NRS_generated_address2(o_NRS_generated_address2),
                       .o_rfo(o_rfo),
-                      .o_valid(o_valid),/*,
+                      .o_valid(o_valid)/*,
                       .I_R1_registered (I_R1_registered),
                       .Q_R1_registered (Q_R1_registered),
                       .I_R2_registered (I_R2_registered),
@@ -97,11 +97,11 @@ fine_sync  #(16) UUT1 (.clk(clk),
                       .I_N2_registered (I_N2_registered),
                       .Q_N2_registered (Q_N2_registered),
                       .arctanEnable(arctanEnable),
-                      .accEnable(accEnable),*/
+                      .accEnable(accEnable),
                       .mul_real(mul_real),
                       .mul_imag(mul_imag),
                       .acc_real(acc_real),
-                      .acc_imag(acc_imag)                                          
+                      .acc_imag(acc_imag) */                                         
                       );
 always@(*) 
     begin

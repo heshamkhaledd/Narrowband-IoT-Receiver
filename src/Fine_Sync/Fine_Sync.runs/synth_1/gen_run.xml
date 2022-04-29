@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xczu7ev-ffvc1156-2-e" LaunchTime="1651178516">
+<GenRun Id="synth_1" LaunchPart="xczu7ev-ffvc1156-2-e" LaunchTime="1651190001">
   <File Type="PA-TCL" Name="fine_sync.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="fine_sync_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="fine_sync_reports.tcl"/>
   <File Type="RDS-RDS" Name="fine_sync.vds"/>
   <File Type="RDS-UTIL" Name="fine_sync_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="fine_sync_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="fine_sync.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="fine_sync_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="fine_sync_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/accumulator.v">

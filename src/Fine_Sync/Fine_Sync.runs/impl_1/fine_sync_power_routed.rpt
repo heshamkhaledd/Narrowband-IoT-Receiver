@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Thu Apr 28 22:57:14 2022
+| Date             : Fri Apr 29 02:01:39 2022
 | Host             : DESKTOP-ICG9OBG running 64-bit major release  (build 9200)
 | Command          : report_power -file fine_sync_power_routed.rpt -pb fine_sync_power_summary_routed.pb -rpx fine_sync_power_routed.rpx
 | Design           : fine_sync
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.627        |
+| Total On-Chip Power (W)  | 0.598        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.035        |
+| Dynamic (W)              | 0.006        |
 | Device Static (W)        | 0.592        |
 | Effective TJA (C/W)      | 1.0          |
 | Max Ambient (C)          | 99.4         |
@@ -54,15 +54,15 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
 | CLB Logic      |    <0.001 |      660 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      350 |    230400 |            0.15 |
+|   LUT as Logic |    <0.001 |      346 |    230400 |            0.15 |
 |   CARRY8       |    <0.001 |       32 |     28800 |            0.11 |
 |   Register     |    <0.001 |      215 |    460800 |            0.05 |
 |   Others       |     0.000 |       23 |       --- |             --- |
-| Signals        |    <0.001 |      900 |       --- |             --- |
+| Signals        |    <0.001 |      866 |       --- |             --- |
 | DSPs           |    <0.001 |       12 |      1728 |            0.69 |
-| I/O            |     0.035 |      244 |       360 |           67.78 |
+| I/O            |     0.006 |      180 |       360 |           50.00 |
 | Static Power   |     0.592 |          |           |                 |
-| Total          |     0.627 |          |           |                 |
+| Total          |     0.598 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -76,10 +76,10 @@ Table of Contents
 | Vccint_io       |       0.850 |     0.070 |       0.000 |      0.070 |
 | Vccbram         |       0.850 |     0.002 |       0.000 |      0.002 |
 | Vccaux          |       1.800 |     0.148 |       0.000 |      0.148 |
-| Vccaux_io       |       1.800 |     0.073 |       0.018 |      0.055 |
+| Vccaux_io       |       1.800 |     0.058 |       0.003 |      0.055 |
 | Vcco33          |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25          |       2.500 |     0.000 |       0.000 |      0.000 |
-| Vcco18          |       1.800 |     0.001 |       0.001 |      0.000 |
+| Vcco18          |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15          |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135         |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12          |       1.200 |     0.000 |       0.000 |      0.000 |
@@ -160,7 +160,7 @@ Table of Contents
 +-----------+-----------+
 | Name      | Power (W) |
 +-----------+-----------+
-| fine_sync |     0.035 |
+| fine_sync |     0.006 |
 +-----------+-----------+
 
 

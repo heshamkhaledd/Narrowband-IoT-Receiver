@@ -106,7 +106,7 @@ module fine_sync_getData#(parameter DATA_WIDTH = 16  ,IDLE         = 6'b000000, 
 	assign I_N2_registered  = r_I_N2_registered  ;
 	assign Q_N2_registered  = r_Q_N2_registered  ;
     
-    assign w_fineDone = (r_counter == 22)?1:0; //21
+    assign w_fineDone = (r_counter == 21)?1:0; //21 cycles
         
     /////////////////////// control FSM  ///////////////////////    
     always @(posedge clk or negedge reset)
@@ -153,21 +153,10 @@ module fine_sync_getData#(parameter DATA_WIDTH = 16  ,IDLE         = 6'b000000, 
         r_NRS_generated_address1 = 3'b000;
         r_NRS_generated_address2 = 3'b100;
         r_enable = 1'b0;
-        r_accEnable =1'b0;
+        r_accEnable =(fineEnable)?1'b1:1'b0;
         r_arctanEnable =1'b0;
         end
         FIRST_PAIR:
-        begin
-        r_NRS_Location = 3'b000;
-        r_RM_column1 = 4'b0101;
-        r_RM_column2 = 4'b1100;
-        r_NRS_generated_address1 = 3'b000;
-        r_NRS_generated_address2 = 3'b100;
-        r_enable = 1'b1;
-        r_accEnable =1'b1;
-        r_arctanEnable =1'b0;
-        end
-        SECOND_PAIR:
         begin
         r_NRS_Location = 3'b001;
         r_RM_column1 = 4'b0110;
@@ -178,13 +167,24 @@ module fine_sync_getData#(parameter DATA_WIDTH = 16  ,IDLE         = 6'b000000, 
         r_accEnable =1'b1;
         r_arctanEnable =1'b0;
         end
-        THIRD_PAIR:
+        SECOND_PAIR:
         begin
         r_NRS_Location = 3'b010;
         r_RM_column1 = 4'b0101;
         r_RM_column2 = 4'b1100;
         r_NRS_generated_address1 = 3'b010;
         r_NRS_generated_address2 = 3'b110;
+        r_enable = 1'b1;
+        r_accEnable =1'b1;
+        r_arctanEnable =1'b0;
+        end
+        THIRD_PAIR:
+        begin
+        r_NRS_Location = 3'b011;
+        r_RM_column1 = 4'b0110;
+        r_RM_column2 = 4'b1101;
+        r_NRS_generated_address1 = 3'b011;
+        r_NRS_generated_address2 = 3'b111;
         r_enable = 1'b1;
         r_accEnable =1'b1;
         r_arctanEnable =1'b0;
@@ -208,8 +208,8 @@ module fine_sync_getData#(parameter DATA_WIDTH = 16  ,IDLE         = 6'b000000, 
         r_NRS_generated_address1 = 3'b011;
         r_NRS_generated_address2 = 3'b111;
         r_enable = 1'b1;
-        r_accEnable =1'b1;
-        r_arctanEnable =1'b0;
+        r_accEnable =1'b0;
+        r_arctanEnable =1'b1;
         end
         DIV_HOLDING:
         begin

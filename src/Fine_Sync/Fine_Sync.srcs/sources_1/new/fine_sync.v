@@ -42,17 +42,17 @@ module fine_sync#(parameter DATA_WIDTH = 16)
     output [2:0] o_NRS_generated_address1,
     output [2:0] o_NRS_generated_address2,
     output [DATA_WIDTH+2:0] o_rfo,
-    output o_valid,
-    output [DATA_WIDTH-1:0] mul_real,
-    output [DATA_WIDTH-1:0] mul_imag,
-    output [DATA_WIDTH-1:0] acc_real,
-    output [DATA_WIDTH-1:0] acc_imag
+    output o_valid
+    //output [DATA_WIDTH-1:0] mul_real,
+    //output [DATA_WIDTH-1:0] mul_imag,
+    //output [DATA_WIDTH-1:0] acc_real,
+    //output [DATA_WIDTH-1:0] acc_imag
     );
     
     wire arctanEnable;
     wire accEnable;
-    //wire [DATA_WIDTH-1:0] acc_real;
-    //wire [DATA_WIDTH-1:0] acc_imag;
+    wire [DATA_WIDTH-1:0] acc_real;
+    wire [DATA_WIDTH-1:0] acc_imag;
     
     wire [DATA_WIDTH-1:0] mul1_real;
     wire [DATA_WIDTH-1:0] mul1_imag;
