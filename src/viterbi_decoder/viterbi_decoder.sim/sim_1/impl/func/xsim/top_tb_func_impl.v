@@ -1,557 +1,16 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Sat Apr 30 16:16:52 2022
+// Date        : Sat Apr 30 16:21:24 2022
 // Host        : Youssef-Dell running 64-bit major release  (build 9200)
-// Command     : write_verilog -mode timesim -nolib -sdf_anno true -force -file {E:/Working/Digital Design/Graduation
-//               Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.sim/sim_1/impl/timing/xsim/top_tb_time_impl.v}
+// Command     : write_verilog -mode funcsim -nolib -force -file {E:/Working/Digital Design/Graduation
+//               Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.sim/sim_1/impl/func/xsim/top_tb_func_impl.v}
 // Design      : top
-// Purpose     : This verilog netlist is a timing simulation representation of the design and should not be modified or
-//               synthesized. Please ensure that this netlist is used with the corresponding SDF file.
+// Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
+//               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xczu7ev-ffvc1156-2-e
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
-`define XIL_TIMING
-
-module IBUF_UNIQ_BASE_
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD1
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD10
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD11
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD12
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD13
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD14
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD15
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD16
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD17
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD2
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD3
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD4
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD5
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD6
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD7
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD8
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
-
-module IBUF_HD9
-   (O,
-    I);
-  output O;
-  input I;
-
-  wire I;
-  wire O;
-  wire OUT;
-  wire NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED;
-  wire NLW_IBUFCTRL_INST_T_UNCONNECTED;
-  wire NLW_INBUF_INST_OSC_EN_UNCONNECTED;
-  wire NLW_INBUF_INST_VREF_UNCONNECTED;
-  wire [3:0]NLW_INBUF_INST_OSC_UNCONNECTED;
-
-  IBUFCTRL IBUFCTRL_INST
-       (.I(OUT),
-        .IBUFDISABLE(NLW_IBUFCTRL_INST_IBUFDISABLE_UNCONNECTED),
-        .INTERMDISABLE(NLW_IBUFCTRL_INST_INTERMDISABLE_UNCONNECTED),
-        .O(O),
-        .T(NLW_IBUFCTRL_INST_T_UNCONNECTED));
-  INBUF INBUF_INST
-       (.O(OUT),
-        .OSC(NLW_INBUF_INST_OSC_UNCONNECTED[3:0]),
-        .OSC_EN(NLW_INBUF_INST_OSC_EN_UNCONNECTED),
-        .PAD(I),
-        .VREF(NLW_INBUF_INST_VREF_UNCONNECTED));
-endmodule
 
 module acs
    (\Q_reg[158] ,
@@ -70856,9 +70315,6 @@ module top
   wire [63:0]w_survivedPaths;
   wire [2:1]\NLW_U6_r_initState_reg[5]_0_UNCONNECTED ;
 
-initial begin
- $sdf_annotate("top_tb_time_impl.sdf",,,,"tool_control");
-end
   bmu U1
        (.bmu1({bmu1[15],bmu1[13],bmu1[11],bmu1[9],bmu1[7],bmu1[5],bmu1[3],bmu1[1]}),
         .msg_IBUF(msg_IBUF));
@@ -71425,8 +70881,7 @@ end
        (.CE(1'b1),
         .I(clk_IBUF),
         .O(clk_IBUF_BUFG));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_UNIQ_BASE_ clk_IBUF_inst
+  IBUF clk_IBUF_inst
        (.I(clk),
         .O(clk_IBUF));
   OBUF crcValid_OBUF_inst
@@ -71435,23 +70890,19 @@ end
   OBUF decodedOut_OBUF_inst
        (.I(decodedOut_OBUF),
         .O(decodedOut));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD1 enable_IBUF_inst
+  IBUF enable_IBUF_inst
        (.I(enable),
         .O(enable_IBUF));
   OBUF matcherRepeat_OBUF_inst
        (.I(matcherRepeat_OBUF),
         .O(matcherRepeat));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD2 \msg_IBUF[0]_inst 
+  IBUF \msg_IBUF[0]_inst 
        (.I(msg[0]),
         .O(msg_IBUF[0]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD3 \msg_IBUF[1]_inst 
+  IBUF \msg_IBUF[1]_inst 
        (.I(msg[1]),
         .O(msg_IBUF[1]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD4 \msg_IBUF[2]_inst 
+  IBUF \msg_IBUF[2]_inst 
        (.I(msg[2]),
         .O(msg_IBUF[2]));
   FDRE #(
@@ -75550,56 +75001,43 @@ end
         .D(w_pmuIn[9]),
         .Q(pmuIN[9]),
         .R(1'b0));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD5 rstn_IBUF_inst
+  IBUF rstn_IBUF_inst
        (.I(rstn),
         .O(rstn_IBUF));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD6 \tbs_IBUF[0]_inst 
+  IBUF \tbs_IBUF[0]_inst 
        (.I(tbs[0]),
         .O(tbs_IBUF[0]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD7 \tbs_IBUF[10]_inst 
+  IBUF \tbs_IBUF[10]_inst 
        (.I(tbs[10]),
         .O(tbs_IBUF[10]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD8 \tbs_IBUF[11]_inst 
+  IBUF \tbs_IBUF[11]_inst 
        (.I(tbs[11]),
         .O(tbs_IBUF[11]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD9 \tbs_IBUF[1]_inst 
+  IBUF \tbs_IBUF[1]_inst 
        (.I(tbs[1]),
         .O(tbs_IBUF[1]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD10 \tbs_IBUF[2]_inst 
+  IBUF \tbs_IBUF[2]_inst 
        (.I(tbs[2]),
         .O(tbs_IBUF[2]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD11 \tbs_IBUF[3]_inst 
+  IBUF \tbs_IBUF[3]_inst 
        (.I(tbs[3]),
         .O(tbs_IBUF[3]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD12 \tbs_IBUF[4]_inst 
+  IBUF \tbs_IBUF[4]_inst 
        (.I(tbs[4]),
         .O(tbs_IBUF[4]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD13 \tbs_IBUF[5]_inst 
+  IBUF \tbs_IBUF[5]_inst 
        (.I(tbs[5]),
         .O(tbs_IBUF[5]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD14 \tbs_IBUF[6]_inst 
+  IBUF \tbs_IBUF[6]_inst 
        (.I(tbs[6]),
         .O(tbs_IBUF[6]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD15 \tbs_IBUF[7]_inst 
+  IBUF \tbs_IBUF[7]_inst 
        (.I(tbs[7]),
         .O(tbs_IBUF[7]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD16 \tbs_IBUF[8]_inst 
+  IBUF \tbs_IBUF[8]_inst 
        (.I(tbs[8]),
         .O(tbs_IBUF[8]));
-  (* IS_CCIO = "FALSE" *) 
-  IBUF_HD17 \tbs_IBUF[9]_inst 
+  IBUF \tbs_IBUF[9]_inst 
        (.I(tbs[9]),
         .O(tbs_IBUF[9]));
   OBUF \test_final_OBUF[0]_inst 
