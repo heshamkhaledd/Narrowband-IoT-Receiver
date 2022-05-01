@@ -43,18 +43,22 @@ wire cuValid;
  reg memEnable;
  reg [11:0]columnAddress;
  wire [63:0]recordStored;
-pathrecordmemory UUT1 (   .selectedPaths(selectedPaths),.rstn(rstn),.clk(clk),.enable(memEnable),.columnAddress(columnAddress),.rw(rw),.storedContent(recordStored) );                        
+pathrecordmemory UUT1 (   .i_selectedPaths(selectedPaths),
+                          .i_clk(clk),
+                          .i_columnAddress(columnAddress),
+                          .i_rw(rw),
+                          .o_storedContent(recordStored) );                        
  
 reg [63:0] inRecords;
-tracebackunit UUT2(     .clk(clk),
-                        .rstn(rstn),
-                        .enable(traceBackEnable),
-                        .recordStored(recordStored),
-                        .maxIdx(maxIdx),
-                        .decodedToLifo(decodedToLifo),
-                        .lifoValid(lifoValid),
-                        .initState(initState),
-                        .cuValid(cuValid) );
+tracebackunit UUT2(     .i_clk(clk),
+                        .i_rstn(rstn),
+                        .i_enable(traceBackEnable),
+                        .i_recordStored(recordStored),
+                        .i_maxIdx(maxIdx),
+                        .o_decodedToLifo(decodedToLifo),
+                        .o_lifoValid(lifoValid),
+                        .o_initState(initState),
+                        .o_cuValid(cuValid) );
 
 always #130 clk=~clk;
 
@@ -62,13 +66,11 @@ initial
 begin
     clk=1;
     rstn=0;
-    memEnable=0;
     traceBackEnable=0;
     tbs=0;
 
     #260;
     rstn=1;
-    memEnable=1;
     selectedPaths=64'b1110010000011011001001111101100000011011111001001101100000100111;
     columnAddress = 0;
     rw=0;
@@ -147,10 +149,6 @@ begin
     
     #260;
     traceBackEnable=0;
-    memEnable=0;
-
-
-
-    
+   
 end
 endmodule

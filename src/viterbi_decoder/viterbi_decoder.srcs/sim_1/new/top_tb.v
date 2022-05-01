@@ -32,37 +32,31 @@ wire crcValid;
 wire decodedOut;
 wire matcherRepeat;
 reg  originalData[0:2559];
-reg [11:0]j;
-wire [5:0] test_init;
-wire [5:0]test_final;
-wire test_traceBackEnable;
-top UUT(        .clk(clk),
-                .rstn(rstn),
-                .tbs(tbs),
-                .msg(msg),
-                .enable(enable),
-                .crcValid(crcValid),
-                .decodedOut(decodedOut),
-                .matcherRepeat(matcherRepeat),
-                .test_init(test_init),
-                .test_final(test_final),
-                .test_traceBackEnable(test_traceBackEnable) );
+
+top UUT(        .i_clk(clk),
+                .i_rstn(rstn),
+                .i_tbs(tbs),
+                .i_msg(msg),
+                .i_enable(enable),
+                .o_crcValid(crcValid),
+                .o_decodedOut(decodedOut),
+                .o_matcherRepeat(matcherRepeat));
  always #130 clk=~clk;
- reg [2:0]mem2[0:2559];
+ reg [2:0]mem1[0:2559];
+ reg [2:0]wrongData[0:9];
  reg matcherRepeat1;
  integer i;
  initial
  begin
     matcherRepeat1=0;
-    j=12'd0;
     clk=1'b1;
     rstn=1'b0;
     tbs=12'd0;
     msg=3'd0;
     enable=1'b0;
-    $readmemb("test2.dat",mem2);    // for test case 2
+    $readmemb("test2.dat",mem1);    // for test case 2
     $readmemb("test2_originalData.dat",originalData);
-    
+    $readmemb("test_wrongData.dat",wrongData);
     #260 
     rstn=1'b1;
     #260;
@@ -94,18 +88,34 @@ top UUT(        .clk(clk),
     enable=1'b0;      
 //Expected decodedOut for 1st test case = 10 0000 1110
     #7800;
-// second test case: full size
+// test case, wrong Data
+    #130;
+    enable=1'b1;
+    tbs=12'd9;
+    #130;
+    for(i=0;i<10;i=i+1)
+    begin
+        msg=wrongData[i];
+        #260;
+    end
+    enable=1'b0;
+    
+    #7800;
+    #7800;
+    #7800;
+    #7800;
+// third test case: full size
     #130;
     enable=1'b1;
     tbs=12'd2559;
     #130;
     for(i=0;i<2560;i=i+1)
     begin
-        msg=mem2[i];
+        msg=mem1[i];
         #260;
     end
     enable=1'b0;  
-     
+    
  end   
 
 // handling matcherRepeat signal
@@ -114,11 +124,11 @@ top UUT(        .clk(clk),
     if(matcherRepeat1==1'b1)
     begin
         enable=1'b1;
-        tbs=12'd2559;
+        tbs=12'd9;
         #130;
         for(i=0;i<10;i=i+1)
         begin
-            msg=mem2[i];
+            msg=wrongData[i];
             #260;
         end
         matcherRepeat1=1'b0;

@@ -34,6 +34,7 @@
             o_rateDematcherRepeat  : Signal to rate matcher to repeat sending the message again
             o_pathMetricsEnable    : enable signal to path metrics register
             o_pathMetricsReset     : reset signal to path metrics register
+            o_getMaxEnable         : Enable signal to load the register for getmax module
     Description:
            FSM that has the following states:
                 1. IDLE:
@@ -55,17 +56,16 @@ module controlunit( input i_clk,
                     input i_enable,
                     input [11:0]i_tbs,
                     input [5:0] i_maxIdx,
-                   // input [511:0]i_finalMetrics,       //final path metrics
                     input [5:0]i_initState,           // from Traceback unit
                     input i_initStateValid,           // valid
                     output [11:0]o_columnAddress,
                     output o_rw,
-                   // output [5:0]o_maxIdx,             //traceback related
                     output o_traceBackEnable,
                     output o_lifoOut,
                     output o_rateDematcherRepeat,
                     output o_pathMetricsEnable,
-                    output o_pathMetricsReset);
+                    output o_pathMetricsReset,
+                    output o_getMaxEnable);
 
     reg [3:0] IDLE= 4'b0001;
     reg [3:0]CALCULATE_WRITE = 4'b0010;
@@ -81,10 +81,10 @@ module controlunit( input i_clk,
     reg r_rateDematcherRepeat;
     reg r_pathMetricsEnable;
     reg r_pathMetricsReset;
-    //reg [5:0]r_maxIdx;
+    reg r_getMaxEnable;
+    assign o_getMaxEnable=r_getMaxEnable;
     assign o_columnAddress=r_columnAddress;
     assign o_rw=r_rw;
-    //assign o_maxIdx=r_maxIdx;
     assign o_traceBackEnable=r_traceBackEnable;
     assign o_lifoOut=r_lifoOut;
     assign o_rateDematcherRepeat=r_rateDematcherRepeat;
@@ -93,27 +93,17 @@ module controlunit( input i_clk,
     
     // internal signals
     reg [1:0]r_operationCounter;
-//    wire [5:0]w_maxLocation;
-//    // instantiation of get max module that takes the final metrics from 
-//    //path metrics and outputs the index of the maximum metric
-//    getmax u_1( .i_dataIn(i_finalMetrics),
-//                .o_maxLocation(w_maxLocation)); 
-//    reg [5:0]r_maxLocation;             
-//    always@(posedge i_clk)
-//    begin
-//        r_maxLocation<=w_maxLocation;
-//    end
-//    assign o_maxIdx = r_maxIdx;
+
     assign o_pathMetricsReset=r_pathMetricsReset;
     reg [1:0]r_enter;        // This variable is responsible for enabling the traceback for the first time entering the 3rd State (TRACEBACK_READ)
     always@(posedge i_clk or negedge i_rstn)
     begin
         if(~i_rstn)
         begin
-            //r_enter=2'b00;
+            r_enter<=2'b00;
+            r_getMaxEnable<=1'b0;
             r_pathMetricsReset<=1'b0;
             r_traceBackEnable<=1'b0;
-           // r_maxIdx<=6'd0;
             r_columnAddress<=12'd0;
             r_rw<=1'b0;
             r_pathMetricsEnable<=1'b0;
@@ -132,18 +122,15 @@ module controlunit( input i_clk,
                         r_currState<=CALCULATE_WRITE;
                         r_pathMetricsEnable<=1'b1;
                         r_rw<=1'b1;
-                        r_enter=2'b00;
-
                     end
                     else
                     begin       
                         r_pathMetricsEnable<=1'b0;
                         r_currState<= IDLE;
                         r_rw<=1'b0;
-
                     end
+                    r_getMaxEnable<=1'b0;
                     r_pathMetricsReset<=1'b1;
-                 //   r_maxIdx<=6'd0;
                     r_traceBackEnable<=1'b0;
                     r_columnAddress<=12'd0;
                     r_lifoOut<=1'b0;
@@ -159,16 +146,16 @@ module controlunit( input i_clk,
                             r_traceBackEnable<=1'b1;
                             r_rw=1'b0;
                             r_enter<=2'b00;
-                          //  r_maxIdx<=r_maxLocation; //////////
+                            r_getMaxEnable<=1'b0;
                         end
                         else begin
+                            r_getMaxEnable<=1'b1;
                             r_currState<=CALCULATE_WRITE;
                             r_traceBackEnable<=1'b0;
                             r_enter=r_enter+2'b01;
                         end
                         r_columnAddress<=r_columnAddress;
-                        r_pathMetricsEnable<=1'b0;
-                            
+                        r_pathMetricsEnable<=1'b0;                       
                     end
                     else
                     begin
@@ -180,13 +167,6 @@ module controlunit( input i_clk,
                 end
                 TRACEBACK_READ:
                 begin
-//                if(r_enter==2'b10)
-//                begin
-//                    r_traceBackEnable<=1'b1;
-//                    r_enter<=2'b00;
-//                   // r_maxIdx<=w_maxLocation;
-//                end
-//                else begin
                     if(r_columnAddress == 12'd0)
                     begin
                         r_traceBackEnable<=1'b0;
@@ -194,10 +174,10 @@ module controlunit( input i_clk,
                     end
                     else
                     begin
+                        r_getMaxEnable<=1'b0;
                         r_columnAddress<=r_columnAddress-1'b1;
                     end
                 end
-//                end
                 OUT_CONTROL:
                 begin
                     if(i_initStateValid==1'b1 )
@@ -238,7 +218,6 @@ module controlunit( input i_clk,
                 end
             endcase
         end
-        
     end
       
       

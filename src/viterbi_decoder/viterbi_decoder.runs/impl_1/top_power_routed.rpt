@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date             : Sat Apr 30 16:15:37 2022
+| Date             : Sun May  1 16:11:32 2022
 | Host             : Youssef-Dell running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -33,7 +33,7 @@ Table of Contents
 | Total On-Chip Power (W)  | 0.596        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.005        |
+| Dynamic (W)              | 0.004        |
 | Device Static (W)        | 0.592        |
 | Effective TJA (C/W)      | 1.0          |
 | Max Ambient (C)          | 99.4         |
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| CLB Logic      |     0.002 |     7213 |       --- |             --- |
-|   LUT as Logic |     0.002 |     4273 |    230400 |            1.85 |
-|   Register     |    <0.001 |     1101 |    460800 |            0.24 |
+| CLB Logic      |     0.002 |     7209 |       --- |             --- |
+|   LUT as Logic |     0.002 |     4277 |    230400 |            1.86 |
 |   CARRY8       |    <0.001 |      193 |     28800 |            0.67 |
-|   Others       |     0.000 |      394 |       --- |             --- |
+|   Register     |    <0.001 |     1096 |    460800 |            0.24 |
+|   Others       |     0.000 |      393 |       --- |             --- |
 |   F7/F8 Muxes  |     0.000 |       17 |    230400 |           <0.01 |
-| Signals        |     0.002 |     5295 |       --- |             --- |
+| Signals        |     0.002 |     5279 |       --- |             --- |
 | Block RAM      |    <0.001 |        7 |       312 |            2.24 |
-| I/O            |    <0.001 |       34 |       360 |            9.44 |
+| I/O            |    <0.001 |       21 |       360 |            5.83 |
 | Static Power   |     0.592 |          |           |                 |
 | Total          |     0.596 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
@@ -148,7 +148,7 @@ Table of Contents
 +-------+--------+-----------------+
 | Clock | Domain | Constraint (ns) |
 +-------+--------+-----------------+
-| clk   | clk    |           260.0 |
+| clk   | i_clk  |           240.0 |
 +-------+--------+-----------------+
 
 
@@ -158,12 +158,12 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+--------+-----------+
-| Name   | Power (W) |
-+--------+-----------+
-| top    |     0.005 |
-|   U4   |     0.003 |
-|     m1 |     0.002 |
-+--------+-----------+
++-------------------------+-----------+
+| Name                    | Power (W) |
++-------------------------+-----------+
+| top                     |     0.004 |
+|   u_PathMetricsRegister |     0.003 |
+|     m1                  |     0.002 |
++-------------------------+-----------+
 
 

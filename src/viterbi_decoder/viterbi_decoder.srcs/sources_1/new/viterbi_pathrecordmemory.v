@@ -23,13 +23,12 @@
 Discription: Path record memory is a memory that consists from 64 rows and 2560 columns.
             It can be accessed using 2 ways:
                                         1. writing in it the selected path from ACS module (PMU). writing is column by column (64 bits written in 1 clk)
-                                        2. reading from it using the traceback memory. reading is done by one element at a time so we access the memory using column and row addresses 
+                                        2. reading from it using the traceback memory. 
     input [63:0] i_selectedPaths -> selected paths (up or down) from the Path metric unit   
     input i_clk,                 -> clock signal
     input i_enable,              -> enable signal
     input [11:0]i_columnAddress, -> address of the column in the memory
     input i_rw,                  -> Read signal (1=read) (0=write)
-    input [5:0]i_rowAddress,     -> Row address used when reading
     output o_storedContent       -> output stored bit in the memory to Traceback unit
 */
 module pathrecordmemory(    input [63:0] i_selectedPaths,    
@@ -38,7 +37,7 @@ module pathrecordmemory(    input [63:0] i_selectedPaths,
                             input i_rw,
                             output [63:0]o_storedContent);
          
-        (* ram_style = "block" *)  reg [63:0]r_memArray[0:2559];
+        (* ram_style = "bram" *)  reg [63:0]r_memArray[0:2559];
          reg [63:0]r_storedContent;
          assign o_storedContent=r_storedContent;
          always@(posedge i_clk )
