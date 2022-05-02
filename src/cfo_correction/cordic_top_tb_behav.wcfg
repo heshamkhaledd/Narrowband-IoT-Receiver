@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="cordic_top_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="cordic_top_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="931666666fs"></ZoomStartTime>
+      <ZoomEndTime time="6521666667fs"></ZoomEndTime>
+      <Cursor1Time time="5590000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="177"></NameColumnWidth>
+      <ValueColumnWidth column_width="138"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="13" />
+   <wvobject fp_name="/cordic_top_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/cordicEn" type="logic">
+      <obj_property name="ElementShortName">cordicEn</obj_property>
+      <obj_property name="ObjectShortName">cordicEn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/select" type="logic">
+      <obj_property name="ElementShortName">select</obj_property>
+      <obj_property name="ObjectShortName">select</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/desiredAngle" type="array">
+      <obj_property name="ElementShortName">desiredAngle[19:0]</obj_property>
+      <obj_property name="ObjectShortName">desiredAngle[19:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/newAngle" type="array">
+      <obj_property name="ElementShortName">newAngle[20:0]</obj_property>
+      <obj_property name="ObjectShortName">newAngle[20:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/currentAngle" type="array">
+      <obj_property name="ElementShortName">currentAngle[20:0]</obj_property>
+      <obj_property name="ObjectShortName">currentAngle[20:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/theta" type="array">
+      <obj_property name="ElementShortName">theta[19:0]</obj_property>
+      <obj_property name="ObjectShortName">theta[19:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/cycleCounter" type="array">
+      <obj_property name="ElementShortName">cycleCounter[3:0]</obj_property>
+      <obj_property name="ObjectShortName">cycleCounter[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/inData_I" type="array">
+      <obj_property name="ElementShortName">inData_I[15:0]</obj_property>
+      <obj_property name="ObjectShortName">inData_I[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/WE" type="logic">
+      <obj_property name="ElementShortName">WE</obj_property>
+      <obj_property name="ObjectShortName">WE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/outReal" type="array">
+      <obj_property name="ElementShortName">outReal[15:0]</obj_property>
+      <obj_property name="ObjectShortName">outReal[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/cordic_top_tb/DUT/cordicValid" type="logic">
+      <obj_property name="ElementShortName">cordicValid</obj_property>
+      <obj_property name="ObjectShortName">cordicValid</obj_property>
+   </wvobject>
+</wave_config>
