@@ -26,121 +26,140 @@
 /*
     Inputs: 
             i_clk,i_rstn,i_enable: general inputs to the block
+            [11:0] i_tbs: Tansport block size (0->2559) as stated in the standard
             [63:0] i_recordStored: 64 bits indicates the previous path was coming from upper or lower branch
-            [5:0] i_maxIdx: the index of the maximum value stored in the path metrics memory (final state of winning path)
+            [511:0] i_finalMetrics: the last metrics saved in the path metrics resgisters
             
     Outputs:
             o_decodedToLifo: decoded bits to be saved in the LIFO memory
             o_lifoValid: Valid signal to lifo to get data
-            [5:0]o_initState: initial state of the winning path after finishing traceback. This will be sent to the control unit
-            o_cuValid: Valid signal to control unit to indicate that the data in the initState bus is valid 
+            o_tailbitingCheck: Signal that determines whether the path is tailbiting path or not
     Description:
            A finite state machine based design that has the following states:
-           IDLE: the decoder is still recording the survived paths in the memory
+           IDLE: 
+                - Idle state that does nothing but waiting for the enable signal. When the enable signal arrives, 
+                    it gets the index of the maximum metric saved in i_finalMetrics.
            ADDRESS_GEN: the traceback operation starts and the row generator is working 
                         to generate the previous states and decode this path while reaching the initial state
-           STATE_OUT: outputing the initial state to control unit
+                        
 */
 module tracebackunit(   input i_clk,
                         input i_rstn,
                         input i_enable,
+                        input [11:0]i_tbs,
                         input [63:0]i_recordStored,
-                        input [5:0]i_maxIdx,
+                        input [511:0]i_finalMetrics,
                         output o_decodedToLifo,
                         output o_lifoValid,
-                        output [5:0]o_initState,
-                        output o_cuValid);
-      parameter IDLE = 3'b001;
-      parameter ADDRESS_GEN = 3'b010;
-      parameter STATE_OUT=  3'b100;
-      reg [2:0] r_currState;
+                        output o_tailbitingCheck);
+
+      parameter IDLE = 2'b01;
+      parameter ADDRESS_GEN=  2'b10;
+      reg [1:0] r_currState;
+      reg [1:0] r_nextState;
       
-      reg r_cuValid;
       reg r_decodedToLifo;
       reg r_lifoValid;
+      reg [11:0]r_stateCounter;
+      (*keep="true"*)reg [5:0]r_rowGenerator;
+      reg [5:0]r_finalState;
+    assign o_decodedToLifo = r_decodedToLifo;
+    assign o_lifoValid=r_lifoValid;
+    assign o_tailbitingCheck=(r_rowGenerator==r_finalState)? 1'b1:1'b0;
 
-      reg [5:0]r_rowGenerator;
-      reg [5:0]r_initState;
 
-      assign o_cuValid = r_cuValid;
-      assign o_decodedToLifo =r_decodedToLifo;
-      assign o_lifoValid=r_lifoValid;
-      assign o_initState=r_initState;
-
+      
+      wire [5:0]r_maxIdx;
+      // get max instantiation
+      getmax u_getMax   (  .clk(i_clk),
+                           .i_dataIn(i_finalMetrics),
+                           .o_maxLocation(r_maxIdx));
       
       always@(posedge i_clk or negedge i_rstn)
       begin
-            if(~i_rstn)
-            begin
-                r_rowGenerator<=6'd0;
+           if(!i_rstn)
+           begin
                 r_currState<=IDLE;
-                r_cuValid<=1'b0;
-                r_lifoValid<=1'b0;
-                r_decodedToLifo<=1'b0;
-                r_initState<=1'b0;
-            end
-            else
+                r_stateCounter<=12'd0;
+           end
+           else if(i_enable)
+           begin
+               r_currState<=r_nextState;
+               r_stateCounter<=r_stateCounter+12'd1;
+           end
+           else
+           begin
+                r_currState<=IDLE;
+                r_stateCounter<=12'd0;
+           end
+      end
+      
+      // State Transition
+      always@(*)
+      begin
+          case(r_currState)
+            IDLE:
             begin
-                case(r_currState)
-                    IDLE:
+                if(i_enable)
+                begin
+                    if(r_stateCounter==12'd2)
                     begin
-                        if(~i_enable)
-                        begin
-                            r_rowGenerator<=6'd0;
-                            r_currState<=IDLE;
-                            r_cuValid<=1'b0;
-                            r_lifoValid<=1'b0;
-                            r_decodedToLifo<=1'b0;
-                            r_initState<=1'b0;   
-                        end
-                        else
-                        begin
-                            r_currState<= ADDRESS_GEN;
-                            r_rowGenerator<=i_maxIdx;
-                        end
+                        r_nextState=ADDRESS_GEN;
                     end
-                    ADDRESS_GEN:
+                    else
                     begin
-                        // getting the previous state from the current state and the value saved in the memory
-                        // ex: current state 32 (10000) After shifting right (00000) 
-                        //     then adding the value saved in the memory we get (00000) or (00001) (previous states 0 or 1)
-                        r_rowGenerator<= (r_rowGenerator<<1) + i_recordStored[63-r_rowGenerator];  
-                        
-                        // Decoding
-                        if(r_rowGenerator<6'd32) // if the current state is less than 32 then the corresponding data bit is 0
-                        begin
-                            r_lifoValid<=1'b1;
-                            r_decodedToLifo<=1'b0;
-                        end
-                        else
-                        begin
-                            r_lifoValid<=1'b1;
-                            r_decodedToLifo<=1'b1;                        
-                        end
-                        if(i_enable==1'b0)
-                        begin
-                            r_currState<=STATE_OUT;
-                        end
-                        else
-                        begin
-                            r_currState<=ADDRESS_GEN;
-                        end
+                        r_nextState=IDLE;
                     end
-                    STATE_OUT:
-                    begin
-                        r_cuValid<=1'b1;            // valid signal for initial state
-                        r_initState<=r_rowGenerator; //The initial state 
-                        r_lifoValid<=1'b0;
-                        if(i_enable==1'b0)
-                        begin
-                            r_currState<=IDLE;
-                        end
-                    end
-                    default:
-                    begin
-                        r_currState<=IDLE;
-                    end
-                endcase
+                end
+                else
+                begin
+                    r_nextState=IDLE; 
+                end
             end
+            ADDRESS_GEN:
+            begin
+                if(r_stateCounter==i_tbs+12'd3  )
+                begin
+                    r_nextState=IDLE;
+                end
+                else
+                begin
+                    r_nextState=ADDRESS_GEN;
+                end
+            end
+            default:
+                r_nextState=IDLE;
+          endcase
+      end
+      
+
+      // always block for outputs
+      always@(posedge i_clk)
+      begin
+          case(r_currState)
+            IDLE:
+            begin
+                if(i_enable && r_stateCounter == 12'd2)
+                begin
+                    r_rowGenerator<=r_maxIdx;
+                    r_finalState <= r_maxIdx;
+                    r_lifoValid<=1'b0;
+                end
+                else
+                begin
+                    r_rowGenerator<=r_rowGenerator;
+                    r_finalState <= 6'd0;
+                    r_lifoValid<=1'b0;
+                end
+            end
+            ADDRESS_GEN:
+            begin
+                r_lifoValid<=1'b1;
+                r_finalState<= r_maxIdx;
+                r_rowGenerator <= (r_rowGenerator<<1)+i_recordStored[63-r_rowGenerator];
+                r_decodedToLifo <= (r_rowGenerator<=6'd31)? 1'b0:1'b1;   
+            end
+            default;
+          endcase
       end
 endmodule
