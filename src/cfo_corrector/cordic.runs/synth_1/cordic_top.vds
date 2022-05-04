@@ -1,0 +1,346 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Wed May  4 07:27:38 2022
+# Process ID: 18944
+# Current directory: D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.runs/synth_1
+# Command line: vivado.exe -log cordic_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cordic_top.tcl
+# Log file: D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.runs/synth_1/cordic_top.vds
+# Journal file: D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source cordic_top.tcl -notrace
+create_project: Time (s): cpu = 00:00:03 ; elapsed = 00:00:05 . Memory (MB): peak = 355.191 ; gain = 65.031
+Command: synth_design -top cordic_top -part xczu7ev-ffvc1156-2-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Device 21-403] Loading part xczu7ev-ffvc1156-2-e
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 18928 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1462.270 ; gain = 3.984
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'cordic_top' [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:21]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter OFFSET_WIDTH bound to: 19 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'cordic_ctrl' [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_ctrl.v:22]
+	Parameter p_rstnState bound to: 2'b01 
+	Parameter p_rotationState bound to: 2'b10 
+INFO: [Synth 8-6155] done synthesizing module 'cordic_ctrl' (1#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_ctrl.v:22]
+INFO: [Synth 8-6157] synthesizing module 'cordic_ROM' [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_ROM.v:23]
+INFO: [Synth 8-226] default block is never used [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_ROM.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'cordic_ROM' (2#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_ROM.v:23]
+INFO: [Synth 8-6157] synthesizing module 'cordic_shifter' [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_shifter.v:22]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-226] default block is never used [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_shifter.v:32]
+INFO: [Synth 8-226] default block is never used [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_shifter.v:54]
+INFO: [Synth 8-6155] done synthesizing module 'cordic_shifter' (3#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_shifter.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'cordic_top' (4#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:21]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1524.027 ; gain = 65.742
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1530.047 ; gain = 71.762
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1530.047 ; gain = 71.762
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/constrs_1/new/const.xdc]
+create_clock: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1655.637 ; gain = 5.977
+Finished Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/constrs_1/new/const.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1655.637 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.009 . Memory (MB): peak = 1655.637 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1655.637 ; gain = 197.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu7ev-ffvc1156-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1655.637 ; gain = 197.352
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:25 ; elapsed = 00:00:26 . Memory (MB): peak = 1655.637 ; gain = 197.352
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'r_currentState_reg' in module 'cordic_ctrl'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:114]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:122]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:122]
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+             p_rstnState |                               01 |                               01
+         p_rotationState |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'r_currentState_reg' in module 'cordic_ctrl'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 1655.637 ; gain = 197.352
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input     20 Bit       Adders := 2     
+	   3 Input     16 Bit       Adders := 2     
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	               21 Bit    Registers := 1     
+	               16 Bit    Registers := 4     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     21 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 8     
+	   3 Input      4 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 4     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module cordic_top 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input     20 Bit       Adders := 2     
+	   3 Input     16 Bit       Adders := 2     
++---Registers : 
+	               21 Bit    Registers := 1     
+	               16 Bit    Registers := 4     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     21 Bit        Muxes := 1     
+	   2 Input     20 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 6     
+Module cordic_ctrl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	                4 Bit    Registers := 1     
++---Muxes : 
+	   3 Input      4 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   3 Input      1 Bit        Muxes := 4     
+Module cordic_shifter 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1728 (col length:144)
+BRAMs: 624 (col length: RAMB18 144 RAMB36 72)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1655.637 ; gain = 197.352
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:48 ; elapsed = 00:00:53 . Memory (MB): peak = 2208.684 ; gain = 750.398
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:00:56 . Memory (MB): peak = 2252.242 ; gain = 793.957
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:51 ; elapsed = 00:00:56 . Memory (MB): peak = 2253.391 ; gain = 795.105
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2268.227 ; gain = 809.941
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2268.227 ; gain = 809.941
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2268.227 ; gain = 809.941
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2268.227 ; gain = 809.941
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2268.227 ; gain = 809.941
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2268.227 ; gain = 809.941
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY8 |    18|
+|3     |LUT1   |    17|
+|4     |LUT2   |   103|
+|5     |LUT3   |    46|
+|6     |LUT4   |    35|
+|7     |LUT5   |    32|
+|8     |LUT6   |   114|
+|9     |FDCE   |    87|
+|10    |FDPE   |     5|
+|11    |IBUF   |    73|
+|12    |OBUF   |    33|
++------+-------+------+
+
+Report Instance Areas: 
++------+--------------+------------+------+
+|      |Instance      |Module      |Cells |
++------+--------------+------------+------+
+|1     |top           |            |   564|
+|2     |  CORDIC_CTRL |cordic_ctrl |   294|
++------+--------------+------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2268.227 ; gain = 809.941
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:36 ; elapsed = 00:00:48 . Memory (MB): peak = 2268.227 ; gain = 684.352
+Synthesis Optimization Complete : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 2268.227 ; gain = 809.941
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 92 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2298.715 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 74 instances were transformed.
+  BUFG => BUFGCE: 1 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 73 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+28 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:45 ; elapsed = 00:01:54 . Memory (MB): peak = 2298.715 ; gain = 1943.523
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2298.715 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.runs/synth_1/cordic_top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file cordic_top_utilization_synth.rpt -pb cordic_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed May  4 07:29:50 2022...

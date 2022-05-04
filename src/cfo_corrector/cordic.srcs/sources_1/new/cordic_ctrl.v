@@ -18,62 +18,53 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
+ 
 module cordic_ctrl(
-    input  clk,
-    input rstn,
-    input cordicEn,
-    output reg select,
-    output reg [3:0] cycleCounter,
-    output reg WE
+    input i_clk,
+    input i_rstn,
+    input i_cordicEn,
+    output reg o_select,
+    output reg [3:0] o_cycleCounter,
+    output reg o_WE
     );
     
-// State Definitions
-localparam p_rstnState      = 3'b0001;  // Reset state
-localparam p_rotationState  = 3'b0010;  // Micro-Rotations computing state
-localparam p_outputState    = 3'b0100;  // Output State
-
+// States Definitions
+localparam p_rstnState      = 2'b01;  // Reset state
+localparam p_rotationState  = 2'b10;  // Micro-Rotations computing state 
 reg [3:0] r_addressCounter;
-
+ 
 reg [1:0] r_currentState;
 reg [1:0] r_nextState;
-
-// Sequential Always block to 
-always@(posedge clk, negedge rstn)
+ 
+// Sequential Always block to put next state into current state
+always@(posedge i_clk, negedge i_rstn)
 begin
-    if(!rstn)
+    if(!i_rstn)
         begin
             r_currentState   <= p_rstnState;
-            r_addressCounter <= 15;
+            r_addressCounter <= 4'd15;
         end
-    else if(cordicEn)
+    else if(i_cordicEn)
         begin
             r_currentState   <= r_nextState;
             r_addressCounter <= r_addressCounter + 1;
         end
     else;
 end
-
+ 
 // Combinational Always Block to evaluate next state
 always@(*)
 begin
     case(r_currentState)
         p_rstnState:        begin
-                                if (r_addressCounter == 4'b0000)
+                                if (r_addressCounter == 4'd0)
                                     r_nextState = p_rotationState;
                                 else
                                     r_nextState = p_rstnState;
                             end
                         
         p_rotationState:    begin
-                                if(r_addressCounter > 0 && r_addressCounter < 15)
                                     r_nextState = p_rotationState;
-                                else
-                                    r_nextState = p_outputState;
-                            end
-                            
-        p_outputState:      begin
-                                r_nextState = p_rotationState;
                             end
                             
         default:            begin
@@ -81,36 +72,40 @@ begin
                             end
     endcase
 end
-
+ 
 // Combinational Always Block to evaluate the output
 always@(*)
 begin
     case(r_currentState)
         p_rstnState:        begin
-                                select = 0;
-                                cycleCounter = 0;
-                                WE = 0;
+                                o_select = 1'b0;
+                                o_cycleCounter = 1'b0;
+                                o_WE = 1'b0;
                             end
                         
         p_rotationState:    begin
-                                cycleCounter = r_addressCounter;
-                                WE = 0;
-                                if (r_addressCounter > 0)
-                                    select = 1;
-                                else if (r_addressCounter == 15)
-                                    select = 0;
+                                o_cycleCounter = r_addressCounter;
+                                if (r_addressCounter == 4'd0)
+                                    begin
+                                        o_select = 1'b0;
+                                        o_WE = 1'b0;
+                                    end
+                                else if (r_addressCounter == 4'd15)
+                                    begin
+                                        o_select = 1'b0;
+                                        o_WE = 1'b1;
+                                    end
                                 else
-                                    select = 1;
-                            end
-                            
-        p_outputState:      begin
-                                WE = 1;
+                                    begin
+                                        o_select = 1'b1;
+                                        o_WE = 1'b0;
+                                    end
                             end
                             
         default:            begin
-                                select = 0;
-                                cycleCounter = 0;
-                                WE = 0;
+                                o_select = 1'b0;
+                                o_cycleCounter = 1'b0;
+                                o_WE = 1'b0;
                             end
     endcase
 end
