@@ -8,7 +8,7 @@ close all; clear; clc; rng('shuffle');
 %   -> Sampling Rate:   1.92 MHz
 %   -> IFFT Points:     128
  
-N_Frames = 80; % Number of required Narrowband LTE Frames to be generated
+N_Frames = 1; % Number of required Narrowband LTE Frames to be generated
  
 LTE_preset = 'R.NB.6';
 LTE_Settings = NBIoTDownlinkWaveformGenerator(LTE_preset);  
@@ -36,7 +36,7 @@ Sampling_Time = 1/(1.92e6);
 Doppler_Shift = 5; % Max. Doppler Shift of diffuse components (5 Hz)
 Delay_Vector = [0 50 120 200 230 500 1600 2300 5000].*1e-9; % Channel Paths
 Gain_Vector = [-1 -1 -1 0 0 0 -3 -5 -7]; % Average Path Gains (dB)
-SNR = -15; % Signal-To-Noise Ratio (dB)
+SNR = 15; % Signal-To-Noise Ratio (dB)
  
 channel = comm.RayleighChannel( 'SampleRate', Sampling_Frequency, ...
                                 'PathDelays', Delay_Vector, ...

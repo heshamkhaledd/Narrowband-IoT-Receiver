@@ -15,11 +15,12 @@
 #########
 #Source files:
 #########
-#Do NOT ignore VHDL, Verilog, block diagrams or EDIF files.
+#Do NOT ignore VHDL, Verilog, MATLAB,  block diagrams or EDIF files.
 !*.vhd
 !*.v
 !*.bd
 !*.edif
+!*.m
 #########
 #IP files
 #########
