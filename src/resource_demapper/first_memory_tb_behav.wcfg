@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="first_memory_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="first_memory_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="66034166666fs"></ZoomStartTime>
+      <ZoomEndTime time="74309166667fs"></ZoomEndTime>
+      <Cursor1Time time="69550000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="141"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="23" />
+   <wvobject fp_name="/first_memory_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/i" type="array">
+      <obj_property name="ElementShortName">i[15:0]</obj_property>
+      <obj_property name="ObjectShortName">i[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/q" type="array">
+      <obj_property name="ElementShortName">q[15:0]</obj_property>
+      <obj_property name="ObjectShortName">q[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/en" type="logic">
+      <obj_property name="ElementShortName">en</obj_property>
+      <obj_property name="ObjectShortName">en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/we" type="logic">
+      <obj_property name="ElementShortName">we</obj_property>
+      <obj_property name="ObjectShortName">we</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/done" type="logic">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/UUT/r_colC" type="array">
+      <obj_property name="ElementShortName">r_colC[3:0]</obj_property>
+      <obj_property name="ObjectShortName">r_colC[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/roc" type="array">
+      <obj_property name="ElementShortName">roc[3:0]</obj_property>
+      <obj_property name="ObjectShortName">roc[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal0" type="array">
+      <obj_property name="ElementShortName">rmReal0[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal0[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal1" type="array">
+      <obj_property name="ElementShortName">rmReal1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal1[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal2" type="array">
+      <obj_property name="ElementShortName">rmReal2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal2[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal3" type="array">
+      <obj_property name="ElementShortName">rmReal3[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal3[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal4" type="array">
+      <obj_property name="ElementShortName">rmReal4[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal4[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal5" type="array">
+      <obj_property name="ElementShortName">rmReal5[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal5[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal6" type="array">
+      <obj_property name="ElementShortName">rmReal6[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal6[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal7" type="array">
+      <obj_property name="ElementShortName">rmReal7[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal7[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal8" type="array">
+      <obj_property name="ElementShortName">rmReal8[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal8[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal9" type="array">
+      <obj_property name="ElementShortName">rmReal9[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal9[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal10" type="array">
+      <obj_property name="ElementShortName">rmReal10[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal10[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/rmReal11" type="array">
+      <obj_property name="ElementShortName">rmReal11[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rmReal11[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/UUT/r_transfer" type="logic">
+      <obj_property name="ElementShortName">r_transfer</obj_property>
+      <obj_property name="ObjectShortName">r_transfer</obj_property>
+   </wvobject>
+   <wvobject fp_name="/first_memory_tb/UUT/r_colC" type="array">
+      <obj_property name="ElementShortName">r_colC[3:0]</obj_property>
+      <obj_property name="ObjectShortName">r_colC[3:0]</obj_property>
+   </wvobject>
+</wave_config>
