@@ -1,17 +1,16 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Si-Vision
+// Engineer: Hesham Khaled & Youssef Taha
 // 
-// Create Date: 03/22/2022 02:49:23 AM
-// Design Name: 
-// Module Name: CFO_ROM
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
+// Create Date: 03/24/2022 03:28:36 AM
+// Design Name: Carrier Freuqnecy Offset (CFO) Corrector Verilog implementation
+// Module Name: cordic_ROM
+// Project Name: NB-IoT Receiver
+// Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
+// Tool Versions: Vivado 2019.1
 // 
-// Dependencies: 
+// Dependencies: None
 // 
 // Revision:
 // Revision 0.01 - File Created

@@ -43,7 +43,7 @@ Desired_Angle(Idx,1) = Coarse_Offset(Idx,1) + Fine_Offset(Idx,1);
 % Calibrating the initial angel to range from (0~360)
 if(Desired_Angle(Idx,1) > 360)
     Desired_Angle(Idx,1) = Desired_Angle(Idx,1) - 360;
-elseif(Desired_Angle(Idx,1) < 0)
+elseif(Desired_Angle(Idx,1) < -360)
     Desired_Angle(Idx,1) = Desired_Angle(Idx,1) + 360;
 end
 %% Calculating Symbol Micro-Rotations %%
@@ -69,19 +69,19 @@ for Itr = 1 : 1 : N_Rotations
         newImag  = Steps_Q(Itr,Idx) + Shifter_I(Itr,Idx);
     else
         newAngle = Current_Angle(Itr,Idx) + Micro_Rotations(Itr,1);
-        newReal  = Steps_I(Itr,Idx) + Shifter_Q(Itr,1);
-        newImag  = Steps_Q(Itr,Idx) - Shifter_I(Itr,1);
+        newReal  = Steps_I(Itr,Idx) + Shifter_Q(Itr,Idx);
+        newImag  = Steps_Q(Itr,Idx) - Shifter_I(Itr,Idx);
     end
 end
 % Scaling Values by the Inverse CORDIC gain factor %
 % n.p.: Scaling ONLY the last step because its the actual output %
-%Steps_I(N_Rotations,Idx) = Steps_I(N_Rotations,Idx) * CORDIC_gainFactor;
-%Steps_Q(N_Rotations,Idx) = Steps_Q(N_Rotations,Idx) * CORDIC_gainFactor;
+Steps_I(N_Rotations,Idx) = Steps_I(N_Rotations,Idx) * CORDIC_gainFactor;
+Steps_Q(N_Rotations,Idx) = Steps_Q(N_Rotations,Idx) * CORDIC_gainFactor;
 %% %% Generating SW Output to compare with the Algorithm %%
 output(Idx,1) = (Steps_I(N_Rotations,Idx) + 1i*Steps_Q(N_Rotations,Idx));
 output_fx(Idx,1) = round(output(Idx,1)*2^10);
 
-output_SW(Idx,1) = cordicrotate(Desired_Angle(Idx,1)*(pi/180),input(Idx,1),N_Rotations,'ScaleOutput',false);
+output_SW(Idx,1) = cordicrotate(Desired_Angle(Idx,1)*(pi/180),input(Idx,1),N_Rotations,'ScaleOutput',true);
 output_SW_fx(Idx,1) = round(output_SW(Idx,1)*2^10);
 
 % Algorithm output in fixed point Representation %
