@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="nrs_indices_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="nrs_indices_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="10101000001fs"></ZoomEndTime>
+      <Cursor1Time time="96877000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="189"></NameColumnWidth>
+      <ValueColumnWidth column_width="115"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/nrs_indices_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/demapperDone" type="logic">
+      <obj_property name="ElementShortName">demapperDone</obj_property>
+      <obj_property name="ObjectShortName">demapperDone</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/ncellIDmod6" type="array">
+      <obj_property name="ElementShortName">ncellIDmod6[2:0]</obj_property>
+      <obj_property name="ObjectShortName">ncellIDmod6[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/nrsIdx" type="array">
+      <obj_property name="ElementShortName">nrsIdx[3:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsIdx[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/addr" type="array">
+      <obj_property name="ElementShortName">addr[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/we" type="logic">
+      <obj_property name="ElementShortName">we</obj_property>
+      <obj_property name="ObjectShortName">we</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/done" type="logic">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/UUT/w_m" type="logic">
+      <obj_property name="ElementShortName">w_m</obj_property>
+      <obj_property name="ObjectShortName">w_m</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/UUT/w_L" type="logic">
+      <obj_property name="ElementShortName">w_L</obj_property>
+      <obj_property name="ObjectShortName">w_L</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/UUT/r_c" type="array">
+      <obj_property name="ElementShortName">r_c[2:0]</obj_property>
+      <obj_property name="ObjectShortName">r_c[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_indices_tb/UUT/r_idx" type="array">
+      <obj_property name="ElementShortName">r_idx[3:0]</obj_property>
+      <obj_property name="ObjectShortName">r_idx[3:0]</obj_property>
+   </wvobject>
+</wave_config>
