@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="get_data_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="get_data_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="2440000001fs"></ZoomEndTime>
+      <Cursor1Time time="1000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="189"></NameColumnWidth>
+      <ValueColumnWidth column_width="104"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="32" />
+   <wvobject fp_name="/get_data_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsReal1" type="array">
+      <obj_property name="ElementShortName">nrsReal1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsReal1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsImg1" type="array">
+      <obj_property name="ElementShortName">nrsImg1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsImg1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsReal2" type="array">
+      <obj_property name="ElementShortName">nrsReal2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsReal2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsImg2" type="array">
+      <obj_property name="ElementShortName">nrsImg2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsImg2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/rxReal1" type="array">
+      <obj_property name="ElementShortName">rxReal1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxReal1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/rxImg1" type="array">
+      <obj_property name="ElementShortName">rxImg1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxImg1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/rxReal2" type="array">
+      <obj_property name="ElementShortName">rxReal2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxReal2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/rxImg2" type="array">
+      <obj_property name="ElementShortName">rxImg2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxImg2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsLoc" type="array">
+      <obj_property name="ElementShortName">nrsLoc[3:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsLoc[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsIdx1" type="array">
+      <obj_property name="ElementShortName">nrsIdx1[2:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsIdx1[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsIdx2" type="array">
+      <obj_property name="ElementShortName">nrsIdx2[2:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsIdx2[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/row" type="array">
+      <obj_property name="ElementShortName">row[3:0]</obj_property>
+      <obj_property name="ObjectShortName">row[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/col1" type="array">
+      <obj_property name="ElementShortName">col1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">col1[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/col2" type="array">
+      <obj_property name="ElementShortName">col2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">col2[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/pilotReal1" type="array">
+      <obj_property name="ElementShortName">pilotReal1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pilotReal1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/pilotImg1" type="array">
+      <obj_property name="ElementShortName">pilotImg1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pilotImg1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsPilotReal1" type="array">
+      <obj_property name="ElementShortName">nrsPilotReal1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsPilotReal1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsPilotImg1" type="array">
+      <obj_property name="ElementShortName">nrsPilotImg1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsPilotImg1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/pilotReal2" type="array">
+      <obj_property name="ElementShortName">pilotReal2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pilotReal2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/pilotImg2" type="array">
+      <obj_property name="ElementShortName">pilotImg2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">pilotImg2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsPilotReal2" type="array">
+      <obj_property name="ElementShortName">nrsPilotReal2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsPilotReal2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/nrsPilotImg2" type="array">
+      <obj_property name="ElementShortName">nrsPilotImg2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsPilotImg2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/idxFirstPilot" type="array">
+      <obj_property name="ElementShortName">idxFirstPilot[3:0]</obj_property>
+      <obj_property name="ObjectShortName">idxFirstPilot[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/DUT/nrsLoc" type="array">
+      <obj_property name="ElementShortName">nrsLoc[3:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsLoc[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/DUT/nrsIdx1" type="array">
+      <obj_property name="ElementShortName">nrsIdx1[2:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsIdx1[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/DUT/nrsIdx2" type="array">
+      <obj_property name="ElementShortName">nrsIdx2[2:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsIdx2[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/DUT/row" type="array">
+      <obj_property name="ElementShortName">row[3:0]</obj_property>
+      <obj_property name="ObjectShortName">row[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/DUT/col1" type="array">
+      <obj_property name="ElementShortName">col1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">col1[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/get_data_tb/DUT/col2" type="array">
+      <obj_property name="ElementShortName">col2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">col2[3:0]</obj_property>
+   </wvobject>
+</wave_config>

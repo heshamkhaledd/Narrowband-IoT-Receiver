@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="channel_estimation_tb_time_synth.wdb" id="1">
+         <top_modules>
+            <top_module name="channel_estimation_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="856833333fs"></ZoomStartTime>
+      <ZoomEndTime time="5997833334fs"></ZoomEndTime>
+      <Cursor1Time time="4680000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="189"></NameColumnWidth>
+      <ValueColumnWidth column_width="79"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="29" />
+   <wvobject fp_name="/channel_estimation_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/nrsGenDone" type="logic">
+      <obj_property name="ElementShortName">nrsGenDone</obj_property>
+      <obj_property name="ObjectShortName">nrsGenDone</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/nrsReal1" type="array">
+      <obj_property name="ElementShortName">nrsReal1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsReal1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/nrsImg1" type="array">
+      <obj_property name="ElementShortName">nrsImg1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsImg1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/nrsReal2" type="array">
+      <obj_property name="ElementShortName">nrsReal2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsReal2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/nrsImg2" type="array">
+      <obj_property name="ElementShortName">nrsImg2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsImg2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/rxReal1" type="array">
+      <obj_property name="ElementShortName">rxReal1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxReal1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/rxImg1" type="array">
+      <obj_property name="ElementShortName">rxImg1[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxImg1[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/rxReal2" type="array">
+      <obj_property name="ElementShortName">rxReal2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxReal2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/rxImg2" type="array">
+      <obj_property name="ElementShortName">rxImg2[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rxImg2[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/nrsLoc" type="array">
+      <obj_property name="ElementShortName">nrsLoc[3:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsLoc[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/nrsIdx1" type="array">
+      <obj_property name="ElementShortName">nrsIdx1[2:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsIdx1[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/nrsIdx2" type="array">
+      <obj_property name="ElementShortName">nrsIdx2[2:0]</obj_property>
+      <obj_property name="ObjectShortName">nrsIdx2[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/row" type="array">
+      <obj_property name="ElementShortName">row[3:0]</obj_property>
+      <obj_property name="ObjectShortName">row[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/col1" type="array">
+      <obj_property name="ElementShortName">col1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">col1[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/col2" type="array">
+      <obj_property name="ElementShortName">col2[3:0]</obj_property>
+      <obj_property name="ObjectShortName">col2[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/done" type="logic">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/DUT/w_hAvgReal" type="array">
+      <obj_property name="ElementShortName">w_hAvgReal[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_hAvgReal[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/DUT/w_hAvgImg" type="array">
+      <obj_property name="ElementShortName">w_hAvgImg[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_hAvgImg[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/DUT/w_H1real" type="array">
+      <obj_property name="ElementShortName">w_H1real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_H1real[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/DUT/w_H2real" type="array">
+      <obj_property name="ElementShortName">w_H2real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_H2real[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/DUT/w_H1img" type="array">
+      <obj_property name="ElementShortName">w_H1img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_H1img[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/DUT/w_H2img" type="array">
+      <obj_property name="ElementShortName">w_H2img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">w_H2img[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/h10img" type="array">
+      <obj_property name="ElementShortName">h10img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">h10img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/h11real" type="array">
+      <obj_property name="ElementShortName">h11real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">h11real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/h11img" type="array">
+      <obj_property name="ElementShortName">h11img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">h11img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/h12real" type="array">
+      <obj_property name="ElementShortName">h12real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">h12real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/channel_estimation_tb/h12img" type="array">
+      <obj_property name="ElementShortName">h12img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">h12img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>
