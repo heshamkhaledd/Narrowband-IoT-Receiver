@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="nrs_values_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="nrs_values_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="832586092182fs"></ZoomStartTime>
+      <ZoomEndTime time="835704781564fs"></ZoomEndTime>
+      <Cursor1Time time="835185000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="156"></NameColumnWidth>
+      <ValueColumnWidth column_width="101"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/nrs_values_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/nf" type="array">
+      <obj_property name="ElementShortName">nf[3:0]</obj_property>
+      <obj_property name="ObjectShortName">nf[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/ncellID" type="array">
+      <obj_property name="ElementShortName">ncellID[8:0]</obj_property>
+      <obj_property name="ObjectShortName">ncellID[8:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/NRSvalue" type="array">
+      <obj_property name="ElementShortName">NRSvalue[15:0]</obj_property>
+      <obj_property name="ObjectShortName">NRSvalue[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/addr" type="array">
+      <obj_property name="ElementShortName">addr[2:0]</obj_property>
+      <obj_property name="ObjectShortName">addr[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/realMemEn" type="logic">
+      <obj_property name="ElementShortName">realMemEn</obj_property>
+      <obj_property name="ObjectShortName">realMemEn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/imagMemEn" type="logic">
+      <obj_property name="ElementShortName">imagMemEn</obj_property>
+      <obj_property name="ObjectShortName">imagMemEn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/genDone" type="logic">
+      <obj_property name="ElementShortName">genDone</obj_property>
+      <obj_property name="ObjectShortName">genDone</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/UUT/w_pilotDone" type="logic">
+      <obj_property name="ElementShortName">w_pilotDone</obj_property>
+      <obj_property name="ObjectShortName">w_pilotDone</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/UUT/r_c1" type="array">
+      <obj_property name="ElementShortName">r_c1[10:0]</obj_property>
+      <obj_property name="ObjectShortName">r_c1[10:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/UUT/w_res" type="logic">
+      <obj_property name="ElementShortName">w_res</obj_property>
+      <obj_property name="ObjectShortName">w_res</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/UUT/r_x2[0]" type="logic">
+      <obj_property name="ElementShortName">[0]</obj_property>
+      <obj_property name="ObjectShortName">[0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/UUT/r_x1[0]" type="logic">
+      <obj_property name="ElementShortName">[0]</obj_property>
+      <obj_property name="ObjectShortName">[0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/nrs_values_tb/UUT/w_ns" type="array">
+      <obj_property name="ElementShortName">w_ns[4:0]</obj_property>
+      <obj_property name="ObjectShortName">w_ns[4:0]</obj_property>
+   </wvobject>
+</wave_config>
