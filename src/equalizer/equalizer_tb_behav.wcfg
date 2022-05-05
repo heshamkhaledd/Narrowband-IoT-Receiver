@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="equalizer_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="equalizer_tb" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="31180000000fs"></ZoomEndTime>
+      <Cursor1Time time="1481098000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="148"></NameColumnWidth>
+      <ValueColumnWidth column_width="99"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="30" />
+   <wvobject fp_name="/equalizer_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/rstn" type="logic">
+      <obj_property name="ElementShortName">rstn</obj_property>
+      <obj_property name="ObjectShortName">rstn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/equalize" type="logic">
+      <obj_property name="ElementShortName">equalize</obj_property>
+      <obj_property name="ObjectShortName">equalize</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/col" type="array">
+      <obj_property name="ElementShortName">col[3:0]</obj_property>
+      <obj_property name="ObjectShortName">col[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/DUT/Mul1/yr" type="array">
+      <obj_property name="ElementShortName">yr[15:0]</obj_property>
+      <obj_property name="ObjectShortName">yr[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/done" type="logic">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq1real" type="array">
+      <obj_property name="ElementShortName">eq1real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq1real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq1img" type="array">
+      <obj_property name="ElementShortName">eq1img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq1img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq2real" type="array">
+      <obj_property name="ElementShortName">eq2real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq2real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq2img" type="array">
+      <obj_property name="ElementShortName">eq2img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq2img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq3real" type="array">
+      <obj_property name="ElementShortName">eq3real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq3real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq3img" type="array">
+      <obj_property name="ElementShortName">eq3img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq3img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq4real" type="array">
+      <obj_property name="ElementShortName">eq4real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq4real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq4img" type="array">
+      <obj_property name="ElementShortName">eq4img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq4img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq5real" type="array">
+      <obj_property name="ElementShortName">eq5real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq5real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq5img" type="array">
+      <obj_property name="ElementShortName">eq5img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq5img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq6real" type="array">
+      <obj_property name="ElementShortName">eq6real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq6real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq6img" type="array">
+      <obj_property name="ElementShortName">eq6img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq6img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq7real" type="array">
+      <obj_property name="ElementShortName">eq7real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq7real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq7img" type="array">
+      <obj_property name="ElementShortName">eq7img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq7img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq8real" type="array">
+      <obj_property name="ElementShortName">eq8real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq8real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq8img" type="array">
+      <obj_property name="ElementShortName">eq8img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq8img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq9real" type="array">
+      <obj_property name="ElementShortName">eq9real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq9real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq9img" type="array">
+      <obj_property name="ElementShortName">eq9img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq9img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq10real" type="array">
+      <obj_property name="ElementShortName">eq10real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq10real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq10img" type="array">
+      <obj_property name="ElementShortName">eq10img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq10img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq11real" type="array">
+      <obj_property name="ElementShortName">eq11real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq11real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq11img" type="array">
+      <obj_property name="ElementShortName">eq11img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq11img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq12real" type="array">
+      <obj_property name="ElementShortName">eq12real[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq12real[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/equalizer_tb/eq12img" type="array">
+      <obj_property name="ElementShortName">eq12img[15:0]</obj_property>
+      <obj_property name="ObjectShortName">eq12img[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>

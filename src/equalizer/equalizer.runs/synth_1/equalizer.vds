@@ -1,0 +1,464 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Mon Apr 25 05:47:41 2022
+# Process ID: 13860
+# Current directory: E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.runs/synth_1
+# Command line: vivado.exe -log equalizer.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source equalizer.tcl
+# Log file: E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.runs/synth_1/equalizer.vds
+# Journal file: E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source equalizer.tcl -notrace
+Command: synth_design -top equalizer -part xc7s100fgga676-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7s100'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7s100'
+INFO: [Device 21-403] Loading part xc7s100fgga676-2
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 15072 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 825.719 ; gain = 173.586
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'equalizer' [E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.srcs/sources_1/new/equalizer.v:22]
+INFO: [Synth 8-6157] synthesizing module 'cmplx_mul_eq' [E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.srcs/sources_1/imports/new/cmplx_mul.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'cmplx_mul_eq' (1#1) [E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.srcs/sources_1/imports/new/cmplx_mul.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'equalizer' (2#1) [E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.srcs/sources_1/new/equalizer.v:22]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 889.637 ; gain = 237.504
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 889.637 ; gain = 237.504
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 889.637 ; gain = 237.504
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.srcs/constrs_1/new/eq_const.xdc]
+Finished Parsing XDC File [E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.srcs/constrs_1/new/eq_const.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1004.062 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1004.062 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1004.062 ; gain = 351.930
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7s100fgga676-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1004.062 ; gain = 351.930
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1004.062 ; gain = 351.930
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1004.062 ; gain = 351.930
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 12    
+	   3 Input     16 Bit       Adders := 12    
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 24    
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module equalizer 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      4 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 24    
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+Module cmplx_mul_eq 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
+	   3 Input     16 Bit       Adders := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 160 (col length:80)
+BRAMs: 240 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+DSP Report: Generating DSP Mul1/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul1/o_yr1 is absorbed into DSP Mul1/o_yr1.
+DSP Report: Generating DSP Mul1/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul1/o_yr1 is absorbed into DSP Mul1/o_yr1.
+DSP Report: Generating DSP Mul1/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul1/o_yi1 is absorbed into DSP Mul1/o_yi1.
+DSP Report: Generating DSP Mul1/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul1/o_yi1 is absorbed into DSP Mul1/o_yi1.
+DSP Report: Generating DSP Mul2/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul2/o_yr1 is absorbed into DSP Mul2/o_yr1.
+DSP Report: Generating DSP Mul2/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul2/o_yr1 is absorbed into DSP Mul2/o_yr1.
+DSP Report: Generating DSP Mul2/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul2/o_yi1 is absorbed into DSP Mul2/o_yi1.
+DSP Report: Generating DSP Mul2/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul2/o_yi1 is absorbed into DSP Mul2/o_yi1.
+DSP Report: Generating DSP Mul3/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul3/o_yr1 is absorbed into DSP Mul3/o_yr1.
+DSP Report: Generating DSP Mul3/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul3/o_yr1 is absorbed into DSP Mul3/o_yr1.
+DSP Report: Generating DSP Mul3/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul3/o_yi1 is absorbed into DSP Mul3/o_yi1.
+DSP Report: Generating DSP Mul3/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul3/o_yi1 is absorbed into DSP Mul3/o_yi1.
+DSP Report: Generating DSP Mul4/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul4/o_yr1 is absorbed into DSP Mul4/o_yr1.
+DSP Report: Generating DSP Mul4/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul4/o_yr1 is absorbed into DSP Mul4/o_yr1.
+DSP Report: Generating DSP Mul4/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul4/o_yi1 is absorbed into DSP Mul4/o_yi1.
+DSP Report: Generating DSP Mul4/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul4/o_yi1 is absorbed into DSP Mul4/o_yi1.
+DSP Report: Generating DSP Mul5/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul5/o_yr1 is absorbed into DSP Mul5/o_yr1.
+DSP Report: Generating DSP Mul5/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul5/o_yr1 is absorbed into DSP Mul5/o_yr1.
+DSP Report: Generating DSP Mul5/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul5/o_yi1 is absorbed into DSP Mul5/o_yi1.
+DSP Report: Generating DSP Mul5/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul5/o_yi1 is absorbed into DSP Mul5/o_yi1.
+DSP Report: Generating DSP Mul6/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul6/o_yr1 is absorbed into DSP Mul6/o_yr1.
+DSP Report: Generating DSP Mul6/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul6/o_yr1 is absorbed into DSP Mul6/o_yr1.
+DSP Report: Generating DSP Mul6/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul6/o_yi1 is absorbed into DSP Mul6/o_yi1.
+DSP Report: Generating DSP Mul6/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul6/o_yi1 is absorbed into DSP Mul6/o_yi1.
+DSP Report: Generating DSP Mul7/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul7/o_yr1 is absorbed into DSP Mul7/o_yr1.
+DSP Report: Generating DSP Mul7/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul7/o_yr1 is absorbed into DSP Mul7/o_yr1.
+DSP Report: Generating DSP Mul7/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul7/o_yi1 is absorbed into DSP Mul7/o_yi1.
+DSP Report: Generating DSP Mul7/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul7/o_yi1 is absorbed into DSP Mul7/o_yi1.
+DSP Report: Generating DSP Mul8/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul8/o_yr1 is absorbed into DSP Mul8/o_yr1.
+DSP Report: Generating DSP Mul8/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul8/o_yr1 is absorbed into DSP Mul8/o_yr1.
+DSP Report: Generating DSP Mul8/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul8/o_yi1 is absorbed into DSP Mul8/o_yi1.
+DSP Report: Generating DSP Mul8/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul8/o_yi1 is absorbed into DSP Mul8/o_yi1.
+DSP Report: Generating DSP Mul9/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul9/o_yr1 is absorbed into DSP Mul9/o_yr1.
+DSP Report: Generating DSP Mul9/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul9/o_yr1 is absorbed into DSP Mul9/o_yr1.
+DSP Report: Generating DSP Mul9/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul9/o_yi1 is absorbed into DSP Mul9/o_yi1.
+DSP Report: Generating DSP Mul9/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul9/o_yi1 is absorbed into DSP Mul9/o_yi1.
+DSP Report: Generating DSP Mul10/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul10/o_yr1 is absorbed into DSP Mul10/o_yr1.
+DSP Report: Generating DSP Mul10/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul10/o_yr1 is absorbed into DSP Mul10/o_yr1.
+DSP Report: Generating DSP Mul10/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul10/o_yi1 is absorbed into DSP Mul10/o_yi1.
+DSP Report: Generating DSP Mul10/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul10/o_yi1 is absorbed into DSP Mul10/o_yi1.
+DSP Report: Generating DSP Mul11/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul11/o_yr1 is absorbed into DSP Mul11/o_yr1.
+DSP Report: Generating DSP Mul11/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul11/o_yr1 is absorbed into DSP Mul11/o_yr1.
+DSP Report: Generating DSP Mul11/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul11/o_yi1 is absorbed into DSP Mul11/o_yi1.
+DSP Report: Generating DSP Mul11/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul11/o_yi1 is absorbed into DSP Mul11/o_yi1.
+DSP Report: Generating DSP Mul12/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul12/o_yr1 is absorbed into DSP Mul12/o_yr1.
+DSP Report: Generating DSP Mul12/o_yr1, operation Mode is: A*B.
+DSP Report: operator Mul12/o_yr1 is absorbed into DSP Mul12/o_yr1.
+DSP Report: Generating DSP Mul12/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul12/o_yi1 is absorbed into DSP Mul12/o_yi1.
+DSP Report: Generating DSP Mul12/o_yi1, operation Mode is: A*B.
+DSP Report: operator Mul12/o_yi1 is absorbed into DSP Mul12/o_yi1.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1004.062 ; gain = 351.930
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+DSP: Preliminary Mapping  Report (see note below)
++-------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name  | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++-------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul_eq | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++-------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1028.512 ; gain = 376.379
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:23 . Memory (MB): peak = 1039.184 ; gain = 387.051
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1061.375 ; gain = 409.242
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1066.742 ; gain = 414.609
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:25 . Memory (MB): peak = 1066.742 ; gain = 414.609
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1066.742 ; gain = 414.609
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1066.742 ; gain = 414.609
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1066.742 ; gain = 414.609
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1066.742 ; gain = 414.609
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |BUFG    |     1|
+|2     |CARRY4  |    96|
+|3     |DSP48E1 |    48|
+|4     |LUT1    |     1|
+|5     |LUT2    |   385|
+|6     |LUT4    |     4|
+|7     |LUT5    |     1|
+|8     |FDCE    |   389|
+|9     |IBUF    |   772|
+|10    |OBUF    |   389|
++------+--------+------+
+
+Report Instance Areas: 
++------+---------+----------------+------+
+|      |Instance |Module          |Cells |
++------+---------+----------------+------+
+|1     |top      |                |  2086|
+|2     |  Mul1   |cmplx_mul_eq    |    44|
+|3     |  Mul10  |cmplx_mul_eq_0  |    44|
+|4     |  Mul11  |cmplx_mul_eq_1  |    44|
+|5     |  Mul12  |cmplx_mul_eq_2  |    44|
+|6     |  Mul2   |cmplx_mul_eq_3  |    44|
+|7     |  Mul3   |cmplx_mul_eq_4  |    44|
+|8     |  Mul4   |cmplx_mul_eq_5  |    44|
+|9     |  Mul5   |cmplx_mul_eq_6  |    44|
+|10    |  Mul6   |cmplx_mul_eq_7  |    44|
+|11    |  Mul7   |cmplx_mul_eq_8  |    44|
+|12    |  Mul8   |cmplx_mul_eq_9  |    44|
+|13    |  Mul9   |cmplx_mul_eq_10 |    44|
++------+---------+----------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 1066.742 ; gain = 414.609
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:25 . Memory (MB): peak = 1066.742 ; gain = 300.184
+Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1066.742 ; gain = 414.609
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 144 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1066.742 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+15 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:49 ; elapsed = 00:00:51 . Memory (MB): peak = 1066.742 ; gain = 711.344
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1066.742 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'E:/CUFE/Si-Vision/GP/22/vivadoRTL/equalizer/equalizer.runs/synth_1/equalizer.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file equalizer_utilization_synth.rpt -pb equalizer_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 25 05:48:37 2022...
