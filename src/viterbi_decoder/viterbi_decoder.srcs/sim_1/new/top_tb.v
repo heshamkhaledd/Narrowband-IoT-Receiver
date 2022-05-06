@@ -23,167 +23,138 @@
 module top_tb;
 
 
-reg clk;
-reg rstn;
-reg [11:0]tbs;
-reg [2:0]msg;
-reg enable;
-wire crcValid;
-wire decodedOut;
-wire matcherRepeat;
-reg  originalData[0:2559];
-reg [11:0]j;
-wire [5:0] test_init;
-wire [5:0]test_final;
-wire test_pathmetricsenable;
-wire [11:0]test_memoryAddress;
-wire [63:0]test_memoryDataOut;
-reg [63:0]test_memoryDataIn;
+reg i_clk;
+reg i_rstn;
+reg [11:0]i_tbs;
+reg [2:0]i_msg;
+reg i_enable;
+wire o_crcValid;
+wire o_decodedOut;
+wire o_matcherRepeat;
 
-top UUT(        .clk(clk),
-                .rstn(rstn),
-                .tbs(tbs),
-                .msg(msg),
-                .enable(enable),
-                .crcValid(crcValid),
-                .decodedOut(decodedOut),
-                .matcherRepeat(matcherRepeat),
-                .test_init(test_init),
-                .test_final(test_final),
-                 .test_pathmetricsenable(test_pathmetricsenable),
-                 .test_memoryAddress(test_memoryAddress),
-                 .test_memoryDataOut(test_memoryDataOut));
-//                 .test_memoryDataIn(test_memoryDataIn));
- always #130 clk=~clk;
- reg [2:0]mem2[0:2559];
+viterbi_top UUT(    .i_clk(i_clk),
+                    .i_rstn(i_rstn),
+                    .i_tbs(i_tbs),
+                    .i_msg(i_msg),
+                    .i_enable(i_enable),
+                    .o_crcValid(o_crcValid),
+                    .o_decodedOut(o_decodedOut),
+                    .o_matcherRepeat(o_matcherRepeat));
+ always #130 i_clk=~i_clk;
+ reg [2:0]mem1[0:2559];
+ reg [2:0]wrongData[0:9];
  reg matcherRepeat1;
  integer i;
  initial
  begin
     matcherRepeat1=0;
-    j=12'd0;
-    clk=1'b1;
-    rstn=1'b0;
-    tbs=12'd0;
-    msg=3'd0;
-    enable=1'b0;
-    $readmemb("test2.dat",mem2);    // for test case 2
-    $readmemb("test2_originalData.dat",originalData);
-    
-    #260 
-    rstn=1'b1;
-    #260;
+    i_clk=1'b1;
+    i_rstn=1'b0;
+    i_tbs=12'd0;
+    i_msg=3'd0;
+    i_enable=1'b0;
+    $readmemb("test2.dat",mem1);    // for full size test case
+    $readmemb("test_wrongData.dat",wrongData);
+    #260 #260 #260 #260 #260
+    i_rstn=1'b1;
+    #260; #260 #260 #260 #260
 
 // First test case (10 bits only)     
-    enable=1'b1;
-    tbs=12'd9;
+    i_enable=1'b1;
+    i_tbs=12'd9;
     #130;
-    msg= 3'd7;
+    i_msg= 3'd7;
     #260
-    msg=3'd0;
+    i_msg=3'd0;
     #260
-    msg=3'd5;
+    i_msg=3'd5;
     #260
-    msg=3'd5;
+    i_msg=3'd5;
     #260
-    msg = 3'd6;
+    i_msg = 3'd6;
     #260
-    msg =3'd4;
+    i_msg =3'd4;
     #260
-    msg=3'd0;
+    i_msg=3'd0;
     #260
-    msg=3'd4;
+    i_msg=3'd4;
     #260;
-    msg=3'd3;
+    i_msg=3'd3;
     #260;
-    msg=3'd2;
+    i_msg=3'd2;
     #260;
-    enable=1'b0;    
-    #16490;
-//    test_memoryDataIn=64'h73445b71c5723146;
-//    #260;    
-//    test_memoryDataIn=64'h5c051b44355c9503;
-//    #260;    
-//    test_memoryDataIn=64'h077c041b583f03b5;
-//    #260;    
-//    test_memoryDataIn=64'h9be4f003e802a3c0;
-//    #260;    
-//    test_memoryDataIn=64'h217aac3a88270bec;
-//    #260;    
-//    test_memoryDataIn=64'hb20a8c306e31720c;
-//    #260;    
-//    test_memoryDataIn=64'h4d50310c728d4fb1;
-//    #260;    
-//    test_memoryDataIn=64'h0473314c728d4cb1;
-//    #260;    
-//    test_memoryDataIn=64'h02e44027e41b27d8;
-//    #260;        
-//    test_memoryDataIn=64'he41b27d81be4d827;
-//    #260;
+    i_enable=1'b0;    
 //Expected decodedOut for 1st test case = 10 0000 1110
     #7800;
-    // First test case (10 bits only)     
-//    enable=1'b1;
-//    tbs=12'd9;
-//    #130;
-//    msg= 3'd7;
-//    #260
-//    msg=3'd0;
-//    #260
-//    msg=3'd5;
-//    #260
-//    msg=3'd5;
-//    #260
-//    msg = 3'd6;
-//    #260
-//    msg =3'd4;
-//    #260
-//    msg=3'd0;
-//    #260
-//    msg=3'd4;
-//    #260;
-//    msg=3'd3;
-//    #260;
-//    msg=3'd2;
-//    #260;
-//    enable=1'b0;    
-// second test case: full size
-
-//    #130;
-//    enable=1'b1;
-//    tbs=12'd2559;
-//    #130;
-//    for(i=0;i<2560;i=i+1)
-//    begin
-//        msg=mem2[i];
-//        #260;
-//    end
-//    enable=1'b0;  
+// test case, wrong Data
+    #130;
+    i_enable=1'b1;
+    i_tbs=12'd9;
+    #130;
+    for(i=0;i<10;i=i+1)
+    begin
+        i_msg=wrongData[i];
+        #260;
+    end
+    i_enable=1'b0;
+    
+    #7800;
+    #7800;
+    #7800;
+    #7800;
+// third test case: full size
+    #130;
+    i_enable=1'b1;
+    i_tbs=12'd2559;
+    #130;
+    for(i=0;i<2560;i=i+1)
+    begin
+        i_msg=mem1[i];
+        #260;
+    end
+    i_enable=1'b0;  
      
  end   
+    integer myFile;
+    integer itr;
+    // for test 3 with full size, saving the output data in a .dat file to compare it with the original data.
+    always@(*)
+    begin
+        if(i_tbs==12'd2559 && o_crcValid==1'b1)     
+        begin
+            myFile= $fopen("test3_output.dat","wb");
+            #130;
+            for(itr=0;itr<2560;itr=itr+1)
+            begin
+                $fwrite(myFile,o_decodedOut);
+                $fwrite(myFile,",");
+                #260;
+            end
+            $fclose(myFile);
+        end
+    end
 
-
-// handling matcherRepeat signal
+// handling matcherRepeat signal that occurs in test 2
  always@(*)
  begin
     if(matcherRepeat1==1'b1)
     begin
-        enable=1'b1;
-        tbs=12'd14;
+        i_enable=1'b1;
+        i_tbs=12'd9;
         #130;
         for(i=0;i<10;i=i+1)
         begin
-            msg=mem2[i];
+            i_msg=wrongData[i];
             #260;
         end
         matcherRepeat1=1'b0;
-        enable=1'b0;
+        i_enable=1'b0;
     end
  end
 
-      always@(posedge clk)
+      always@(posedge i_clk)
       begin
-        if(matcherRepeat==1'b1)
+        if(o_matcherRepeat==1'b1)
         begin
             matcherRepeat1<=1'b1;
         end

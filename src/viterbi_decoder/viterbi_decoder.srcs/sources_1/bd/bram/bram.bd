@@ -1,0 +1,126 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x5B5C103720B3722A",
+      "device": "xczu7ev-ffvc1156-2-e",
+      "name": "bram",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "blk_mem_gen_0": ""
+    },
+    "ports": {
+      "addra_0": {
+        "direction": "I",
+        "left": "11",
+        "right": "0"
+      },
+      "douta_0": {
+        "direction": "O",
+        "left": "63",
+        "right": "0"
+      },
+      "clka_0": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "bram_clka_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "dina_0": {
+        "direction": "I",
+        "left": "63",
+        "right": "0"
+      },
+      "wea_0": {
+        "direction": "I",
+        "left": "0",
+        "right": "0"
+      }
+    },
+    "components": {
+      "blk_mem_gen_0": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "bram_blk_mem_gen_0_0",
+        "parameters": {
+          "Enable_32bit_Address": {
+            "value": "false"
+          },
+          "Enable_A": {
+            "value": "Always_Enabled"
+          },
+          "Read_Width_A": {
+            "value": "64"
+          },
+          "Register_PortA_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Use_Byte_Write_Enable": {
+            "value": "false"
+          },
+          "Use_RSTA_Pin": {
+            "value": "false"
+          },
+          "Write_Depth_A": {
+            "value": "2560"
+          },
+          "Write_Width_A": {
+            "value": "64"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      }
+    },
+    "nets": {
+      "addra_0_1": {
+        "ports": [
+          "addra_0",
+          "blk_mem_gen_0/addra"
+        ]
+      },
+      "blk_mem_gen_0_douta": {
+        "ports": [
+          "blk_mem_gen_0/douta",
+          "douta_0"
+        ]
+      },
+      "clka_0_1": {
+        "ports": [
+          "clka_0",
+          "blk_mem_gen_0/clka"
+        ]
+      },
+      "dina_0_1": {
+        "ports": [
+          "dina_0",
+          "blk_mem_gen_0/dina"
+        ]
+      },
+      "wea_0_1": {
+        "ports": [
+          "wea_0",
+          "blk_mem_gen_0/wea"
+        ]
+      }
+    }
+  }
+}
