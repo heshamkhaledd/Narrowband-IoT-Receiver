@@ -38,14 +38,16 @@ for Idx = 1 : 1920 : size(NB_Frames,1)
         counter = counter + 128;
     end
 end
+% CPR_NB_Frames_fx = round(CPR_NB_Frames.*2^10);
 %% Downsampling %%
 counter = 1;
 CPR_DS_NB_Frames = zeros(size(CPR_NB_Frames,1)/8,1);
     for Idx = 1 : 8 : size(CPR_NB_Frames,1)
-        CPR_DS_NB_Frames(counter,1) = NB_Frames(Idx,1);
+        CPR_DS_NB_Frames(counter,1) = CPR_NB_Frames(Idx,1);
         counter = counter + 1;
     end
-output_fx = round(CPR_DS_NB_Frames .*2^10);
+output_fx(:,1) = real(round(CPR_DS_NB_Frames .*2^10));
+output_fx(:,2) = imag(round(CPR_DS_NB_Frames .*2^10));
 %% Exporting input to Verilog Testbench
 input_fx(:,1) = round(real(NB_Frames) .* 2^10);
 input_fx(:,2) = round(imag(NB_Frames) .* 2^10);

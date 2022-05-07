@@ -25,11 +25,11 @@ module cprds_top_tb#(parameter DATA_WIDTH = 16)();
 reg i_clk;
 reg i_rstn;
 reg i_cpdEn;
-reg  [DATA_WIDTH-1:0] i_I;
-reg  [DATA_WIDTH-1:0] i_Q;
-wire [DATA_WIDTH-1:0] o_I;
-wire [DATA_WIDTH-1:0] o_Q;
-wire  o_cpdValid;
+reg signed  [DATA_WIDTH-1:0] i_I;
+reg signed  [DATA_WIDTH-1:0] i_Q;
+wire signed [DATA_WIDTH-1:0] o_I;
+wire signed [DATA_WIDTH-1:0] o_Q;
+wire  o_cprdsValid;
 
 cprds_top #(DATA_WIDTH)
 UUT
@@ -39,7 +39,8 @@ UUT
                  .i_I(i_I),
                  .i_Q(i_Q),
                  .o_I(o_I),
-                 .o_Q(o_Q)
+                 .o_Q(o_Q),
+                 .o_cprdsValid(o_cprdsValid)
                 );
 
 initial begin
@@ -48,13 +49,16 @@ i_rstn = 0;
 i_cpdEn = 0;
 end                
 
-always #130 i_clk = ~i_clk;
+always #260 i_clk = ~i_clk;
 
-integer fd;
+integer fd_ip;
+integer fd_op;
+integer Idx;
+
 initial begin
-fd = $fopen("cpdrs_input.txt", "r");
-if (fd)
-    $display("Input File was opened succesfully!\n");
+fd_ip = $fopen("cprds_input.txt", "r");
+if (fd_ip)
+    $display("Input File is opened succesfully!\n");
 else
     begin
         $display("Cannot Read Input File!\n");
@@ -63,21 +67,36 @@ else
 end  
 
 initial begin
-#260
+#520
 i_rstn = 1;
-#260
+#520
 i_cpdEn = 1;
+fd_op= $fopen("cprds_output.txt","wb");
+if (fd_op)
+    $display("Output File is created succesfully!\n");
+else
+    begin
+        $display("Cannot Create output File!\n");
+        $finish;
+    end
+$fclose(fd_op);
+
 // Keep Reading Until end of file is found
-while (! $feof(fd) ) begin
-#130
-$fscanf(fd, "%d %d", i_I, i_Q);
-#130;
+while (! $feof(fd_ip) ) begin
+$fscanf(fd_ip, "%d %d", i_I, i_Q);
+#520;
 end
-#5200
+$fclose(fd_ip);
 i_cpdEn = 0;
-#760
-$fclose(fd);
 $finish;
+end
+
+always@(posedge o_cprdsValid)
+begin
+    fd_op= $fopen("cprds_output.txt","ab");
+    $fwrite(fd_op,"%d %d\n",o_I,o_Q);
+    #520;
+    $fclose(fd_op);
 end
 
 endmodule
