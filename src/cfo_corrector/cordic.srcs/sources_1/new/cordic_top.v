@@ -77,7 +77,7 @@ u_SHIFTER_Q
                  .o_outData(w_outShifter_Q)
                 );
 
-cmplx_mul #(DATA_WIDTH,10)
+cmplx_mul #(DATA_WIDTH)
 u_CMPLX_MUL
                 (.i_Ar(r_inData_I),
                  .i_Ai(r_inData_Q),

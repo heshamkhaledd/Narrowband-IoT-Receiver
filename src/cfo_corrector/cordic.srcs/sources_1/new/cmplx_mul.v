@@ -17,7 +17,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module cmplx_mul #(parameter DATA_WIDTH = 16, parameter CONST_WIDTH = 10)
+module cmplx_mul #(parameter DATA_WIDTH = 16)
 (
 	input signed [DATA_WIDTH-1:0] i_Ar,
 	input signed [DATA_WIDTH-1:0] i_Ai,
