@@ -35,7 +35,7 @@ Coarse_Offset(Idx,1) = randi([-49 49]);
 Fine_Offset(Idx,1) = randi([-49 49]);
 
 % Taking the input vector
-input(Idx,1) = randi([0 9]) + 1j*randi([0 9]).*10e-2;
+input(Idx,1) = (randi([0 9]) + 1j*randi([0 9])).*(10^-2);
 input_I(Idx,1) = real(input(Idx,1));
 input_Q(Idx,1) = imag(input(Idx,1));
 
