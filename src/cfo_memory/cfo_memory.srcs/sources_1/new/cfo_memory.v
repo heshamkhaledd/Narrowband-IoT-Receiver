@@ -13,7 +13,7 @@
 
 module cfo_memory #(parameter DATA_WIDTH = 16)
 (
-    input  i_clk,
+    input  i_clk2,
     input  i_EN,
     input  i_rstn,
     input  [DATA_WIDTH-1:0] i_I,
@@ -33,7 +33,7 @@ reg [1:0] r_validFlag;
 reg [3:0] r_outputCounter;
 
 // Sequential Always Block to Store the Inputs
-always@(posedge i_clk)
+always@(posedge i_clk2)
 begin
     if(i_EN)
         begin
@@ -44,7 +44,7 @@ begin
 end
 
 // Sequential Always Block to Evaluate the Output
-always@(posedge i_clk)
+always@(posedge i_clk2)
 begin
     if(r_outputCounter == 4'd14)
         begin
@@ -55,7 +55,7 @@ begin
 end
 
 // Sequential Always Block to compute the Memory Addresses
-always@(posedge i_clk, negedge i_rstn)
+always@(posedge i_clk2, negedge i_rstn)
 begin
     if(!i_rstn)
         begin
@@ -73,7 +73,7 @@ begin
 end
      
 // Sequential Always Block to Compute the Output Addresses 
-always@(posedge i_clk, negedge i_rstn)
+always@(posedge i_clk2, negedge i_rstn)
 begin
     if(!i_rstn)
         begin
@@ -86,7 +86,7 @@ begin
 end 
     
 // Sequential Always Block to Compute fft Valid Signal    
- always@(posedge i_clk, negedge i_rstn)
+ always@(posedge i_clk2, negedge i_rstn)
 begin
     if(!i_rstn)
         begin

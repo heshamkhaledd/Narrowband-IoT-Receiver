@@ -21,7 +21,7 @@
 
 module cprds_top #(parameter DATA_WIDTH = 16)
 (
-    input i_clk,
+    input i_clk1,
     input i_rstn,
     input i_cpdEn,
     input signed [DATA_WIDTH-1:0] i_I,
@@ -52,7 +52,7 @@ reg [1:0] r_cp10Flag;
 reg [1:0] r_cp10FlagEst;
 
 // Sequential Always Block to put next state into current state and increment cycle counter
-always@(posedge i_clk, negedge i_rstn)
+always@(posedge i_clk1, negedge i_rstn)
 begin
     if (!i_rstn)
         begin
