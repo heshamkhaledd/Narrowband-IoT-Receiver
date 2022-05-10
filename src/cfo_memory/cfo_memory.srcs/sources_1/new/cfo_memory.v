@@ -31,8 +31,30 @@ reg [3:0] r_delayedInputAddress;
 reg [5:0] r_validCounter;
 reg [1:0] r_validFlag;
 reg [3:0] r_outputCounter;
- 
- // Sequential Always Block to Store the Inputs
+
+// Sequential Always Block to Store the Inputs
+always@(posedge i_clk)
+begin
+    if(i_EN)
+        begin
+            r_I[r_inputAddress] <= i_I;
+            r_Q[r_inputAddress] <= i_Q;
+        end
+    else;
+end
+
+// Sequential Always Block to Evaluate the Output
+always@(posedge i_clk)
+begin
+    if(r_outputCounter == 4'd14)
+        begin
+            o_I <= r_I[r_outputAddress];
+            o_Q <= r_Q[r_outputAddress];
+        end
+    else;
+end
+
+// Sequential Always Block to compute the Memory Addresses
 always@(posedge i_clk, negedge i_rstn)
 begin
     if(!i_rstn)
@@ -43,31 +65,27 @@ begin
         end
     else if(i_EN)
         begin
-            r_inputAddress <= r_inputAddress+1;
-            r_I[r_inputAddress] <= i_I;
-            r_Q[r_inputAddress] <= i_Q;
+            r_inputAddress <= r_inputAddress + 1;
             r_delayedInputAddress <= r_inputAddress;
             r_outputCounter <= r_delayedInputAddress;  
         end
+    else;
 end
      
-// Sequential Always Block to Compute the Output    
+// Sequential Always Block to Compute the Output Addresses 
 always@(posedge i_clk, negedge i_rstn)
 begin
     if(!i_rstn)
         begin
             r_outputAddress <= 4'b0000;
         end
-     
-    else if( r_outputCounter == 14)
+    else if(r_outputCounter == 4'd14)
         begin
-            r_outputAddress <= r_outputAddress+1;
-            o_I <= r_I[r_outputAddress];
-            o_Q <= r_Q[r_outputAddress];
+            r_outputAddress <= r_outputAddress + 1;
         end
 end 
     
- // Sequential Always Block to Compute the Valid Signal    
+// Sequential Always Block to Compute fft Valid Signal    
  always@(posedge i_clk, negedge i_rstn)
 begin
     if(!i_rstn)
@@ -76,9 +94,9 @@ begin
             r_validFlag <= 1'b0;
             r_validCounter <= 5'd0;
         end
-    else if((i_EN && r_delayedInputAddress == 14) || r_validFlag ==1'b1)
+    else if((i_EN && r_delayedInputAddress == 4'd14) || r_validFlag ==1'b1)
         begin
-            if(r_validCounter == 37)
+            if(r_validCounter == 6'd37)
                 begin
                     r_validFlag <= 1'b0;
                     o_valid <= 1'b0;
@@ -86,7 +104,7 @@ begin
                 end
             else
                 begin
-                   r_validCounter <= r_validCounter +1;
+                   r_validCounter <= r_validCounter + 1;
                    r_validFlag <= 1'b1;
                    o_valid <= 1'b1; 
                 end

@@ -72,7 +72,7 @@ i_cordicEn = 1;
 // Keep Reading Until end of file is found
 while (! $feof(fd) ) begin
 $fscanf(fd, "%d %d %d %d", i_I, i_Q, i_coarseOffset, i_fineOffset);
-#3900;
+#4160;
 end
 $fclose(fd);
 $finish;
