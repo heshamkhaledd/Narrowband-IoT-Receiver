@@ -20,7 +20,7 @@
 
 module fft_ctrl #(parameter DATA_WIDTH = 16, parameter TWIDDLE_LENGTH = 7, parameter SDF_1_ADDR = 3, parameter SDF_2_ADDR = 2, parameter SDF_3_ADDR = 2, parameter SDF_4_ADDR = 1)
 (
-        input i_clk,
+        input i_clk2,
         input i_rstn,
         input i_fftEn,
         output reg o_s1,
@@ -63,7 +63,7 @@ wire w_RST;
 assign w_RST = !i_fftEn;
 
 // Sequential always block to either reset update the pipline stages states
-always @(posedge i_clk, negedge i_rstn)
+always @(posedge i_clk2, negedge i_rstn)
 begin
     if (!i_rstn || w_RST)
         begin
@@ -370,7 +370,7 @@ begin
 end
 
 // Sequential always block to compute the value of fftValid
-always@(posedge i_clk)
+always@(posedge i_clk2)
 begin
     if(r_cycleCounter > 6'd18 && r_cycleCounter < 6'd36)
         o_fftValid <= 1'b1;

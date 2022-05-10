@@ -20,7 +20,7 @@
 
 module butterfly_1 #(parameter DATA_WIDTH = 16, parameter SDF_LENGTH = 8, parameter SDF_ADDR = 3)
 (
-    input i_clk,
+    input i_clk2,
     input signed [DATA_WIDTH-1:0] i_I,
     input signed [DATA_WIDTH-1:0] i_Q,
     input [SDF_ADDR-1:0] i_sdfAddr,
@@ -32,7 +32,7 @@ module butterfly_1 #(parameter DATA_WIDTH = 16, parameter SDF_LENGTH = 8, parame
 reg [DATA_WIDTH-1:0] r_delayLine_I [SDF_LENGTH-1:0];
 reg [DATA_WIDTH-1:0] r_delayLine_Q [SDF_LENGTH-1:0];
 
-always@(posedge i_clk)
+always@(posedge i_clk2)
 begin
     if (!i_activeState)
         begin

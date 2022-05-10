@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module cordic_top #(parameter DATA_WIDTH = 16, parameter OFFSET_WIDTH = 19)
 (
-        input   i_clk,
+        input   i_clk2,
         input   i_rstn,
         input   i_cordicEn,
         input signed   [DATA_WIDTH-1:0] i_I,
@@ -40,9 +40,9 @@ reg  [DATA_WIDTH-1:0] r_newReal;
 reg  [DATA_WIDTH-1:0] r_newImag;
 
 wire w_select;
+wire w_WE;
 wire [3:0] w_cycleCounter;
 wire [19:0] w_theta;
-wire w_WE;
 wire [DATA_WIDTH-1:0] w_outShifter_I;
 wire [DATA_WIDTH-1:0] w_outShifter_Q;
 wire [DATA_WIDTH-1:0] w_outData_I;
@@ -50,7 +50,7 @@ wire [DATA_WIDTH-1:0] w_outData_Q;
 
 cordic_ctrl 
 u_CORDIC_CTRL
-                (.i_clk(i_clk),
+                (.i_clk2(i_clk2),
                  .i_rstn(i_rstn),
                  .i_cordicEn(i_cordicEn),
                  .o_select(w_select),
@@ -88,7 +88,7 @@ u_CMPLX_MUL
                 );
 
 // Sequential Always Block to register the Micro-Rotations Values
-always@(posedge i_clk,negedge i_rstn)
+always@(posedge i_clk2,negedge i_rstn)
 begin
     if(!i_rstn)
         begin
@@ -154,7 +154,7 @@ begin
 end
 
 // Sequential Always Block to Compute output
-always@(posedge i_clk, negedge i_rstn)
+always@(posedge i_clk2, negedge i_rstn)
 begin
     if(!i_rstn)
         begin

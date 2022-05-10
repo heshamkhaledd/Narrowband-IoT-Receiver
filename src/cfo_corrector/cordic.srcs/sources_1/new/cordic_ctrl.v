@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////////////////
  
 module cordic_ctrl(
-    input i_clk,
+    input i_clk2,
     input i_rstn,
     input i_cordicEn,
     output reg o_select,
@@ -36,7 +36,7 @@ reg [1:0] r_currentState;
 reg [1:0] r_nextState;
  
 // Sequential Always block to put next state into current state
-always@(posedge i_clk, negedge i_rstn)
+always@(posedge i_clk2, negedge i_rstn)
 begin
     if(!i_rstn)
         begin
