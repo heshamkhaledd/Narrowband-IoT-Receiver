@@ -6,7 +6,7 @@
 // Design Name: DIF SDF Radix 2^2 FFT Verilog Implementation
 // Module Name: cmplx_mul
 // Project Name: NB-IoT Receiver
-// Target Devices: Virtex-7 VC709 Evaluation Platform
+// Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
 // Tool Versions: Vivado 2019.1
 // 
 // Dependencies: None

@@ -1,17 +1,16 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Si-Vision
+// Engineer: Hesham Khaled & Youssef Taha
 // 
-// Create Date: 03/21/2022 02:45:58 AM
-// Design Name: 
+// Create Date: 03/17/2022 07:28:36 AM
+// Design Name: DIF SDF Radix 2^2 FFT Verilog Testbench
 // Module Name: fft_top_tb
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
+// Project Name: NB-IoT Receiver
+// Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
+// Tool Versions: Vivado 2019.1
 // 
-// Dependencies: 
+// Dependencies: None
 // 
 // Revision:
 // Revision 0.01 - File Created
