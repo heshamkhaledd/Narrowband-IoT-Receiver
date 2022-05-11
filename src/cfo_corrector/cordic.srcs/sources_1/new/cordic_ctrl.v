@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////////////////
  
 module cordic_ctrl(
-    input i_clk2,
+    input i_clk,
     input i_rstn,
     input i_cordicEn,
     output reg o_select,
@@ -34,23 +34,26 @@ reg [3:0] r_addressCounter;
  
 reg [1:0] r_currentState;
 reg [1:0] r_nextState;
+reg r_flagEN;
  
 // Sequential Always block to put next state into current state
-always@(posedge i_clk2, negedge i_rstn)
+always@(posedge i_clk, negedge i_rstn)
 begin
     if(!i_rstn)
         begin
             r_currentState   <= p_rstnState;
             r_addressCounter <= 4'd15;
+            r_flagEN <= 1'b0;
         end
-    else if(i_cordicEn)
+    else if(i_cordicEn || r_flagEN)
         begin
             r_currentState   <= r_nextState;
+            r_flagEN <= 1'b1;
             r_addressCounter <= r_addressCounter + 1;
         end
     else;
 end
- 
+
 // Combinational Always Block to evaluate next state
 always@(*)
 begin
