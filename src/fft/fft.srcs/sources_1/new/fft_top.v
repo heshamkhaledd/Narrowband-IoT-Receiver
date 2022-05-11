@@ -20,7 +20,7 @@
 
 module fft_top #(parameter DATA_WIDTH = 16)
 (
-    input i_clk2,
+    input i_clk,
     input i_rstn,
     input i_fftEn,
     input signed [DATA_WIDTH-1:0] i_I,
@@ -61,7 +61,7 @@ wire [DATA_WIDTH-1:0] w_BF3_out_Q;
 
 fft_ctrl #(.DATA_WIDTH(16),.TWIDDLE_LENGTH(7),.SDF_1_ADDR(3),.SDF_2_ADDR(2),.SDF_3_ADDR(1),.SDF_4_ADDR(1)) 
 u_FFT_CTRL 
-            (.i_clk2(i_clk2),
+            (.i_clk(i_clk),
              .i_rstn(i_rstn),
              .i_fftEn(i_fftEn),
              .o_s1(w_actSelect_BF1),
@@ -80,7 +80,7 @@ u_FFT_CTRL
                           
 butterfly_1 #(.DATA_WIDTH(16),.SDF_LENGTH(8),.SDF_ADDR(3)) 
 u_BF1
-            (.i_clk2(i_clk2),
+            (.i_clk(i_clk),
              .i_I(i_I),
              .i_Q(i_Q),
              .i_sdfAddr(w_sdfAddr_1),
@@ -91,7 +91,7 @@ u_BF1
                         
 butterfly_2 #(.DATA_WIDTH(16),.SDF_LENGTH(4),.SDF_ADDR(1))
 u_BF2 
-            (.i_clk2(i_clk2),
+            (.i_clk(i_clk),
              .i_I(w_BF1_out_I),
              .i_Q(w_BF1_out_Q),
              .i_sdfAddr(w_sdfAddr_2),
@@ -120,7 +120,7 @@ u_CMPLX_MUL
 
 butterfly_1 #(.DATA_WIDTH(16),.SDF_LENGTH(2),.SDF_ADDR(1))
 u_BF3 
-            (.i_clk2(i_clk2),
+            (.i_clk(i_clk),
              .i_I(w_CMPLX_out_I),
              .i_Q(w_CMPLX_out_Q),
              .i_sdfAddr(w_sdfAddr_3),
@@ -131,7 +131,7 @@ u_BF3
                         
 butterfly_2 #(.DATA_WIDTH(16),.SDF_LENGTH(1),.SDF_ADDR(0)) 
 u_BF4 
-            (.i_clk2(i_clk2),
+            (.i_clk(i_clk),
              .i_I(w_BF3_out_I),
              .i_Q(w_BF3_out_Q),
              .i_sdfAddr(w_sdfAddr_4),

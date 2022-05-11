@@ -51,4 +51,4 @@ output_fx(:,2) = imag(round(CPR_DS_NB_Frames .*2^10));
 %% Exporting input to Verilog Testbench
 input_fx(:,1) = round(real(NB_Frames) .* 2^10);
 input_fx(:,2) = round(imag(NB_Frames) .* 2^10);
-dlmwrite('../../src/cprds/cprds_input.txt', input_fx, ' ');
+dlmwrite('../../src/cprds/cprds_inputz.txt', input_fx, ' ');

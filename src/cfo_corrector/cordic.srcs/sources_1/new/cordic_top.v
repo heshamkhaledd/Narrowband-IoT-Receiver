@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module cordic_top #(parameter DATA_WIDTH = 16, parameter OFFSET_WIDTH = 19)
 (
-        input   i_clk2,
+        input   i_clk,
         input   i_rstn,
         input   i_cordicEn,
         input signed   [DATA_WIDTH-1:0] i_I,
@@ -50,7 +50,7 @@ wire [DATA_WIDTH-1:0] w_outData_Q;
 
 cordic_ctrl 
 u_CORDIC_CTRL
-                (.i_clk2(i_clk2),
+                (.i_clk(i_clk),
                  .i_rstn(i_rstn),
                  .i_cordicEn(i_cordicEn),
                  .o_select(w_select),
@@ -88,7 +88,7 @@ u_CMPLX_MUL
                 );
 
 // Sequential Always Block to register the Micro-Rotations Values
-always@(posedge i_clk2,negedge i_rstn)
+always@(posedge i_clk,negedge i_rstn)
 begin
     if(!i_rstn)
         begin
@@ -154,7 +154,7 @@ begin
 end
 
 // Sequential Always Block to Compute output
-always@(posedge i_clk2, negedge i_rstn)
+always@(posedge i_clk, negedge i_rstn)
 begin
     if(!i_rstn)
         begin
@@ -162,22 +162,18 @@ begin
             o_Q <= 16'd0;
             o_cordicValid <= 1'b0;
         end
-    else if (i_cordicEn)
+    else if (w_WE)
         begin
-            if (w_WE)
-                begin
-                    // Scaling ONLY the last step because its the actual output
-                    o_I <= w_outData_I;
-                    o_Q <= w_outData_Q;
-                    o_cordicValid <= 1'b1;
-                end
-            else
-                begin
-                    o_I <= 16'd0;
-                    o_Q <= 16'd0;
-                    o_cordicValid <= 1'b0;
-                end
+                // Scaling ONLY the last step because its the actual output
+                o_I <= w_outData_I;
+                o_Q <= w_outData_Q;
+                o_cordicValid <= 1'b1;
         end
-    else;
+    else
+        begin
+            o_I <= 16'd0;
+            o_Q <= 16'd0;
+            o_cordicValid <= 1'b0;
+        end
 end
 endmodule
