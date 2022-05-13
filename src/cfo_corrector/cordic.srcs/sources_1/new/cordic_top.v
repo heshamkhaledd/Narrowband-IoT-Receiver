@@ -25,7 +25,8 @@ module cordic_top #(parameter DATA_WIDTH = 16, parameter OFFSET_WIDTH = 19)
         input signed   [DATA_WIDTH-1:0] i_I,
         input signed   [DATA_WIDTH-1:0] i_Q,
         input signed   [OFFSET_WIDTH-1:0] i_coarseOffset,
-        input signed  [OFFSET_WIDTH-1:0] i_fineOffset,
+        input signed   [OFFSET_WIDTH-1:0] i_fineOffset,
+        input i_fineValid,
         output reg  signed [DATA_WIDTH-1:0] o_I,
         output reg  signed [DATA_WIDTH-1:0] o_Q,
         output reg  o_cordicValid
@@ -38,6 +39,7 @@ reg  [DATA_WIDTH-1:0] r_inData_I;
 reg  [DATA_WIDTH-1:0] r_inData_Q;
 reg  [DATA_WIDTH-1:0] r_newReal;
 reg  [DATA_WIDTH-1:0] r_newImag;
+reg  [OFFSET_WIDTH-1:0] r_fineOffset;
 
 wire w_select;
 wire w_WE;
@@ -116,16 +118,25 @@ begin
     else;
 end
 
+always@(posedge i_clk, negedge i_rstn)
+begin
+    if(!i_rstn)
+        r_fineOffset <= 19'd0;
+    else if (i_fineValid)
+        r_fineOffset <= i_fineOffset;
+    else;
+end
+
 // Combinational Always Block to Compute the initial desired angle
 always@(*)
 begin
-    if( (i_coarseOffset + i_fineOffset) > 368604 )
+    if( (i_coarseOffset + r_fineOffset) > 368604 )
         begin
-            r_desiredAngle = i_coarseOffset + i_fineOffset - 368604;
+            r_desiredAngle = i_coarseOffset + r_fineOffset - 368604;
         end
     else
         begin
-            r_desiredAngle = i_coarseOffset + i_fineOffset;
+            r_desiredAngle = i_coarseOffset + r_fineOffset;
         end
 end
 
