@@ -42,29 +42,33 @@ module acs( input [1:0] i_branch_0,
             input [7:0] i_path_1,
             output o_survivor,
             output [7:0] o_survivedMetric);
-      wire [7:0] w_firstPathResult; 
-      wire [7:0] w_secondPathResult; 
+//      wire [7:0] w_firstPathResult; 
+//      wire [7:0] w_secondPathResult; 
+      reg [7:0] r_firstPathResult; 
+      reg [7:0] r_secondPathResult; 
       reg r_survivor;
       reg [7:0] r_survivedMetric;
       
       //1. Add operation
-      assign w_firstPathResult = i_branch_0 + i_path_0;   // adding branch metric to path metric for both paths  
-      assign w_secondPathResult = i_branch_1 + i_path_1;
+//      assign w_firstPathResult = i_branch_0 + i_path_0;   // adding branch metric to path metric for both paths  
+//      assign w_secondPathResult = i_branch_1 + i_path_1;
       
       assign o_survivor = r_survivor;
       assign o_survivedMetric = r_survivedMetric;
       
       always@(*)
       begin
+        r_firstPathResult = i_branch_0 + i_path_0;   // adding branch metric to path metric for both paths  
+        r_secondPathResult = i_branch_1 + i_path_1;
         //2&3. Compare and Select operations
-        if(w_firstPathResult >= w_secondPathResult)     // upper path wins
+        if(r_firstPathResult >= r_secondPathResult)     // upper path wins
         begin
-             r_survivedMetric = w_firstPathResult;    
+             r_survivedMetric = r_firstPathResult;    
              r_survivor = 1'b0 ;
         end
         else                // lower path wins
         begin
-             r_survivedMetric = w_secondPathResult;
+             r_survivedMetric = r_secondPathResult;
              r_survivor = 1'b1 ;        
         end
       end  

@@ -113,26 +113,48 @@ module controlunit( input i_clk,
     //counter for FSM
     reg [12:0]r_stateCounter;
     reg r_internalEnable;
+    reg r_failCountUp;
+    reg [2:0]r_datumMoveCounter;
     always@(posedge i_clk or negedge i_rstn)
     begin
         if(~i_rstn)
         begin
            r_stateCounter<=13'd0;
            r_currState<=IDLE;
+           r_iterationCount<=2'd0;
+           r_datumMoveCounter<=3'd0;
         end
         else
         begin
            if(i_enable || r_internalEnable)
            begin
+                if(r_currState == CALCULATE_WRITE && r_stateCounter>=13'd2)
+                begin
+                    r_datumMoveCounter<= (r_datumMoveCounter==3'd7)? 3'd0:r_datumMoveCounter+3'd1;
+                end
                 r_currState<=r_nextState;
                 r_stateCounter<=r_stateCounter+13'd1;
            end
            else
            begin
-
                    r_stateCounter<=13'd0;
                    r_currState<=IDLE;
+                   r_datumMoveCounter<=3'd0;
            end
+           if(r_failCountUp==1'b1)
+            begin
+                
+                r_iterationCount<=r_iterationCount+1'd1;
+            end
+            else
+            begin
+                if(r_stateCounter== (3*i_tbs) +13'd9)
+                begin
+                    r_iterationCount<=2'd0;
+                end
+            end
+            
+            
         end
     end
     
@@ -143,18 +165,21 @@ module controlunit( input i_clk,
         case(r_currState)
             IDLE:
             begin
-                if(i_enable )
+                if(i_enable && r_stateCounter==13'd0)
                 begin
                     r_nextState=CALCULATE_WRITE;
+                    r_internalEnable=1'b1;
                 end
                 else
                 begin
                     r_nextState=IDLE;
+                    r_internalEnable=1'b0;
                 end
             end
             CALCULATE_WRITE:
             begin
-                if(r_stateCounter == i_tbs+13'd2)
+                r_internalEnable=1'b1;
+                if(r_stateCounter == i_tbs+13'd3)
                 begin
                     r_nextState=TRACEBACK_READ;
                 end
@@ -165,7 +190,8 @@ module controlunit( input i_clk,
             end
             TRACEBACK_READ:
             begin
-                if(r_stateCounter == (2*i_tbs)+13'd6)
+                r_internalEnable=1'b1;
+                if(r_stateCounter == (2*i_tbs)+13'd10)
                 begin
                     r_nextState=OUT_CONTROL;
                 end
@@ -176,177 +202,377 @@ module controlunit( input i_clk,
             end
             OUT_CONTROL:
             begin
-                if( i_tailbitingCheck==1'b0 || r_stateCounter== (3*i_tbs) +13'd9)
+                if( i_tailbitingCheck==1'b0 || r_stateCounter== (3*i_tbs) +13'd11)
                 begin
                     if(r_iterationCount!=2'd2)
                     begin
                         r_nextState=IDLE;
+                        r_internalEnable=1'b0;
                     end
                     else
                     begin
-                        r_nextState=OUT_CONTROL;
+                        if(r_stateCounter== (3*i_tbs) +13'd11)
+                        begin
+                            r_nextState=IDLE;
+                            r_internalEnable=1'b0;
+                        end
+                        else
+                        begin
+                            r_nextState=OUT_CONTROL;
+                            r_internalEnable=1'b1;
+                        end
                     end
                 end
                 else
                 begin
+                    r_internalEnable=1'b1;
                     r_nextState=OUT_CONTROL;
                 end
             end
             default:
+            begin
                 r_nextState=IDLE;
+                r_internalEnable=1'b0;
+            end
         endcase
     end
-    reg [2:0]r_datumMoveCounter;
-    always@(posedge i_clk or negedge i_rstn)
+    
+    always@(*)
     begin
-        if(~i_rstn)
-        begin
-           r_internalEnable<=1'b0;
-           r_matcherRepeat<=1'b0;
-           r_lifoValid<=1'b0;
-           r_tracebackEnable<=1'b0;
-           r_rw<=1'b0;
-           r_datumMoveCounter<=3'd0;
-           r_survPathsEnable<=1'b0;
-           r_pmLoadSelect<=ALL_ZEROS;
-           r_addressControl<=LOAD;
-           r_addressLoadSelect<=LOAD_ZERO;
-           r_bmuEnable<=1'b0;      // disable branch metric unit
-           r_pmEnable<=1'b0; 
-           r_iterationCount<=2'd0;
-        end
-        else
-        begin
-            case(r_currState)
-                IDLE:
+        case(r_currState)
+            IDLE:
+            begin
+                r_matcherRepeat=1'd0;
+                r_failCountUp=1'd0;
+                r_survPathsEnable=1'b0;
+                r_addressControl=LOAD;
+                r_addressLoadSelect=LOAD_ZERO;
+                r_rw=1'b0;
+                r_tracebackEnable=1'b0;
+                r_lifoValid=1'b0;
+                if(r_iterationCount==2'd0)
                 begin
-                    r_datumMoveCounter<=3'd0;
-                    r_survPathsEnable<=1'b0; //disable survived path register
-                    r_addressControl<=LOAD; //load address
-                    r_addressLoadSelect<=LOAD_ZERO; //load zero
-                    r_rw<=1'b0;             //read
-                    r_tracebackEnable<=1'b0;        //disable traceback
-                    r_lifoValid<=1'b0;          //disable lifo
-                    if(i_enable )
+                    r_pmLoadSelect=ALL_ZEROS;
+                end
+                else
+                begin
+                    r_pmLoadSelect=PASS_THROUGH;
+                end
+                r_bmuEnable=1'b0;
+                r_pmEnable=1'b0;
+            end
+            CALCULATE_WRITE:
+            begin
+                r_bmuEnable=1'b1;
+                r_pmEnable=1'b1;
+                r_matcherRepeat=1'd0;
+                r_failCountUp=1'd0;
+                r_survPathsEnable=1'b1;
+                r_tracebackEnable=1'b0;
+                r_lifoValid=1'b0;
+                if(r_stateCounter>=13'd2)
+                begin
+                    if(r_stateCounter>=13'd3)
                     begin
-                        r_internalEnable<=1'b1;
-                        if(r_matcherRepeat==1'b1)
+                        r_rw=1'b1;
+                    end
+                    else
+                    begin
+                        r_rw=1'b0;
+                    end
+                    if(r_datumMoveCounter!=3'd7)
+                    begin
+                        r_pmLoadSelect=PASS_THROUGH;
+                    end
+                    else
+                    begin
+                        r_pmLoadSelect=DATUM_MOVE;                    
+                    end
+                    if(r_stateCounter!=13'd2)
+                    begin
+                        if(r_stateCounter != i_tbs+13'd4)
                         begin
-                            r_pmLoadSelect<=PASS_THROUGH;
-                            r_matcherRepeat<=1'b0;
+                            r_addressControl=COUNT_UP;
+                            r_addressLoadSelect=LOAD_ZERO;
+
                         end
                         else
-                        begin
-                            r_pmLoadSelect<=ALL_ZEROS;
-                        end
-                        r_bmuEnable<=1'b1; 
-                        r_pmEnable<=1'b1;        //enable pm register
-                    end
-                    else
-                    begin
-                        r_bmuEnable<=1'b0;      // disable branch metric unit
-                        r_pmEnable<=1'b0;       
-                    end
-                end
-                CALCULATE_WRITE:
-                begin
-                    r_internalEnable<=1'b1;
-                    if(r_datumMoveCounter==3'd7)
-                    begin
-                        r_datumMoveCounter<=3'd0;
-                        r_pmLoadSelect<=DATUM_MOVE;
-                    end
-                    else
-                    begin
-                        r_datumMoveCounter<=r_datumMoveCounter+3'd1;
-                        r_pmLoadSelect<=PASS_THROUGH;
-                    end
-                    if(r_stateCounter==i_tbs+13'd2)
-                    begin
-                        r_tracebackEnable<=1'b1;
-                        r_survPathsEnable<=1'b0; //enable survived path register
-                        r_bmuEnable<=1'b0;
-                        r_pmEnable<=1'b0;
-                        r_addressControl<=LOAD;
-                        r_addressLoadSelect<=LOAD_TBS;
-                    end
-                    else
-                    begin
-                        if(r_stateCounter==13'd1)
-                        begin
-                            r_addressControl<=LOAD;
-                            r_addressLoadSelect<=LOAD_ZERO;
-                        end
-                        else 
-                        begin
-                            r_addressControl<=COUNT_UP; //count up
-                        end
-                        r_survPathsEnable<=1'b1; //enable survived path register
-                        r_rw<=1'b1;             //write
-                    end
-                end
-                TRACEBACK_READ:
-                begin
-                    r_internalEnable<=1'b1;
-                    if(r_stateCounter==i_tbs+13'd3)
-                    begin
-                        r_addressControl<=LOAD;
-                        r_addressLoadSelect<=LOAD_TBS;
-                    end
-                    else
-                    begin
-                        if(r_stateCounter>=(2*i_tbs)+13'd4)
-                        begin
-                            r_addressControl<=LOAD;
-                            r_addressLoadSelect<=LOAD_ZERO;
-                        end
-                        else
-                        begin
-                            r_addressControl<=COUNT_DOWN; //count down
-                        end
-                    end
-                    r_rw<=1'b0;                 // may introduce problems check this after simulation
-                    r_tracebackEnable<=1'b1;
-                end
-                OUT_CONTROL:
-                begin
-                //////
-                if(r_stateCounter<(3*i_tbs)+13'd8)
-                begin
-                    r_tracebackEnable<=1'b0;
-                    if(r_iterationCount!=2'd2)
-                    begin
-                        if(i_tailbitingCheck==1'b0)
-                        begin
-                            r_lifoValid<=1'b0;
-                            r_internalEnable<=1'b0;
-                            r_matcherRepeat<=1'b1;
-                            r_iterationCount<=r_iterationCount+2'd1;
-                        end
-                        else
-                        begin
-                            r_lifoValid<=1'b1;
-                            r_matcherRepeat<=1'b0;
+                        begin                          
+                            r_addressControl=LOAD;
+                            r_addressLoadSelect=LOAD_TBS;
                         end
                     end
                     else
                     begin
-                        r_lifoValid<=1'b1;
-                        r_matcherRepeat<=1'b0;
+                        r_addressControl=LOAD;
+                        r_addressLoadSelect=LOAD_ZERO;
                     end
                 end
                 else
                 begin
-                    r_iterationCount<=2'd0;
-                    r_internalEnable<=1'b0;
-                    r_lifoValid<=1'b0;
+                    if(r_stateCounter==13'd1)
+                    begin
+                        r_rw=1'b0;
+                    end
+                    else
+                    begin
+                        r_rw=1'b1;
+                    end
+                    r_addressControl=LOAD;
+                    r_addressLoadSelect=LOAD_ZERO;
+                    if(r_iterationCount==2'd0)
+                    begin
+                        r_pmLoadSelect=ALL_ZEROS;
+                    end
+                    else
+                    begin
+                        r_pmLoadSelect=PASS_THROUGH;
+                    end
                 end
-    
+                
+            end
+            TRACEBACK_READ:
+            begin
+                r_bmuEnable=1'b0;
+                r_pmEnable=1'b0;
+                r_pmLoadSelect=PASS_THROUGH;
+                r_matcherRepeat=1'd0;
+                r_lifoValid=1'd0;   
+                r_failCountUp=1'd0;
+                if(r_stateCounter>=i_tbs+13'd5)
+                begin
+                    r_rw=1'b0;
+                    r_tracebackEnable=1'b1;
+                    if(r_stateCounter<=i_tbs+13'd5)
+                    begin
+                        r_addressControl=LOAD;
+                        r_addressLoadSelect=LOAD_TBS;
+                    end
+                    else
+                    begin
+                        if(r_stateCounter >= (2*i_tbs)+13'd6)
+                        begin
+                            r_addressControl=LOAD;
+                            r_addressLoadSelect=LOAD_ZERO;
+                        end
+                        else
+                        begin
+                            r_addressControl=COUNT_DOWN;
+                            r_addressLoadSelect=LOAD_TBS;
+                        end
+                    end
                 end
-                default;
-            endcase
-        end
+                else
+                begin
+                    r_addressControl=LOAD;
+                    r_addressLoadSelect=LOAD_TBS;
+                    r_rw=1'b1;
+                    r_tracebackEnable=1'b0;
+                end
+                r_survPathsEnable=1'b0;
+                r_pmEnable=1'b0;
+                r_bmuEnable=1'b0;
+            end
+            OUT_CONTROL:
+            begin
+                r_bmuEnable=1'b0;
+                r_pmEnable=1'b0;            
+                r_pmLoadSelect=PASS_THROUGH;
+                r_survPathsEnable=1'b0;
+                r_rw=1'b0;
+                r_addressControl=LOAD;
+                r_addressLoadSelect=LOAD_ZERO;
+                r_tracebackEnable=1'b0;
+                if(i_tailbitingCheck==1'b1)
+                begin
+                    r_lifoValid=1'b1;
+                    r_failCountUp=1'd0;
+                    r_matcherRepeat=1'd0;
+                end
+                else
+                begin
+                    if(r_iterationCount==2'd2)
+                    begin
+                        r_lifoValid=1'd1;
+                        r_matcherRepeat=1'd0;
+                        r_failCountUp=1'd0;     /////////////////////        
+                    end
+                    else
+                    begin
+                        r_matcherRepeat=1'd1;    
+                        r_lifoValid=1'd0;   
+                        r_failCountUp=1'd1;             
+                    end
+                end
+            end
+            default:
+            begin
+               r_failCountUp=1'd0;             
+               r_matcherRepeat=1'b0;
+               r_lifoValid=1'b0;
+               r_tracebackEnable=1'b0;
+               r_rw=1'b0;
+               r_survPathsEnable=1'b0;
+               r_pmLoadSelect=ALL_ZEROS;
+               r_addressControl=LOAD;
+               r_addressLoadSelect=LOAD_ZERO;
+               r_bmuEnable=1'b0;      // disable branch metric unit
+               r_pmEnable=1'b0; 
+            end
+        endcase
     end
+    
+    
+//    always@(posedge i_clk /*or negedge i_rstn*/)
+//    begin
+//        if(~i_rstn)
+//        begin
+//           r_internalEnable<=1'b0;
+//           r_matcherRepeat<=1'b0;
+//           r_lifoValid<=1'b0;
+//           r_tracebackEnable<=1'b0;
+//           r_rw<=1'b0;
+//           r_datumMoveCounter<=3'd0;
+//           r_survPathsEnable<=1'b0;
+//           r_pmLoadSelect<=ALL_ZEROS;
+//           r_addressControl<=LOAD;
+//           r_addressLoadSelect<=LOAD_ZERO;
+//           r_bmuEnable<=1'b0;      // disable branch metric unit
+//           r_pmEnable<=1'b0; 
+//           r_iterationCount<=2'd0;
+//        end
+//        else
+//        begin
+//            case(r_currState)
+//                IDLE:
+//                begin
+//                    r_datumMoveCounter<=3'd0;
+//                    r_survPathsEnable<=1'b0; //disable survived path register
+//                    r_addressControl<=LOAD; //load address
+//                    r_addressLoadSelect<=LOAD_ZERO; //load zero
+//                    r_rw<=1'b0;             //read
+//                    r_tracebackEnable<=1'b0;        //disable traceback
+//                    r_lifoValid<=1'b0;          //disable lifo
+//                    if(i_enable )
+//                    begin
+//                        r_internalEnable<=1'b1;
+//                        if(r_matcherRepeat==1'b1)
+//                        begin
+//                            r_pmLoadSelect<=PASS_THROUGH;
+//                            r_matcherRepeat<=1'b0;
+//                        end
+//                        else
+//                        begin
+//                            r_pmLoadSelect<=ALL_ZEROS;
+//                        end
+//                        r_bmuEnable<=1'b1; 
+//                        r_pmEnable<=1'b1;        //enable pm register
+//                    end
+//                    else
+//                    begin
+//                        r_bmuEnable<=1'b0;      // disable branch metric unit
+//                        r_pmEnable<=1'b0;       
+//                    end
+//                end
+//                CALCULATE_WRITE:
+//                begin
+//                    r_internalEnable<=1'b1;
+//                    if(r_datumMoveCounter==3'd7)
+//                    begin
+//                        r_datumMoveCounter<=3'd0;
+//                        r_pmLoadSelect<=DATUM_MOVE;
+//                    end
+//                    else
+//                    begin
+//                        r_datumMoveCounter<=r_datumMoveCounter+3'd1;
+//                        r_pmLoadSelect<=PASS_THROUGH;
+//                    end
+//                    if(r_stateCounter==i_tbs+13'd2)
+//                    begin
+//                        r_tracebackEnable<=1'b1;
+//                        r_survPathsEnable<=1'b0; //enable survived path register
+//                        r_bmuEnable<=1'b0;
+//                        r_pmEnable<=1'b0;
+//                        r_addressControl<=LOAD;
+//                        r_addressLoadSelect<=LOAD_TBS;
+//                    end
+//                    else
+//                    begin
+//                        if(r_stateCounter==13'd1)
+//                        begin
+//                            r_addressControl<=LOAD;
+//                            r_addressLoadSelect<=LOAD_ZERO;
+//                        end
+//                        else 
+//                        begin
+//                            r_addressControl<=COUNT_UP; //count up
+//                        end
+//                        r_survPathsEnable<=1'b1; //enable survived path register
+//                        r_rw<=1'b1;             //write
+//                    end
+//                end
+//                TRACEBACK_READ:
+//                begin
+//                    r_internalEnable<=1'b1;
+//                    if(r_stateCounter==i_tbs+13'd3)
+//                    begin
+//                        r_addressControl<=LOAD;
+//                        r_addressLoadSelect<=LOAD_TBS;
+//                    end
+//                    else
+//                    begin
+//                        if(r_stateCounter>=(2*i_tbs)+13'd4)
+//                        begin
+//                            r_addressControl<=LOAD;
+//                            r_addressLoadSelect<=LOAD_ZERO;
+//                        end
+//                        else
+//                        begin
+//                            r_addressControl<=COUNT_DOWN; //count down
+//                        end
+//                    end
+//                    r_rw<=1'b0;                 // may introduce problems check this after simulation
+//                    r_tracebackEnable<=1'b1;
+//                end
+//                OUT_CONTROL:
+//                begin
+//                //////
+//                if(r_stateCounter<(3*i_tbs)+13'd8)
+//                begin
+//                    r_tracebackEnable<=1'b0;
+//                    if(r_iterationCount!=2'd2)
+//                    begin
+//                        if(i_tailbitingCheck==1'b0)
+//                        begin
+//                            r_lifoValid<=1'b0;
+//                            r_internalEnable<=1'b0;
+//                            r_matcherRepeat<=1'b1;
+//                            r_iterationCount<=r_iterationCount+2'd1;
+//                        end
+//                        else
+//                        begin
+//                            r_lifoValid<=1'b1;
+//                            r_matcherRepeat<=1'b0;
+//                        end
+//                    end
+//                    else
+//                    begin
+//                        r_lifoValid<=1'b1;
+//                        r_matcherRepeat<=1'b0;
+//                    end
+//                end
+//                else
+//                begin
+//                    r_iterationCount<=2'd0;
+//                    r_internalEnable<=1'b0;
+//                    r_lifoValid<=1'b0;
+//                end
+    
+//                end
+//                default;
+//            endcase
+//        end
+//    end
     
     
 endmodule

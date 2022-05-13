@@ -98,7 +98,7 @@ module tracebackunit(   input i_clk,
         begin
             if(i_enable)
             begin
-                if(r_stateCounter==12'd2)
+                if(r_stateCounter==12'd3)
                 begin
                     r_nextState=ADDRESS_GEN;
                 end
@@ -114,7 +114,7 @@ module tracebackunit(   input i_clk,
         end
         ADDRESS_GEN:
         begin
-            if(r_stateCounter==i_tbs+12'd3  )
+            if(r_stateCounter==i_tbs+12'd4  )
             begin
                 r_nextState=IDLE;
             end
@@ -144,7 +144,7 @@ module tracebackunit(   input i_clk,
               case(r_currState)
                 IDLE:
                 begin
-                    if(i_enable && r_stateCounter == 12'd2)     // waiting untill the get max module evaluates the index of the maximum value
+                    if(i_enable && r_stateCounter == 12'd3)     // waiting untill the get max module evaluates the index of the maximum value
                     begin
                         r_rowGenerator<=r_maxIdx;           // saving maximum index to row generator to start the traceback operation
                         r_finalState <= r_maxIdx;           // storing the final state to compare it with row generator after the traceback operation

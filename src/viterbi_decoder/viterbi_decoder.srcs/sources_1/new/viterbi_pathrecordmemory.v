@@ -39,13 +39,14 @@ module pathrecordmemory (    input [63:0] i_selectedPaths,
          
     (* ram_style = "bram" *)  reg [63:0]r_memArray[0:2559];
      reg [63:0]r_storedContent;
+     reg [63:0]r_pipelineOutRegister;
      assign o_storedContent=r_storedContent;
      always@(posedge i_clk )
      begin
             if(i_rw == 1'b0)  //rw =0 -> read
             begin
-                r_storedContent <= r_memArray[i_columnAddress];
-    
+                r_pipelineOutRegister <= r_memArray[i_columnAddress];
+                r_storedContent<=r_pipelineOutRegister; 
             end
             else // writing
             begin

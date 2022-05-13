@@ -54,28 +54,55 @@ module viterbi_top( input i_clk,
     wire cu_matcherRepeat;              // output signal to previous block to repeat the input data sequence
     wire cu_pmEnable;                   // path metrics register enable signal
     
+//    (*keep="true"*)reg [2:0]r_msg;
+//    always@(posedge i_clk or negedge i_rstn)
+//    begin
+//        if(~i_rstn)
+//        begin
+//            r_msg<=3'd0;
+//        end
+//        else
+//        begin
+//            if(i_enable)
+//            begin
+//                r_msg<=i_msg;
+//            end
+//            else
+//            begin
+//                r_msg<=r_msg;
+//            end
+//        end
+//    end
     
-    
+
     // 1. branch metric unit instantiation
     wire [127:0]bmu0;                 // Branch metrics for the next 32 branches in the trellis diagram (next state 0:31)
     wire [127:0]bmu1;                 // Branch metrics for the next 32 branches in the trellis diagram (next state 32:63)
     bmu u_BranchMetricUnit( .i_msg(i_msg),       
                             .o_bmu0(bmu0),
                             .o_bmu1(bmu1) );    
-    reg [127:0]r_bmu0;
-    reg [127:0]r_bmu1;
+    (* keep = "true" *) reg [127:0]r_bmu0;
+    (* keep = "true" *) reg [127:0]r_bmu1;
     // register after the branch metric unit
-    always@(posedge i_clk)  
+    always@(posedge i_clk or negedge i_rstn)  
     begin
-        if(cu_bmuEnable)
+        if(~i_rstn)
         begin
-            r_bmu0<=bmu0;
-            r_bmu1<=bmu1;
+            r_bmu0<=128'd0;
+            r_bmu1<=128'd0;
         end
         else
         begin
-            r_bmu0<=r_bmu0;
-            r_bmu1<=r_bmu1;
+//            if(cu_bmuEnable )
+//            begin
+                r_bmu0<=bmu0;
+                r_bmu1<=bmu1;
+//            end
+//            else
+//            begin
+//                r_bmu0<=r_bmu0;
+//                r_bmu1<=r_bmu1;
+//            end
         end
      end
     
@@ -111,7 +138,7 @@ module viterbi_top( input i_clk,
         endcase
     end
     // 3. Path metrics register instantiation
-    wire [511:0]w_metricsOutFromReg;   // path metrics register output wire
+    (* keep = "true" *) wire [511:0]w_metricsOutFromReg;   // path metrics register output wire
     pathmetrics u_PathMetricsRegister(  .i_clk(i_clk),
                                         .i_enable(cu_pmEnable),
                                         .i_path_t1(r_metricsIn),
@@ -119,19 +146,19 @@ module viterbi_top( input i_clk,
 
     //4. Path Metric unit instantiation
     wire [63:0]w_survivedPaths; // Survived paths that will be saved in the path record memory 
-    pmu u_PathMetricUnit(   .i_branchMetrics0(r_bmu0),
+    (* keep_hierarchy = "yes" *) pmu u_PathMetricUnit(   .i_branchMetrics0(r_bmu0),
                             .i_branchMetrics1(r_bmu1),
                             .i_pathMetrics(w_metricsOutFromReg),
-                            .o_survived0(w_survivedPaths[63:32]),
-                            .o_survived1(w_survivedPaths[31:0]),
+                            .o_survived0(w_survivedPaths[63:0]),
+//                            .o_survived1(w_survivedPaths[31:0]),
                             .o_updatedMetrics0(w_metricsFeedback[511:256]),
                             .o_updatedMetrics1(w_metricsFeedback[255:0]));
             
     // Survived paths register to the path record memory
-    reg[63:0] r_survivedPaths;
+    (* keep = "true" *) reg[63:0] r_survivedPaths;
     always@(posedge i_clk)
     begin
-        if(cu_survPathsEnable)
+        if(cu_survPathsEnable )
         begin
             r_survivedPaths<=w_survivedPaths;
         end
@@ -142,7 +169,7 @@ module viterbi_top( input i_clk,
     end
       
     // Address register and its control
-    wire [63:0]w_recordStored;      // read bus from the record memory to Traceback unit
+    (* keep = "true" *) wire [63:0]w_recordStored;      // read bus from the record memory to Traceback unit
     reg [11:0]r_columnAddress;      // address bus from control unit to path record memory
     // addressControl
     localparam LOAD = 2'b00;
@@ -151,49 +178,60 @@ module viterbi_top( input i_clk,
     // addressLoadSelect
     localparam LOAD_TBS = 1'b1;
     localparam LOAD_ZERO= 1'b0;
-    always@(posedge i_clk)
+    always@(posedge i_clk or negedge i_rstn)
     begin
-        case(cu_addressControl)
-            LOAD:
-            begin
-                if(cu_addressLoadSelect == LOAD_TBS)
+        if(~i_rstn)
+        begin
+            r_columnAddress<=12'd0;
+        end
+        else
+        begin
+            case(cu_addressControl)
+                LOAD:
                 begin
-                    r_columnAddress<=i_tbs;
+                    if(cu_addressLoadSelect == LOAD_TBS)
+                    begin
+                        r_columnAddress<=i_tbs;
+                    end
+                    else
+                    begin
+                        r_columnAddress<=12'd0;
+                    end
                 end
-                else
+                COUNT_UP:
                 begin
-                    r_columnAddress<=12'd0;
+                    r_columnAddress<=r_columnAddress+12'd1;
                 end
-            end
-            COUNT_UP:
-            begin
-                r_columnAddress<=r_columnAddress+12'd1;
-            end
-            COUNT_DOWN:
-            begin
-                r_columnAddress<=r_columnAddress-12'd1;
-            end
-            default:
-            begin
-                r_columnAddress<=r_columnAddress;
-            end
-        endcase
+                COUNT_DOWN:
+                begin
+                    r_columnAddress<=r_columnAddress-12'd1;
+                end
+                default:
+                begin
+                    r_columnAddress<=r_columnAddress;
+                end
+            endcase
+        end
     end
     // 5. Path record memory instantiation
         // generated bram from vivado IP Generator
-    bram_wrapper u_BramGeneratedBlock(  .addra_0(r_columnAddress),
-                                        .clka_0(i_clk),
-                                        .dina_0(r_survivedPaths),
-                                        .douta_0(w_recordStored),
-                                        .wea_0(cu_rw)  );
+//    bram_wrapper u_BramGeneratedBlock(  .addra_0(r_columnAddress),
+//                                        .clka_0(i_clk),
+//                                        .dina_0(r_survivedPaths),
+//                                        .douta_0(w_recordStored),
+//                                        .wea_0(cu_rw)  );
         // BRAM RTL made by me
-//     pathrecordmemory U5(    
-//                            .i_selectedPaths(r_survivedPaths),    
-//                            .i_clk(i_clk),
-//                            .i_columnAddress(r_columnAddress),
-//                            .i_rw(cu_rw),
-//                            .o_storedContent(w_recordStored) ); 
-
+     pathrecordmemory U5(    
+                            .i_selectedPaths(r_survivedPaths),    
+                            .i_clk(i_clk),
+                            .i_columnAddress(r_columnAddress),
+                            .i_rw(cu_rw),
+                            .o_storedContent(w_recordStored) ); 
+    (*keep="true"*)reg [63:0] r_recordStored;
+    always@(posedge i_clk)
+    begin
+        r_recordStored<=w_recordStored;
+    end
     //6. Traceback unit instantiation
     wire w_decodedToLifo;  // decoded bits to be saved in the LIFO while performing traceback operation
     wire w_lifoValidSave;  // valid signal to LIFO to start "storing" decoded bits
@@ -201,7 +239,7 @@ module viterbi_top( input i_clk,
                         .i_rstn(i_rstn),
                         .i_enable(cu_traceBackEnable),
                         .i_tbs(i_tbs),
-                        .i_recordStored(w_recordStored),
+                        .i_recordStored(r_recordStored),
                         .i_finalMetrics(w_metricsOutFromReg),
                         .o_decodedToLifo(w_decodedToLifo),
                         .o_lifoValid(w_lifoValidSave),
