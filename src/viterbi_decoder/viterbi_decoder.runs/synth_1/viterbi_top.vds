@@ -1,0 +1,870 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sun May 15 22:29:42 2022
+# Process ID: 12964
+# Current directory: E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.runs/synth_1
+# Command line: vivado.exe -log viterbi_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source viterbi_top.tcl
+# Log file: E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.runs/synth_1/viterbi_top.vds
+# Journal file: E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source viterbi_top.tcl -notrace
+Command: synth_design -top viterbi_top -part xczu7ev-ffvc1156-2-e -max_uram 0
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Vivado_Tcl 4-551] User specified maximum number of Ultra RAM blocks allowed in design is 0
+INFO: [Device 21-403] Loading part xczu7ev-ffvc1156-2-e
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 6252 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1458.547 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'viterbi_top' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_top.v:33]
+	Parameter ALL_ZEROS bound to: 2'b00 
+	Parameter PASS_THROUGH bound to: 2'b01 
+	Parameter DATUM_MOVE bound to: 2'b10 
+	Parameter LOAD bound to: 2'b00 
+	Parameter COUNT_UP bound to: 2'b01 
+	Parameter COUNT_DOWN bound to: 2'b10 
+	Parameter LOAD_TBS bound to: 1'b1 
+	Parameter LOAD_ZERO bound to: 1'b0 
+INFO: [Synth 8-6157] synthesizing module 'controlunit' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_controlunit.v:53]
+	Parameter IDLE bound to: 4'b0001 
+	Parameter CALCULATE_WRITE bound to: 4'b0010 
+	Parameter TRACEBACK_READ bound to: 4'b0100 
+	Parameter OUT_CONTROL bound to: 4'b1000 
+	Parameter ALL_ZEROS bound to: 2'b00 
+	Parameter PASS_THROUGH bound to: 2'b01 
+	Parameter DATUM_MOVE bound to: 2'b10 
+	Parameter LOAD bound to: 2'b00 
+	Parameter COUNT_UP bound to: 2'b01 
+	Parameter COUNT_DOWN bound to: 2'b10 
+	Parameter LOAD_TBS bound to: 1'b1 
+	Parameter LOAD_ZERO bound to: 1'b0 
+INFO: [Synth 8-6157] synthesizing module 'getmax' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_getmax.v:32]
+INFO: [Synth 8-6157] synthesizing module 'maxcomparator' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_maxcomparator.v:31]
+INFO: [Synth 8-6155] done synthesizing module 'maxcomparator' (1#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_maxcomparator.v:31]
+INFO: [Synth 8-6155] done synthesizing module 'getmax' (2#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_getmax.v:32]
+INFO: [Synth 8-6155] done synthesizing module 'controlunit' (3#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_controlunit.v:53]
+INFO: [Synth 8-6157] synthesizing module 'bmu' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_bmu.v:31]
+	Parameter TRELLIS_OUTPUT2_0 bound to: 64'b0110011010011001100110010110011001100110100110011001100101100110 
+	Parameter TRELLIS_OUTPUT1_0 bound to: 64'b0101010110101010101010100101010110101010010101010101010110101010 
+	Parameter TRELLIS_OUTPUT0_0 bound to: 64'b0101101001011010101001011010010110100101101001010101101001011010 
+	Parameter TRELLIS_OUTPUT2_1 bound to: 64'b1001100101100110011001101001100110011001011001100110011010011001 
+	Parameter TRELLIS_OUTPUT1_1 bound to: 64'b1010101001010101010101011010101001010101101010101010101001010101 
+	Parameter TRELLIS_OUTPUT0_1 bound to: 64'b1010010110100101010110100101101001011010010110101010010110100101 
+INFO: [Synth 8-6157] synthesizing module 'hamming_distance' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_hamming_distance.v:31]
+INFO: [Synth 8-6155] done synthesizing module 'hamming_distance' (4#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_hamming_distance.v:31]
+INFO: [Synth 8-6155] done synthesizing module 'bmu' (5#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_bmu.v:31]
+INFO: [Synth 8-6157] synthesizing module 'getmin' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_getmin.v:31]
+INFO: [Synth 8-6157] synthesizing module 'mincomparator' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_mincomparator.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'mincomparator' (6#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_mincomparator.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'getmin' (7#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_getmin.v:31]
+INFO: [Synth 8-6157] synthesizing module 'pathmetrics' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_pathmetrics.v:29]
+INFO: [Synth 8-6155] done synthesizing module 'pathmetrics' (8#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_pathmetrics.v:29]
+INFO: [Synth 8-6157] synthesizing module 'pmu' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_pmu.v:30]
+INFO: [Synth 8-6157] synthesizing module 'acs' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_acs.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'acs' (9#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_acs.v:39]
+INFO: [Synth 8-6155] done synthesizing module 'pmu' (10#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_pmu.v:30]
+INFO: [Synth 8-6157] synthesizing module 'pathrecordmemory' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_pathrecordmemory.v:33]
+INFO: [Synth 8-6155] done synthesizing module 'pathrecordmemory' (11#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_pathrecordmemory.v:33]
+INFO: [Synth 8-6157] synthesizing module 'lifo' [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_lifo.v:34]
+INFO: [Synth 8-5534] Detected attribute (* ram_style = "bram" *) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_lifo.v:41]
+INFO: [Synth 8-6155] done synthesizing module 'lifo' (12#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_lifo.v:34]
+INFO: [Synth 8-6155] done synthesizing module 'viterbi_top' (13#1) [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_top.v:33]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1499.910 ; gain = 41.363
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1504.805 ; gain = 46.258
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1504.805 ; gain = 46.258
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc]
+create_clock: Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1651.672 ; gain = 30.727
+Finished Parsing XDC File [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1651.672 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.032 . Memory (MB): peak = 1651.672 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1651.672 ; gain = 193.125
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu7ev-ffvc1156-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1651.672 ; gain = 193.125
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1651.672 ; gain = 193.125
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_controlunit.v:427]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/sources_1/new/viterbi_top.v:189]
+INFO: [Synth 8-6794] RAM ("pathrecordmemory:/r_memArray_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 8 will be used for URAM '"pathrecordmemory:/r_memArray_reg"'.
+INFO: [Synth 8-6904] The RAM "lifo:/r_lifoMemory_reg" of size (depth=2560 x width=1) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1651.672 ; gain = 193.125
+---------------------------------------------------------------------------------
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[62].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[51].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[50].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[47].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[46].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[35].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[34].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[29].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[28].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[17].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[16].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[13].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[12].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[1].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[0].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[62].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[51].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[50].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[47].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[46].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[35].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[34].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[29].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[28].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[17].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[16].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[13].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[12].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[1].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[63].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[0].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[60].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[49].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[48].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[45].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[44].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[33].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[32].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[31].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[30].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[19].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[18].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[15].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[14].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[3].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[2].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[60].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[49].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[48].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[45].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[44].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[33].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[32].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[31].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[30].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[19].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[18].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[15].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[14].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[3].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[61].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[2].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[58].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[55].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[54].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[43].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[42].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[39].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[38].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[25].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[24].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[21].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[20].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[9].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[8].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[5].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[4].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[58].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[55].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[54].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[43].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[42].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[39].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[38].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[25].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[24].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[21].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[20].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[9].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[8].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[5].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[59].u1' (hamming_distance) to 'u_BranchMetricUnit/genblk1[4].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[56].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[53].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[52].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[41].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[40].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[37].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[36].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[27].u1'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[26].u0'
+INFO: [Synth 8-223] decloning instance 'u_BranchMetricUnit/genblk1[57].u0' (hamming_distance) to 'u_BranchMetricUnit/genblk1[23].u0'
+INFO: [Common 17-14] Message 'Synth 8-223' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input    512 Bit       Adders := 1     
+	   2 Input     13 Bit       Adders := 5     
+	   2 Input     12 Bit       Adders := 4     
+	   2 Input      8 Bit       Adders := 128   
+	   2 Input      3 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 1     
+	   3 Input      2 Bit       Adders := 8     
++---XORs : 
+	   2 Input      3 Bit         XORs := 8     
++---Registers : 
+	              512 Bit    Registers := 1     
+	              128 Bit    Registers := 2     
+	               64 Bit    Registers := 1     
+	               13 Bit    Registers := 1     
+	               12 Bit    Registers := 3     
+	                6 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 4     
++---RAMs : 
+	             160K Bit         RAMs := 1     
+	               2K Bit         RAMs := 1     
++---Muxes : 
+	   4 Input    512 Bit        Muxes := 1     
+	   2 Input     13 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 2     
+	   4 Input     12 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 190   
+	   2 Input      6 Bit        Muxes := 64    
+	   2 Input      4 Bit        Muxes := 2     
+	   4 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 3     
+	   2 Input      2 Bit        Muxes := 1     
+	   6 Input      2 Bit        Muxes := 1     
+	   7 Input      2 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 7     
+	   2 Input      1 Bit        Muxes := 9     
+	   7 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module viterbi_top 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input    512 Bit       Adders := 1     
+	   2 Input     12 Bit       Adders := 1     
++---Registers : 
+	              128 Bit    Registers := 2     
+	               12 Bit    Registers := 1     
+	                1 Bit    Registers := 1     
++---Muxes : 
+	   4 Input    512 Bit        Muxes := 1     
+	   4 Input     12 Bit        Muxes := 1     
+	   2 Input     12 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+Module maxcomparator 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+Module controlunit 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     13 Bit       Adders := 5     
+	   2 Input      3 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 1     
++---Registers : 
+	               13 Bit    Registers := 1     
+	                6 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input     13 Bit        Muxes := 1     
+	   2 Input      6 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 2     
+	   4 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 3     
+	   2 Input      2 Bit        Muxes := 1     
+	   6 Input      2 Bit        Muxes := 1     
+	   7 Input      2 Bit        Muxes := 1     
+	   5 Input      1 Bit        Muxes := 7     
+	   2 Input      1 Bit        Muxes := 8     
+	   7 Input      1 Bit        Muxes := 1     
+Module hamming_distance 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input      2 Bit       Adders := 1     
++---XORs : 
+	   2 Input      3 Bit         XORs := 1     
+Module mincomparator 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+Module pathmetrics 
+Detailed RTL Component Info : 
++---Registers : 
+	              512 Bit    Registers := 1     
+Module acs 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 2     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+Module pathrecordmemory 
+Detailed RTL Component Info : 
++---Registers : 
+	               64 Bit    Registers := 1     
++---RAMs : 
+	             160K Bit         RAMs := 1     
+Module lifo 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     12 Bit       Adders := 3     
++---Registers : 
+	               12 Bit    Registers := 2     
+	                1 Bit    Registers := 1     
++---RAMs : 
+	               2K Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1728 (col length:144)
+BRAMs: 624 (col length: RAMB18 144 RAMB36 72)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+INFO: [Synth 8-6904] The RAM "u_LifoMemory/r_lifoMemory_reg" of size (depth=2560 x width=1) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6794] RAM ("viterbi_top/u_PathRecordMemory/r_memArray_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 8 will be used for URAM '"viterbi_top/u_PathRecordMemory/r_memArray_reg"'.
+INFO: [Synth 8-6904] The RAM "u_LifoMemory/r_lifoMemory_reg" of size (depth=2560 x width=1) is automatically implemented using LUTRAM. BRAM implementation would be inefficient 
+INFO: [Synth 8-6794] RAM ("viterbi_top/u_PathRecordMemory/r_memArray_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5780] Default cascade height of 8 will be used for URAM '"viterbi_top/u_PathRecordMemory/r_memArray_reg"'.
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[124]' (FDC) to 'r_bmu1_reg[102]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[125]' (FDC) to 'r_bmu1_reg[103]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[126]' (FDC) to 'r_bmu1_reg[100]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[127]' (FDC) to 'r_bmu1_reg[101]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[120]' (FDC) to 'r_bmu1_reg[98]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[121]' (FDC) to 'r_bmu1_reg[99]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[122]' (FDC) to 'r_bmu1_reg[96]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[123]' (FDC) to 'r_bmu1_reg[97]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[116]' (FDC) to 'r_bmu1_reg[110]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[117]' (FDC) to 'r_bmu1_reg[111]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[118]' (FDC) to 'r_bmu1_reg[108]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[119]' (FDC) to 'r_bmu1_reg[109]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[112]' (FDC) to 'r_bmu1_reg[106]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[113]' (FDC) to 'r_bmu1_reg[107]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[114]' (FDC) to 'r_bmu1_reg[104]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[115]' (FDC) to 'r_bmu1_reg[105]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[108]' (FDC) to 'r_bmu1_reg[84]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[109]' (FDC) to 'r_bmu1_reg[85]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[110]' (FDC) to 'r_bmu1_reg[86]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[111]' (FDC) to 'r_bmu1_reg[87]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[104]' (FDC) to 'r_bmu1_reg[80]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[105]' (FDC) to 'r_bmu1_reg[81]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[106]' (FDC) to 'r_bmu1_reg[82]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[107]' (FDC) to 'r_bmu1_reg[83]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[100]' (FDC) to 'r_bmu1_reg[92]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[101]' (FDC) to 'r_bmu1_reg[93]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[102]' (FDC) to 'r_bmu1_reg[94]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[103]' (FDC) to 'r_bmu1_reg[95]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[96]' (FDC) to 'r_bmu1_reg[88]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[97]' (FDC) to 'r_bmu1_reg[89]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[98]' (FDC) to 'r_bmu1_reg[90]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[99]' (FDC) to 'r_bmu1_reg[91]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[92]' (FDC) to 'r_bmu1_reg[70]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[93]' (FDC) to 'r_bmu1_reg[71]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[94]' (FDC) to 'r_bmu1_reg[68]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[95]' (FDC) to 'r_bmu1_reg[69]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[88]' (FDC) to 'r_bmu1_reg[66]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[89]' (FDC) to 'r_bmu1_reg[67]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[90]' (FDC) to 'r_bmu1_reg[64]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[91]' (FDC) to 'r_bmu1_reg[65]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[84]' (FDC) to 'r_bmu1_reg[78]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[85]' (FDC) to 'r_bmu1_reg[79]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[86]' (FDC) to 'r_bmu1_reg[76]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[87]' (FDC) to 'r_bmu1_reg[77]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[80]' (FDC) to 'r_bmu1_reg[74]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[81]' (FDC) to 'r_bmu1_reg[75]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[82]' (FDC) to 'r_bmu1_reg[72]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[83]' (FDC) to 'r_bmu1_reg[73]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[76]' (FDC) to 'r_bmu1_reg[50]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[77]' (FDC) to 'r_bmu1_reg[51]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[78]' (FDC) to 'r_bmu1_reg[48]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[79]' (FDC) to 'r_bmu1_reg[49]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[72]' (FDC) to 'r_bmu1_reg[54]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[73]' (FDC) to 'r_bmu1_reg[55]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[74]' (FDC) to 'r_bmu1_reg[52]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[75]' (FDC) to 'r_bmu1_reg[53]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[68]' (FDC) to 'r_bmu1_reg[58]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[69]' (FDC) to 'r_bmu1_reg[59]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[70]' (FDC) to 'r_bmu1_reg[56]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[71]' (FDC) to 'r_bmu1_reg[57]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[64]' (FDC) to 'r_bmu1_reg[62]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[65]' (FDC) to 'r_bmu1_reg[63]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[66]' (FDC) to 'r_bmu1_reg[60]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[67]' (FDC) to 'r_bmu1_reg[61]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[60]' (FDC) to 'r_bmu1_reg[38]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[61]' (FDC) to 'r_bmu1_reg[39]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[62]' (FDC) to 'r_bmu1_reg[36]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[63]' (FDC) to 'r_bmu1_reg[37]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[56]' (FDC) to 'r_bmu1_reg[34]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[57]' (FDC) to 'r_bmu1_reg[35]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[58]' (FDC) to 'r_bmu1_reg[32]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[59]' (FDC) to 'r_bmu1_reg[33]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[52]' (FDC) to 'r_bmu1_reg[46]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[53]' (FDC) to 'r_bmu1_reg[47]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[54]' (FDC) to 'r_bmu1_reg[44]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[55]' (FDC) to 'r_bmu1_reg[45]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[48]' (FDC) to 'r_bmu1_reg[42]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[49]' (FDC) to 'r_bmu1_reg[43]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[50]' (FDC) to 'r_bmu1_reg[40]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[51]' (FDC) to 'r_bmu1_reg[41]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[44]' (FDC) to 'r_bmu1_reg[20]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[45]' (FDC) to 'r_bmu1_reg[21]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[46]' (FDC) to 'r_bmu1_reg[22]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[47]' (FDC) to 'r_bmu1_reg[23]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[40]' (FDC) to 'r_bmu1_reg[16]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[41]' (FDC) to 'r_bmu1_reg[17]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[42]' (FDC) to 'r_bmu1_reg[18]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[43]' (FDC) to 'r_bmu1_reg[19]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[36]' (FDC) to 'r_bmu1_reg[28]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[37]' (FDC) to 'r_bmu1_reg[29]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[38]' (FDC) to 'r_bmu1_reg[30]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[39]' (FDC) to 'r_bmu1_reg[31]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[32]' (FDC) to 'r_bmu1_reg[24]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[33]' (FDC) to 'r_bmu1_reg[25]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[34]' (FDC) to 'r_bmu1_reg[26]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[35]' (FDC) to 'r_bmu1_reg[27]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[28]' (FDC) to 'r_bmu1_reg[6]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[29]' (FDC) to 'r_bmu1_reg[7]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[30]' (FDC) to 'r_bmu1_reg[4]'
+INFO: [Synth 8-3886] merging instance 'r_bmu1_reg[31]' (FDC) to 'r_bmu1_reg[5]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:41 . Memory (MB): peak = 1651.672 ; gain = 193.125
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-5835] Resources of type URAM have been overutilized. Used = 1, Available = 0. Will try to implement using BRAM. 
+INFO: [Synth 8-6794] RAM ("viterbi_top/u_PathRecordMemory/r_memArray_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5800] Cascade chain of height 4 reduced to 3 because memory depth for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg" is not power of 2. 
+INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 3 and width 36 for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg"
+INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 2 and width 18 for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 9 for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 1 for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg"
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Preliminary Mapping  Report (see note below)
++------------+-----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|Module Name | RTL Object                        | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
++------------+-----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|viterbi_top | u_PathRecordMemory/r_memArray_reg | 4 K x 64(NO_CHANGE)    | W | R |                        |   |   | Port A           | 1      | 6      | 3,2,1,1         | 
++------------+-----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++-------------+------------------+-----------+----------------------+------------------+
+|Module Name  | RTL Object       | Inference | Size (Depth x Width) | Primitives       | 
++-------------+------------------+-----------+----------------------+------------------+
+|u_LifoMemory | r_lifoMemory_reg | Implied   | 4 K x 1              | RAM256X1D x 10   | 
++-------------+------------------+-----------+----------------------+------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6837] The timing for the instance i_0/u_PathRecordMemory/r_memArray_reg_bram_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance i_0/u_PathRecordMemory/r_memArray_reg_bram_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:55 ; elapsed = 00:00:56 . Memory (MB): peak = 2208.172 ; gain = 749.625
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5556] The block RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg" may be mapped as a cascade chain, because it is not timing critical.
+INFO: [Synth 8-6794] RAM ("viterbi_top/u_PathRecordMemory/r_memArray_reg") will be automatically implemented using URAM. 
+INFO: [Synth 8-5800] Cascade chain of height 4 reduced to 3 because memory depth for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg" is not power of 2. 
+INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 3 and width 36 for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg"
+INFO: [Synth 8-5555] Implemented Block Ram Cascade chain of height 2 and width 18 for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 9 for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg"
+INFO: [Synth 8-7030] Implemented Non-Cascaded Block Ram (cascade_height = 1) of width 1 for RAM "viterbi_top/u_PathRecordMemory/r_memArray_reg"
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:59 ; elapsed = 00:01:01 . Memory (MB): peak = 2258.117 ; gain = 799.570
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping  Report
++------------+-----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|Module Name | RTL Object                        | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | Cascade Heights | 
++------------+-----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+|viterbi_top | u_PathRecordMemory/r_memArray_reg | 4 K x 64(NO_CHANGE)    | W | R |                        |   |   | Port A           | 1      | 6      | 3,2,1,1         | 
++------------+-----------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+-----------------+
+
+
+Distributed RAM: Final Mapping  Report
++-------------+------------------+-----------+----------------------+------------------+
+|Module Name  | RTL Object       | Inference | Size (Depth x Width) | Primitives       | 
++-------------+------------------+-----------+----------------------+------------------+
+|u_LifoMemory | r_lifoMemory_reg | Implied   | 4 K x 1              | RAM256X1D x 10   | 
++-------------+------------------+-----------+----------------------+------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6837] The timing for the instance u_PathRecordMemory/r_memArray_reg_bram_2 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance u_PathRecordMemory/r_memArray_reg_bram_4 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance u_PathRecordMemory/r_memArray_reg_bram_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-6837] The timing for the instance u_PathRecordMemory/r_memArray_reg_bram_6 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:04 ; elapsed = 00:01:06 . Memory (MB): peak = 2421.312 ; gain = 962.766
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 2426.125 ; gain = 967.578
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:07 ; elapsed = 00:01:09 . Memory (MB): peak = 2426.125 ; gain = 967.578
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 2426.125 ; gain = 967.578
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 2426.125 ; gain = 967.578
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:10 ; elapsed = 00:01:12 . Memory (MB): peak = 2426.125 ; gain = 967.578
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:10 ; elapsed = 00:01:12 . Memory (MB): peak = 2426.125 ; gain = 967.578
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+------------+------+
+|      |Cell        |Count |
++------+------------+------+
+|1     |BUFG        |     1|
+|2     |CARRY8      |   265|
+|3     |LUT1        |    72|
+|4     |LUT2        |   148|
+|5     |LUT3        |  1017|
+|6     |LUT4        |  1685|
+|7     |LUT5        |   935|
+|8     |LUT6        |  1827|
+|9     |MUXF7       |    23|
+|10    |MUXF8       |     8|
+|11    |RAM256X1D   |    10|
+|12    |RAMB18E2_1  |     1|
+|13    |RAMB36E2_10 |     1|
+|14    |RAMB36E2_11 |     1|
+|15    |RAMB36E2_6  |     1|
+|16    |RAMB36E2_7  |     1|
+|17    |RAMB36E2_8  |     1|
+|18    |RAMB36E2_9  |     1|
+|19    |FDCE        |    47|
+|20    |FDPE        |    14|
+|21    |FDRE        |   537|
+|22    |IBUF        |    18|
+|23    |OBUF        |     3|
++------+------------+------+
+
+Report Instance Areas: 
++------+-------------------------+------------------+------+
+|      |Instance                 |Module            |Cells |
++------+-------------------------+------------------+------+
+|1     |top                      |                  |  6617|
+|2     |  u_ControlUnit          |controlunit       |   349|
+|3     |    u_getMax             |getmax            |    83|
+|4     |      \genblk1[10].u_c1  |maxcomparator     |     1|
+|5     |      \genblk1[11].u_c1  |maxcomparator_62  |     1|
+|6     |      \genblk1[12].u_c1  |maxcomparator_63  |     1|
+|7     |      \genblk1[13].u_c1  |maxcomparator_64  |     1|
+|8     |      \genblk1[14].u_c1  |maxcomparator_65  |     1|
+|9     |      \genblk1[15].u_c1  |maxcomparator_66  |     1|
+|10    |      \genblk1[16].u_c1  |maxcomparator_67  |     1|
+|11    |      \genblk1[17].u_c1  |maxcomparator_68  |     1|
+|12    |      \genblk1[18].u_c1  |maxcomparator_69  |     1|
+|13    |      \genblk1[19].u_c1  |maxcomparator_70  |     1|
+|14    |      \genblk1[1].u_c1   |maxcomparator_71  |     1|
+|15    |      \genblk1[20].u_c1  |maxcomparator_72  |     1|
+|16    |      \genblk1[21].u_c1  |maxcomparator_73  |     1|
+|17    |      \genblk1[22].u_c1  |maxcomparator_74  |     1|
+|18    |      \genblk1[23].u_c1  |maxcomparator_75  |     1|
+|19    |      \genblk1[24].u_c1  |maxcomparator_76  |     1|
+|20    |      \genblk1[25].u_c1  |maxcomparator_77  |     1|
+|21    |      \genblk1[26].u_c1  |maxcomparator_78  |     1|
+|22    |      \genblk1[27].u_c1  |maxcomparator_79  |     1|
+|23    |      \genblk1[28].u_c1  |maxcomparator_80  |     1|
+|24    |      \genblk1[29].u_c1  |maxcomparator_81  |     1|
+|25    |      \genblk1[2].u_c1   |maxcomparator_82  |     1|
+|26    |      \genblk1[30].u_c1  |maxcomparator_83  |     1|
+|27    |      \genblk1[31].u_c1  |maxcomparator_84  |     1|
+|28    |      \genblk1[32].u_c1  |maxcomparator_85  |     1|
+|29    |      \genblk1[3].u_c1   |maxcomparator_86  |     1|
+|30    |      \genblk1[4].u_c1   |maxcomparator_87  |     1|
+|31    |      \genblk1[5].u_c1   |maxcomparator_88  |     1|
+|32    |      \genblk1[6].u_c1   |maxcomparator_89  |     1|
+|33    |      \genblk1[7].u_c1   |maxcomparator_90  |     1|
+|34    |      \genblk1[8].u_c1   |maxcomparator_91  |     1|
+|35    |      \genblk1[9].u_c1   |maxcomparator_92  |     1|
+|36    |      \genblk2[0].u_c2   |maxcomparator_93  |     1|
+|37    |      \genblk2[10].u_c2  |maxcomparator_94  |     1|
+|38    |      \genblk2[11].u_c2  |maxcomparator_95  |     2|
+|39    |      \genblk2[12].u_c2  |maxcomparator_96  |     1|
+|40    |      \genblk2[13].u_c2  |maxcomparator_97  |     2|
+|41    |      \genblk2[14].u_c2  |maxcomparator_98  |     1|
+|42    |      \genblk2[15].u_c2  |maxcomparator_99  |     4|
+|43    |      \genblk2[1].u_c2   |maxcomparator_100 |     2|
+|44    |      \genblk2[2].u_c2   |maxcomparator_101 |     1|
+|45    |      \genblk2[3].u_c2   |maxcomparator_102 |     2|
+|46    |      \genblk2[4].u_c2   |maxcomparator_103 |     1|
+|47    |      \genblk2[5].u_c2   |maxcomparator_104 |     2|
+|48    |      \genblk2[6].u_c2   |maxcomparator_105 |     1|
+|49    |      \genblk2[7].u_c2   |maxcomparator_106 |     2|
+|50    |      \genblk2[8].u_c2   |maxcomparator_107 |     1|
+|51    |      \genblk2[9].u_c2   |maxcomparator_108 |     2|
+|52    |      \genblk3[0].u_c3   |maxcomparator_109 |     1|
+|53    |      \genblk3[1].u_c3   |maxcomparator_110 |     2|
+|54    |      \genblk3[2].u_c3   |maxcomparator_111 |     1|
+|55    |      \genblk3[3].u_c3   |maxcomparator_112 |     4|
+|56    |      \genblk3[4].u_c3   |maxcomparator_113 |     1|
+|57    |      \genblk3[5].u_c3   |maxcomparator_114 |     2|
+|58    |      \genblk3[6].u_c3   |maxcomparator_115 |     1|
+|59    |      \genblk3[7].u_c3   |maxcomparator_116 |     2|
+|60    |      \genblk4[0].u_c4   |maxcomparator_117 |     1|
+|61    |      \genblk4[1].u_c4   |maxcomparator_118 |     2|
+|62    |      \genblk4[2].u_c4   |maxcomparator_119 |     1|
+|63    |      \genblk4[3].u_c4   |maxcomparator_120 |     1|
+|64    |      \genblk5[0].u_c5   |maxcomparator_121 |     2|
+|65    |      \genblk5[1].u_c5   |maxcomparator_122 |     2|
+|66    |      u_c6               |maxcomparator_123 |     2|
+|67    |  u_LifoMemory           |lifo              |    93|
+|68    |  u_PathMetricsRegister  |pathmetrics       |  5806|
+|69    |  u_PathRecordMemory     |pathrecordmemory  |   132|
+|70    |  u_getMin               |getmin            |   151|
+|71    |    \genblk1[10].u_c1    |mincomparator     |     1|
+|72    |    \genblk1[11].u_c1    |mincomparator_0   |     1|
+|73    |    \genblk1[12].u_c1    |mincomparator_1   |     1|
+|74    |    \genblk1[13].u_c1    |mincomparator_2   |     1|
+|75    |    \genblk1[14].u_c1    |mincomparator_3   |     1|
+|76    |    \genblk1[15].u_c1    |mincomparator_4   |     1|
+|77    |    \genblk1[16].u_c1    |mincomparator_5   |     1|
+|78    |    \genblk1[17].u_c1    |mincomparator_6   |     1|
+|79    |    \genblk1[18].u_c1    |mincomparator_7   |     1|
+|80    |    \genblk1[19].u_c1    |mincomparator_8   |     1|
+|81    |    \genblk1[1].u_c1     |mincomparator_9   |     1|
+|82    |    \genblk1[20].u_c1    |mincomparator_10  |     1|
+|83    |    \genblk1[21].u_c1    |mincomparator_11  |     1|
+|84    |    \genblk1[22].u_c1    |mincomparator_12  |     1|
+|85    |    \genblk1[23].u_c1    |mincomparator_13  |     1|
+|86    |    \genblk1[24].u_c1    |mincomparator_14  |     1|
+|87    |    \genblk1[25].u_c1    |mincomparator_15  |     1|
+|88    |    \genblk1[26].u_c1    |mincomparator_16  |     1|
+|89    |    \genblk1[27].u_c1    |mincomparator_17  |     1|
+|90    |    \genblk1[28].u_c1    |mincomparator_18  |     1|
+|91    |    \genblk1[29].u_c1    |mincomparator_19  |     1|
+|92    |    \genblk1[2].u_c1     |mincomparator_20  |     1|
+|93    |    \genblk1[30].u_c1    |mincomparator_21  |     1|
+|94    |    \genblk1[31].u_c1    |mincomparator_22  |     1|
+|95    |    \genblk1[32].u_c1    |mincomparator_23  |     1|
+|96    |    \genblk1[3].u_c1     |mincomparator_24  |     1|
+|97    |    \genblk1[4].u_c1     |mincomparator_25  |     1|
+|98    |    \genblk1[5].u_c1     |mincomparator_26  |     1|
+|99    |    \genblk1[6].u_c1     |mincomparator_27  |     1|
+|100   |    \genblk1[7].u_c1     |mincomparator_28  |     1|
+|101   |    \genblk1[8].u_c1     |mincomparator_29  |     1|
+|102   |    \genblk1[9].u_c1     |mincomparator_30  |     1|
+|103   |    \genblk2[0].u_c2     |mincomparator_31  |     1|
+|104   |    \genblk2[10].u_c2    |mincomparator_32  |     1|
+|105   |    \genblk2[11].u_c2    |mincomparator_33  |     1|
+|106   |    \genblk2[12].u_c2    |mincomparator_34  |     1|
+|107   |    \genblk2[13].u_c2    |mincomparator_35  |     1|
+|108   |    \genblk2[14].u_c2    |mincomparator_36  |     1|
+|109   |    \genblk2[15].u_c2    |mincomparator_37  |     1|
+|110   |    \genblk2[1].u_c2     |mincomparator_38  |     6|
+|111   |    \genblk2[2].u_c2     |mincomparator_39  |     1|
+|112   |    \genblk2[3].u_c2     |mincomparator_40  |     1|
+|113   |    \genblk2[4].u_c2     |mincomparator_41  |     1|
+|114   |    \genblk2[5].u_c2     |mincomparator_42  |     1|
+|115   |    \genblk2[6].u_c2     |mincomparator_43  |     1|
+|116   |    \genblk2[7].u_c2     |mincomparator_44  |     1|
+|117   |    \genblk2[8].u_c2     |mincomparator_45  |     1|
+|118   |    \genblk2[9].u_c2     |mincomparator_46  |     6|
+|119   |    \genblk3[0].u_c3     |mincomparator_47  |     6|
+|120   |    \genblk3[1].u_c3     |mincomparator_48  |     2|
+|121   |    \genblk3[2].u_c3     |mincomparator_49  |     1|
+|122   |    \genblk3[3].u_c3     |mincomparator_50  |     1|
+|123   |    \genblk3[4].u_c3     |mincomparator_51  |     6|
+|124   |    \genblk3[5].u_c3     |mincomparator_52  |     2|
+|125   |    \genblk3[6].u_c3     |mincomparator_53  |     1|
+|126   |    \genblk3[7].u_c3     |mincomparator_54  |     1|
+|127   |    \genblk4[0].u_c4     |mincomparator_55  |     1|
+|128   |    \genblk4[1].u_c4     |mincomparator_56  |     2|
+|129   |    \genblk4[2].u_c4     |mincomparator_57  |     1|
+|130   |    \genblk4[3].u_c4     |mincomparator_58  |     2|
+|131   |    \genblk5[0].u_c4     |mincomparator_59  |     1|
+|132   |    \genblk5[1].u_c4     |mincomparator_60  |     1|
+|133   |    u_c4                 |mincomparator_61  |    65|
++------+-------------------------+------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:10 ; elapsed = 00:01:12 . Memory (MB): peak = 2426.125 ; gain = 967.578
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:54 ; elapsed = 00:01:02 . Memory (MB): peak = 2426.125 ; gain = 820.711
+Synthesis Optimization Complete : Time (s): cpu = 00:01:10 ; elapsed = 00:01:12 . Memory (MB): peak = 2426.125 ; gain = 967.578
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 325 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+WARNING: [Netlist 29-101] Netlist 'viterbi_top' is not ideal for floorplanning, since the cellview 'pathmetrics' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2450.660 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 29 instances were transformed.
+  BUFG => BUFGCE: 1 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 18 instances
+  RAM256X1D => RAM256X1D (RAMD64E, RAMD64E, RAMD64E, RAMD64E, MUXF7, MUXF7, MUXF7, MUXF7, MUXF8, MUXF8, RAMD64E, RAMD64E, RAMD64E, RAMD64E): 10 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+272 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:27 ; elapsed = 00:01:30 . Memory (MB): peak = 2450.660 ; gain = 2095.344
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2450.660 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.runs/synth_1/viterbi_top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file viterbi_top_utilization_synth.rpt -pb viterbi_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun May 15 22:31:19 2022...
