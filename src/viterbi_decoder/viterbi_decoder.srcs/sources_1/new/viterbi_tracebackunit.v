@@ -76,7 +76,7 @@ module tracebackunit(   input i_clk,
        if(!i_rstn)
        begin
             r_currState<=IDLE;
-            r_stateCounter<=12'd0;
+            r_stateCounter<=12'd4095;
        end
        else if(i_enable)
        begin
@@ -86,7 +86,7 @@ module tracebackunit(   input i_clk,
        else
        begin
             r_currState<=IDLE;
-            r_stateCounter<=12'd0;
+            r_stateCounter<=12'd4095;
        end
     end
       
@@ -98,14 +98,14 @@ module tracebackunit(   input i_clk,
         begin
             if(i_enable)
             begin
-                if(r_stateCounter==12'd3)
-                begin
+//                if(r_stateCounter==12'd1)
+//                begin
                     r_nextState=ADDRESS_GEN;
-                end
-                else
-                begin
-                    r_nextState=IDLE;
-                end
+//                end
+//                else
+//                begin
+//                    r_nextState=IDLE;
+//                end
             end
             else
             begin
@@ -114,7 +114,7 @@ module tracebackunit(   input i_clk,
         end
         ADDRESS_GEN:
         begin
-            if(r_stateCounter==i_tbs+12'd4  )
+            if(r_stateCounter==i_tbs  )
             begin
                 r_nextState=IDLE;
             end
@@ -144,17 +144,17 @@ module tracebackunit(   input i_clk,
               case(r_currState)
                 IDLE:
                 begin
-                    if(i_enable && r_stateCounter == 12'd3)     // waiting untill the get max module evaluates the index of the maximum value
-                    begin
+//                    if(r_stateCounter == 12'd1)     // waiting untill the get max module evaluates the index of the maximum value
+//                    begin
                         r_rowGenerator<=r_maxIdx;           // saving maximum index to row generator to start the traceback operation
                         r_finalState <= r_maxIdx;           // storing the final state to compare it with row generator after the traceback operation
                         r_lifoValid<=1'b0;
-                    end
-                    else
-                    begin
-                        r_rowGenerator<=r_rowGenerator;
-                        r_lifoValid<=1'b0;
-                    end
+//                    end
+//                    else
+//                    begin
+//                        r_rowGenerator<=r_rowGenerator;
+//                        r_lifoValid<=1'b0;
+//                    end
                 end
                 ADDRESS_GEN:
                 begin

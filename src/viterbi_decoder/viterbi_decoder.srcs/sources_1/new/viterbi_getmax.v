@@ -29,7 +29,7 @@
                 instantiation of maxcomparator module that takes 2 values and outputs the value and the location of the maximum one 
 */
 
-module getmax(  input i_clk,
+module getmax(  
                 input [511:0]i_dataIn,
                 output [5:0]o_maxLocation);
                
@@ -67,25 +67,17 @@ endgenerate
 
 reg [5:0]r_locStage2[0:15];
 reg [7:0]r_dataStage2[0:15];
-integer j;
-always@(posedge i_clk)
-begin
-    for(j=0;j<16;j=j+1)
-    begin
-        r_dataStage2[j]<=w_dataStage2[j];
-        r_locStage2[j]<=w_locStage2[j];
-    end
-end
+
 // Stage 3: 8 comparators
 wire [5:0]w_locStage3[0:7];
 wire [7:0]w_dataStage3[0:7];
 generate
     for(i=7;i>=0;i=i-1)
     begin
-        maxcomparator u_c3(   .i_data1(r_dataStage2[2*i+1]),
-                              .i_data2(r_dataStage2[2*i]),
-                              .i_location1(r_locStage2[2*i+1]),
-                              .i_location2(r_locStage2[2*i]),
+        maxcomparator u_c3(   .i_data1(w_dataStage2[2*i+1]),
+                              .i_data2(w_dataStage2[2*i]),
+                              .i_location1(w_locStage2[2*i+1]),
+                              .i_location2(w_locStage2[2*i]),
                               .o_dataOut(w_dataStage3[i]),
                               .o_locationOut(w_locStage3[i]));
     end

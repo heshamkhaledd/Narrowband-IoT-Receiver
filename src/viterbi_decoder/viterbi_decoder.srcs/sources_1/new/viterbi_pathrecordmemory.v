@@ -31,27 +31,29 @@ Discription: Path record memory is a memory that consists from 64 rows and 2560 
     input i_rw,                  -> Read signal (1=read) (0=write)
     output o_storedContent       -> output stored bit in the memory to Traceback unit
 */
-module pathrecordmemory (    input [63:0] i_selectedPaths,    
-                            input i_clk,
-                            input [11:0]i_columnAddress,
-                            input i_rw,
-                            output [63:0]o_storedContent);
+module pathrecordmemory (
+    input [63:0] i_selectedPaths,    
+    input i_clk,
+    input [11:0]i_columnAddress,
+    input i_rw,
+    output [63:0]o_storedContent
+        );
          
-    (* ram_style = "bram" *)  reg [63:0]r_memArray[0:2559];
-     reg [63:0]r_storedContent;
-     reg [63:0]r_pipelineOutRegister;
-     assign o_storedContent=r_storedContent;
-     always@(posedge i_clk )
-     begin
-            if(i_rw == 1'b0)  //rw =0 -> read
-            begin
-                r_pipelineOutRegister <= r_memArray[i_columnAddress];
-                r_storedContent<=r_pipelineOutRegister; 
-            end
-            else // writing
-            begin
-                r_memArray[i_columnAddress]<=i_selectedPaths;
-            end
+(* ram_style = "bram" *)  reg [63:0]r_memArray[0:2559];
+reg [63:0]r_storedContent;
+
+assign o_storedContent=r_storedContent;
+
+always@(posedge i_clk)
+begin
+    if(i_rw == 1'b0)  //rw =0 -> read
+    begin
+        r_storedContent<=r_memArray[i_columnAddress]; 
+    end
+    else // writing
+        begin
+            r_memArray[i_columnAddress]<=i_selectedPaths;
+        end
      end
 endmodule
 

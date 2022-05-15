@@ -1,15 +1,15 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: Youssef Galal
+// Engineer: 
 // 
-// Create Date: 03/25/2022 03:24:05 PM
-// Design Name: viterbi_decoder
-// Module Name: top_tb
-// Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
+// Create Date: 05/14/2022 02:23:43 AM
+// Design Name: 
+// Module Name: left_b_tb
+// Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: test bench of the decoder
+// Description: 
 // 
 // Dependencies: 
 // 
@@ -20,86 +20,92 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module top_tb;
-
+module left_b_tb();
 
 reg i_clk;
-reg i_rstn;
-reg [11:0]i_tbs;
-reg [2:0]i_msg;
 reg i_enable;
+reg i_rstn;
+reg [2:0] i_msg;
+reg [11:0] i_tbs;
+wire [63:0] o_storedContent;
 wire o_crcValid;
 wire o_decodedOut;
 wire o_matcherRepeat;
-reg i_clk2;
-viterbi_top UUT(    .i_clk(i_clk),
-                    .i_rstn(i_rstn),
-                    .i_tbs(i_tbs),
-                    .i_msg(i_msg),
-                    .i_enable(i_enable),
-                    .o_crcValid(o_crcValid),
-                    .o_decodedOut(o_decodedOut),
-                    .o_matcherRepeat(o_matcherRepeat));
- always #130 i_clk=~i_clk;
- reg [2:0]mem1[0:2559];
- reg [2:0]wrongData[0:9];
- reg matcherRepeat1;
- integer i;
- initial
- begin
-    matcherRepeat1=0;
-    i_clk=1'b1;
-    i_clk2=1'b1;
-    i_rstn=1'b0;
-    i_tbs=12'd0;
-    i_msg=3'd0;
-    i_enable=1'b0;
-    $readmemb("test2.dat",mem1);    // for full size test case
-    $readmemb("test_wrongData.dat",wrongData);
-    #260 #260 #260 #260 #260
-    i_rstn=1'b1;
-    #260; #260 #260 #260 #260
+wire [63:0]w_storedContent;
+reg matcherRepeat1;
+top_eltop
+DUT
+    (.i_clk(i_clk),
+     .i_enable(i_enable),
+     .i_rstn(i_rstn),
+     .i_msg(i_msg),
+     .i_tbs(i_tbs),
+     .o_crcValid(o_crcValid),
+     .o_decodedOut(o_decodedOut),
+     .o_matcherRepeat(o_matcherRepeat),
+     .w_storedContent(w_storedContent)    );
 
-// First test case (10 bits only) 
-//    #234; 
-    i_enable=1'b1;
-    i_tbs=12'd9;
-//    #130;
-    i_msg= 3'd7;
-    #260
-    i_msg=3'd0;
-    #260
-    i_msg=3'd5;
-    #260
-    i_msg=3'd5;
-    #260
-    i_msg = 3'd6;
-    #260
-    i_msg =3'd4;
-    #260
-    i_msg=3'd0;
-    #260
-    i_msg=3'd4;
-    #260;
-    i_msg=3'd3;
-    #260;
-    i_msg=3'd2;
-    #260;
-    i_enable=1'b0;    
+always #130 i_clk = ~i_clk;
+reg [2:0]mem1[0:2559];
+reg [2:0]wrongData[0:9];
+initial begin
+matcherRepeat1=0;
+i_clk = 1;
+i_enable = 0;
+i_rstn = 0;
+i_tbs=12'd0;
+i_msg=3'd0;
+$readmemb("test2.dat",mem1);    // for full size test case
+$readmemb("test_wrongData.dat",wrongData);
+end
+
+integer i;
+
+initial
+begin
+#260
+i_rstn=1'b0;
+#260
+i_rstn=1'b1;
+#260 #130
+i_enable=1'b1;
+#260
+i_tbs=12'd9;
+i_msg= 3'd7;
+#260
+i_msg=3'd0;
+#260
+i_msg=3'd5;
+#260
+i_msg=3'd5;
+#260
+i_msg = 3'd6;
+#260
+i_msg =3'd4;
+#260
+i_msg=3'd0;
+#260
+i_msg=3'd4;
+#260;
+i_msg=3'd3;
+#260;
+i_msg=3'd2;
+#260;
+i_enable=1'b0;  
+
 //Expected decodedOut for 1st test case = 10 0000 1110
     #7800;
 // test case, wrong Data
-    #130;
+
     i_enable=1'b1;
     i_tbs=12'd9;
-    #130;
+    #260;
     for(i=0;i<10;i=i+1)
     begin
         i_msg=wrongData[i];
         #260;
     end
-    i_enable=1'b0;
-    
+    i_enable=1'b0;   
     #7800;
     #7800;
     #7800;
@@ -141,7 +147,7 @@ viterbi_top UUT(    .i_clk(i_clk),
  begin
     if(matcherRepeat1==1'b1)
     begin
-        #260;
+        #130; #260;
         i_enable=1'b1;
         i_tbs=12'd9;
         #260;
@@ -162,7 +168,4 @@ viterbi_top UUT(    .i_clk(i_clk),
             matcherRepeat1<=1'b1;
         end
        end
-                
 endmodule
-
-
