@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module left_b_tb();
+module viterbi_top_tb();
 
 reg i_clk;
 reg i_enable;
@@ -33,7 +33,7 @@ wire o_decodedOut;
 wire o_matcherRepeat;
 wire [63:0]w_storedContent;
 reg matcherRepeat1;
-top_eltop
+viterbi_top
 DUT
     (.i_clk(i_clk),
      .i_enable(i_enable),

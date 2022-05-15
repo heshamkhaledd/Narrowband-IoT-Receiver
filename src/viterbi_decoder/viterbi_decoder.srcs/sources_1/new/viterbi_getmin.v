@@ -25,7 +25,7 @@
     Outputs:
               [7:0]minValue: output minimum value stored in these registers
                
-    Description: 5 Levels of comparators (32->16->8->4->2) to compare all values together to find the minimum value
+    Description: 6 Levels of comparators (32->16->8->4->2->1) to compare all values together to find the minimum value
                 instantiation of mincomparator module that takes 2 values and outputs the smaller value
 */
 module getmin( input [511:0]i_dataIn,

@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: Youssef Galal
+// Engineer: Youssef Ahmed Mohamed Galal
 // 
 // Create Date: 03/18/2022 03:40:37 PM
 // Design Name: Viterbi_decoder 
@@ -9,7 +9,7 @@
 // Project Name: Design of Physical Downlink Shared Channel Receiver for Narrow band IOT-LTE
 // Target Devices: 
 // Tool Versions: 
-// Description: 
+// Description: Branch Metric unit
 // 
 // Dependencies: 
 // 
@@ -28,7 +28,7 @@
                bmu1:  Branch metrics for the next 32 branches in the trellis diagram (next state 32:63)
 
 */
-(* DONT_TOUCH="TRUE" *) module bmu(     input  [2:0] i_msg,       
+module bmu(     input  [2:0] i_msg,       
                 output [127:0]o_bmu0,
                 output [127:0]o_bmu1  
                 ); 

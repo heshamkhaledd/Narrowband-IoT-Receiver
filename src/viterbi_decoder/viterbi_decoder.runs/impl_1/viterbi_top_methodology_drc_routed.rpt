@@ -1,0 +1,226 @@
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
+| Date         : Sun May 15 22:35:52 2022
+| Host         : Youssef-Dell running 64-bit major release  (build 9200)
+| Command      : report_methodology -file viterbi_top_methodology_drc_routed.rpt -pb viterbi_top_methodology_drc_routed.pb -rpx viterbi_top_methodology_drc_routed.rpx
+| Design       : viterbi_top
+| Device       : xczu7ev-ffvc1156-2-e
+| Speed File   : -2
+| Design State : Fully Routed
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Methodology
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+             Max violations: <unlimited>
+             Violations found: 30
++---------+----------+-----------------------------------------------------------+------------+
+| Rule    | Severity | Description                                               | Violations |
++---------+----------+-----------------------------------------------------------+------------+
+| SYNTH-5 | Warning  | Mapped onto distributed RAM because of timing constraints | 10         |
+| XDCH-2  | Warning  | Same min and max delay values on IO port                  | 20         |
++---------+----------+-----------------------------------------------------------+------------+
+
+2. REPORT DETAILS
+-----------------
+SYNTH-5#1 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_0_255_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#2 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_1024_1279_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#3 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_1280_1535_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#4 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_1536_1791_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#5 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_1792_2047_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#6 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_2048_2303_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#7 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_2304_2559_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#8 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_256_511_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#9 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_512_767_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+SYNTH-5#10 Warning
+Mapped onto distributed RAM because of timing constraints  
+The instance u_LifoMemory/r_lifoMemory_reg_768_1023_0_0 is implemented as distributed LUT RAM for the following reason: The timing constraints suggest that the chosen mapping will yield a better timing.
+Related violations: <none>
+
+XDCH-2#1 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_enable' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#2 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_msg[0]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#3 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_msg[1]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#4 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_msg[2]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#5 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_rstn' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#6 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[0]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#7 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[10]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#8 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[11]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#9 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[1]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#10 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[2]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#11 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[3]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#12 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[4]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#13 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[5]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#14 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[6]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#15 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[7]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#16 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[8]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#17 Warning
+Same min and max delay values on IO port  
+The same input delay of 26.000 ns has been defined on port 'i_tbs[9]' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_input_delay -clock clk -add_delay 26.000 [get_ports {i_enable {i_msg[0]} {i_msg[1]} {i_msg[2]} i_rstn {i_tbs[0]} {i_tbs[1]} {i_tbs[2]} {i_tbs[3]} {i_tbs[4]} {i_tbs[5]} {i_tbs[6]} {i_tbs[7]} {i_tbs[8]} {i_tbs[9]} {i_tbs[10]} {i_tbs[11]}}]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 6)
+Related violations: <none>
+
+XDCH-2#18 Warning
+Same min and max delay values on IO port  
+The same output delay of 26.000 ns has been defined on port 'o_crcValid' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock clk -add_delay 26.000 [get_ports -filter { NAME =~  "*" && DIRECTION == "OUT" }]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 7)
+Related violations: <none>
+
+XDCH-2#19 Warning
+Same min and max delay values on IO port  
+The same output delay of 26.000 ns has been defined on port 'o_decodedOut' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock clk -add_delay 26.000 [get_ports -filter { NAME =~  "*" && DIRECTION == "OUT" }]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 7)
+Related violations: <none>
+
+XDCH-2#20 Warning
+Same min and max delay values on IO port  
+The same output delay of 26.000 ns has been defined on port 'o_matcherRepeat' relative to clock clk for both max and min. Make sure this reflects the design intent.
+set_output_delay -clock clk -add_delay 26.000 [get_ports -filter { NAME =~  "*" && DIRECTION == "OUT" }]
+E:/Working/Digital Design/Graduation Project/Repo/Narrowband-IoT-Receiver/src/viterbi_decoder/viterbi_decoder.srcs/constrs_1/new/constraints.xdc (Line: 7)
+Related violations: <none>
+
+

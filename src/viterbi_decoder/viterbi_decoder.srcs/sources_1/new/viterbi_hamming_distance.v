@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: Youssef Galal
+// Engineer: Youssef Ahmed Mohamed Galal
 // 
 // Create Date: 03/18/2022 05:01:33 PM
 // Design Name: viterbi_decoder
@@ -28,7 +28,7 @@
                
 
 */
-(* DONT_TOUCH="TRUE" *) module hamming_distance( input [2:0]i_in1,
+module hamming_distance( input [2:0]i_in1,
                          input [2:0]i_in2,
                          output [1:0]o_metric);
     wire [2:0]w_xnorResult;

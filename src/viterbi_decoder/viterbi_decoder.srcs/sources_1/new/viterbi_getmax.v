@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: Youssef Galal
+// Engineer: Youssef Ahmed Mohamed Galal
 // 
 // Create Date: 03/19/2022 07:17:37 PM
 // Design Name: viterbi_decoder
@@ -25,7 +25,7 @@
     Outputs:
               [5:0]maxLocation: location of the maximum value stored in the registers
                
-    Description: 5 Levels of comparators (32->16->8->4->2) to compare all values together to find the maximum location in the registers
+    Description: 6 Levels of comparators (32->16->8->4->2->1) to compare all values together to find the maximum location in the registers
                 instantiation of maxcomparator module that takes 2 values and outputs the value and the location of the maximum one 
 */
 

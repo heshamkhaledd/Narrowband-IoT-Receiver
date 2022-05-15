@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: Youssef Galal
+// Engineer: Youssef Ahmed Mohamed Galal
 // 
 // Create Date: 03/19/2022 07:22:07 PM
 // Design Name: viterbi_decoder
