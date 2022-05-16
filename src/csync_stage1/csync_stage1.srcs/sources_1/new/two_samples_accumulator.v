@@ -22,6 +22,7 @@
 module two_samples_accumulator #(parameter DATA_WIDTH = 16)
 (
     input i_clk,
+    input i_rstn,
     input i_en,
     input signed [DATA_WIDTH-1:0] i_Ar,
     input signed [DATA_WIDTH-1:0] i_Ai,
@@ -31,17 +32,17 @@ module two_samples_accumulator #(parameter DATA_WIDTH = 16)
 	output reg [DATA_WIDTH-1:0] o_Yi
 );
 
-reg [DATA_WIDTH-1:0] r_Ar;
-reg [DATA_WIDTH-1:0] r_Ai;
-
-always@(posedge i_clk)
+always@(posedge i_clk, negedge i_rstn)
 begin
-    if(i_en)
+    if(!i_rstn)
         begin
-            r_Ar <= i_Ar;
-            r_Ai <= i_Ai;
-            o_Yr <= r_Ar - i_Br;
-            o_Yi <= r_Ai - i_Bi;
+            o_Yr <= 16'd0;
+            o_Yi <= 16'd0;
+        end
+    else if(i_en)
+        begin
+            o_Yr <= i_Ar - i_Br;
+            o_Yi <= i_Ai - i_Bi;
         end
     else;
 end

@@ -26,19 +26,19 @@ module symbol_regfile #(parameter DATA_WIDTH = 16, parameter REG_BANK_ADDR = 8, 
     input [DATA_WIDTH-1:0] i_I,
     input [DATA_WIDTH-1:0] i_Q,
     input [REG_BANK_ADDR-1:0] regAddr,
-    output reg [DATA_WIDTH-1:0] o_I,
-    output reg [DATA_WIDTH-1:0] o_Q
+    output  [DATA_WIDTH-1:0] o_I,
+    output  [DATA_WIDTH-1:0] o_Q
 );
 
 reg [DATA_WIDTH-1:0] r_registerBank_I [REG_BANK_LENGTH-1:0];
 reg [DATA_WIDTH-1:0] r_registerBank_Q [REG_BANK_LENGTH-1:0];
 
+assign o_I = r_registerBank_I[regAddr];
+assign o_Q = r_registerBank_Q[regAddr];
+
 always@(posedge i_clk)
 begin
-    o_I <= r_registerBank_I[regAddr];
-    o_Q <= r_registerBank_I[regAddr];
-    
-    r_registerBank_I[regAddr] <= i_I;
-    r_registerBank_Q[regAddr] <= i_Q;
+        r_registerBank_I[regAddr] <= i_I;
+        r_registerBank_Q[regAddr] <= i_Q;
 end
 endmodule

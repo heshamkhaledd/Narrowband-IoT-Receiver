@@ -23,31 +23,62 @@
 module window_accumulator#(parameter DATA_WIDTH = 16)
 (
     input i_clk,
+    input i_rstn,
     input i_en, // enable to start the accumulation
-    input i_outputEnable, // enable to get the ouput after 16 clk cycle (16 samples)
-    input signed [DATA_WIDTH-1:0] i_Ar,
-    input signed [DATA_WIDTH-1:0] i_Ai,
-    output reg [DATA_WIDTH-1:0] o_Yr, // the width of the registers will be modified as we add 16 sample
-	output reg [DATA_WIDTH-1:0] o_Yi  // the width of the registers will be modified as we add 16 sample
+    input i_outEnable, // enable to get the ouput after 16 clk cycle (16 samples)
+    input signed [DATA_WIDTH-1:0] i_I,
+    input signed [DATA_WIDTH-1:0] i_Q,
+    output reg [DATA_WIDTH-1:0] o_I,
+	output reg [DATA_WIDTH-1:0] o_Q
 );
-reg [DATA_WIDTH-1:0] r_Yr; // the width of the registers will be modified as we add 16 sample
-reg [DATA_WIDTH-1:0] r_Yi; // the width of the registers will be modified as we add 16 sample
 
-always@(posedge i_clk)
+reg [DATA_WIDTH-1:0] r_outI_Est;
+reg [DATA_WIDTH-1:0] r_outQ_Est;
+reg [DATA_WIDTH-1:0] r_Intermediate_I; 
+reg [DATA_WIDTH-1:0] r_Intermediate_Q;
+reg [DATA_WIDTH-1:0] r_Intermediate_I_Est; 
+reg [DATA_WIDTH-1:0] r_Intermediate_Q_Est;
+
+always@(*)
 begin
-    if(i_en)
+    if (i_outEnable)
         begin
-            r_Yr <= r_Yr + i_Ar;
-            r_Yi <= r_Yi + i_Ai;    
+            r_outI_Est = r_Intermediate_I;
+            r_outQ_Est = r_Intermediate_Q;
+            r_Intermediate_I_Est = i_I;
+            r_Intermediate_Q_Est = i_Q;
         end
-    else;
-    
-    if(i_outputEnable)
+    else
         begin
-            o_Yr <= r_Yr;
-            o_Yi <= r_Yi; 
+            r_outI_Est = 16'd0;
+            r_outQ_Est = 16'd0;
+            r_Intermediate_I_Est = r_Intermediate_I + i_I;
+            r_Intermediate_Q_Est = r_Intermediate_Q + i_Q;
         end
 end
 
-
+always@(posedge i_clk, negedge i_rstn)
+begin
+    if(i_rstn)
+        begin
+            o_I <= 16'd0;
+            o_Q <= 16'd0;
+            r_Intermediate_I <= 16'd0;
+            r_Intermediate_Q <= 16'd0;        
+        end
+    else 
+        begin
+            if(i_en)
+                begin
+                    r_Intermediate_I <= r_Intermediate_I_Est;
+                    r_Intermediate_Q <= r_Intermediate_Q_Est;    
+                end
+            else;
+            if(i_outEnable)
+                begin
+                    o_I <= r_outI_Est;
+                    o_Q <= r_outQ_Est;
+                end
+        end
+end
 endmodule

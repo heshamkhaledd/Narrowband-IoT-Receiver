@@ -25,10 +25,11 @@ module csync_stage1_ctrl#(parameter DATA_WIDTH = 16, parameter REG_BANK_ADDR = 8
     input i_clk,
     input i_rstn,
     input i_rxEn,
-    output reg codeCoverNeg,
-    //output reg windowAcclEn,
+    output reg o_codeCoverNeg,
+    output  o_2SampleAccEN,
+    output  o_windowAcclEn,
     //output reg reducedMetricEn,
-    output reg [REG_BANK_ADDR-1:0] regBankAddr
+    output reg [REG_BANK_ADDR-1:0] o_regBankAddr
     //output reg [SHARED_MEM_ADDR-1:0] windowkAddr,
     //output reg [SHARED_MEM_ADDR-1:0] metricAddr
 );
@@ -45,8 +46,14 @@ reg [REG_BANK_ADDR-1:0] r_sampleCounter;
 reg [REG_BANK_ADDR-1:0] r_sampleEst;
 reg [3:0] r_symbolCounter;
 reg [3:0] r_symbolEst;
-reg codeCoverNegFlag;
 
+
+reg r_2SampleAccEN;
+reg [1:0] r_2SampleAccEN_Flag;
+reg [1:0] r_windowAccEN_Flag;
+
+assign o_2SampleAccEN = r_2SampleAccEN_Flag[0];
+assign o_windowAcclEn = r_windowAccEN_Flag[0];
 
 // Sequential Always Block for Reset and Counters Increments
 always @(posedge i_clk, negedge i_rstn)
@@ -69,9 +76,9 @@ end
 always@(posedge i_clk, negedge i_rstn)
 begin
     if(!i_rstn)
-        regBankAddr <= 3'd0;
+        o_regBankAddr <= 3'd0;
     else
-        regBankAddr <= r_sampleCounter;
+        o_regBankAddr <= r_sampleCounter;
 end
 
 // Combinational Always Block to evaluate the current input sample number
@@ -89,7 +96,7 @@ begin
     if (r_sampleCounter == 8'd136)
         begin
             if (r_symbolCounter == 4'd13)
-                r_symbolEst = 4'd0;
+                    r_symbolEst = 4'd0;
             else
                 r_symbolEst = r_symbolCounter + 1;
         end
@@ -101,24 +108,41 @@ end
 always@(*)
 begin
     if(r_symbolCounter == 4'd7 || r_symbolCounter == 4'd8 || r_symbolCounter == 4'd12)
-        codeCoverNeg = 1'b1;
+        o_codeCoverNeg = 1'b1;
     else
-        codeCoverNeg = 1'b0;
+        o_codeCoverNeg = 1'b0;
 end
 
-//always@(posedge i_clk, negedge i_rstn)
-//begin
-//    if (!i_rstn)
-//        begin
-//            cmplxMulEnFlag <= 1'b0;
-//            cmplxMulEn <= 1'b0;
-//        end
-//    else if (r_sampleCounter == 8'd135 || cmplxMulEnFlag)
-//        begin
-//            cmplxMulEnFlag <= 1'b1;
-//            cmplxMulEn <= 1'b1;
-//        end
-//    else;
-//end
+// Combinational Always Block to evaluate the sample accumulator enable signal start
+always@(*)
+begin
+    if (r_sampleCounter == 8'd136)
+        begin
+            r_2SampleAccEN_Flag = 2'b01;
+        end
+    else
+        begin
+            if(r_2SampleAccEN_Flag[0] == 1'b1)
+                r_2SampleAccEN_Flag = 2'b11;
+            else
+                r_2SampleAccEN_Flag = 2'b10;
+        end
+end
+
+// Combinational Always Block to evaluate the window accumulator enable signal start
+always@(*)
+begin
+    if (r_symbolCounter == 4'd1)
+        begin
+            r_windowAccEN_Flag = 2'b01;
+        end
+    else
+        begin
+            if(r_windowAccEN_Flag[0] == 1'b1)
+                r_windowAccEN_Flag = 2'b11;
+            else
+                r_windowAccEN_Flag = 2'b10;
+        end
+end
 
 endmodule
