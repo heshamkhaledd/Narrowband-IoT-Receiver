@@ -29,59 +29,34 @@ module ps_nrs_removal(
     input[3:0] i_nrsRemovalIdx2,
     input[3:0] i_nrsRemovalIdx3,
     input[3:0] i_nrsRemovalIdx4,    
-    input[15:0] i_eq1real,
-	input[15:0] i_eq1img,
-	input[15:0] i_eq2real,
-	input[15:0] i_eq2img,
-	input[15:0] i_eq3real,
-	input[15:0] i_eq3img,
-	input[15:0] i_eq4real,
-	input[15:0] i_eq4img,
-	input[15:0] i_eq5real,
-	input[15:0] i_eq5img,
-	input[15:0] i_eq6real,
-	input[15:0] i_eq6img,
-	input[15:0] i_eq7real,
-	input[15:0] i_eq7img,
-	input[15:0] i_eq8real,
-	input[15:0] i_eq8img,
-	input[15:0] i_eq9real,
-	input[15:0] i_eq9img,
-	input[15:0] i_eq10real,
-	input[15:0] i_eq10img,
-	input[15:0] i_eq11real,
-	input[15:0] i_eq11img,
-	input[15:0] i_eq12real,
-	input[15:0] i_eq12img,
-	output o_equalize,
+    input [11:0]i_real,
+    input [11:0]i_imag,
 	output o_signI,
 	output o_signQ,
 	output o_demodEn    
     );
     
-    
     /* Parametrs for the FSM states */
-	parameter [1:0] p_idle      = 2'b00;
-	parameter [1:0] p_equalize  = 2'b01;
-	parameter [1:0] p_eqdone    = 2'b10;
-	parameter [1:0] p_serialOut = 2'b11;
+	parameter p_idle      = 2'b00;
+	parameter p_serialOut = 2'b01;
+	parameter p_lastCol   = 2'b10;
     
     /*  Registers   */
     reg[1:0] r_currState;
-    reg[3:0] r_counter;
+    reg[3:0] r_c;
     reg[1:0] r_nextState;
-    reg r_equalize;
     reg r_demodEn ;
-    reg[11:0]r_real;
-    reg[11:0]r_imag;
     reg r_oi;
     reg r_oq;
     reg r_remove;
+    reg r_lastCol;
+    reg r_lastcol;
+    reg [3:0] r_nrs3;
+    reg [3:0] r_nrs4;
     
     /* Assignments  */
     assign o_signI = r_oi;
     assign o_signQ = r_oq;
-    assign o_equalize = r_equalize;
     assign o_demodEn  = r_remove ? 1'b0:r_demodEn;
     
     always @(posedge i_clk, negedge i_rstn)
@@ -90,88 +65,128 @@ module ps_nrs_removal(
             r_currState <= p_idle;
         end
         else begin
-                 r_currState <= r_nextState;
+            r_currState <= r_nextState;
         end
     end
     
-    always@(*)
-    begin
-        case(i_eqcol)
-            4'b0110:
-            begin
-                if(r_counter==(i_nrsRemovalIdx1+1)) r_remove=1'b1;
-               else if(r_counter==(i_nrsRemovalIdx2+1)) r_remove=1'b1;
-                else r_remove = 1'b0;
-            end
-            
-            4'b0111:
-            begin
-               if(r_counter==(i_nrsRemovalIdx3+1)) r_remove=1'b1;
-               else if(r_counter==(i_nrsRemovalIdx4+1)) r_remove=1'b1;
-               else r_remove = 1'b0;
-            end
-            
-            4'b1101:
-            begin
-                if(r_counter==(i_nrsRemovalIdx1+1)) r_remove=1'b1;
-               else if(r_counter==(i_nrsRemovalIdx2+1)) r_remove=1'b1;
-               else r_remove = 1'b0;
-            end
-            
-            4'b1110:
-            begin
-               if(r_counter==(i_nrsRemovalIdx3+1)) r_remove=1'b1;
-               else if(r_counter==(i_nrsRemovalIdx4+1)) r_remove=1'b1;
-               else r_remove = 1'b0;
-            end
-            
-            default:
-            begin
-                r_remove = 0;
-            end
-        endcase
+    // Enable
+    always @(posedge i_clk, negedge i_rstn)begin
+        if(~i_rstn) r_demodEn <=0;
+        else begin
+            if (r_lastCol)r_demodEn<=1'b1;
+            else if(~i_chdone) r_demodEn<=1'b0;
+            if (i_eqdone) r_demodEn<=1'b1;
+        end
     end
+    
+    // Handling Last Column
+    always@(posedge i_clk,negedge i_rstn)begin
+        if(~i_rstn)begin
+            r_lastCol <=1'b0;
+            r_lastcol <=1'b0;  
+            r_nrs3 <= 1'b0;      
+            r_nrs4 <= 1'b0;      
+        end
+        else begin
+            if ((r_c == 10)&(i_eqcol==13))begin
+                r_lastcol <=1'b1;
+                 r_nrs3 <= i_nrsRemovalIdx3 ;
+                 r_nrs4 <= i_nrsRemovalIdx4;            
+            end
+            else if ((i_eqcol==13)& r_lastcol)begin
+                 r_lastCol <=1'b1;
+            end     
+            else if (r_c ==10) begin
+                r_lastCol<=0;
+                r_lastcol<=0;
+            end    
+        end
+    end
+    
+    ////////////////////////////////////////////////////////////////////////////////
+    // NRS removing     
+    always@(posedge i_clk)begin
+    case (r_lastCol)
+        1'b0: begin       
+            case(i_eqcol)
+                4'b0110:
+                begin
+                    if(r_c==(i_nrsRemovalIdx1-1'b1)) r_remove=1'b1;
+                   else if(r_c==(i_nrsRemovalIdx2-1'b1)) r_remove=1'b1;
+                    else r_remove = 1'b0;
+                end
+                
+                4'b0111:
+                begin
+                   if(r_c==(i_nrsRemovalIdx3-1'b1)) r_remove=1'b1;
+                   else if(r_c==(i_nrsRemovalIdx4-1'b1)) r_remove=1'b1;
+                   else r_remove = 1'b0;
+                end
+                
+                4'b1101:
+                begin
+                    if(r_c==(i_nrsRemovalIdx1-1'b1)) r_remove=1'b1;
+                   else if(r_c==(i_nrsRemovalIdx2-1'b1)) r_remove=1'b1;
+                   else r_remove = 1'b0;
+                end
+                       
+                default:
+                begin
+                    r_remove = 0;
+                end
+            endcase
+        end
+        1'b1:
+        begin
+               if(r_c==(r_nrs3-1'b1)) r_remove=1'b1;
+               else if(r_c==(r_nrs4-1'b1)) r_remove=1'b1;
+               else r_remove = 1'b0;
+        end
+        default:
+        begin
+            r_remove = 0;
+        end        
+    endcase
+    end
+    /////////////////////////////////////////////////////////////////////////////
     
     always @(*)
     begin
         case(r_currState)
             p_idle:
             begin
-                if (~i_chdone)begin
+                if (~i_rstn)begin
                     r_nextState = p_idle;
                 end
-                else begin 
-                    r_nextState = p_equalize;
+                else if (i_eqdone)begin 
+                    r_nextState = p_serialOut;
                 end
-            end
-            
-            p_equalize:
-            begin
-                 if(o_equalize)begin
-                     r_nextState = p_eqdone;
-                 end
-                 else r_nextState=p_equalize;
-            end
-            
-            p_eqdone:
-            begin
-                r_nextState = p_serialOut;
+                else  r_nextState = p_idle;
             end
             
             p_serialOut:
             begin
-                if (~i_chdone)begin
+                if (r_lastcol) begin
+                    r_nextState = p_lastCol;
+                end
+                else if (r_c==10)begin
                     r_nextState = p_idle;
                 end
-                else if(r_counter == 11) r_nextState = p_equalize;
                 else r_nextState = p_serialOut;
+            end
+            
+            p_lastCol:
+            begin
+                if (r_c==10)begin
+                    r_nextState = p_idle;
+                end
+                else r_nextState = p_lastCol;
             end
             
             default:
             begin
                 r_nextState = p_idle;
             end
-            
         endcase
     end
     
@@ -181,51 +196,39 @@ module ps_nrs_removal(
             p_idle:
             begin
                 if(~i_chdone)begin
-                    r_equalize<=0;
-                    r_demodEn <=0;
-                    r_counter<=4'b1111;
+                    r_c<=4'b0;               
+                    if(i_eqdone)begin
+                        r_oi <= i_real [r_c];
+                        r_oq <= i_imag [r_c];
+                    end
                 end
                 else begin
-                    r_equalize<=1'b1;
+                    r_c = 0;
+                    r_oi <= i_real [r_c];
+                    r_oq <= i_imag [r_c];                     
                 end
-            end
-            
-            p_equalize:
-            begin
-                r_equalize<=1'b0;
-                r_demodEn <=0;
-               
-            end
-            
-            p_eqdone:
-            begin           
-               r_real <= {i_eq12real[15],i_eq11real[15],i_eq10real[15],i_eq9real[15],i_eq8real[15],i_eq7real[15],
-                          i_eq6real[15],i_eq5real[15],i_eq4real[15],i_eq3real[15],i_eq2real[15],i_eq1real[15]};                
-                
-                r_imag <= {i_eq12img[15],i_eq11img[15],i_eq10img[15],i_eq9img[15],i_eq8img[15],i_eq7img[15],
-                          i_eq6img[15],i_eq5img[15],i_eq4img[15],i_eq3img[15],i_eq2img[15],i_eq1img[15]};                
-            
-                r_counter <= 4'b0000;
-                r_equalize<=1'b0;
-                r_demodEn <=1'b0;  
-            end 
-            
+            end       
             p_serialOut:
             begin
-                r_counter <= r_counter+1'b1;
-                r_oi <= r_real [r_counter];
-                r_oq <= r_imag [r_counter];  
-                r_demodEn <=1'b1;
-                if(r_counter == 11) r_equalize <= 1'b1;              
-            end
+                r_c<=r_c+1'b1;
+                r_oi <= i_real [r_c+1'b1];
+                r_oq <= i_imag [r_c+1'b1]; 
+            end      
+            
+            p_lastCol:
+            begin
+                r_c<=r_c+1'b1;
+                r_oi <= i_real [r_c+1'b1];
+                r_oq <= i_imag [r_c+1'b1];                 
+            end    
             
             default:
             begin
                 r_oi <=0;
                 r_oq <=0;
-                r_counter <= 4'b1111;
-                    r_demodEn <=0;
+                r_c<=15;
             end
         endcase
     end
+
 endmodule
