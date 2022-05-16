@@ -71,8 +71,6 @@ module first_memory (
     reg r_we;                             // Our (first_memory) write enable
           
     /*  Wires   */
-    //wire w_rowDone;
-    //wire w_colDone;
     wire w_val1;
     wire w_val2;
     wire w_val3;
@@ -85,8 +83,6 @@ module first_memory (
 
     
     /* Assignments  */
-    //assign w_rowDone = r_addr[3] & ~r_addr[2] & r_addr[1] &  r_addr[0];     // 12 COLdone (0to15)
-    //assign w_colDone = r_colC[3] & r_colC[2] &  r_colC[1] & ~r_colC[0];     // 14 [1to14]
     assign o_done    = r_oC[3] & r_oC[2] &  ~r_oC[1] & r_oC[0];                  //14 (13)
     assign o_we      = r_secWE;
     assign o_Col     = r_oC;
