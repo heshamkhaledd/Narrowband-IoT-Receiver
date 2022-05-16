@@ -4,12 +4,12 @@
 // Engineer: Mohamed Ammar
 // 
 // Create Date: 03/28/2022 11:09:16 PM
-// Design Name: i_equalizer
-// Module Name: i_equalizer
+// Design Name: equalizer
+// Module Name: equalizer
 // Project Name: NB-LTE Rx Rel.14
 // Target Devices: 
 // Tool Versions: 
-// Description: i_equalizer used to divide the received symbols by the channel estimate to reduce channel
+// Description: equalizer used to divide the received symbols by the channel estimate to reduce channel
 //              noise effect - dividers as implemented as complex multiplier which multiply by conjugate
 // Dependencies: 
 // 
@@ -22,7 +22,6 @@
 module equalizer(
     input i_clk,
     input i_rstn,
-    input i_equalize,
     // Channel estimation output
     input i_chdone,
     input[15:0] i_h1real,
@@ -76,31 +75,8 @@ module equalizer(
 	input[15:0] i_rx12img,
 	
     output[3:0] o_col,
-    // equalized Data
-    output reg[15:0] o_eq1real,
-	output reg[15:0] o_eq1img,
-	output reg[15:0] o_eq2real,
-	output reg[15:0] o_eq2img,
-	output reg[15:0] o_eq3real,
-	output reg[15:0] o_eq3img,
-	output reg[15:0] o_eq4real,
-	output reg[15:0] o_eq4img,
-	output reg[15:0] o_eq5real,
-	output reg[15:0] o_eq5img,
-	output reg[15:0] o_eq6real,
-	output reg[15:0] o_eq6img,
-	output reg[15:0] o_eq7real,
-	output reg[15:0] o_eq7img,
-	output reg[15:0] o_eq8real,
-	output reg[15:0] o_eq8img,
-	output reg[15:0] o_eq9real,
-	output reg[15:0] o_eq9img,
-	output reg[15:0] o_eq10real,
-	output reg[15:0] o_eq10img,
-	output reg[15:0] o_eq11real,
-	output reg[15:0] o_eq11img,
-	output reg[15:0] o_eq12real,
-	output reg[15:0] o_eq12img,
+	output reg [11:0] o_real,
+	output reg [11:0] o_imag,
 	output o_done
     );
     
@@ -167,6 +143,7 @@ module equalizer(
      
     /* Registers    */
     reg[3:0] r_count;    
+    reg[3:0] r_c;    
     reg r_done;
      
      /* Assignments  */
@@ -174,206 +151,55 @@ module equalizer(
     assign o_col = r_count;
     assign o_done = r_done; 
 
-    always@(posedge i_clk,negedge i_rstn)begin
-        if(~i_rstn)begin
-            r_done <=0;
-        end
-        else begin
-            if(i_chdone & i_equalize)begin
-                r_done<=1'b1;
-            end
-            else r_done<=0;
-        end
-    end
-
     /*  Control */
-    // Counter
+    // Counters
     always @(posedge i_clk,negedge i_rstn)
     begin
         if(~i_rstn)begin
             r_count <= 4'b0000;
         end
         else begin
-            if (r_count==14)begin       // Restart after 14 count for 14 OFDM symbol
-                r_count <=0;
+            if(~i_chdone) r_count <= 0;
+            if (r_count==13)begin       // Restart after 14 count for 14 OFDM symbol
+                r_count <=13;
             end
-            else if (i_equalize) r_count <= r_count+1'b1;
+            else if (r_c==11) r_count <= r_count+1'b1;
         end
+    end
+    
+        always @(posedge i_clk,negedge i_rstn)
+    begin
+        if(~i_rstn)begin
+            r_c <= 4'b0000;
+            r_done <=0;
+        end
+        else if(i_chdone) begin
+            if (r_c==11)begin       // Restart after 12 count for 12 QPSK symbol
+                r_c <=0;
+                r_done<=1'b1;
+            end
+            else begin
+                r_c <= r_c+1'b1;
+                r_done <= 0;
+            end
+        end
+        else r_c <= 0;
     end
     
     /*  Data Path   */
     always @(posedge i_clk,negedge i_rstn)begin
         if(~i_rstn)begin
-            o_eq1real  <= 0;
-            o_eq1img   <= 0;
-            o_eq2real  <= 0;
-            o_eq2img   <= 0;
-            o_eq3real  <= 0;
-            o_eq3img   <= 0;
-            o_eq4real  <= 0;
-            o_eq4img   <= 0;
-            o_eq5real  <= 0;
-            o_eq5img   <= 0;
-            o_eq6real  <= 0;
-            o_eq6img   <= 0;
-            o_eq7real  <= 0;
-            o_eq7img   <= 0;
-            o_eq8real  <= 0;
-            o_eq8img   <= 0;
-            o_eq9real  <= 0;
-            o_eq9img   <= 0;
-            o_eq10real <= 0;
-            o_eq10img  <= 0;
-            o_eq11real <= 0;
-            o_eq11img  <= 0;
-            o_eq12real <= 0;
-            o_eq12img  <= 0;            
+              o_real <=0;            
+              o_imag <=0;            
         end
         else begin 
-            if(i_equalize)begin
-                o_eq1real  <= w_eq1real;
-                o_eq1img   <= w_eq1img;
-                o_eq2real  <= w_eq2real;
-                o_eq2img   <= w_eq2img;
-                o_eq3real  <= w_eq3real;
-                o_eq3img   <= w_eq3img;
-                o_eq4real  <= w_eq4real;
-                o_eq4img   <= w_eq4img;
-                o_eq5real  <= w_eq5real;
-                o_eq5img   <= w_eq5img;
-                o_eq6real  <= w_eq6real;
-                o_eq6img   <= w_eq6img;
-                o_eq7real  <= w_eq7real;
-                o_eq7img   <= w_eq7img;
-                o_eq8real  <= w_eq8real;
-                o_eq8img   <= w_eq8img;
-                o_eq9real  <= w_eq9real;
-                o_eq9img   <= w_eq9img;
-                o_eq10real <= w_eq10real;
-                o_eq10img  <= w_eq10img;
-                o_eq11real <= w_eq11real;
-                o_eq11img  <= w_eq11img;
-                o_eq12real <= w_eq12real;
-                o_eq12img  <= w_eq12img;
+            if(r_c==11)begin
+	            o_real <= {w_eq12real[15],w_eq11real[15],w_eq10real[15],w_eq9real[15],w_eq8real[15],w_eq7real[15],
+	                       w_eq6real[15],w_eq5real[15],w_eq4real[15],w_eq3real[15],w_eq2real[15],w_eq1real[15]};   
+                o_imag <= {w_eq12img[15],w_eq11img[15],w_eq10img[15],w_eq9img[15],w_eq8img[15],w_eq7img[15],
+                           w_eq6img[15],w_eq5img[15],w_eq4img[15],w_eq3img[15],w_eq2img[15],w_eq1img[15]}; 	                           
             end
         end
     end
     
 endmodule
-
-//Testing modules, used for testbench only
-//module ResourceDeapperForEqTest (
-//    input i_rstn,
-//    input[3:0] o_col,
-//    output[15:0]rxReal1,
-//    output[15:0]rxImg1,
-//    output[15:0]rxReal2,
-//    output[15:0]rxImg2,
-//    output[15:0]rxReal3,
-//    output[15:0]rxImg3,
-//    output[15:0]rxReal4,
-//    output[15:0]rxImg4,
-//    output[15:0]rxReal5,
-//    output[15:0]rxImg5,
-//    output[15:0]rxReal6,
-//    output[15:0]rxImg6,
-//    output[15:0]rxReal7,
-//    output[15:0]rxImg7,
-//    output[15:0]rxReal8,
-//    output[15:0]rxImg8,
-//    output[15:0]rxReal9,
-//    output[15:0]rxImg9,
-//    output[15:0]rxReal10,
-//    output[15:0]rxImg10,
-//    output[15:0]rxReal11,
-//    output[15:0]rxImg11,
-//    output[15:0]rxReal12,
-//    output[15:0]rxImg12
-//	);
-
-//    reg [15:0] realMem [11:0][13:0];
-//    reg [15:0] imagMem [11:0][13:0];
-
-//        always @(negedge i_rstn)
-//    begin
-//      if (~i_rstn)
-//      begin
-//        realMem[0][0] <= 16'h0133;	//0
-//        realMem[1][0] <= 16'hef33;	//2
-//        realMem[2][0] <= 16'h1066;	//4
-//        realMem[3][0] <= 16'hfb47;	//6
-//        realMem[4][0] <= 16'h0103;    //0
-//        realMem[5][0] <= 16'h02e6;	//1
-//        realMem[6][0] <= 16'h2174;	//2
-//        realMem[7][0] <= 16'h0506;	//3
-//        realMem[8][0] <= 16'h06f5;	//0
-//        realMem[9][0] <= 16'hfee1;	//1
-//        realMem[10][0] <= 16'h00ac;	//2
-//        realMem[11][0] <= 16'h029b;	//3
-//        imagMem[0][0] <= 16'hfb33;	//0
-//        imagMem[1][0] <= 16'h02ae;	//2
-//        imagMem[2][0] <= 16'h18b2;	//4
-//        imagMem[3][0] <= 16'he9eb;	//6
-//        imagMem[4][0] <= 16'hf533;	//0
-//        imagMem[5][0] <= 16'he785;	//1
-//        imagMem[6][0] <= 16'hfecc;	//2
-//        imagMem[7][0] <= 16'hff23;	//3
-//        imagMem[8][0] <= 16'h0442;	//0
-//        imagMem[9][0] <= 16'h1099;	//1
-//        imagMem[10][0] <=16'hfd28;	//2
-//        imagMem[11][0] <=16'h0872;	//3
-
-//        realMem[0][1] <= 16'h0133;	//0
-//        realMem[1][1] <= 16'hef33;	//2
-//        realMem[2][1] <= 16'h0066;	//4
-//        realMem[3][1] <= 16'hfb47;	//6
-//        realMem[4][1] <= 16'h0103;    //0
-//        realMem[5][1] <= 16'h02e6;	//1
-//        realMem[6][1] <= 16'h2174;	//2
-//        realMem[7][1] <= 16'h0506;	//3
-//        realMem[8][1] <= 16'h06f5;	//0
-//        realMem[9][1] <= 16'hfee1;	//1
-//        realMem[10][1] <= 16'h00ac;	//2
-//        realMem[11][1] <= 16'h029b;	//3
-//        imagMem[0][1] <= 16'hfb33;	//0
-//        imagMem[1][1] <= 16'h02ae;	//2
-//        imagMem[2][1] <= 16'h00b2;	//4
-//        imagMem[3][1] <= 16'he9eb;	//6
-//        imagMem[4][1] <= 16'hf533;	//0
-//        imagMem[5][1] <= 16'he785;	//1
-//        imagMem[6][1] <= 16'hfecc;	//2
-//        imagMem[7][1] <= 16'hff23;	//3
-//        imagMem[8][1] <= 16'h0442;	//0
-//        imagMem[9][1] <= 16'h1099;	//1
-//        imagMem[10][1] <=16'hfd28;	//2
-//        imagMem[11][1] <=16'h0872;	//3
-//      end
-//    end
-
-//    assign rxReal1= realMem [0][o_col];
-//    assign rxImg1 = imagMem [0][o_col];
-//    assign rxReal2 = realMem [1][o_col];
-//    assign rxImg2 = imagMem [1][o_col];
-//    assign rxReal3= realMem [2][o_col];
-//    assign rxImg3 = imagMem [2][o_col];
-//    assign rxReal4 = realMem [3][o_col];
-//    assign rxImg4 = imagMem [3][o_col];
-//    assign rxReal5= realMem [4][o_col];
-//    assign rxImg5 = imagMem [4][o_col];
-//    assign rxReal6 = realMem [5][o_col];
-//    assign rxImg6 = imagMem [5][o_col];
-//    assign rxReal7= realMem [6][o_col];
-//    assign rxImg7 = imagMem [6][o_col];
-//    assign rxReal8 = realMem [7][o_col];
-//    assign rxImg8 = imagMem [7][o_col];
-//    assign rxReal9= realMem [8][o_col];
-//    assign rxImg9 = imagMem [8][o_col];
-//    assign rxReal10 = realMem [9][o_col];
-//    assign rxImg10 = imagMem [9][o_col];
-//    assign rxReal11= realMem [10][o_col];
-//    assign rxImg11 = imagMem [10][o_col];
-//    assign rxReal12 = realMem [11][o_col];
-//    assign rxImg12 = imagMem [11][o_col];
-
-
-//endmodule
