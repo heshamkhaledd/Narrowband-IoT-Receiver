@@ -186,33 +186,36 @@ module first_memory (
         end
     end
 
-               
+    /*
+    Mem1: 0, 8, 4, 2, 6, 1, 9, 13, 3, 11, 7, 15 -> Column Number
+          0, 1, 2, 3, 4, 5, 6, 7,  8, 9, 10, 11 -> Location in Memory_1
+    */           
     always @(posedge i_clk)
     begin
          if(r_secWE)begin
                 o_rmReal0  <= MEM1_REAL[0][r_oC];
-                o_rmReal1  <= MEM1_REAL[1][r_oC];
-                o_rmReal2  <= MEM1_REAL[2][r_oC];
-                o_rmReal3  <= MEM1_REAL[3][r_oC];
-                o_rmReal4  <= MEM1_REAL[4][r_oC];
-                o_rmReal5  <= MEM1_REAL[5][r_oC];
-                o_rmReal6  <= MEM1_REAL[6][r_oC];
-                o_rmReal7  <= MEM1_REAL[7][r_oC];
-                o_rmReal8  <= MEM1_REAL[8][r_oC];
+                o_rmReal1  <= MEM1_REAL[5][r_oC];
+                o_rmReal2  <= MEM1_REAL[3][r_oC];
+                o_rmReal3  <= MEM1_REAL[8][r_oC];
+                o_rmReal4  <= MEM1_REAL[2][r_oC];
+                o_rmReal5  <= MEM1_REAL[4][r_oC];
+                o_rmReal6  <= MEM1_REAL[10][r_oC];
+                o_rmReal7  <= MEM1_REAL[1][r_oC];
+                o_rmReal8  <= MEM1_REAL[6][r_oC];
                 o_rmReal9  <= MEM1_REAL[9][r_oC];
-                o_rmReal10 <= MEM1_REAL[10][r_oC];
+                o_rmReal10 <= MEM1_REAL[7][r_oC];
                 o_rmReal11 <= MEM1_REAL[11][r_oC];
                 o_rmImg0   <= MEM1_IMG[0][r_oC];
-                o_rmImg1   <= MEM1_IMG[1][r_oC];
-                o_rmImg2   <= MEM1_IMG[2][r_oC];
-                o_rmImg3   <= MEM1_IMG[3][r_oC];
-                o_rmImg4   <= MEM1_IMG[4][r_oC];
-                o_rmImg5   <= MEM1_IMG[5][r_oC];
-                o_rmImg6   <= MEM1_IMG[6][r_oC];
-                o_rmImg7   <= MEM1_IMG[7][r_oC]; 
-                o_rmImg8   <= MEM1_IMG[8][r_oC];
+                o_rmImg1   <= MEM1_IMG[5][r_oC];
+                o_rmImg2   <= MEM1_IMG[3][r_oC];
+                o_rmImg3   <= MEM1_IMG[8][r_oC];
+                o_rmImg4   <= MEM1_IMG[2][r_oC];
+                o_rmImg5   <= MEM1_IMG[4][r_oC];
+                o_rmImg6   <= MEM1_IMG[10][r_oC];
+                o_rmImg7   <= MEM1_IMG[1][r_oC]; 
+                o_rmImg8   <= MEM1_IMG[6][r_oC];
                 o_rmImg9   <= MEM1_IMG[9][r_oC];
-                o_rmImg10  <= MEM1_IMG[10][r_oC];
+                o_rmImg10  <= MEM1_IMG[7][r_oC];
                 o_rmImg11  <= MEM1_IMG[11][r_oC]; 
             end
     end  
