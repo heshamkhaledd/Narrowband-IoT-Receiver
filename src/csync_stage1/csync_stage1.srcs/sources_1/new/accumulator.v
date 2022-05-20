@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module window_accumulator#(parameter DATA_WIDTH = 16)
+module accumulator#(parameter DATA_WIDTH = 16)
 (
     input i_clk,
     input i_rstn,
@@ -38,24 +38,6 @@ reg [DATA_WIDTH-1:0] r_Intermediate_I;
 reg [DATA_WIDTH-1:0] r_Intermediate_Q;
 reg [DATA_WIDTH-1:0] r_Intermediate_I_Est; 
 reg [DATA_WIDTH-1:0] r_Intermediate_Q_Est;
-
-always@(*)
-begin
-    if (i_outEnable)
-        begin
-            r_outI_Est = r_Intermediate_I;
-            r_outQ_Est = r_Intermediate_Q;
-            r_Intermediate_I_Est = i_I;
-            r_Intermediate_Q_Est = i_Q;
-        end
-    else
-        begin
-            r_outI_Est = 16'd0;
-            r_outQ_Est = 16'd0;
-            r_Intermediate_I_Est = r_Intermediate_I + i_I;
-            r_Intermediate_Q_Est = r_Intermediate_Q + i_Q;
-        end
-end
 
 always@(posedge i_clk, negedge i_rstn)
 begin
@@ -79,6 +61,25 @@ begin
                     o_I <= r_outI_Est;
                     o_Q <= r_outQ_Est;
                 end
+            else;
+        end
+end
+
+always@(*)
+begin
+    if (i_outEnable)
+        begin
+            r_outI_Est = r_Intermediate_I;
+            r_outQ_Est = r_Intermediate_Q;
+            r_Intermediate_I_Est = i_I;
+            r_Intermediate_Q_Est = i_Q;
+        end
+    else
+        begin
+            r_outI_Est = 16'd0;
+            r_outQ_Est = 16'd0;
+            r_Intermediate_I_Est = r_Intermediate_I + i_I;
+            r_Intermediate_Q_Est = r_Intermediate_Q + i_Q;
         end
 end
 endmodule

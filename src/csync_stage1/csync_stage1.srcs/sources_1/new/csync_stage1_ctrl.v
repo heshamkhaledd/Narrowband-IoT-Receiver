@@ -25,35 +25,35 @@ module csync_stage1_ctrl#(parameter DATA_WIDTH = 16, parameter REG_BANK_ADDR = 8
     input i_clk,
     input i_rstn,
     input i_rxEn,
-    output reg o_codeCoverNeg,
-    output  o_2SampleAccEN,
-    output  o_windowAcclEn,
-    //output reg reducedMetricEn,
-    output reg [REG_BANK_ADDR-1:0] o_regBankAddr
+    output reg o_negMul,
+    output reg [REG_BANK_ADDR-1:0] o_regBankAddr,
+    output o_twoSampleEn,
+    output o_windowEn,
+    output o_windowOut,
+    output o_metricEn
     //output reg [SHARED_MEM_ADDR-1:0] windowkAddr,
     //output reg [SHARED_MEM_ADDR-1:0] metricAddr
 );
     
-//// FSM States
-//localparam p_rstnState     = 4'b0001;
-//localparam p_symbolState   = 4'b0010;
-//localparam p_windowState   = 4'b0100;
-//localparam p_metricState   = 4'b1000;
- 
-//reg [3:0] r_currentState;
-//reg [3:0] r_nextState;
 reg [REG_BANK_ADDR-1:0] r_sampleCounter;
 reg [REG_BANK_ADDR-1:0] r_sampleEst;
 reg [3:0] r_symbolCounter;
 reg [3:0] r_symbolEst;
-
+reg [10:0] r_windowCounter;
+reg [10:0] r_windowCounterEst;
 
 reg r_2SampleAccEN;
-reg [1:0] r_2SampleAccEN_Flag;
-reg [1:0] r_windowAccEN_Flag;
+reg [1:0] r_twoSampleEn;
+reg [1:0] r_windowEn;
+reg r_windowOut;
+reg [1:0] r_metricEn;
+reg [1:0] r_metricEnEst;
 
-assign o_2SampleAccEN = r_2SampleAccEN_Flag[0];
-assign o_windowAcclEn = r_windowAccEN_Flag[0];
+assign o_twoSampleEn = r_twoSampleEn[0];
+assign o_windowEn = r_windowEn[0];
+assign o_windowOut = r_windowOut;
+assign o_metricEn = r_metricEn[0];
+
 
 // Sequential Always Block for Reset and Counters Increments
 always @(posedge i_clk, negedge i_rstn)
@@ -62,12 +62,15 @@ begin
         begin
             r_sampleCounter <= 8'd0;
             r_symbolCounter <= 4'd0;
-            
+            r_windowCounter <= 11'd0;
+            r_metricEn <= 2'b00;
         end
     else if (i_rxEn)
         begin
             r_sampleCounter <= r_sampleEst;
             r_symbolCounter <= r_symbolEst;
+            r_windowCounter <= r_windowCounterEst;
+            r_metricEn <= r_metricEnEst;
         end
     else;
 end
@@ -108,41 +111,85 @@ end
 always@(*)
 begin
     if(r_symbolCounter == 4'd7 || r_symbolCounter == 4'd8 || r_symbolCounter == 4'd12)
-        o_codeCoverNeg = 1'b1;
+        o_negMul = 1'b1;
     else
-        o_codeCoverNeg = 1'b0;
+        o_negMul = 1'b0;
 end
 
 // Combinational Always Block to evaluate the sample accumulator enable signal start
 always@(*)
 begin
-    if (r_sampleCounter == 8'd136)
+    if(i_rstn)
         begin
-            r_2SampleAccEN_Flag = 2'b01;
+            r_twoSampleEn = 2'b00;
+        end
+    else if (r_sampleCounter == 8'd136)
+        begin
+            r_twoSampleEn = 2'b01;
         end
     else
         begin
-            if(r_2SampleAccEN_Flag[0] == 1'b1)
-                r_2SampleAccEN_Flag = 2'b11;
+            if(r_twoSampleEn[0] == 1'b1)
+                r_twoSampleEn = 2'b11;
             else
-                r_2SampleAccEN_Flag = 2'b10;
+                r_twoSampleEn = 2'b10;
         end
 end
 
 // Combinational Always Block to evaluate the window accumulator enable signal start
 always@(*)
 begin
-    if (r_symbolCounter == 4'd1)
+    if(i_rstn)
         begin
-            r_windowAccEN_Flag = 2'b01;
+            r_windowEn = 2'b00;
+        end
+    else if (r_symbolCounter == 4'd1)
+        begin
+            r_windowEn = 2'b01;
         end
     else
         begin
-            if(r_windowAccEN_Flag[0] == 1'b1)
-                r_windowAccEN_Flag = 2'b11;
+            if(r_windowEn[0] == 1'b1)
+                r_windowEn = 2'b11;
             else
-                r_windowAccEN_Flag = 2'b10;
+                r_windowEn = 2'b10;
         end
 end
 
+// Combinational Always Block to evaluate Window Accumulator Output Enable
+always@(*)
+begin
+    if(r_windowEn[0] == 1'b1)
+        begin
+            if(r_windowCounter == 11'd1507)
+                begin
+                    r_windowCounterEst = 11'd0;
+                    r_windowOut = 1'b1;
+                end
+            else
+                begin
+                    r_windowCounterEst = r_windowCounter + 1;
+                    r_windowOut = 1'b0;
+                end
+        end
+    else
+        begin
+            r_windowCounterEst = 11'd0;
+            r_windowOut = 1'b0;
+        end
+end
+
+// Combinational Always Block to evaluate Reduced Metric Accumulator Enable
+always@(*)
+begin
+    if(r_windowOut == 1'b1)
+        r_metricEnEst = 2'b01;
+    else
+        begin
+            if(r_metricEn == 2'b01)
+                r_metricEnEst = 2'b11;
+            else
+                r_metricEnEst = 2'b10;
+        end
+end
 endmodule

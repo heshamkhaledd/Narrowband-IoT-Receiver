@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 05/13/2022 12:07:06 AM
+// Create Date: 05/20/2022 08:09:37 PM
 // Design Name: 
-// Module Name: sample_codecover_mul
+// Module Name: acquisition_checker
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,26 +20,22 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module sample_codecover_mul#(parameter DATA_WIDTH = 16)
+module acquisition_checker #(parameter DATA_WIDTH = 16)
 (
     input [DATA_WIDTH-1:0] i_I,
     input [DATA_WIDTH-1:0] i_Q,
-    input i_negMul,
-    output reg [DATA_WIDTH-1:0] o_I,
-    output reg [DATA_WIDTH-1:0] o_Q
+    output reg o_peakFound        
 );
-
+reg [32:0] r_metricPeak;
+reg [31:0] r_realSquared;
+reg [31:0] r_imagSquared;
 always@(*)
 begin
-    if(i_negMul == 1'b1)
-        begin
-            o_I = ~i_I + 1'b1;
-            o_Q = ~i_Q + 1'b1;
-        end
+    r_realSquared = i_I*i_I;
+    r_imagSquared = i_Q*i_Q;
+    if(r_realSquared + r_imagSquared >= 33'd8589934591)
+        o_peakFound = 1'b1;
     else
-        begin
-            o_I = i_I;
-            o_Q = i_Q;
-        end
+        o_peakFound = 1'b0;
 end
 endmodule
