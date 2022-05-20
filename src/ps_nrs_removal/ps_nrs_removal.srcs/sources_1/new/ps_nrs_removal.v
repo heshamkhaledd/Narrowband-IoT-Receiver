@@ -73,7 +73,7 @@ module ps_nrs_removal(
     always @(posedge i_clk, negedge i_rstn)begin
         if(~i_rstn) r_demodEn <=0;
         else begin
-            if (r_lastCol)r_demodEn<=1'b1;
+            if (r_lastcol)r_demodEn<=1'b1;
             else if(~i_chdone) r_demodEn<=1'b0;
             if (i_eqdone) r_demodEn<=1'b1;
         end
@@ -106,7 +106,7 @@ module ps_nrs_removal(
     ////////////////////////////////////////////////////////////////////////////////
     // NRS removing     
     always@(posedge i_clk)begin
-    case (r_lastCol)
+    case (r_lastcol)
         1'b0: begin       
             case(i_eqcol)
                 4'b0110:

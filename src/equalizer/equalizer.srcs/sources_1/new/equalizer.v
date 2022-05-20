@@ -142,13 +142,13 @@ module equalizer(
     cmplx_mul_eq  Mul12 (.i_ar(i_rx12real),.i_ai(i_rx12img),.i_br(i_h12real),.i_bi(i_h12img),.o_yr(w_eq12real),.o_yi(w_eq12img));    
      
     /* Registers    */
-    reg[3:0] r_count;    
+    reg[3:0] r_count;
     reg[3:0] r_c;    
     reg r_done;
      
      /* Assignments  */
     // Control Signals
-    assign o_col = r_count;
+    assign o_col = (r_count == 14)? 0:r_count;
     assign o_done = r_done; 
 
     /*  Control */
@@ -160,8 +160,8 @@ module equalizer(
         end
         else begin
             if(~i_chdone) r_count <= 0;
-            if (r_count==13)begin       // Restart after 14 count for 14 OFDM symbol
-                r_count <=13;
+            if (r_count==14)begin       // Restart after 14 count for 14 OFDM symbol
+                r_count <=0;
             end
             else if (r_c==11) r_count <= r_count+1'b1;
         end
