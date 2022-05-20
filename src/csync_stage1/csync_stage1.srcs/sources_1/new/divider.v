@@ -35,7 +35,7 @@ module divider#(parameter DATA_WIDTH=16)(
     
     wire opSelect;
     wire [DATA_WIDTH-1:0]add;
-    
+    wire [14:0] w_coarseTimingOut;
     
     
     assign opSelect=~r_remainder[DATA_WIDTH-2];

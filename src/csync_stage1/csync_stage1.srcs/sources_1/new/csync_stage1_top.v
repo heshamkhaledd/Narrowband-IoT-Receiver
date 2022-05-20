@@ -28,7 +28,7 @@ module csync_stage1_top#(parameter DATA_WIDTH = 16, parameter FFO_WIDTH = 19, pa
     input  [DATA_WIDTH-1:0] i_I,
     input  [DATA_WIDTH-1:0] i_Q,
     output [FFO_WIDTH-1:0] o_FFO,
-    output reg [TIMING_WIDTH-1:0] coarseTiming
+    output [TIMING_WIDTH-1:0] coarseTimingOut
 );
 
 // Code Cover Unit Wires
@@ -194,8 +194,8 @@ u_ARCTAN
          .enable(w_peakFound),
          .acc_real(w_RAM_Din_B[15:0]),
          .acc_imag(w_RAM_Din_B[31:16]),
-         //.coarseTiming(w_RAM_Add_B),
-         .rfo(o_FFO)
-         //.coarseTimingOut(coarseTiming)
+         .coarseTiming(w_RAM_Add_B),
+         .rfo(o_FFO),
+         .coarseTimingOut(coarseTimingOut)
         );
 endmodule

@@ -30,7 +30,7 @@ module arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
     input [DATA_WIDTH-1:0] acc_real,
     input [DATA_WIDTH-1:0] acc_imag,
     output[DATA_WIDTH+2:0] rfo,
-    output [14:0] coarseTimingOut
+    output reg [14:0] coarseTimingOut
     );
     
     reg [1:0] current_state,next_state;
@@ -58,7 +58,7 @@ module arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
     reg [DATA_WIDTH+2:0] value2;
     
     reg r_init;
-   
+    
     
     assign w_signx = acc_real[DATA_WIDTH-1];
     assign w_signy = acc_imag[DATA_WIDTH-1];
@@ -87,7 +87,7 @@ module arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
                               .numOut(w_theta_final)
     );
     
-    divider #(16) u_fine_sync_nrdivider( .clk(clk),
+    divider #(16) u_divider( .clk(clk),
                           .reset(reset),  
                           .enable(enable),
                           .init(r_init),
@@ -157,12 +157,14 @@ module arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
         r_signx <= 1'b0;
         r_signy <= 1'b0;
         r_complementEn <= 1'b0;
+        coarseTimingOut <= 15'd0;
     end
     else if (r_init)
     begin
         r_signx <= w_signx;
         r_signy <= w_signy;
         r_complementEn <= w_complementEn;
+        coarseTimingOut <= (coarseTiming*16)-8;
     end
     end
     
