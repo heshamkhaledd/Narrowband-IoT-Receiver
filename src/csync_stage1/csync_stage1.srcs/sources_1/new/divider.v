@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module fine_sync_nrdivider#(parameter DATA_WIDTH=16)(
+module divider#(parameter DATA_WIDTH=16)(
     input clk,
     input reset,
     input enable,

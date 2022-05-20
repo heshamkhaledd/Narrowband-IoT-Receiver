@@ -20,15 +20,17 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module fine_sync_arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
-                                                  INIT      = 2'b01,     //init
-                                                  DIVISION  = 2'b10)(    //dividing
+module arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
+                                        INIT      = 2'b01,     //init
+                                        DIVISION  = 2'b10)(    //dividing
     input clk,
     input reset,
     input enable,
+    input [11:0] coarseTiming,
     input [DATA_WIDTH-1:0] acc_real,
     input [DATA_WIDTH-1:0] acc_imag,
-    output[DATA_WIDTH+2:0] rfo
+    output[DATA_WIDTH+2:0] rfo,
+    output [14:0] coarseTimingOut
     );
     
     reg [1:0] current_state,next_state;
@@ -85,7 +87,7 @@ module fine_sync_arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
                               .numOut(w_theta_final)
     );
     
-    fine_sync_nrdivider #(16) u_fine_sync_nrdivider( .clk(clk),
+    divider #(16) u_fine_sync_nrdivider( .clk(clk),
                           .reset(reset),  
                           .enable(enable),
                           .init(r_init),

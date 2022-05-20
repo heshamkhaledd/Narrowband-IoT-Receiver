@@ -40,6 +40,8 @@ begin
         begin
             o_Yr <= 16'd0;
             o_Yi <= 16'd0;
+            o_Yr_RAM <= 16'd0;
+            o_Yi_RAM <= 16'd0;
         end
     else if(i_en)
         begin

@@ -20,15 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module csync_stage1_top#(parameter DATA_WIDTH = 16)
+module csync_stage1_top#(parameter DATA_WIDTH = 16, parameter FFO_WIDTH = 19, parameter TIMING_WIDTH = 15)
 (
-    input i_clk,
-    input i_rstn,
-    input i_rxEn,
-    input [DATA_WIDTH-1:0] i_I,
-    input [DATA_WIDTH-1:0] i_Q,
-    output  [DATA_WIDTH-1:0] o_I,
-    output  [DATA_WIDTH-1:0] o_Q
+    input  i_clk,
+    input  i_rstn,
+    input  i_rxEn,
+    input  [DATA_WIDTH-1:0] i_I,
+    input  [DATA_WIDTH-1:0] i_Q,
+    output [FFO_WIDTH-1:0] o_FFO,
+    output reg [TIMING_WIDTH-1:0] coarseTiming
 );
 
 // Code Cover Unit Wires
@@ -53,6 +53,7 @@ wire [DATA_WIDTH-1:0] w_windowOut_I;
 wire [DATA_WIDTH-1:0] w_windowOut_Q;
 // Reduced Metric Accumulator Wires
 wire w_metricEn;
+wire w_metricOut;
 wire [DATA_WIDTH-1:0] w_metricOut_I;
 wire [DATA_WIDTH-1:0] w_metricOut_Q;
 // Acquisition Checker Wires
@@ -69,7 +70,7 @@ wire [11:0] w_RAM_Add_B;
 wire [31:0] w_RAM_Dout_B;
 wire w_writeEN_B;
 
-csync_stage1_ctrl #(.DATA_WIDTH(DATA_WIDTH),.REG_BANK_ADDR(8),.SHARED_MEM_ADDR(11))
+csync_stage1_ctrl #(.DATA_WIDTH(DATA_WIDTH),.REG_BANK_ADDR(8),.DUAL_PORT_ADDR(12))
 u_CSYNC_CTRL
             (.i_clk(i_clk),
              .i_rstn(i_rstn),
@@ -79,7 +80,12 @@ u_CSYNC_CTRL
              .o_twoSampleEn(w_sampleAccEN),
              .o_windowEn(w_windowAccEN),
              .o_windowOut(w_windowOutEN),
-             .o_metricEn(w_metricEn)
+             .o_metricEn(w_metricEn),
+             .o_metricOut(w_metricOut),
+             .o_windowAddr(w_RAM_Add_A),
+             .o_metricAddr(w_RAM_Add_B),
+             .o_WEA(w_writeEN_A),
+             .o_WEB(w_writeEN_B)
             );
 
 symbol_regfile #(.DATA_WIDTH (16), .REG_BANK_ADDR(8),.REG_BANK_LENGTH(137))
@@ -157,7 +163,7 @@ u_REDUCED_METRIC_ACCUMULATOR
             (.i_clk(i_clk),
              .i_rstn(i_rstn),
              .i_en(w_metricEn),
-             .i_outEnable(w_windowOutEN),
+             .i_outEnable(w_metricOut),
              .i_I(w_windowOut_I),
              .i_Q(w_windowOut_Q),
              .o_I(w_metricOut_I),
@@ -180,4 +186,16 @@ u_ACQUISITION_CHECKER
          .i_Q(w_RAM_Din_B[31:16]),
          .o_peakFound(w_peakFound)
          );
+
+arctan #(.DATA_WIDTH(DATA_WIDTH), .IDLE(2'b00),.INIT(2'b01), .DIVISION(2'b10))
+u_ARCTAN
+        (.clk(i_clk),
+         .reset(i_rstn),
+         .enable(w_peakFound),
+         .acc_real(w_RAM_Din_B[15:0]),
+         .acc_imag(w_RAM_Din_B[31:16]),
+         //.coarseTiming(w_RAM_Add_B),
+         .rfo(o_FFO)
+         //.coarseTimingOut(coarseTiming)
+        );
 endmodule
