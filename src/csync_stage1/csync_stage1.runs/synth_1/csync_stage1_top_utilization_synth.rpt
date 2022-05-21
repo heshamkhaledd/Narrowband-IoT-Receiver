@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-| Date         : Sat May 21 01:36:23 2022
+| Date         : Sat May 21 18:17:21 2022
 | Host         : Jarvis running 64-bit major release  (build 9200)
 | Command      : report_utilization -file csync_stage1_top_utilization_synth.rpt -pb csync_stage1_top_utilization_synth.pb
 | Design       : csync_stage1_top
@@ -31,13 +31,13 @@ Table of Contents
 +----------------------------+------+-------+-----------+-------+
 |          Site Type         | Used | Fixed | Available | Util% |
 +----------------------------+------+-------+-----------+-------+
-| CLB LUTs*                  |  602 |     0 |    230400 |  0.26 |
-|   LUT as Logic             |  506 |     0 |    230400 |  0.22 |
+| CLB LUTs*                  |  595 |     0 |    230400 |  0.26 |
+|   LUT as Logic             |  499 |     0 |    230400 |  0.22 |
 |   LUT as Memory            |   96 |     0 |    101760 |  0.09 |
 |     LUT as Distributed RAM |   96 |     0 |           |       |
 |     LUT as Shift Register  |    0 |     0 |           |       |
-| CLB Registers              |  376 |     0 |    460800 |  0.08 |
-|   Register as Flip Flop    |  376 |     0 |    460800 |  0.08 |
+| CLB Registers              |  379 |     0 |    460800 |  0.08 |
+|   Register as Flip Flop    |  379 |     0 |    460800 |  0.08 |
 |   Register as Latch        |    0 |     0 |    460800 |  0.00 |
 | CARRY8                     |   36 |     0 |     28800 |  0.13 |
 | F7 Muxes                   |   32 |     0 |    115200 |  0.03 |
@@ -60,7 +60,7 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 16    |          Yes |           - |          Set |
-| 360   |          Yes |           - |        Reset |
+| 363   |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 0     |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -158,12 +158,12 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDCE     |  360 |            Register |
-| LUT3     |  166 |                 CLB |
+| FDCE     |  363 |            Register |
+| LUT3     |  167 |                 CLB |
 | LUT2     |  159 |                 CLB |
-| LUT6     |  102 |                 CLB |
-| LUT5     |   71 |                 CLB |
-| LUT4     |   67 |                 CLB |
+| LUT6     |   98 |                 CLB |
+| LUT5     |   72 |                 CLB |
+| LUT4     |   65 |                 CLB |
 | RAMS64E  |   64 |                 CLB |
 | CARRY8   |   36 |                 CLB |
 | INBUF    |   35 |                 I/O |

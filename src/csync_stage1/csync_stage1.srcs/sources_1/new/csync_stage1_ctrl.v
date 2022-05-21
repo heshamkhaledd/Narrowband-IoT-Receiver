@@ -56,8 +56,11 @@ reg [10:0] r_windowCounterEst;
 reg [3:0] r_16windowCounter;
 reg [3:0] r_16windowCounterEst;
 reg [1:0] r_twoSampleEn;
+reg [1:0] r_twoSampleEnEst;
 reg [1:0] r_windowEn;
+reg [1:0] r_windowEnEst;
 reg [1:0] r_windowOut;
+reg [1:0] r_windowOutEst;
 reg [1:0] r_metricEn;
 reg [1:0] r_metricEnEst;
 reg [1:0] r_metricOut;
@@ -90,6 +93,9 @@ begin
             r_symbolCounter <= 4'd0;
             r_windowCounter <= 11'd2047;
             r_metricEn <= 2'b00;
+            r_twoSampleEn <= 2'b00;
+            r_windowEn <= 2'b00;
+            r_windowOut <= 2'b00;
             r_16windowCounter <= 4'd15;
             r_metricOut <= 2'b00;
             r_windowAddr <= 11'd0;
@@ -106,6 +112,9 @@ begin
             r_symbolCounter <= r_symbolEst;
             r_windowCounter <= r_windowCounterEst;
             r_metricEn <= r_metricEnEst;
+            r_windowEn <= r_windowEnEst;
+            r_windowOut <= r_windowOutEst;
+            r_twoSampleEn <= r_twoSampleEnEst;
             r_16windowCounter <= r_16windowCounterEst;
             r_metricOut <= r_metricOutEst;
             r_windowAddr <= r_windowAddrEst;
@@ -171,40 +180,32 @@ end
 // Combinational Always Block to evaluate the sample accumulator enable signal start
 always@(*)
 begin
-    if(i_rstn)
+    if (r_sampleCounter == 8'd136)
         begin
-            r_twoSampleEn = 2'b00;
-        end
-    else if (r_sampleCounter == 8'd136)
-        begin
-            r_twoSampleEn = 2'b01;
+            r_twoSampleEnEst = 2'b01;
         end
     else
         begin
             if(r_twoSampleEn[0] == 1'b1)
-                r_twoSampleEn = 2'b11;
+                r_twoSampleEnEst = 2'b11;
             else
-                r_twoSampleEn = 2'b10;
+                r_twoSampleEnEst = 2'b10;
         end
 end
 
 // Combinational Always Block to evaluate the Window Accumulator enable signal start
 always@(*)
 begin
-    if(i_rstn)
+    if (r_symbolCounter == 4'd1)
         begin
-            r_windowEn = 2'b00;
-        end
-    else if (r_symbolCounter == 4'd1)
-        begin
-            r_windowEn = 2'b01;
+            r_windowEnEst = 2'b01;
         end
     else
         begin
             if(r_windowEn[0] == 1'b1)
-                r_windowEn = 2'b11;
+                r_windowEnEst = 2'b11;
             else
-                r_windowEn = 2'b10;
+                r_windowEnEst = 2'b10;
         end
 end
 
@@ -216,22 +217,22 @@ begin
             if(r_windowCounter == 11'd1507)
                 begin
                     r_windowCounterEst = 11'd0;
-                    r_windowOut = 2'b01;
+                    r_windowOutEst = 2'b01;
                     
                 end
             else
                 begin
                     r_windowCounterEst = r_windowCounter + 1;
                     if(r_windowOut[0] == 1'b1)
-                        r_windowOut = 2'b11;
+                        r_windowOutEst = 2'b11;
                     else
-                        r_windowOut = 2'b10;
+                        r_windowOutEst = 2'b10;
                 end
         end
     else
         begin
             r_windowCounterEst = 11'd0;
-            r_windowOut = 1'b0;
+            r_windowOutEst = 1'b0;
         end
 end
 

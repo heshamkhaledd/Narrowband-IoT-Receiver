@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xczu7ev-ffvc1156-2-e" LaunchTime="1653089656">
+<GenRun Id="synth_1" LaunchPart="xczu7ev-ffvc1156-2-e" LaunchTime="1653149708">
   <File Type="PA-TCL" Name="csync_stage1_top.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="csync_stage1_top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="csync_stage1_top_reports.tcl"/>
