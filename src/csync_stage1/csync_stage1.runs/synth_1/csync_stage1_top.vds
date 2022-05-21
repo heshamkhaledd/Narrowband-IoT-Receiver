@@ -1,0 +1,590 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Sat May 21 18:15:13 2022
+# Process ID: 19368
+# Current directory: D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.runs/synth_1
+# Command line: vivado.exe -log csync_stage1_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source csync_stage1_top.tcl
+# Log file: D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.runs/synth_1/csync_stage1_top.vds
+# Journal file: D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.runs/synth_1\vivado.jou
+#-----------------------------------------------------------
+source csync_stage1_top.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.
+Command: synth_design -top csync_stage1_top -part xczu7ev-ffvc1156-2-e
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu7ev'
+INFO: [Device 21-403] Loading part xczu7ev-ffvc1156-2-e
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 10680 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1471.887 ; gain = 3.105
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'csync_stage1_top' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/csync_stage1_top.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter FFO_WIDTH bound to: 19 - type: integer 
+	Parameter TIMING_WIDTH bound to: 15 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'csync_stage1_ctrl' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/csync_stage1_ctrl.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter REG_BANK_ADDR bound to: 8 - type: integer 
+	Parameter DUAL_PORT_ADDR bound to: 12 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'csync_stage1_ctrl' (1#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/csync_stage1_ctrl.v:23]
+INFO: [Synth 8-6157] synthesizing module 'symbol_regfile' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/symbol_regfile.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter REG_BANK_ADDR bound to: 8 - type: integer 
+	Parameter REG_BANK_LENGTH bound to: 137 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'symbol_regfile' (2#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/symbol_regfile.v:23]
+INFO: [Synth 8-6157] synthesizing module 'sample_codecover_mul' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/sample_codecover_mul.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sample_codecover_mul' (3#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/sample_codecover_mul.v:23]
+INFO: [Synth 8-6157] synthesizing module 'cmplx_mul' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/cmplx_mul.v:20]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'cmplx_mul' (4#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/cmplx_mul.v:20]
+INFO: [Synth 8-6157] synthesizing module 'two_samples_accumulator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/two_samples_accumulator.v:22]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'two_samples_accumulator' (5#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/two_samples_accumulator.v:22]
+INFO: [Synth 8-6157] synthesizing module 'accumulator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/accumulator.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'accumulator' (6#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/accumulator.v:23]
+INFO: [Synth 8-6157] synthesizing module 'dual_port_ram_wrapper' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/bd/dual_port_ram/hdl/dual_port_ram_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'dual_port_ram' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/bd/dual_port_ram/synth/dual_port_ram.v:13]
+INFO: [Synth 8-6157] synthesizing module 'dual_port_ram_blk_mem_gen_0_0' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.runs/synth_1/.Xil/Vivado-19368-Jarvis/realtime/dual_port_ram_blk_mem_gen_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'dual_port_ram_blk_mem_gen_0_0' (7#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.runs/synth_1/.Xil/Vivado-19368-Jarvis/realtime/dual_port_ram_blk_mem_gen_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'dual_port_ram' (8#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/bd/dual_port_ram/synth/dual_port_ram.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'dual_port_ram_wrapper' (9#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/bd/dual_port_ram/hdl/dual_port_ram_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'metric_filter' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/metric_filter.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'metric_filter' (10#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/metric_filter.v:23]
+INFO: [Synth 8-6157] synthesizing module 'acquisition_checker' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/acquisition_checker.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'acquisition_checker' (11#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/acquisition_checker.v:23]
+INFO: [Synth 8-6157] synthesizing module 'arctan' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/arctan.v:23]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter IDLE bound to: 2'b00 
+	Parameter INIT bound to: 2'b01 
+	Parameter DIVISION bound to: 2'b10 
+INFO: [Synth 8-6157] synthesizing module 'fixed_add' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:4]
+	Parameter DATA_WIDTH bound to: 18 - type: integer 
+	Parameter INT_BITS bound to: 6 - type: integer 
+	Parameter FRAC_BITS bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fixed_add' (12#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:4]
+INFO: [Synth 8-6157] synthesizing module 'fixed_add__parameterized0' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:4]
+	Parameter DATA_WIDTH bound to: 19 - type: integer 
+	Parameter INT_BITS bound to: 6 - type: integer 
+	Parameter FRAC_BITS bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fixed_add__parameterized0' (12#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:4]
+INFO: [Synth 8-6157] synthesizing module 'divider' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/divider.v:22]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'fixed_add__parameterized1' [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:4]
+	Parameter DATA_WIDTH bound to: 16 - type: integer 
+	Parameter INT_BITS bound to: 6 - type: integer 
+	Parameter FRAC_BITS bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'fixed_add__parameterized1' (12#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'divider' (13#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/divider.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'arctan' (14#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/arctan.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'csync_stage1_top' (15#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/csync_stage1_top.v:23]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1536.285 ; gain = 67.504
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1542.488 ; gain = 73.707
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1542.488 ; gain = 73.707
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [d:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/bd/dual_port_ram/ip/dual_port_ram_blk_mem_gen_0_0/dual_port_ram_blk_mem_gen_0_0/dual_port_ram_blk_mem_gen_0_0_in_context.xdc] for cell 'u_DUAL_PORT_RAM/dual_port_ram_i/blk_mem_gen_0'
+Finished Parsing XDC File [d:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/bd/dual_port_ram/ip/dual_port_ram_blk_mem_gen_0_0/dual_port_ram_blk_mem_gen_0_0/dual_port_ram_blk_mem_gen_0_0_in_context.xdc] for cell 'u_DUAL_PORT_RAM/dual_port_ram_i/blk_mem_gen_0'
+Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/constrs_1/new/const.xdc]
+create_clock: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1679.562 ; gain = 7.000
+Finished Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/constrs_1/new/const.xdc]
+Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1679.562 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.087 . Memory (MB): peak = 1679.562 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1679.562 ; gain = 210.781
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xczu7ev-ffvc1156-2-e
+INFO: [Synth 8-6742] Reading net delay rules and data
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1679.562 ; gain = 210.781
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for u_DUAL_PORT_RAM/dual_port_ram_i. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for u_DUAL_PORT_RAM/dual_port_ram_i/blk_mem_gen_0. (constraint file  auto generated constraint, line ).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1679.562 ; gain = 210.781
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'r_metricEn_reg' in module 'csync_stage1_ctrl'
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:21]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:21]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.srcs/sources_1/new/fixed_add.v:21]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1679.562 ; gain = 210.781
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     19 Bit       Adders := 1     
+	   3 Input     18 Bit       Adders := 3     
+	   2 Input     18 Bit       Adders := 3     
+	   2 Input     16 Bit       Adders := 13    
+	   3 Input     16 Bit       Adders := 6     
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 2     
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               19 Bit    Registers := 2     
+	               18 Bit    Registers := 1     
+	               16 Bit    Registers := 15    
+	               15 Bit    Registers := 1     
+	               12 Bit    Registers := 3     
+	               11 Bit    Registers := 2     
+	                8 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
+	                2 Bit    Registers := 7     
+	                1 Bit    Registers := 6     
++---Muxes : 
+	   2 Input     19 Bit        Muxes := 7     
+	   2 Input     18 Bit        Muxes := 5     
+	   2 Input     16 Bit        Muxes := 16    
+	   2 Input     12 Bit        Muxes := 1     
+	   2 Input     11 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 10    
+	   5 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+	   4 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module csync_stage1_ctrl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     12 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 2     
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      4 Bit       Adders := 2     
++---Registers : 
+	               12 Bit    Registers := 3     
+	               11 Bit    Registers := 2     
+	                8 Bit    Registers := 2     
+	                4 Bit    Registers := 2     
+	                2 Bit    Registers := 6     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input     12 Bit        Muxes := 1     
+	   2 Input     11 Bit        Muxes := 2     
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 10    
+	   2 Input      1 Bit        Muxes := 1     
+Module sample_codecover_mul 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 2     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 2     
+Module cmplx_mul 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
+	   2 Input     16 Bit       Adders := 1     
+Module two_samples_accumulator 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 2     
++---Registers : 
+	               16 Bit    Registers := 4     
+Module accumulator 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 2     
++---Registers : 
+	               16 Bit    Registers := 4     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 4     
+Module metric_filter 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 2     
+Module fixed_add 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     18 Bit       Adders := 1     
++---Muxes : 
+	   2 Input     18 Bit        Muxes := 1     
+Module fixed_add__parameterized0 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     19 Bit       Adders := 1     
++---Muxes : 
+	   2 Input     19 Bit        Muxes := 1     
+Module fixed_add__parameterized1 
+Detailed RTL Component Info : 
++---Adders : 
+	   3 Input     16 Bit       Adders := 1     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+Module divider 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 3     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+Module arctan 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     18 Bit       Adders := 3     
+	   3 Input     18 Bit       Adders := 2     
+	   2 Input     16 Bit       Adders := 2     
++---Registers : 
+	               19 Bit    Registers := 2     
+	               18 Bit    Registers := 1     
+	               15 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
++---Muxes : 
+	   2 Input     19 Bit        Muxes := 6     
+	   2 Input     18 Bit        Muxes := 4     
+	   2 Input     16 Bit        Muxes := 4     
+	   5 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 1728 (col length:144)
+BRAMs: 624 (col length: RAMB18 144 RAMB36 72)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+Warning: Parallel synthesis criteria is not met 
+DSP Report: Generating DSP u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1, operation Mode is: A*(B:0x3e0).
+DSP Report: operator u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1 is absorbed into DSP u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1.
+DSP Report: Generating DSP u_CMPLX_MUL/o_Yr1, operation Mode is: A*B.
+DSP Report: operator u_CMPLX_MUL/o_Yr1 is absorbed into DSP u_CMPLX_MUL/o_Yr1.
+DSP Report: Generating DSP u_CMPLX_MUL/o_Yr1, operation Mode is: A*B.
+DSP Report: operator u_CMPLX_MUL/o_Yr1 is absorbed into DSP u_CMPLX_MUL/o_Yr1.
+DSP Report: Generating DSP u_CMPLX_MUL/o_Yi1, operation Mode is: A*B.
+DSP Report: operator u_CMPLX_MUL/o_Yi1 is absorbed into DSP u_CMPLX_MUL/o_Yi1.
+DSP Report: Generating DSP u_CMPLX_MUL/o_Yi1, operation Mode is: A*B.
+DSP Report: operator u_CMPLX_MUL/o_Yi1 is absorbed into DSP u_CMPLX_MUL/o_Yi1.
+DSP Report: Generating DSP u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yr1, operation Mode is: A*(B:0x3e0).
+DSP Report: operator u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yr1 is absorbed into DSP u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yr1.
+DSP Report: Generating DSP u_ACQUISITION_CHECKER/o_peakFound2, operation Mode is: A*B.
+DSP Report: operator u_ACQUISITION_CHECKER/o_peakFound2 is absorbed into DSP u_ACQUISITION_CHECKER/o_peakFound2.
+DSP Report: Generating DSP u_ACQUISITION_CHECKER/o_peakFound1, operation Mode is: PCIN+A*B.
+DSP Report: operator u_ACQUISITION_CHECKER/o_peakFound1 is absorbed into DSP u_ACQUISITION_CHECKER/o_peakFound1.
+DSP Report: operator u_ACQUISITION_CHECKER/o_peakFound2 is absorbed into DSP u_ACQUISITION_CHECKER/o_peakFound1.
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[6]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[7]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[7]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[8]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[8]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[9]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[9]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[10]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[10]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[11]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[11]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[12]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[12]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[13]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[13]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[14]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/u_divider/r_divisior_reg[14]' (FDCE) to 'u_ARCTAN/u_divider/r_divisior_reg[15]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_ARCTAN/u_divider/r_divisior_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_CSYNC_CTRL/o_metricAddr_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_ARCTAN/r_theta_1stq_reg[18] )
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/coarseTimingOut_reg[0]' (FDCE) to 'u_ARCTAN/coarseTimingOut_reg[1]'
+INFO: [Synth 8-3886] merging instance 'u_ARCTAN/coarseTimingOut_reg[1]' (FDCE) to 'u_ARCTAN/coarseTimingOut_reg[2]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_ARCTAN/coarseTimingOut_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_ARCTAN/r_core_reg[0] )
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 1679.562 ; gain = 210.781
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++-----------------+---------------------------------+-----------+----------------------+---------------------------------+
+|Module Name      | RTL Object                      | Inference | Size (Depth x Width) | Primitives                      | 
++-----------------+---------------------------------+-----------+----------------------+---------------------------------+
+|csync_stage1_top | u_REG_FILE/r_registerBank_Q_reg | Implied   | 256 x 16             | RAM16X1S x 16  RAM128X1S x 16   | 
+|csync_stage1_top | u_REG_FILE/r_registerBank_I_reg | Implied   | 256 x 16             | RAM16X1S x 16  RAM128X1S x 16   | 
++-----------------+---------------------------------+-----------+----------------------+---------------------------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+
+DSP: Preliminary Mapping  Report (see note below)
++--------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name         | DSP Mapping | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|cmplx_mul           | A*(B:0x3e0) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul           | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul           | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul           | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul           | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|cmplx_mul           | A*(B:0x3e0) | 16     | 11     | -      | -      | 27     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|acquisition_checker | A*B         | 16     | 16     | -      | -      | 32     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|acquisition_checker | PCIN+A*B    | 16     | 16     | -      | -      | 33     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++--------------------+-------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:53 ; elapsed = 00:00:55 . Memory (MB): peak = 2243.102 ; gain = 774.320
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:55 ; elapsed = 00:00:57 . Memory (MB): peak = 2256.031 ; gain = 787.250
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping  Report
++-----------------+---------------------------------+-----------+----------------------+---------------------------------+
+|Module Name      | RTL Object                      | Inference | Size (Depth x Width) | Primitives                      | 
++-----------------+---------------------------------+-----------+----------------------+---------------------------------+
+|csync_stage1_top | u_REG_FILE/r_registerBank_Q_reg | Implied   | 256 x 16             | RAM16X1S x 16  RAM128X1S x 16   | 
+|csync_stage1_top | u_REG_FILE/r_registerBank_I_reg | Implied   | 256 x 16             | RAM16X1S x 16  RAM128X1S x 16   | 
++-----------------+---------------------------------+-----------+----------------------+---------------------------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:56 ; elapsed = 00:00:58 . Memory (MB): peak = 2256.031 ; gain = 787.250
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2265.941 ; gain = 797.160
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2265.941 ; gain = 797.160
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2265.941 ; gain = 797.160
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2265.941 ; gain = 797.160
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2265.941 ; gain = 797.160
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2265.941 ; gain = 797.160
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+------------------------------+----------+
+|      |BlackBox name                 |Instances |
++------+------------------------------+----------+
+|1     |dual_port_ram_blk_mem_gen_0_0 |         1|
++------+------------------------------+----------+
+
+Report Cell Usage: 
++------+------------------------------+------+
+|      |Cell                          |Count |
++------+------------------------------+------+
+|1     |dual_port_ram_blk_mem_gen_0_0 |     1|
+|2     |BUFG                          |     1|
+|3     |CARRY8                        |    36|
+|4     |DSP_ALU                       |     8|
+|5     |DSP_A_B_DATA                  |     8|
+|6     |DSP_C_DATA                    |     8|
+|7     |DSP_MULTIPLIER                |     8|
+|8     |DSP_M_DATA                    |     8|
+|9     |DSP_OUTPUT                    |     8|
+|10    |DSP_PREADD                    |     8|
+|11    |DSP_PREADD_DATA               |     8|
+|12    |LUT1                          |    29|
+|13    |LUT2                          |   159|
+|14    |LUT3                          |   167|
+|15    |LUT4                          |    65|
+|16    |LUT5                          |    72|
+|17    |LUT6                          |    98|
+|18    |RAM128X1S                     |    32|
+|19    |RAM16X1S                      |    32|
+|20    |FDCE                          |   363|
+|21    |FDPE                          |    16|
+|22    |IBUF                          |    35|
+|23    |OBUF                          |    34|
++------+------------------------------+------+
+
+Report Instance Areas: 
++------+-------------------------------+------------------------------------------------+------+
+|      |Instance                       |Module                                          |Cells |
++------+-------------------------------+------------------------------------------------+------+
+|1     |top                            |                                                |  1267|
+|2     |  u_ACQUISITION_CHECKER        |acquisition_checker                             |    25|
+|3     |    o_peakFound2               |\u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1_funnel__6  |     8|
+|4     |    o_peakFound1               |\u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1_funnel__7  |     8|
+|5     |  u_ARCTAN                     |arctan                                          |   299|
+|6     |    u_fixed_add1               |fixed_add                                       |    17|
+|7     |    u_fixed_add2               |fixed_add__parameterized0                       |    19|
+|8     |    u_divider                  |divider                                         |   139|
+|9     |      u_fixed_add1             |fixed_add__parameterized1                       |     2|
+|10    |  u_CMPLX_MUL                  |cmplx_mul                                       |   100|
+|11    |    o_Yr1                      |\u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1_funnel__1  |     8|
+|12    |    o_Yr1__0                   |\u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1_funnel__2  |     8|
+|13    |    o_Yi1                      |\u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1_funnel__3  |     8|
+|14    |    o_Yi1__0                   |\u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1_funnel__4  |     8|
+|15    |  u_CSYNC_CTRL                 |csync_stage1_ctrl                               |   305|
+|16    |  u_DUAL_PORT_RAM              |dual_port_ram_wrapper                           |    64|
+|17    |    dual_port_ram_i            |dual_port_ram                                   |    64|
+|18    |  u_METRIC_FILTER              |metric_filter                                   |    93|
+|19    |    u_CMPLX_MUL_2              |cmplx_mul_1                                     |    30|
+|20    |      o_Yi1                    |\u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1_funnel     |     8|
+|21    |      o_Yr1                    |\u_METRIC_FILTER/u_CMPLX_MUL_2/o_Yi1_funnel__5  |     8|
+|22    |  u_REDUCED_METRIC_ACCUMULATOR |accumulator                                     |   103|
+|23    |  u_REG_FILE                   |symbol_regfile                                  |    70|
+|24    |  u_SAMPLE_ACCUMULATOR         |two_samples_accumulator                         |    68|
+|25    |  u_WINDOW_ACCUMULATOR         |accumulator_0                                   |    70|
++------+-------------------------------+------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:01:02 . Memory (MB): peak = 2265.941 ; gain = 797.160
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:40 ; elapsed = 00:00:50 . Memory (MB): peak = 2265.941 ; gain = 660.086
+Synthesis Optimization Complete : Time (s): cpu = 00:01:00 ; elapsed = 00:01:02 . Memory (MB): peak = 2265.941 ; gain = 797.160
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 144 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2304.754 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 108 instances were transformed.
+  BUFG => BUFGCE: 1 instances
+  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD_DATA, DSP_PREADD): 8 instances
+  IBUF => IBUF (IBUFCTRL, INBUF): 35 instances
+  RAM128X1S => RAM128X1S (MUXF7, RAMS64E, RAMS64E): 32 instances
+  RAM16X1S => RAM32X1S (RAMS32): 32 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+69 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:49 ; elapsed = 00:01:55 . Memory (MB): peak = 2304.754 ; gain = 1906.430
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 2304.754 ; gain = 0.000
+WARNING: [Constraints 18-5210] No constraints selected for write.
+Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
+INFO: [Common 17-1381] The checkpoint 'D:/Graduation Project/Narrowband-IoT-Receiver/src/csync_stage1/csync_stage1.runs/synth_1/csync_stage1_top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file csync_stage1_top_utilization_synth.rpt -pb csync_stage1_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat May 21 18:17:23 2022...
