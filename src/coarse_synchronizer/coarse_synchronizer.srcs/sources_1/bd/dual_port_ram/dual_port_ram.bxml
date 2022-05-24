@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="37">
   <CompositeFile CompositeFileTopName="dual_port_ram" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1653324553"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1653324553"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1653324553"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1653324553"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1653337592"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1653337592"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1653337592"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1653337592"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip\dual_port_ram_blk_mem_gen_0_1\dual_port_ram_blk_mem_gen_0_1.xci" Type="IP">
         <Instance HierarchyPath="blk_mem_gen_0"/>

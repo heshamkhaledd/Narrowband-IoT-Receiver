@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module csync_stage1_ctrl#(parameter DATA_WIDTH = 16, parameter REG_BANK_ADDR = 8, parameter DUAL_PORT_ADDR = 12)
+module csync_ctrl#(parameter DATA_WIDTH = 16, parameter REG_BANK_ADDR = 8, parameter RAM_DEPTH = 12)
 (
     input i_clk,
     input i_rstn,
@@ -32,8 +32,8 @@ module csync_stage1_ctrl#(parameter DATA_WIDTH = 16, parameter REG_BANK_ADDR = 8
     output o_windowOut,
     output o_metricEn,
     output o_metricOut,
-    output reg [DUAL_PORT_ADDR-1:0] o_windowAddr,
-    output reg [DUAL_PORT_ADDR-1:0] o_metricAddr,
+    output reg [RAM_DEPTH-1:0] o_windowAddr,
+    output reg [RAM_DEPTH-1:0] o_metricAddr,
     output o_WEA,
     output o_WEB
 );

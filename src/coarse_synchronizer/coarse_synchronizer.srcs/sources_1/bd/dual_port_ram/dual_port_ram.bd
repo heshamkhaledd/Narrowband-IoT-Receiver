@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x55E7DEADA81588DA",
+      "boundary_crc": "0xC0A93CD37549F4DB",
       "device": "xczu7ev-ffvc1156-2-e",
       "name": "dual_port_ram",
       "synth_flow_mode": "Hierarchical",
@@ -95,6 +95,9 @@
         "direction": "I",
         "left": "0",
         "right": "0"
+      },
+      "enb_0": {
+        "direction": "I"
       }
     },
     "components": {
@@ -112,7 +115,7 @@
             "value": "Always_Enabled"
           },
           "Enable_B": {
-            "value": "Always_Enabled"
+            "value": "Use_ENB_Pin"
           },
           "Memory_Type": {
             "value": "True_Dual_Port_RAM"
@@ -206,6 +209,12 @@
         "ports": [
           "web_0",
           "blk_mem_gen_0/web"
+        ]
+      },
+      "enb_0_1": {
+        "ports": [
+          "enb_0",
+          "blk_mem_gen_0/enb"
         ]
       }
     }

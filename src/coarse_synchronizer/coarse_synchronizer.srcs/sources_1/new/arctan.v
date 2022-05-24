@@ -26,11 +26,9 @@ module arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
     input clk,
     input reset,
     input enable,
-    input [11:0] coarseTiming,
     input [DATA_WIDTH-1:0] acc_real,
     input [DATA_WIDTH-1:0] acc_imag,
-    output[DATA_WIDTH+2:0] rfo,
-    output reg [14:0] coarseTimingOut
+    output[DATA_WIDTH+2:0] rfo
     );
     
     reg [1:0] current_state,next_state;
@@ -157,14 +155,12 @@ module arctan#(parameter DATA_WIDTH=16, IDLE      = 2'b00,     //idle
         r_signx <= 1'b0;
         r_signy <= 1'b0;
         r_complementEn <= 1'b0;
-        coarseTimingOut <= 15'd0;
     end
     else if (r_init)
     begin
         r_signx <= w_signx;
         r_signy <= w_signy;
         r_complementEn <= w_complementEn;
-        coarseTimingOut <= (coarseTiming*16)-8;
     end
     end
     

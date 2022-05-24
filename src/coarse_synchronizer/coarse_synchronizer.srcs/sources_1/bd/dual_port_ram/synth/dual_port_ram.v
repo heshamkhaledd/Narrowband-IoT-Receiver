@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-//Date        : Mon May 23 18:49:12 2022
+//Date        : Mon May 23 22:26:31 2022
 //Host        : Jarvis running 64-bit major release  (build 9200)
 //Command     : generate_target dual_port_ram.bd
 //Design      : dual_port_ram
@@ -19,6 +19,7 @@ module dual_port_ram
     dinb_0,
     douta_0,
     doutb_0,
+    enb_0,
     wea_0,
     web_0);
   input [11:0]addra_0;
@@ -29,6 +30,7 @@ module dual_port_ram
   input [31:0]dinb_0;
   output [31:0]douta_0;
   output [31:0]doutb_0;
+  input enb_0;
   input [0:0]wea_0;
   input [0:0]web_0;
 
@@ -40,6 +42,7 @@ module dual_port_ram
   wire clkb_0_1;
   wire [31:0]dina_0_1;
   wire [31:0]dinb_0_1;
+  wire enb_0_1;
   wire [0:0]wea_0_1;
   wire [0:0]web_0_1;
 
@@ -51,6 +54,7 @@ module dual_port_ram
   assign dinb_0_1 = dinb_0[31:0];
   assign douta_0[31:0] = blk_mem_gen_0_douta;
   assign doutb_0[31:0] = blk_mem_gen_0_doutb;
+  assign enb_0_1 = enb_0;
   assign wea_0_1 = wea_0[0];
   assign web_0_1 = web_0[0];
   dual_port_ram_blk_mem_gen_0_1 blk_mem_gen_0
@@ -62,6 +66,7 @@ module dual_port_ram
         .dinb(dinb_0_1),
         .douta(blk_mem_gen_0_douta),
         .doutb(blk_mem_gen_0_doutb),
+        .enb(enb_0_1),
         .wea(wea_0_1),
         .web(web_0_1));
 endmodule

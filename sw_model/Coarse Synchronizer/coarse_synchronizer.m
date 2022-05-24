@@ -7,7 +7,7 @@ close all; clear; clc; rng('shuffle');
 %   -> Operation Mode:  GuardBand
 %   -> Sampling Rate:   1.92 MHz
 %   -> IFFT Points:     128
- 
+
 N_Frames = 80; % Number of required Narrowband LTE Frames to be generated
  
 LTE_preset = 'R.NB.6';
