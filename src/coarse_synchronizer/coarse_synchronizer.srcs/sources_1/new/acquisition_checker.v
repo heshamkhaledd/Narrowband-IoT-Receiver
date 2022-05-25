@@ -26,7 +26,6 @@ module acquisition_checker #(parameter DATA_WIDTH = 16)
     input [DATA_WIDTH-1:0] i_Q,
     output reg o_peakFound        
 );
-reg [32:0] r_metricPeak;
 reg [31:0] r_realSquared;
 reg [31:0] r_imagSquared;
 always@(*)

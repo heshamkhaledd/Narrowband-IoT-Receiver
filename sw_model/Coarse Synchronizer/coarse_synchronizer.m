@@ -249,3 +249,37 @@ Timing_Error = Coarse_Timing - NPSS_st;
 
 message = '::Refinement Stage (2)::\n-Timing Error = %d sample(s)\n-CFO Error = %f Hz\n-Used Frames = %d\n_______________________\n';
 fprintf(message, Timing_Error, CFO_Error, Frame_No4)
+% %% Exporting Data to Verilog %%
+% % Printing NPSS Signal to ROM
+% n = 0 : 1 : 10; % defining index of NPSS base sequence (subcarriers index)
+% cover_code = [ 1 1 1 1 -1 -1 1 1 1 -1 1 ]; % defining cover code of NPSS signal from standard
+% zc_seq = exp((-1j*pi*5/11).*n.*(n+1)); % defining the Zadoff-Chu base sequence
+% npss_fd = [zc_seq(1,6:11) zeros(1,117) zc_seq(1,1:5)]; % rearranging the base sequence ...
+% % ... so that it will start from the most negative frequency to the most positive leaving 2 unused subcarriers on both ends  
+% npss_td = ifft(npss_fd); % taking ifft to get the time-domain NPSS symbol
+% npss_td137 = [npss_td(1,end-8:end) npss_td]'; % adding a normal cyclic prefix of 9 samples 
+% npss_td138 = [npss_td(1,end-9:end) npss_td]'; % adding a long cyclic prefix of 10 samples
+% normalization_factor137 = sum((abs(npss_td137).^2) , 1)/137; % normalizing normal symbol power 
+% npss_symbol137 = npss_td137./sqrt(normalization_factor137);
+% normalization_factor138 = sum((abs(npss_td138).^2) , 1)/138; % normalizing long symbol power 
+% npss_symbol138 = npss_td138./sqrt(normalization_factor138);
+% % creating the NPSS signal vector by mutiplying 11 NPSS OFDM symbols by the code cover while have one long symbol (the 5th) 
+% npss_signal = [ reshape((npss_symbol137 * cover_code(1,1:4)) , [137*4 1]) ; (cover_code(1,5).*npss_symbol138) ; reshape((npss_symbol137 * cover_code(1,6:11)) , [137*6 1]) ];
+% fileID = fopen('npss.txt','w');
+% for i = 1 : size(npss_fx_I,1)
+%    valre = abs(npss_fx_I(i,1)); 
+%    valim = abs(npss_fx_Q(i,1));
+%    if((npss_fx_I(i,1)/valre) == -1)
+%        signre = '-';
+%    else
+%        signre = '';
+%    end
+%    
+%    if((npss_fx_Q(i,1)/valim) == -1)
+%        signim = '-';
+%    else
+%        signim = '';
+%    end
+%    formatSpec = "8'd%d:\tbegin\n\t\t\to_romData_I = %c16'd%d;\n\t\t\to_romData_Q = %c16'd%d;\n\t\tend\n\n";
+%    fprintf(fileID, formatSpec, i-1 , signre, valre , signim , valim);
+% end

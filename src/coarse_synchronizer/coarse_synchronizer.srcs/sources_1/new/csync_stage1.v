@@ -29,11 +29,12 @@ module csync_stage1 #(parameter DATA_WIDTH = 16, parameter RAM_WIDTH = 32, param
     input  [RAM_WIDTH-1:0] i_metricData,
     input  i_negMul,
     input  [REG_BANK_ADDR-1:0] i_regBankAddr,
-    input i_twoSampleEn,
-    input i_windowEn,
-    input i_windowOut,
-    input i_metricEn,
-    input i_metricOut,
+    input  i_twoSampleEn,
+    input  i_windowEn,
+    input  i_windowOut,
+    input  i_metricEn,
+    input  i_metricOut,
+    input  i_arctanEn,
     output [RAM_WIDTH-1:0] o_windowData,
     output [RAM_WIDTH-1:0] o_metricData,
     output [FFO_WIDTH-1:0] o_FFO,
@@ -63,7 +64,7 @@ wire w_peakFound;
 
 assign o_stage1Valid = w_peakFound;
 
-sample_codecover_mul #(DATA_WIDTH)
+sample_codecover_mul #(.DATA_WIDTH(DATA_WIDTH))
 u_CODE_COVER_MUL
                 (.i_I(i_I),
                  .i_Q(i_Q),
@@ -72,7 +73,7 @@ u_CODE_COVER_MUL
                  .o_Q(w_outCover_Q)
                  );
 
-symbol_regfile #(.DATA_WIDTH (16), .REG_BANK_ADDR(8),.REG_BANK_LENGTH(137))
+symbol_regfile #(.DATA_WIDTH(DATA_WIDTH), .REG_BANK_ADDR(8),.REG_BANK_LENGTH(137))
 u_REG_FILE
            (.i_clk(i_clk),
             .i_I(w_outCover_I),
@@ -82,7 +83,7 @@ u_REG_FILE
             .o_Q(w_inCmplxMul_Q)
             );
             
-cmplx_mul #(DATA_WIDTH)
+cmplx_mul #(.DATA_WIDTH(DATA_WIDTH))
 u_CMPLX_MUL
             (.i_Ar(w_outCover_I),
              .i_Ai(w_outCover_Q),
@@ -92,7 +93,7 @@ u_CMPLX_MUL
              .o_Yi(w_outCmplxMul_Q)
              );
              
-two_samples_accumulator #(DATA_WIDTH)
+two_samples_accumulator #(.DATA_WIDTH(DATA_WIDTH))
 u_SAMPLE_ACCUMULATOR
             (.i_clk(i_clk),
              .i_rstn(i_rstn),
@@ -107,7 +108,7 @@ u_SAMPLE_ACCUMULATOR
              .o_Yi(w_sampleAccOut_Q)
              );
 
-accumulator #(DATA_WIDTH)
+accumulator #(.DATA_WIDTH(DATA_WIDTH))
 u_WINDOW_ACCUMULATOR
             (.i_clk(i_clk),
              .i_rstn(i_rstn),
@@ -119,7 +120,7 @@ u_WINDOW_ACCUMULATOR
              .o_Q(w_windowOut_Q)
              );
              
-accumulator #(DATA_WIDTH)
+accumulator #(.DATA_WIDTH(DATA_WIDTH))
 u_REDUCED_METRIC_ACCUMULATOR
             (.i_clk(i_clk),
              .i_rstn(i_rstn),
@@ -131,7 +132,7 @@ u_REDUCED_METRIC_ACCUMULATOR
              .o_Q(w_metricOut_Q)
              );
 
-metric_filter #(DATA_WIDTH)
+metric_filter #(.DATA_WIDTH(DATA_WIDTH))
 u_METRIC_FILTER
             (.i_I(w_metricOut_I),
              .i_Q(w_metricOut_Q),
@@ -141,7 +142,7 @@ u_METRIC_FILTER
              .o_Q(o_metricData[31:16])
              );
 
-acquisition_checker #(DATA_WIDTH)
+acquisition_checker #(.DATA_WIDTH(DATA_WIDTH))
 u_ACQUISITION_CHECKER
         (.i_I(o_metricData[15:0]),
          .i_Q(o_metricData[31:16]),
@@ -152,7 +153,7 @@ arctan #(.DATA_WIDTH(DATA_WIDTH), .IDLE(2'b00),.INIT(2'b01), .DIVISION(2'b10))
 u_ARCTAN
         (.clk(i_clk),
          .reset(i_rstn),
-         .enable(w_peakFound),
+         .enable(i_arctanEn),
          .acc_real(o_metricData[15:0]),
          .acc_imag(o_metricData[31:16]),
          .rfo(o_FFO)

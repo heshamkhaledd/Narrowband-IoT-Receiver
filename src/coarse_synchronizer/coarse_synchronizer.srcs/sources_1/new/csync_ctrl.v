@@ -22,9 +22,11 @@
 
 module csync_ctrl#(parameter DATA_WIDTH = 16, parameter REG_BANK_ADDR = 8, parameter RAM_DEPTH = 12)
 (
-    input i_clk,
+    input i_clk_520,
+    input i_clk_32n5,
     input i_rstn,
     input i_rxEn,
+    input i_stage1Valid,
     output reg o_negMul,
     output reg [REG_BANK_ADDR-1:0] o_regBankAddr,
     output o_twoSampleEn,
@@ -35,7 +37,14 @@ module csync_ctrl#(parameter DATA_WIDTH = 16, parameter REG_BANK_ADDR = 8, param
     output reg [RAM_DEPTH-1:0] o_windowAddr,
     output reg [RAM_DEPTH-1:0] o_metricAddr,
     output o_WEA,
-    output o_WEB
+    output o_WEB,
+    output reg o_arctanEn,
+    output reg o_stage2En,
+    output [10:0] o_csyncROMAddr,
+    output [10:0] o_RAMAddr,
+    output [2:0]  o_iteration,
+    output o_accumulatorOutEnable_S2,
+    output reg o_csyncValid
 );
 
 // Control Registers
@@ -43,14 +52,10 @@ reg [REG_BANK_ADDR-1:0] r_sampleCounter;
 reg [REG_BANK_ADDR-1:0] r_sampleEst;
 reg [3:0] r_symbolCounter;
 reg [3:0] r_symbolEst;
-
-
 reg [11:0] r_windowAddr;
 reg [11:0] r_windowAddrEst;
 reg [10:0] r_metricAddr;
 reg [10:0] r_metricAddrEst;
-
-
 reg [10:0] r_windowCounter;
 reg [10:0] r_windowCounterEst;
 reg [3:0] r_16windowCounter;
@@ -65,15 +70,41 @@ reg [1:0] r_metricEn;
 reg [1:0] r_metricEnEst;
 reg [1:0] r_metricOut;
 reg [1:0] r_metricOutEst;
-
 reg [1:0] r_windowAddrStartFlag;
 reg [1:0] r_windowAddrStartFlagEst;
 reg r_metricAddrStartFlag;
-
 reg r_WEA;
 reg r_WEB;
 reg r_WEAEst;
 reg r_WEBEst;
+reg [10:0] r_NPSS_Counter;
+reg [10:0] r_NPSS_CounterEst;
+reg [10:0] r_RAMAddr;
+reg [10:0] r_RAMAddrEst;
+reg [2:0] r_iteration;
+reg [2:0] r_iterationEst;
+reg r_accumulatorOutEnable_S2;
+reg r_accumulatorOutEnable_S2Est;
+
+// FSM for Arctan Unit Enable
+reg [4:0] r_ArctanCounter;
+reg [4:0] r_ArctanCounterEst;
+reg [2:0] r_arcCurrState;
+reg [2:0] r_arcNexState;
+localparam p_arcOFF   = 3'b001;
+localparam p_arcON    = 3'b010;
+localparam p_arcSTUCK = 3'b100;
+
+// FSM for Stage (2) Enable
+reg [14:0] r_NB_Frame_Counter;
+reg [14:0] r_NB_Frame_CounterEst;
+reg [3:0]  r_stageCurrState;
+reg [3:0]  r_stageNexState;
+localparam p_stageOFF  = 4'b0001;
+localparam p_stageHOLD = 4'b0010;
+localparam p_stageST   = 4'b0100;
+localparam p_stageON   = 4'b1000;
+
 
 // Output Control Ports assign statemens
 assign o_twoSampleEn = r_twoSampleEn[0];
@@ -83,9 +114,13 @@ assign o_metricEn    = r_metricEn[0];
 assign o_metricOut   = r_metricOut[0];
 assign o_WEA = r_WEA;
 assign o_WEB = r_WEB;
+assign o_csyncROMAddr = r_NPSS_Counter;
+assign o_RAMAddr = r_RAMAddr;
+assign o_iteration = r_iteration;
+assign o_accumulatorOutEnable_S2 = r_accumulatorOutEnable_S2;
 
 // Sequential Always Block for Reset and Counters Increments
-always @(posedge i_clk, negedge i_rstn)
+always @(posedge i_clk_520, negedge i_rstn)
 begin
     if (!i_rstn)
         begin
@@ -105,6 +140,13 @@ begin
             r_metricAddr <= 12'd1508;
             r_WEA <= 1'b0;
             r_WEB <= 1'b0;
+            r_arcCurrState <= p_arcOFF;
+            r_ArctanCounter <= 5'd0;
+            r_stageCurrState <= p_stageOFF;
+            r_NB_Frame_Counter <= 15'd0;
+            r_RAMAddr <= 11'd0;
+            r_iteration <= 3'd0;
+            r_accumulatorOutEnable_S2 <= 1'b0;
         end
     else if (i_rxEn)
         begin
@@ -124,12 +166,35 @@ begin
             r_metricAddr <= r_metricAddrEst;
             r_WEA <= r_WEAEst;
             r_WEB <= r_WEBEst;
+            r_arcCurrState <= r_arcNexState;
+            r_ArctanCounter <= r_ArctanCounterEst;
+            r_stageCurrState <= r_stageNexState;
+            r_NB_Frame_Counter <= r_NB_Frame_CounterEst;
+            r_RAMAddr <= r_RAMAddrEst;
+            r_iteration <= r_iterationEst;
+            r_accumulatorOutEnable_S2 <= r_accumulatorOutEnable_S2Est;
+        end
+    else;
+end
+
+// Sequential always block working with 32.5 ns for CORDIC Rotate Units
+always@(posedge i_clk_32n5, negedge i_rstn)
+begin
+    if(!i_rstn)
+        begin
+            r_NPSS_Counter <= 11'd0;
+        end
+    else if(i_rxEn)
+        begin
+            if(r_stageCurrState == p_stageON)
+                r_NPSS_Counter <= r_NPSS_Counter + 1;
+            else;
         end
     else;
 end
 
 // Sequential Always Block to compute the Addresses of input Register bank and the Dual-Port RAM
-always@(posedge i_clk, negedge i_rstn)
+always@(posedge i_clk_520, negedge i_rstn)
 begin
     if(!i_rstn)
         begin
@@ -323,4 +388,170 @@ begin
         end
 end
 
+// Combinational Always for Arctan Unit Enable Counter
+always@(*)
+begin
+    if(r_arcCurrState == p_arcON)
+        begin
+            if(r_ArctanCounter == 5'd23)
+                r_ArctanCounterEst = 5'd0;
+            else
+                r_ArctanCounterEst = r_ArctanCounter + 1;
+        end
+    else
+        r_ArctanCounterEst = r_ArctanCounter;
+end
+
+// Combinational Always Block to Evaluate Arctan Unit Next State
+always@(*)
+begin
+    case(r_arcCurrState)
+        p_arcOFF:   begin
+                        if(i_stage1Valid == 1'b1)
+                            r_arcNexState = p_arcON;
+                        else
+                            r_arcNexState = p_arcOFF;
+                    end
+       
+        p_arcON:    begin
+                        if (r_ArctanCounter <= 5'd23)
+                            r_arcNexState = p_arcSTUCK;
+                        else
+                            r_arcNexState = p_arcON; 
+                    end
+                    
+        p_arcSTUCK:  begin
+                            r_arcNexState = p_arcSTUCK;
+                     end
+        
+        default:    begin
+                           r_arcNexState = p_arcOFF;
+                    end
+    endcase
+end
+
+// Combinational Always Block to Evaluate Arctan Unit Enable Output
+always@(*)
+begin
+    case(r_arcCurrState)
+        p_arcOFF:   begin
+                        o_arctanEn = 1'b0;
+                    end
+                    
+        p_arcON:    begin
+                        o_arctanEn = 1'b1;
+                    end
+                    
+        p_arcSTUCK: begin
+                        o_arctanEn = 1'b0;
+                    end
+                    
+        default:    begin
+                        o_arctanEn = 1'b0;
+                    end
+    endcase
+end
+
+
+
+// Combinational Always Block for Stage(2) Enable Counter
+always@(*)
+begin
+    if(r_arcCurrState == p_arcSTUCK) // && another condition
+        begin
+            if(r_NB_Frame_Counter == 15'd19186)
+                r_NB_Frame_CounterEst = 5'd0;
+            else
+                r_NB_Frame_CounterEst = r_NB_Frame_Counter + 1;
+        end
+    else
+        r_NB_Frame_CounterEst = r_NB_Frame_Counter;
+end
+
+// Combinational Always Block to Evaluate Stage(2) Enable Next State
+always@(*)
+begin
+    case(r_stageCurrState)
+        p_stageOFF: begin
+                        if(r_NB_Frame_Counter != 15'd0)
+                            r_stageNexState = p_stageHOLD;
+                        else
+                            r_stageNexState = p_stageOFF;
+                    end
+       
+        p_stageHOLD:    begin
+                            if(r_NB_Frame_Counter <= 15'd19185)
+                                r_stageNexState = p_stageHOLD;
+                            else
+                                r_stageNexState = p_stageST;
+                        end
+                            
+        p_stageST:  begin
+                        if(r_NPSS_Counter < 11'd1535)
+                            r_stageNexState = p_stageST;
+                        else
+                            r_stageNexState = p_stageON;
+                    end
+                    
+        p_stageON:   begin
+                        if(r_NB_Frame_Counter < 15'd7540)
+                            r_stageNexState = p_stageON;
+                        else
+                            r_stageNexState = p_stageHOLD;
+                    end
+                    
+       default:     begin
+                        r_stageNexState = p_stageOFF;
+                    end
+    endcase
+end
+
+// Combinational Always Block to Evaluate Stage(2) Enable Output
+always@(*)
+begin
+    case(r_stageCurrState)          
+       p_stageON:   begin
+                        o_stage2En = 1'b1;
+                    end
+                    
+       default:     begin
+                        o_stage2En = 1'b0;
+                    end
+    endcase
+end
+
+// Combinational Always Block to evaluate the RAM Addresses in stage(2), Iteration Count for the Coarse
+// Timing Shift, and Accumulator Output Enable
+always@(*)
+begin
+    if(r_stageNexState == p_stageHOLD || r_stageNexState == p_stageST || r_stageNexState == p_stageON)
+        begin
+            if(r_RAMAddr == 11'd1535)
+                begin
+                    r_RAMAddrEst = 11'd0;
+                    r_iterationEst = r_iteration + 1;
+                    r_accumulatorOutEnable_S2Est = 1'b1;
+                end
+            else
+                begin
+                    r_RAMAddrEst = r_RAMAddr + 1;
+                    r_iterationEst = r_iteration;
+                    r_accumulatorOutEnable_S2Est = 1'b0;
+                end
+        end
+    else
+        begin
+            r_RAMAddrEst = r_RAMAddr;
+            r_iterationEst = r_iteration;
+            r_accumulatorOutEnable_S2Est = 1'b0;
+        end
+end
+
+always@(*)
+begin
+    if(r_iteration == 3'd5)
+        o_csyncValid = 1'b1;
+    else
+       o_csyncValid = 1'b0;
+end
 endmodule
