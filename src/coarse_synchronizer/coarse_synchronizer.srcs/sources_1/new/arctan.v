@@ -1,17 +1,16 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Si-Vision
+// Engineer: Reem Saleh
 // 
-// Create Date: 03/26/2022 07:50:40 PM
-// Design Name: 
+// Create Date: 05/12/2022 02:44:28 AM
+// Design Name: Coarse Synchronizer
 // Module Name: arctan
-// Project Name: 
-// Target Devices: 
+// Project Name: NB-IoT Receiver
+// Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
 // Tool Versions: 
-// Description: 
 // 
-// Dependencies: 
+// Dependencies: None
 // 
 // Revision:
 // Revision 0.01 - File Created

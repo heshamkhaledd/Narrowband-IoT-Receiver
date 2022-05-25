@@ -1,17 +1,16 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Si-Vision
+// Engineer: Hesham Khaled & Youssef Taha
 // 
-// Create Date: 05/13/2022 02:59:59 AM
-// Design Name: 
-// Module Name: window_accumulator
-// Project Name: 
-// Target Devices: 
+// Create Date: 05/12/2022 02:44:28 AM
+// Design Name: Coarse Synchronizer
+// Module Name: accumulator
+// Project Name: NB-IoT Receiver
+// Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
 // Tool Versions: 
-// Description: 
 // 
-// Dependencies: 
+// Dependencies: None
 // 
 // Revision:
 // Revision 0.01 - File Created

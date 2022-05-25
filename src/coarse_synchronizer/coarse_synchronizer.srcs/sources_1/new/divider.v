@@ -1,17 +1,16 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Si-Vision
+// Engineer: Reem Saleh
 // 
-// Create Date: 03/28/2022 10:41:06 PM
-// Design Name: 
-// Module Name: nrdivider
-// Project Name: 
-// Target Devices: 
+// Create Date: 05/12/2022 02:44:28 AM
+// Design Name: Coarse Synchronizer
+// Module Name: divider
+// Project Name: NB-IoT Receiver
+// Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
 // Tool Versions: 
-// Description: 
 // 
-// Dependencies: 
+// Dependencies: None
 // 
 // Revision:
 // Revision 0.01 - File Created

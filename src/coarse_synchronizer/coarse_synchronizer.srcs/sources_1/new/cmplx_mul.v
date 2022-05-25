@@ -2,12 +2,12 @@
 // Company: Si-Vision
 // Engineer: Hesham Khaled & Youssef Taha
 // 
-// Create Date: 03/17/2022 07:28:36 AM
-// Design Name: DIF SDF Radix 2^2 FFT Verilog Implementation
+// Create Date: 05/12/2022 02:44:28 AM
+// Design Name: Coarse Synchronizer
 // Module Name: cmplx_mul
 // Project Name: NB-IoT Receiver
 // Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
-// Tool Versions: Vivado 2019.1
+// Tool Versions: 
 // 
 // Dependencies: None
 // 

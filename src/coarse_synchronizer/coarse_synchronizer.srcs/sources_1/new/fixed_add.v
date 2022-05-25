@@ -1,5 +1,23 @@
 `timescale 1ns / 1ps
 
+//////////////////////////////////////////////////////////////////////////////////
+// Company: Si-Vision
+// Engineer: Reem Saleh
+// 
+// Create Date: 05/12/2022 02:44:28 AM
+// Design Name: Coarse Synchronizer
+// Module Name: fixed_add
+// Project Name: NB-IoT Receiver
+// Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
+// Tool Versions: 
+// 
+// Dependencies: None
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
 module fixed_add#(parameter DATA_WIDTH = 16,parameter INT_BITS = 6, parameter FRAC_BITS = 10)
 (

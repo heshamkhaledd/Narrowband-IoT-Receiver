@@ -1,23 +1,23 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: Si-Vision
+// Engineer: Hesham Khaled & Youssef Taha
 // 
-// Create Date: 05/23/2022 06:37:39 PM
-// Design Name: 
+// Create Date: 05/12/2022 02:44:28 AM
+// Design Name: Coarse Synchronizer
 // Module Name: csync_top
-// Project Name: 
-// Target Devices: 
+// Project Name: NB-IoT Receiver
+// Target Devices: Zynq Ultrascale+ ZCU104 Evaluation Board
 // Tool Versions: 
-// Description: 
 // 
-// Dependencies: 
+// Dependencies: None
 // 
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+
 
 
 module csync_top #(parameter DATA_WIDTH = 16, parameter RAM_WIDTH = 32, parameter RAM_DEPTH = 12, parameter CFO_WIDTH = 19, parameter TIMING_WIDTH = 15)
