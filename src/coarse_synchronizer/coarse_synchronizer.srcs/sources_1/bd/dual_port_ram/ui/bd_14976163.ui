@@ -1,0 +1,32 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port clkb_0 -pg 1 -lvl 0 -x -10 -y -10 -defaultsOSRD
+preplace port clka_0 -pg 1 -lvl 0 -x -10 -y -130 -defaultsOSRD
+preplace port enb_0 -pg 1 -lvl 0 -x -10 -y 50 -defaultsOSRD
+preplace portBus addra_0 -pg 1 -lvl 0 -x -10 -y -150 -defaultsOSRD
+preplace portBus addrb_0 -pg 1 -lvl 0 -x -10 -y -30 -defaultsOSRD
+preplace portBus douta_0 -pg 1 -lvl 2 -x 270 -y -90 -defaultsOSRD
+preplace portBus wea_0 -pg 1 -lvl 0 -x -10 -y -70 -defaultsOSRD
+preplace portBus doutb_0 -pg 1 -lvl 2 -x 270 -y 30 -defaultsOSRD
+preplace portBus dinb_0 -pg 1 -lvl 0 -x -10 -y 10 -defaultsOSRD
+preplace portBus dina_0 -pg 1 -lvl 0 -x -10 -y -110 -defaultsOSRD
+preplace portBus web_0 -pg 1 -lvl 0 -x -10 -y 70 -defaultsOSRD
+preplace inst blk_mem_gen_0 -pg 1 -lvl 1 -x 140 -y -50 -defaultsOSRD
+preplace netloc addra_0_1 1 0 1 NJ -150
+preplace netloc addrb_0_1 1 0 1 NJ -30
+preplace netloc blk_mem_gen_0_douta 1 0 2 10 130 240J
+preplace netloc wea_0_1 1 0 1 NJ -70
+preplace netloc blk_mem_gen_0_doutb 1 0 2 20 140 250J
+preplace netloc clkb_0_1 1 0 1 NJ -10
+preplace netloc dinb_0_1 1 0 1 NJ 10
+preplace netloc clka_0_1 1 0 1 NJ -130
+preplace netloc dina_0_1 1 0 1 NJ -110
+preplace netloc web_0_1 1 0 1 NJ 70
+preplace netloc enb_0_1 1 0 1 N 50
+levelinfo -pg 1 -10 140 270
+pagesize -pg 1 -db -bbox -sgen -150 -230 410 150
+"
+}
+0
