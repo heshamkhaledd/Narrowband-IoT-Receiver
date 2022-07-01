@@ -79,7 +79,18 @@ u_ControlUnit
                 );
 
 // Datapath instantiation -> BMU -> PM_Register -> PMU -> Path record memory 
-
+reg [2:0]r_msg;
+always@(posedge i_clk or negedge i_rstn)
+begin
+    if(~i_rstn)
+    begin
+        r_msg<=3'd0;
+    end
+    else
+    begin
+       r_msg<=i_msg;
+    end
+end
 // 2. branch metric unit instantiation
 wire [127:0]w_bmu0;                 // Branch metrics for the next 32 branches in the trellis diagram (next state 0:31)
 wire [127:0]w_bmu1;                 // Branch metrics for the next 32 branches in the trellis diagram (next state 32:63)
@@ -87,7 +98,7 @@ reg [127:0]r_bmu0;                // Registers for above wires
 reg [127:0]r_bmu1;
 bmu 
 u_BranchMetricUnit
-               (.i_msg(i_msg),       
+               (.i_msg(r_msg),       
                 .o_bmu0(w_bmu0),
                 .o_bmu1(w_bmu1) );
 // register after the branch metric unit
@@ -237,5 +248,5 @@ begin
 end
 
 assign o_crcValid=r_crcValid;
-   
+//assign o_crcValid = cu_lifoValidOut;   
 endmodule

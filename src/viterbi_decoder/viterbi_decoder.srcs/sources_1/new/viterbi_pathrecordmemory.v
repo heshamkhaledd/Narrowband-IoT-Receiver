@@ -38,7 +38,7 @@ module pathrecordmemory (
     output [63:0]o_storedContent
         );
          
-reg [63:0]r_memArray[0:2559];
+(*ram_style="block"*) reg [63:0]r_memArray[0:2559];
 reg [63:0]r_storedContent;
 
 assign o_storedContent=r_storedContent;

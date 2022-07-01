@@ -38,7 +38,7 @@ module lifo( input i_clk,
              input [11:0]i_tbs,
              output o_dataOut);
 reg r_dataOut;
-(* ram_style = "bram" *) reg r_lifoMemory[0:2559];
+/*(* ram_style = "block" *)*/ reg r_lifoMemory[0:2559];
 reg [11:0]r_counterWrite;     // This counter is used to store the input data from traceback unit
 reg [11:0]r_counterRead;     // This counter is used to output the data from the lifo memory
 assign o_dataOut=r_dataOut;            

@@ -432,7 +432,8 @@ begin
                    this bit determines whether the current state has been reached using its upper or lower path.
                    The shift left operation is the reverse operation that occurs in the encoder,
                    this gives the previous state according to the saved bit   */
-                r_rowGenerator <= (r_rowGenerator<<1)+i_storedContent[63-r_rowGenerator];  
+//                r_rowGenerator <= (r_rowGenerator<<1)+i_storedContent[63-r_rowGenerator];  
+                r_rowGenerator <= {r_rowGenerator[4:0] ,i_storedContent[63-r_rowGenerator] };  
                 
                 /* decoding operation is simply by checking for the current state
                    All states that are less than 32 has been reached by branches that both have output 0
@@ -442,7 +443,9 @@ begin
             end
             else
             begin
-                r_rowGenerator<= (w_maxIdx<<1)+i_storedContent[63-w_maxIdx];
+                r_rowGenerator <= {w_maxIdx[4:0] ,i_storedContent[63-w_maxIdx] };  
+
+//                r_rowGenerator<= (w_maxIdx<<1)+i_storedContent[63-w_maxIdx];
                 r_dataToLifo <= (w_maxIdx<=6'd31)? 1'b0:1'b1;  
             end
         end
