@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="rate_dematcher_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="rate_dematcher_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="15170000001fs"></ZoomEndTime>
+      <Cursor1Time time="1560000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="245"></NameColumnWidth>
+      <ValueColumnWidth column_width="99"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="36" />
+   <wvobject fp_name="/rate_dematcher_tb/i_clk_260" type="logic">
+      <obj_property name="ElementShortName">i_clk_260</obj_property>
+      <obj_property name="ObjectShortName">i_clk_260</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/i_clk_130" type="logic">
+      <obj_property name="ElementShortName">i_clk_130</obj_property>
+      <obj_property name="ObjectShortName">i_clk_130</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/i_reset" type="logic">
+      <obj_property name="ElementShortName">i_reset</obj_property>
+      <obj_property name="ObjectShortName">i_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/input_data" type="array">
+      <obj_property name="ElementShortName">input_data[287:0]</obj_property>
+      <obj_property name="ObjectShortName">input_data[287:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/r_Nrep" type="array">
+      <obj_property name="ElementShortName">r_Nrep[23:0]</obj_property>
+      <obj_property name="ObjectShortName">r_Nrep[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/Nrep" type="array">
+      <obj_property name="ElementShortName">Nrep[23:0]</obj_property>
+      <obj_property name="ObjectShortName">Nrep[23:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_circular_buffer/dina" type="array">
+      <obj_property name="ElementShortName">dina[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dina[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/r_write_pointer" type="array">
+      <obj_property name="ElementShortName">r_write_pointer[12:0]</obj_property>
+      <obj_property name="ObjectShortName">r_write_pointer[12:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/current_state1" type="array">
+      <obj_property name="ElementShortName">current_state1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">current_state1[3:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_interleaver_memory1/addra" type="array">
+      <obj_property name="ElementShortName">addra[11:0]</obj_property>
+      <obj_property name="ObjectShortName">addra[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_interleaver_memory1/dina" type="array">
+      <obj_property name="ElementShortName">dina[0:0]</obj_property>
+      <obj_property name="ObjectShortName">dina[0:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_interleaver_memory1/douta" type="array">
+      <obj_property name="ElementShortName">douta[0:0]</obj_property>
+      <obj_property name="ObjectShortName">douta[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/o_dataout1" type="logic">
+      <obj_property name="ElementShortName">o_dataout1</obj_property>
+      <obj_property name="ObjectShortName">o_dataout1</obj_property>
+      <obj_property name="CustomSignalColor">#FF0080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/o_dataout2" type="logic">
+      <obj_property name="ElementShortName">o_dataout2</obj_property>
+      <obj_property name="ObjectShortName">o_dataout2</obj_property>
+      <obj_property name="CustomSignalColor">#FF0080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/o_dataout3" type="logic">
+      <obj_property name="ElementShortName">o_dataout3</obj_property>
+      <obj_property name="ObjectShortName">o_dataout3</obj_property>
+      <obj_property name="CustomSignalColor">#FF0080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/o_valid" type="logic">
+      <obj_property name="ElementShortName">o_valid</obj_property>
+      <obj_property name="ObjectShortName">o_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/current_state1" type="array">
+      <obj_property name="ElementShortName">current_state1[3:0]</obj_property>
+      <obj_property name="ObjectShortName">current_state1[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/r_counter_interlvrs_output" type="array">
+      <obj_property name="ElementShortName">r_counter_interlvrs_output[11:0]</obj_property>
+      <obj_property name="ObjectShortName">r_counter_interlvrs_output[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/interlvrs_output_counter_en" type="logic">
+      <obj_property name="ElementShortName">interlvrs_output_counter_en</obj_property>
+      <obj_property name="ObjectShortName">interlvrs_output_counter_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/registered_address" type="array">
+      <obj_property name="ElementShortName">registered_address[11:0]</obj_property>
+      <obj_property name="ObjectShortName">registered_address[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/r_cb_length" type="array">
+      <obj_property name="ElementShortName">r_cb_length[12:0]</obj_property>
+      <obj_property name="ObjectShortName">r_cb_length[12:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/r_E" type="array">
+      <obj_property name="ElementShortName">r_E[23:0]</obj_property>
+      <obj_property name="ObjectShortName">r_E[23:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/current_state2" type="array">
+      <obj_property name="ElementShortName">current_state2[6:0]</obj_property>
+      <obj_property name="ObjectShortName">current_state2[6:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_circular_buffer/enb" type="logic">
+      <obj_property name="ElementShortName">enb</obj_property>
+      <obj_property name="ObjectShortName">enb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_circular_buffer/addrb" type="array">
+      <obj_property name="ElementShortName">addrb[12:0]</obj_property>
+      <obj_property name="ObjectShortName">addrb[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_circular_buffer/doutb" type="array">
+      <obj_property name="ElementShortName">doutb[11:0]</obj_property>
+      <obj_property name="ObjectShortName">doutb[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_circular_buffer/ena" type="logic">
+      <obj_property name="ElementShortName">ena</obj_property>
+      <obj_property name="ObjectShortName">ena</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_circular_buffer/addra" type="array">
+      <obj_property name="ElementShortName">addra[12:0]</obj_property>
+      <obj_property name="ObjectShortName">addra[12:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/i_data" type="logic">
+      <obj_property name="ElementShortName">i_data</obj_property>
+      <obj_property name="ObjectShortName">i_data</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_circular_buffer/dina" type="array">
+      <obj_property name="ElementShortName">dina[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dina[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/u_circular_buffer/douta" type="array">
+      <obj_property name="ElementShortName">douta[11:0]</obj_property>
+      <obj_property name="ObjectShortName">douta[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/i_enable" type="logic">
+      <obj_property name="ElementShortName">i_enable</obj_property>
+      <obj_property name="ObjectShortName">i_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/r_enable" type="logic">
+      <obj_property name="ElementShortName">r_enable</obj_property>
+      <obj_property name="ObjectShortName">r_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/r_data" type="logic">
+      <obj_property name="ElementShortName">r_data</obj_property>
+      <obj_property name="ObjectShortName">r_data</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/i_data" type="logic">
+      <obj_property name="ElementShortName">i_data</obj_property>
+      <obj_property name="ObjectShortName">i_data</obj_property>
+   </wvobject>
+   <wvobject fp_name="/rate_dematcher_tb/rate/r_write_enable" type="logic">
+      <obj_property name="ElementShortName">r_write_enable</obj_property>
+      <obj_property name="ObjectShortName">r_write_enable</obj_property>
+   </wvobject>
+</wave_config>
