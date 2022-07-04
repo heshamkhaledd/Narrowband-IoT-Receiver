@@ -170,11 +170,11 @@ for Idx = 1 : 16 : size(QPSK,1)
 end
 %% Upsampling %%
 upsample_out = upsample(ifft_out,8);
-upsample_out = reshape(upsample_out, [128 14]);
+upsample_out = reshape(upsample_out, [128 42]);
 %% Cyclic Prefix Addition %%
 Tx_Signal = [];
-for Idx = 1 : 1 : 14
-    if (Idx == 1 || Idx == 8)
+for Idx = 1 : 1 : 42
+    if (Idx == 1 || Idx == 8 || Idx == 15 || Idx == 22 || Idx == 29 || Idx == 36)
         CP_out = [upsample_out(119:end,Idx) ; upsample_out(1:end,Idx)];
     else
         CP_out = [upsample_out(120:end,Idx) ; upsample_out(1:end,Idx)];
