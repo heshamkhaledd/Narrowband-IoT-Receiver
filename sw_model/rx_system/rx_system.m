@@ -8,17 +8,23 @@
 %% Resource De-Mapper
 
 %% Fine Synchronization
-
+[rfo]= fine_synchronization(IQ,pilots);
 %% Channel Estimation
 
 %% Channel Equalizer
 
 %% Demodulator
-
+[demodulated_data]= Demodulator(ps_output);
 %% Descrambler
-
+CellID = 1; %Cell ID "upper layer parameter" 
+NS = 0;     %Slot number within a radio frame [0:19]
+NF = 100;   %System frame number   
+RNTI = 1000;%Radio Network temporary identifier "upper layer parameter"
+            %1 user NPDSCH transmissions indicated by RNTI=1000;
+[descrambled_data]= Descrambler(demodulated_data,CellID,NS,NF,RNTI); 
 %% Rate de-Matcher
-
+TBS = 24;
+[d0,d1,d2]= Rate_dematcher(descrambled_data,TBS);
 %% Viterbi Decoder
 % Calling the decoding function that takes a matrix with size = 3 x NumberOfBits
 % you can reshape the output from the previous block using the line below
@@ -33,8 +39,8 @@
 %         1;0;1;1;0;1;1;0;0;0;1;0;1;1;0;0;1;0;1;1;0;0;1;1;0;1;1;1;...
 %         0;0;1;1;0;1;0;0;0;1;0;1;0;1;0;0;1;0;0;0;0;1;1;1;1;0;];
 % msg = reshape(msg,3,length(msg)/3)';
+msg = [d0 d1 d2];
 [Decoded_symbol, iter]= Viterbi_Decoder(msg);
-
 %% CRC
 % Calling CRC function that takes the decoded data then returns the shift
 % register after the data is passed to it and the ACK bit that determines
