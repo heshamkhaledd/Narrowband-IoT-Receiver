@@ -1,6 +1,6 @@
 % NB-IOT LTE Receiver system MATLAB
 %% CFO Correction
-
+[cfoOut_I, cfoOut_Q] = cordic (Time_Domain_Signal_I, Time_Domain_Signal_Q,0);
 %% FFT
 
 %% Pilots Value/Idx Generator
