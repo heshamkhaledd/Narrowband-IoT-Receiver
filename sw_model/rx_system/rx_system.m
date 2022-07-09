@@ -1,8 +1,10 @@
 % NB-IOT LTE Receiver system MATLAB
+%% CP Removal & Downsampler
+[cprdsOut_I, cprdsOut_Q] = cprds(Time_Domain_Signal_I, Time_Domain_Signal_Q);
 %% CFO Correction
-[cfoOut_I, cfoOut_Q] = cordic (Time_Domain_Signal_I, Time_Domain_Signal_Q,0);
+[cfoOut_I, cfoOut_Q] = cordic (cprdsOut_I, cprdsOut_Q,coarseOffset);
 %% FFT
-
+[fftOut_I, fftOut_Q] = fft_engine(cfoOut_I, cfoOut_Q);
 %% Pilots Value/Idx Generator
 
 %% Resource De-Mapper

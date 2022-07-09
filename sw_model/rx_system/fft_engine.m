@@ -26,9 +26,6 @@ end
 % Last Buffer State outputs the lower stage elements
 out_Stage1_I(9:16,1) = delayLine1_I;
 out_Stage1_Q(9:16,1) = delayLine1_Q;
-
-% Stage(1) output in Fixed Point %
-%out_Stage1_fx = int16(round((out_Stage1_I + 1j*out_Stage1_Q) .* 2^10));
 %% Pipeline Stage (2) %%
 out_Stage2_I = zeros(16,1);
 out_Stage2_Q = zeros(16,1);
@@ -61,21 +58,59 @@ end
 % Last Buffer State outputs the lower stage elements
 out_Stage2_I(13:16,1) = delayLine2_I;
 out_Stage2_Q(13:16,1) = delayLine2_Q;
-
-% Stage(2) output in Fixed Point %
-%out_Stage2_fx = int16(round((out_Stage2_I + 1j*out_Stage2_Q) .* 2^10));
 %% Twiddle Factor Complex Multiplication %%
 % (a+jb)*(c+jd) = (ac - bd) +j (ad + bc)
 twiddleOut_I = ((out_Stage2_I .* (twiddle_I)') - ( out_Stage2_Q .* (twiddle_Q)'));
 twiddleOut_Q = ((out_Stage2_I .* (twiddle_Q)') + ( out_Stage2_Q .* (twiddle_I)'));
-
-% Complex Multiplier output in Fixed Point %
-%twiddleOut_fx = int16(round((twiddleOut_I + 1j*twiddleOut_Q) .* 2^10));
+for Idx = 1 : size(twiddleOut_I,1)
+    if(twiddleOut_I(Idx,1) < 0)
+        negMark(Idx,1) = 1;
+    else
+        negMark(Idx,1) = 0;
+    end
+end
+twiddleOut_I = bitand(int32(twiddleOut_I) , int32(0b00000011111111111111110000000000));
+twiddleOut_I = bitshift(twiddleOut_I,-10,'int32');
+for Idx = 1 : size(twiddleOut_I,1)
+    if(negMark(Idx,1) == 1)
+        binTemp = bitget(twiddleOut_I(Idx),(1:16));
+            for Itr = 1 : size(binTemp,2)
+                if (binTemp(Itr) == 1)
+                    binTemp(Itr) = 0;
+                else
+                    binTemp(Itr) = 1;
+                end
+            end
+       twiddleOut_I(Idx,1) = -bi2de(binTemp) - 1;
+    end
+end
+for Idx = 1 : size(twiddleOut_Q,1)
+    if(twiddleOut_Q(Idx,1) < 0)
+        negMark(Idx,1) = 1;
+    else
+        negMark(Idx,1) = 0;
+    end
+end
+twiddleOut_Q = bitand(int32(twiddleOut_Q) , int32(67107840));
+twiddleOut_Q = bitshift(twiddleOut_Q,-10,'int32');
+for Idx = 1 : size(twiddleOut_Q,1)
+    if(negMark(Idx,1) == 1)
+        binTemp = bitget(twiddleOut_Q(Idx),(1:16));
+            for Itr = 1 : size(binTemp,2)
+                if (binTemp(Itr) == 1)
+                    binTemp(Itr) = 0;
+                else
+                    binTemp(Itr) = 1;
+                end
+            end
+       twiddleOut_Q(Idx,1) = -bi2de(binTemp) - 1;
+    end
+end
 %% Pipeline Stage (3) %%
 out_Stage3_I = zeros(16,1);
 out_Stage3_Q = zeros(16,1);
-delayLine3_I  = zeros(2,1);
-delayLine3_Q  = zeros(2,1);
+delayLine3_I = zeros(2,1);
+delayLine3_Q = zeros(2,1);
 actFlag = 0;
 for Idx = 1 : 2 : 16
     if(~actFlag)
@@ -151,11 +186,4 @@ end
 % Last Buffer State outputs the lower stage elements
 out_Stage4_I(16,1) = delayLine4_I;
 out_Stage4_Q(16,1) = delayLine4_Q;
-
-% Stage(4) output in Fixed Point %
-%out_Stage4_fx = int16(round((out_Stage4_I + 1j*out_Stage4_Q) .* 2^10));
-output_I=bitand(int32(out_Stage4_I) , int32(0b00000011111111111111110000000000),'int32');
-output_I= (bitshift(output_I,-10));
-output_Q=(bitand(int32(out_Stage4_Q) ,int32(0b00000011111111111111110000000000),'int32'));
-output_Q=(bitshift(output_Q,-10));
 end

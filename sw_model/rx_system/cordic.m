@@ -67,11 +67,39 @@ end
 % n.p.: Scaling ONLY the last step because its the actual output %
 Steps_I(N_Rotations,Idx) = Steps_I(N_Rotations,Idx) * CORDIC_gainFactor;
 Steps_Q(N_Rotations,Idx) = Steps_Q(N_Rotations,Idx) * CORDIC_gainFactor;
+if (Steps_I(N_Rotations,Idx) < 0)
+    Steps_I(N_Rotations,Idx) = bitand(uint32(Steps_I(N_Rotations,Idx)) , 0b00000011111111111111110000000000);
+    Steps_I(N_Rotations,Idx) = bitshift(Steps_I(N_Rotations,Idx),-10);
+    binTemp = bitget(Steps_I(N_Rotations,Idx),(1:16));
+        for Itr = 1 : size(binTemp,2)
+            if (binTemp(Itr) == 1)
+                binTemp(Itr) = 0;
+            else
+                binTemp(Itr) = 1;
+            end
+        end
+       Steps_I(N_Rotations,Idx) = -bi2de(binTemp) - 1;
+else
+    Steps_I(N_Rotations,Idx) = bitand(uint32(Steps_I(N_Rotations,Idx)) , 0b00000011111111111111110000000000);
+    Steps_I(N_Rotations,Idx) = bitshift(Steps_I(N_Rotations,Idx),-10);
+end
 
-Steps_I(N_Rotations,Idx) =bitand(uint32(Steps_I(N_Rotations,Idx)) , 0b00000011111111111111110000000000);
-Steps_I(N_Rotations,Idx)= bitshift(Steps_I(N_Rotations,Idx),-10);
-Steps_Q(N_Rotations,Idx) =bitand(uint32(Steps_Q(N_Rotations,Idx)) , 0b00000011111111111111110000000000);
-Steps_Q(N_Rotations,Idx)= bitshift(Steps_Q(N_Rotations,Idx),-10);
+if (Steps_Q(N_Rotations,Idx) < 0)
+    Steps_Q(N_Rotations,Idx) = bitand(uint32(Steps_Q(N_Rotations,Idx)) , 0b00000011111111111111110000000000);
+    Steps_Q(N_Rotations,Idx) = bitshift(Steps_Q(N_Rotations,Idx),-10);
+    binTemp = bitget(Steps_Q(N_Rotations,Idx),(1:16));
+        for Itr = 1 : size(binTemp,2)
+            if (binTemp(Itr) == 1)
+                binTemp(Itr) = 0;
+            else
+                binTemp(Itr) = 1;
+            end
+        end
+       Steps_Q(N_Rotations,Idx) = -bi2de(binTemp) - 1;
+else
+    Steps_Q(N_Rotations,Idx) = bitand(uint32(Steps_Q(N_Rotations,Idx)) , 0b00000011111111111111110000000000);
+    Steps_Q(N_Rotations,Idx) = bitshift(Steps_Q(N_Rotations,Idx),-10);
+end
 %% %% Generating SW Output to compare with the Algorithm %%
 rotated_I(Idx,1) = (Steps_I(N_Rotations,Idx));
 rotated_Q(Idx,1) = (Steps_Q(N_Rotations,Idx));
