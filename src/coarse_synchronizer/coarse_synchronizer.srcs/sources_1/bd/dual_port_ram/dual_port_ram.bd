@@ -2,7 +2,7 @@
   "design": {
     "design_info": {
       "boundary_crc": "0xC0A93CD37549F4DB",
-      "device": "xczu7ev-ffvc1156-2-e",
+      "device": "xc7z020clg484-1",
       "name": "dual_port_ram",
       "synth_flow_mode": "Hierarchical",
       "tool_version": "2019.1",

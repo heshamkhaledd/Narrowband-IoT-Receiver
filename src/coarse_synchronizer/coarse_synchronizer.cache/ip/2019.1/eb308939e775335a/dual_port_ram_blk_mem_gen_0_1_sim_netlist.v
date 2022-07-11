@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
 // Date        : Mon Jul 11 02:18:35 2022
 // Host        : Jarvis running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim {D:/Graduation
-//               Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/bd/dual_port_ram/ip/dual_port_ram_blk_mem_gen_0_1/dual_port_ram_blk_mem_gen_0_1_sim_netlist.v}
+// Command     : write_verilog -force -mode funcsim -rename_top decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix -prefix
+//               decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_ dual_port_ram_blk_mem_gen_0_1_sim_netlist.v
 // Design      : dual_port_ram_blk_mem_gen_0_1
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -14,7 +14,7 @@
 
 (* CHECK_LICENSE_TYPE = "dual_port_ram_blk_mem_gen_0_1,blk_mem_gen_v8_4_3,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "blk_mem_gen_v8_4_3,Vivado 2019.1" *) 
 (* NotValidForBitStream *)
-module dual_port_ram_blk_mem_gen_0_1
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix
    (clka,
     wea,
     addra,
@@ -145,7 +145,7 @@ module dual_port_ram_blk_mem_gen_0_1
   (* C_WRITE_WIDTH_B = "32" *) 
   (* C_XDEVICEFAMILY = "zynq" *) 
   (* downgradeipidentifiedwarnings = "yes" *) 
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_v8_4_3 U0
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_v8_4_3 U0
        (.addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -211,8 +211,7 @@ module dual_port_ram_blk_mem_gen_0_1
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "bindec" *) 
-module dual_port_ram_blk_mem_gen_0_1_bindec
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_bindec
    (enb_array,
     addrb,
     enb);
@@ -233,8 +232,7 @@ module dual_port_ram_blk_mem_gen_0_1_bindec
         .O(enb_array));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_generic_cstr
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_generic_cstr
    (douta,
     doutb,
     addra,
@@ -364,18 +362,18 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_generic_cstr
   wire [0:0]wea;
   wire [0:0]web;
 
-  dual_port_ram_blk_mem_gen_0_1_bindec \bindec_b.bindec_inst_b 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_bindec \bindec_b.bindec_inst_b 
        (.addrb(addrb[11:10]),
         .enb(enb),
         .enb_array(enb_array));
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_mux \has_mux_a.A 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_mux \has_mux_a.A 
        (.DOADO({\ramloop[1].ram.r_n_0 ,\ramloop[1].ram.r_n_1 ,\ramloop[1].ram.r_n_2 ,\ramloop[1].ram.r_n_3 ,\ramloop[1].ram.r_n_4 ,\ramloop[1].ram.r_n_5 ,\ramloop[1].ram.r_n_6 ,\ramloop[1].ram.r_n_7 ,\ramloop[1].ram.r_n_8 ,\ramloop[1].ram.r_n_9 ,\ramloop[1].ram.r_n_10 ,\ramloop[1].ram.r_n_11 ,\ramloop[1].ram.r_n_12 ,\ramloop[1].ram.r_n_13 ,\ramloop[1].ram.r_n_14 ,\ramloop[1].ram.r_n_15 ,\ramloop[1].ram.r_n_16 ,\ramloop[1].ram.r_n_17 ,\ramloop[1].ram.r_n_18 ,\ramloop[1].ram.r_n_19 ,\ramloop[1].ram.r_n_20 ,\ramloop[1].ram.r_n_21 ,\ramloop[1].ram.r_n_22 ,\ramloop[1].ram.r_n_23 ,\ramloop[1].ram.r_n_24 ,\ramloop[1].ram.r_n_25 ,\ramloop[1].ram.r_n_26 ,\ramloop[1].ram.r_n_27 ,\ramloop[1].ram.r_n_28 ,\ramloop[1].ram.r_n_29 ,\ramloop[1].ram.r_n_30 ,\ramloop[1].ram.r_n_31 }),
         .addra(addra[11:10]),
         .clka(clka),
         .douta(douta),
         .\douta[31] ({\ramloop[2].ram.r_n_0 ,\ramloop[2].ram.r_n_1 ,\ramloop[2].ram.r_n_2 ,\ramloop[2].ram.r_n_3 ,\ramloop[2].ram.r_n_4 ,\ramloop[2].ram.r_n_5 ,\ramloop[2].ram.r_n_6 ,\ramloop[2].ram.r_n_7 ,\ramloop[2].ram.r_n_8 ,\ramloop[2].ram.r_n_9 ,\ramloop[2].ram.r_n_10 ,\ramloop[2].ram.r_n_11 ,\ramloop[2].ram.r_n_12 ,\ramloop[2].ram.r_n_13 }),
         .ram_douta(ram_douta));
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_mux__parameterized0 \has_mux_b.B 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_mux__parameterized0 \has_mux_b.B 
        (.DOBDO({\ramloop[1].ram.r_n_32 ,\ramloop[1].ram.r_n_33 ,\ramloop[1].ram.r_n_34 ,\ramloop[1].ram.r_n_35 ,\ramloop[1].ram.r_n_36 ,\ramloop[1].ram.r_n_37 ,\ramloop[1].ram.r_n_38 ,\ramloop[1].ram.r_n_39 ,\ramloop[1].ram.r_n_40 ,\ramloop[1].ram.r_n_41 ,\ramloop[1].ram.r_n_42 ,\ramloop[1].ram.r_n_43 ,\ramloop[1].ram.r_n_44 ,\ramloop[1].ram.r_n_45 ,\ramloop[1].ram.r_n_46 ,\ramloop[1].ram.r_n_47 ,\ramloop[1].ram.r_n_48 ,\ramloop[1].ram.r_n_49 ,\ramloop[1].ram.r_n_50 ,\ramloop[1].ram.r_n_51 ,\ramloop[1].ram.r_n_52 ,\ramloop[1].ram.r_n_53 ,\ramloop[1].ram.r_n_54 ,\ramloop[1].ram.r_n_55 ,\ramloop[1].ram.r_n_56 ,\ramloop[1].ram.r_n_57 ,\ramloop[1].ram.r_n_58 ,\ramloop[1].ram.r_n_59 ,\ramloop[1].ram.r_n_60 ,\ramloop[1].ram.r_n_61 ,\ramloop[1].ram.r_n_62 ,\ramloop[1].ram.r_n_63 }),
         .addrb(addrb[11:10]),
         .clka(clka),
@@ -383,7 +381,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_generic_cstr
         .\doutb[31] ({\ramloop[2].ram.r_n_14 ,\ramloop[2].ram.r_n_15 ,\ramloop[2].ram.r_n_16 ,\ramloop[2].ram.r_n_17 ,\ramloop[2].ram.r_n_18 ,\ramloop[2].ram.r_n_19 ,\ramloop[2].ram.r_n_20 ,\ramloop[2].ram.r_n_21 ,\ramloop[2].ram.r_n_22 ,\ramloop[2].ram.r_n_23 ,\ramloop[2].ram.r_n_24 ,\ramloop[2].ram.r_n_25 ,\ramloop[2].ram.r_n_26 ,\ramloop[2].ram.r_n_27 }),
         .enb(enb),
         .ram_doutb(ram_doutb));
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width \ramloop[0].ram.r 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_width \ramloop[0].ram.r 
        (.addra(addra),
         .addra_11_sp_1(\ramloop[0].ram.r_n_36 ),
         .addrb(addrb),
@@ -396,7 +394,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_generic_cstr
         .ram_doutb(ram_doutb),
         .wea(wea),
         .web(web));
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width__parameterized0 \ramloop[1].ram.r 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_width__parameterized0 \ramloop[1].ram.r 
        (.DOADO({\ramloop[1].ram.r_n_0 ,\ramloop[1].ram.r_n_1 ,\ramloop[1].ram.r_n_2 ,\ramloop[1].ram.r_n_3 ,\ramloop[1].ram.r_n_4 ,\ramloop[1].ram.r_n_5 ,\ramloop[1].ram.r_n_6 ,\ramloop[1].ram.r_n_7 ,\ramloop[1].ram.r_n_8 ,\ramloop[1].ram.r_n_9 ,\ramloop[1].ram.r_n_10 ,\ramloop[1].ram.r_n_11 ,\ramloop[1].ram.r_n_12 ,\ramloop[1].ram.r_n_13 ,\ramloop[1].ram.r_n_14 ,\ramloop[1].ram.r_n_15 ,\ramloop[1].ram.r_n_16 ,\ramloop[1].ram.r_n_17 ,\ramloop[1].ram.r_n_18 ,\ramloop[1].ram.r_n_19 ,\ramloop[1].ram.r_n_20 ,\ramloop[1].ram.r_n_21 ,\ramloop[1].ram.r_n_22 ,\ramloop[1].ram.r_n_23 ,\ramloop[1].ram.r_n_24 ,\ramloop[1].ram.r_n_25 ,\ramloop[1].ram.r_n_26 ,\ramloop[1].ram.r_n_27 ,\ramloop[1].ram.r_n_28 ,\ramloop[1].ram.r_n_29 ,\ramloop[1].ram.r_n_30 ,\ramloop[1].ram.r_n_31 }),
         .DOBDO({\ramloop[1].ram.r_n_32 ,\ramloop[1].ram.r_n_33 ,\ramloop[1].ram.r_n_34 ,\ramloop[1].ram.r_n_35 ,\ramloop[1].ram.r_n_36 ,\ramloop[1].ram.r_n_37 ,\ramloop[1].ram.r_n_38 ,\ramloop[1].ram.r_n_39 ,\ramloop[1].ram.r_n_40 ,\ramloop[1].ram.r_n_41 ,\ramloop[1].ram.r_n_42 ,\ramloop[1].ram.r_n_43 ,\ramloop[1].ram.r_n_44 ,\ramloop[1].ram.r_n_45 ,\ramloop[1].ram.r_n_46 ,\ramloop[1].ram.r_n_47 ,\ramloop[1].ram.r_n_48 ,\ramloop[1].ram.r_n_49 ,\ramloop[1].ram.r_n_50 ,\ramloop[1].ram.r_n_51 ,\ramloop[1].ram.r_n_52 ,\ramloop[1].ram.r_n_53 ,\ramloop[1].ram.r_n_54 ,\ramloop[1].ram.r_n_55 ,\ramloop[1].ram.r_n_56 ,\ramloop[1].ram.r_n_57 ,\ramloop[1].ram.r_n_58 ,\ramloop[1].ram.r_n_59 ,\ramloop[1].ram.r_n_60 ,\ramloop[1].ram.r_n_61 ,\ramloop[1].ram.r_n_62 ,\ramloop[1].ram.r_n_63 }),
         .addra(addra),
@@ -407,7 +405,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_generic_cstr
         .enb_array(enb_array),
         .wea(wea),
         .web(web));
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width__parameterized1 \ramloop[2].ram.r 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_width__parameterized1 \ramloop[2].ram.r 
        (.\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ({\ramloop[2].ram.r_n_0 ,\ramloop[2].ram.r_n_1 ,\ramloop[2].ram.r_n_2 ,\ramloop[2].ram.r_n_3 ,\ramloop[2].ram.r_n_4 ,\ramloop[2].ram.r_n_5 ,\ramloop[2].ram.r_n_6 ,\ramloop[2].ram.r_n_7 ,\ramloop[2].ram.r_n_8 ,\ramloop[2].ram.r_n_9 ,\ramloop[2].ram.r_n_10 ,\ramloop[2].ram.r_n_11 ,\ramloop[2].ram.r_n_12 ,\ramloop[2].ram.r_n_13 }),
         .\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ({\ramloop[2].ram.r_n_14 ,\ramloop[2].ram.r_n_15 ,\ramloop[2].ram.r_n_16 ,\ramloop[2].ram.r_n_17 ,\ramloop[2].ram.r_n_18 ,\ramloop[2].ram.r_n_19 ,\ramloop[2].ram.r_n_20 ,\ramloop[2].ram.r_n_21 ,\ramloop[2].ram.r_n_22 ,\ramloop[2].ram.r_n_23 ,\ramloop[2].ram.r_n_24 ,\ramloop[2].ram.r_n_25 ,\ramloop[2].ram.r_n_26 ,\ramloop[2].ram.r_n_27 }),
         .\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 (\ramloop[0].ram.r_n_36 ),
@@ -421,8 +419,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_generic_cstr
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_mux
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_mux
    (douta,
     addra,
     clka,
@@ -719,7 +716,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_mux
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_mux__parameterized0
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_mux__parameterized0
    (doutb,
     addrb,
     enb,
@@ -1037,8 +1034,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_mux__parameterized0
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_width
    (ram_douta,
     ram_doutb,
     addra_11_sp_1,
@@ -1078,7 +1074,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width
   wire [0:0]web;
 
   assign addra_11_sp_1 = addra_11_sn_1;
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper \prim_noinit.ram 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_wrapper \prim_noinit.ram 
        (.addra(addra),
         .addra_11_sp_1(addra_11_sn_1),
         .addrb(addrb),
@@ -1094,7 +1090,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width__parameterized0
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_width__parameterized0
    (DOADO,
     DOBDO,
     clka,
@@ -1127,7 +1123,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width__parameterized0
   wire [0:0]wea;
   wire [0:0]web;
 
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper__parameterized0 \prim_noinit.ram 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_wrapper__parameterized0 \prim_noinit.ram 
        (.DOADO(DOADO),
         .DOBDO(DOBDO),
         .addra(addra),
@@ -1141,7 +1137,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width__parameterized0
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_width" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width__parameterized1
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_width__parameterized1
    (\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ,
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ,
     clka,
@@ -1177,7 +1173,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width__parameterized1
   wire [0:0]wea;
   wire [0:0]web;
 
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper__parameterized1 \prim_noinit.ram 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_wrapper__parameterized1 \prim_noinit.ram 
        (.\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 (\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram ),
         .\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 (\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ),
         .\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_2 (\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 ),
@@ -1191,8 +1187,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_width__parameterized1
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_wrapper
    (ram_douta,
     ram_doutb,
     addra_11_sp_1,
@@ -1466,7 +1461,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper__parameterized0
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_wrapper__parameterized0
    (DOADO,
     DOBDO,
     clka,
@@ -1733,7 +1728,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper__parameterized0
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_prim_wrapper" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper__parameterized1
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_prim_wrapper__parameterized1
    (\DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_0 ,
     \DEVICE_7SERIES.NO_BMM_INFO.TRUE_DP.SIMPLE_PRIM36.ram_1 ,
     clka,
@@ -1999,8 +1994,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_prim_wrapper__parameterized1
         .WEBWE({1'b0,1'b0,1'b0,1'b0,web,web,web,web}));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_top" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_top
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_top
    (douta,
     doutb,
     addra,
@@ -2033,7 +2027,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_top
   wire [0:0]wea;
   wire [0:0]web;
 
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_generic_cstr \valid.cstr 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_generic_cstr \valid.cstr 
        (.addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2071,8 +2065,8 @@ endmodule
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "2708" *) 
 (* C_WRITE_DEPTH_B = "2708" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "32" *) (* C_WRITE_WIDTH_B = "32" *) (* C_XDEVICEFAMILY = "zynq" *) 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3" *) (* downgradeipidentifiedwarnings = "yes" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_v8_4_3
+(* downgradeipidentifiedwarnings = "yes" *) 
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_v8_4_3
    (clka,
     rsta,
     ena,
@@ -2294,7 +2288,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_v8_4_3
   assign sbiterr = \<const0> ;
   GND GND
        (.G(\<const0> ));
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_v8_4_3_synth inst_blk_mem_gen
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_v8_4_3_synth inst_blk_mem_gen
        (.addra(addra),
         .addrb(addrb),
         .clka(clka),
@@ -2307,8 +2301,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_v8_4_3
         .web(web));
 endmodule
 
-(* ORIG_REF_NAME = "blk_mem_gen_v8_4_3_synth" *) 
-module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_v8_4_3_synth
+module decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_v8_4_3_synth
    (douta,
     doutb,
     addra,
@@ -2341,7 +2334,7 @@ module dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_v8_4_3_synth
   wire [0:0]wea;
   wire [0:0]web;
 
-  dual_port_ram_blk_mem_gen_0_1_blk_mem_gen_top \gnbram.gnativebmg.native_blk_mem_gen 
+  decalper_eb_ot_sdeen_pot_pi_dehcac_xnilix_blk_mem_gen_top \gnbram.gnativebmg.native_blk_mem_gen 
        (.addra(addra),
         .addrb(addrb),
         .clka(clka),

@@ -2,8 +2,8 @@
 # Vivado v2019.1 (64-bit)
 # SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
 # IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
-# Start of session at: Wed May 25 01:51:14 2022
-# Process ID: 21108
+# Start of session at: Mon Jul 11 02:19:30 2022
+# Process ID: 7540
 # Current directory: D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1
 # Command line: vivado.exe -log csync_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source csync_top.tcl
 # Log file: D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1/csync_top.vds
@@ -13,15 +13,15 @@ source csync_top.tcl -notrace
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.
-Command: synth_design -top csync_top -part xczu7ev-ffvc1156-2-e
+Command: synth_design -top csync_top -part xc7z020clg484-1
 Starting synth_design
-Attempting to get a license for feature 'Synthesis' and/or device 'xczu7ev'
-INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xczu7ev'
-INFO: [Device 21-403] Loading part xczu7ev-ffvc1156-2-e
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 2664 
+INFO: Helper process launched with PID 12508 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1473.184 ; gain = 4.512
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 859.051 ; gain = 172.781
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'csync_top' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_top.v:23]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
@@ -29,7 +29,7 @@ INFO: [Synth 8-6157] synthesizing module 'csync_top' [D:/Graduation Project/Narr
 	Parameter RAM_DEPTH bound to: 12 - type: integer 
 	Parameter CFO_WIDTH bound to: 19 - type: integer 
 	Parameter TIMING_WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'csync_ctrl' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_ctrl.v:23]
+INFO: [Synth 8-6157] synthesizing module 'csync_ctrl' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_ctrl.v:21]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
 	Parameter REG_BANK_ADDR bound to: 8 - type: integer 
 	Parameter RAM_DEPTH bound to: 12 - type: integer 
@@ -40,85 +40,85 @@ INFO: [Synth 8-6157] synthesizing module 'csync_ctrl' [D:/Graduation Project/Nar
 	Parameter p_stageHOLD bound to: 4'b0010 
 	Parameter p_stageST bound to: 4'b0100 
 	Parameter p_stageON bound to: 4'b1000 
-INFO: [Synth 8-6155] done synthesizing module 'csync_ctrl' (1#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_ctrl.v:23]
-INFO: [Synth 8-6157] synthesizing module 'csync_stage1' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage1.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'csync_ctrl' (1#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_ctrl.v:21]
+INFO: [Synth 8-6157] synthesizing module 'csync_stage1' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage1.v:21]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
 	Parameter RAM_WIDTH bound to: 32 - type: integer 
 	Parameter RAM_DEPTH bound to: 12 - type: integer 
 	Parameter REG_BANK_ADDR bound to: 8 - type: integer 
 	Parameter FFO_WIDTH bound to: 19 - type: integer 
 	Parameter TIMING_WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'sample_codecover_mul' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/sample_codecover_mul.v:23]
+INFO: [Synth 8-6157] synthesizing module 'sample_codecover_mul' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/sample_codecover_mul.v:22]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'sample_codecover_mul' (2#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/sample_codecover_mul.v:23]
-INFO: [Synth 8-6157] synthesizing module 'symbol_regfile' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/symbol_regfile.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'sample_codecover_mul' (2#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/sample_codecover_mul.v:22]
+INFO: [Synth 8-6157] synthesizing module 'symbol_regfile' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/symbol_regfile.v:22]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
 	Parameter REG_BANK_ADDR bound to: 8 - type: integer 
 	Parameter REG_BANK_LENGTH bound to: 137 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'symbol_regfile' (3#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/symbol_regfile.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'symbol_regfile' (3#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/symbol_regfile.v:22]
 INFO: [Synth 8-6157] synthesizing module 'cmplx_mul' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/cmplx_mul.v:20]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'cmplx_mul' (4#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/cmplx_mul.v:20]
-INFO: [Synth 8-6157] synthesizing module 'two_samples_accumulator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/two_samples_accumulator.v:22]
+INFO: [Synth 8-6157] synthesizing module 'two_samples_accumulator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/two_samples_accumulator.v:21]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'two_samples_accumulator' (5#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/two_samples_accumulator.v:22]
-INFO: [Synth 8-6157] synthesizing module 'accumulator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'two_samples_accumulator' (5#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/two_samples_accumulator.v:21]
+INFO: [Synth 8-6157] synthesizing module 'accumulator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:22]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'accumulator' (6#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:23]
-INFO: [Synth 8-6157] synthesizing module 'metric_filter' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/metric_filter.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'accumulator' (6#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:22]
+INFO: [Synth 8-6157] synthesizing module 'metric_filter' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/metric_filter.v:22]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'metric_filter' (7#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/metric_filter.v:23]
-INFO: [Synth 8-6157] synthesizing module 'acquisition_checker' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/acquisition_checker.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'metric_filter' (7#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/metric_filter.v:22]
+INFO: [Synth 8-6157] synthesizing module 'acquisition_checker' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/acquisition_checker.v:21]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'acquisition_checker' (8#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/acquisition_checker.v:23]
-INFO: [Synth 8-6157] synthesizing module 'arctan' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/arctan.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'acquisition_checker' (8#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/acquisition_checker.v:21]
+INFO: [Synth 8-6157] synthesizing module 'arctan' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/arctan.v:22]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
 	Parameter IDLE bound to: 2'b00 
 	Parameter INIT bound to: 2'b01 
 	Parameter DIVISION bound to: 2'b10 
-INFO: [Synth 8-6157] synthesizing module 'fixed_add' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:4]
+INFO: [Synth 8-6157] synthesizing module 'fixed_add' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:22]
 	Parameter DATA_WIDTH bound to: 18 - type: integer 
 	Parameter INT_BITS bound to: 6 - type: integer 
 	Parameter FRAC_BITS bound to: 10 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'fixed_add' (9#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:4]
-INFO: [Synth 8-6157] synthesizing module 'fixed_add__parameterized0' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'fixed_add' (9#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:22]
+INFO: [Synth 8-6157] synthesizing module 'fixed_add__parameterized0' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:22]
 	Parameter DATA_WIDTH bound to: 19 - type: integer 
 	Parameter INT_BITS bound to: 6 - type: integer 
 	Parameter FRAC_BITS bound to: 10 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'fixed_add__parameterized0' (9#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:4]
-INFO: [Synth 8-6157] synthesizing module 'divider' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/divider.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'fixed_add__parameterized0' (9#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:22]
+INFO: [Synth 8-6157] synthesizing module 'divider' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/divider.v:21]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'fixed_add__parameterized1' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:4]
+INFO: [Synth 8-6157] synthesizing module 'fixed_add__parameterized1' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:22]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
 	Parameter INT_BITS bound to: 6 - type: integer 
 	Parameter FRAC_BITS bound to: 10 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'fixed_add__parameterized1' (9#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:4]
-INFO: [Synth 8-6155] done synthesizing module 'divider' (10#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/divider.v:22]
-INFO: [Synth 8-6155] done synthesizing module 'arctan' (11#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/arctan.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'csync_stage1' (12#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage1.v:22]
-INFO: [Synth 8-6157] synthesizing module 'csync_storage' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_storage.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'fixed_add__parameterized1' (9#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'divider' (10#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/divider.v:21]
+INFO: [Synth 8-6155] done synthesizing module 'arctan' (11#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/arctan.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'csync_stage1' (12#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage1.v:21]
+INFO: [Synth 8-6157] synthesizing module 'csync_storage' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_storage.v:22]
 	Parameter RAM_WIDTH bound to: 32 - type: integer 
 	Parameter RAM_DEPTH bound to: 12 - type: integer 
 	Parameter CFO_WIDTH bound to: 19 - type: integer 
 	Parameter TIMING_WIDTH bound to: 15 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'dual_port_ram_wrapper' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/bd/dual_port_ram/hdl/dual_port_ram_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'dual_port_ram' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/bd/dual_port_ram/synth/dual_port_ram.v:13]
-INFO: [Synth 8-6157] synthesizing module 'dual_port_ram_blk_mem_gen_0_1' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1/.Xil/Vivado-21108-Jarvis/realtime/dual_port_ram_blk_mem_gen_0_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'dual_port_ram_blk_mem_gen_0_1' (13#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1/.Xil/Vivado-21108-Jarvis/realtime/dual_port_ram_blk_mem_gen_0_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'dual_port_ram_blk_mem_gen_0_1' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1/.Xil/Vivado-7540-Jarvis/realtime/dual_port_ram_blk_mem_gen_0_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'dual_port_ram_blk_mem_gen_0_1' (13#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1/.Xil/Vivado-7540-Jarvis/realtime/dual_port_ram_blk_mem_gen_0_1_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'dual_port_ram' (14#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/bd/dual_port_ram/synth/dual_port_ram.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'dual_port_ram_wrapper' (15#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/bd/dual_port_ram/hdl/dual_port_ram_wrapper.v:12]
-INFO: [Synth 8-6155] done synthesizing module 'csync_storage' (16#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_storage.v:23]
-INFO: [Synth 8-6157] synthesizing module 'coarse_rom' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/coarse_rom.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'csync_storage' (16#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_storage.v:22]
+INFO: [Synth 8-6157] synthesizing module 'coarse_rom' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/coarse_rom.v:21]
 	Parameter ROM_WIDTH bound to: 16 - type: integer 
 	Parameter ROM_DEPTH bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'coarse_rom' (17#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/coarse_rom.v:23]
-INFO: [Synth 8-6157] synthesizing module 'csync_stage2' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage2.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'coarse_rom' (17#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/coarse_rom.v:21]
+INFO: [Synth 8-6157] synthesizing module 'csync_stage2' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage2.v:21]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
 	Parameter CFO_WIDTH bound to: 19 - type: integer 
 	Parameter TIMING_WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'ifo_adder' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/ifo_adder.v:23]
+INFO: [Synth 8-6157] synthesizing module 'ifo_adder' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/ifo_adder.v:22]
 	Parameter CFO_WIDTH bound to: 19 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'ifo_adder' (18#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/ifo_adder.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'ifo_adder' (18#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/ifo_adder.v:22]
 INFO: [Synth 8-6157] synthesizing module 'cordic_top' [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:20]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
 	Parameter OFFSET_WIDTH bound to: 19 - type: integer 
@@ -135,37 +135,37 @@ INFO: [Synth 8-226] default block is never used [D:/Graduation Project/Narrowban
 INFO: [Synth 8-226] default block is never used [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_shifter.v:53]
 INFO: [Synth 8-6155] done synthesizing module 'cordic_shifter' (21#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_shifter.v:21]
 INFO: [Synth 8-6155] done synthesizing module 'cordic_top' (22#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:20]
-INFO: [Synth 8-6157] synthesizing module 'xcor_abs' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:22]
+INFO: [Synth 8-6157] synthesizing module 'xcor_abs' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:21]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:40]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:41]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:42]
-INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:43]
+INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:44]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:45]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:46]
-INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:47]
+INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:48]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:49]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:50]
-INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:51]
+INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:52]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:53]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:54]
-INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:55]
+INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:56]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:57]
 INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:58]
-INFO: [Synth 8-5534] Detected attribute (* dont_touch = "true" *) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:59]
-INFO: [Synth 8-6155] done synthesizing module 'xcor_abs' (23#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:22]
-INFO: [Synth 8-6157] synthesizing module 'xcor_peak_comparator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_peak_comparator.v:23]
+INFO: [Synth 8-6155] done synthesizing module 'xcor_abs' (23#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_abs.v:21]
+INFO: [Synth 8-6157] synthesizing module 'xcor_peak_comparator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_peak_comparator.v:22]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'comparator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/comparator.v:23]
+INFO: [Synth 8-6157] synthesizing module 'comparator' [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/comparator.v:22]
 	Parameter DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'comparator' (24#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/comparator.v:23]
-INFO: [Synth 8-6155] done synthesizing module 'xcor_peak_comparator' (25#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_peak_comparator.v:23]
-INFO: [Synth 8-155] case statement is not full and has no default [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage2.v:372]
-WARNING: [Synth 8-3848] Net w_fineValid in module/entity csync_stage2 does not have driver. [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage2.v:100]
-INFO: [Synth 8-6155] done synthesizing module 'csync_stage2' (26#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage2.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'comparator' (24#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/comparator.v:22]
+INFO: [Synth 8-6155] done synthesizing module 'xcor_peak_comparator' (25#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/xcor_peak_comparator.v:22]
+INFO: [Synth 8-155] case statement is not full and has no default [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage2.v:371]
+WARNING: [Synth 8-3848] Net w_fineValid in module/entity csync_stage2 does not have driver. [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage2.v:99]
+INFO: [Synth 8-6155] done synthesizing module 'csync_stage2' (26#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_stage2.v:21]
 WARNING: [Synth 8-3848] Net w_romAddr in module/entity csync_top does not have driver. [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_top.v:70]
 INFO: [Synth 8-6155] done synthesizing module 'csync_top' (27#1) [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/csync_top.v:23]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1538.672 ; gain = 70.000
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 925.715 ; gain = 239.445
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -178,10 +178,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 1544.770 ; gain = 76.098
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 925.715 ; gain = 239.445
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:08 . Memory (MB): peak = 1544.770 ; gain = 76.098
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 925.715 ; gain = 239.445
 ---------------------------------------------------------------------------------
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
@@ -190,27 +190,25 @@ Initializing timing engine
 Parsing XDC File [d:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/bd/dual_port_ram/ip/dual_port_ram_blk_mem_gen_0_1/dual_port_ram_blk_mem_gen_0_1/dual_port_ram_blk_mem_gen_0_1_in_context.xdc] for cell 'u_CSYNC_STORAGE/u_DUAL_PORT_RAM/dual_port_ram_i/blk_mem_gen_0'
 Finished Parsing XDC File [d:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/bd/dual_port_ram/ip/dual_port_ram_blk_mem_gen_0_1/dual_port_ram_blk_mem_gen_0_1/dual_port_ram_blk_mem_gen_0_1_in_context.xdc] for cell 'u_CSYNC_STORAGE/u_DUAL_PORT_RAM/dual_port_ram_i/blk_mem_gen_0'
 Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/constrs_1/new/constr.xdc]
-create_clock: Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1686.805 ; gain = 22.156
 Finished Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/constrs_1/new/constr.xdc]
 Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1686.805 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1061.051 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.089 . Memory (MB): peak = 1686.805 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.085 . Memory (MB): peak = 1061.051 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1686.805 ; gain = 218.133
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1061.051 ; gain = 374.781
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
-Loading part: xczu7ev-ffvc1156-2-e
-INFO: [Synth 8-6742] Reading net delay rules and data
+Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1686.805 ; gain = 218.133
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1061.051 ; gain = 374.781
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -218,14 +216,14 @@ Start Applying 'set_property' XDC Constraints
 Applied set_property DONT_TOUCH = true for u_CSYNC_STORAGE/u_DUAL_PORT_RAM/dual_port_ram_i. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for u_CSYNC_STORAGE/u_DUAL_PORT_RAM/dual_port_ram_i/blk_mem_gen_0. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1686.805 ; gain = 218.133
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 1061.051 ; gain = 374.781
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'r_metricEn_reg' in module 'csync_ctrl'
 INFO: [Synth 8-802] inferred FSM for state register 'r_arcCurrState_reg' in module 'csync_ctrl'
 INFO: [Synth 8-802] inferred FSM for state register 'r_stageCurrState_reg' in module 'csync_ctrl'
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:21]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:21]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:21]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:39]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:39]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/fixed_add.v:39]
 INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'arctan'
 INFO: [Synth 8-802] inferred FSM for state register 'r_currentState_reg' in module 'cordic_ctrl'
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:146]
@@ -267,7 +265,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using e
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3898] No Re-encoding of one hot register 'r_currentState_reg' in module 'cordic_ctrl'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1686.805 ; gain = 218.133
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1061.051 ; gain = 374.781
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -286,8 +284,8 @@ Detailed RTL Component Info :
 	   2 Input     19 Bit       Adders := 4     
 	   3 Input     18 Bit       Adders := 3     
 	   2 Input     18 Bit       Adders := 2     
-	   2 Input     16 Bit       Adders := 33    
-	   3 Input     16 Bit       Adders := 26    
+	   2 Input     16 Bit       Adders := 19    
+	   3 Input     16 Bit       Adders := 16    
 	   2 Input     15 Bit       Adders := 5     
 	   2 Input     12 Bit       Adders := 1     
 	   2 Input     11 Bit       Adders := 4     
@@ -299,7 +297,7 @@ Detailed RTL Component Info :
 	               21 Bit    Registers := 5     
 	               19 Bit    Registers := 9     
 	               18 Bit    Registers := 1     
-	               16 Bit    Registers := 56    
+	               16 Bit    Registers := 32    
 	               15 Bit    Registers := 3     
 	               12 Bit    Registers := 3     
 	               11 Bit    Registers := 4     
@@ -315,7 +313,7 @@ Detailed RTL Component Info :
 	   2 Input     20 Bit        Muxes := 5     
 	   2 Input     19 Bit        Muxes := 8     
 	   2 Input     18 Bit        Muxes := 4     
-	   2 Input     16 Bit        Muxes := 81    
+	   2 Input     16 Bit        Muxes := 47    
 	   2 Input     15 Bit        Muxes := 2     
 	   2 Input     12 Bit        Muxes := 2     
 	   2 Input     11 Bit        Muxes := 3     
@@ -394,12 +392,10 @@ Detailed RTL Component Info :
 	               16 Bit    Registers := 4     
 Module accumulator 
 Detailed RTL Component Info : 
-+---Adders : 
-	   2 Input     16 Bit       Adders := 2     
 +---Registers : 
-	               16 Bit    Registers := 4     
+	               16 Bit    Registers := 2     
 +---Muxes : 
-	   2 Input     16 Bit        Muxes := 4     
+	   2 Input     16 Bit        Muxes := 2     
 Module metric_filter 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -479,16 +475,15 @@ Module cordic_top
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input     20 Bit       Adders := 2     
-	   3 Input     16 Bit       Adders := 2     
 +---Registers : 
 	               21 Bit    Registers := 1     
 	               19 Bit    Registers := 1     
-	               16 Bit    Registers := 4     
+	               16 Bit    Registers := 2     
 	                1 Bit    Registers := 1     
 +---Muxes : 
 	   2 Input     21 Bit        Muxes := 1     
 	   2 Input     20 Bit        Muxes := 1     
-	   2 Input     16 Bit        Muxes := 6     
+	   2 Input     16 Bit        Muxes := 2     
 Module xcor_abs 
 Detailed RTL Component Info : 
 +---Adders : 
@@ -521,8 +516,8 @@ Finished RTL Hierarchical Component Statistics
 Start Part Resource Summary
 ---------------------------------------------------------------------------------
 Part Resources:
-DSPs: 1728 (col length:144)
-BRAMs: 624 (col length: RAMB18 144 RAMB36 72)
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
@@ -737,7 +732,7 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_CSYNC_
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (u_CSYNC_STAGE2/\r_updatedCFO_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\u_CSYNC_STORAGE/r_CFO_reg[0] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:51 ; elapsed = 00:00:52 . Memory (MB): peak = 1686.805 ; gain = 218.133
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:42 ; elapsed = 00:00:43 . Memory (MB): peak = 1061.051 ; gain = 374.781
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -832,13 +827,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:11 ; elapsed = 00:01:14 . Memory (MB): peak = 2256.152 ; gain = 787.480
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:02 ; elapsed = 00:01:03 . Memory (MB): peak = 1084.598 ; gain = 398.328
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:16 ; elapsed = 00:01:19 . Memory (MB): peak = 2279.035 ; gain = 810.363
+Finished Timing Optimization : Time (s): cpu = 00:01:07 ; elapsed = 00:01:08 . Memory (MB): peak = 1108.254 ; gain = 421.984
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -912,28 +907,28 @@ INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM bloc
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:172]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:172]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/cfo_corrector/cordic.srcs/sources_1/new/cordic_top.v:173]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
-INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:47]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
 INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:46]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
+INFO: [Synth 8-5844] Detected registers with asynchronous reset at DSP/BRAM block boundary. Consider using synchronous reset for optimal packing [D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.srcs/sources_1/new/accumulator.v:45]
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:21 ; elapsed = 00:01:24 . Memory (MB): peak = 2407.848 ; gain = 939.176
+Finished Technology Mapping : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1184.754 ; gain = 498.484
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -957,7 +952,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:25 ; elapsed = 00:01:28 . Memory (MB): peak = 2414.480 ; gain = 945.809
+Finished IO Insertion : Time (s): cpu = 00:01:18 ; elapsed = 00:01:19 . Memory (MB): peak = 1189.430 ; gain = 503.160
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -970,7 +965,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:25 ; elapsed = 00:01:28 . Memory (MB): peak = 2414.480 ; gain = 945.809
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:18 ; elapsed = 00:01:19 . Memory (MB): peak = 1189.430 ; gain = 503.160
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -982,25 +977,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:27 ; elapsed = 00:01:30 . Memory (MB): peak = 2414.480 ; gain = 945.809
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:21 ; elapsed = 00:01:22 . Memory (MB): peak = 1189.430 ; gain = 503.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:27 ; elapsed = 00:01:30 . Memory (MB): peak = 2414.480 ; gain = 945.809
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:21 ; elapsed = 00:01:22 . Memory (MB): peak = 1189.430 ; gain = 503.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:27 ; elapsed = 00:01:30 . Memory (MB): peak = 2414.480 ; gain = 945.809
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:21 ; elapsed = 00:01:22 . Memory (MB): peak = 1189.430 ; gain = 503.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:27 ; elapsed = 00:01:30 . Memory (MB): peak = 2414.480 ; gain = 945.809
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:21 ; elapsed = 00:01:22 . Memory (MB): peak = 1189.430 ; gain = 503.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1019,156 +1014,98 @@ Report Cell Usage:
 +------+------------------------------+------+
 |1     |dual_port_ram_blk_mem_gen_0_1 |     1|
 |2     |BUFG                          |     2|
-|3     |CARRY8                        |   154|
-|4     |DSP_ALU                       |    48|
-|5     |DSP_A_B_DATA                  |    48|
-|6     |DSP_C_DATA                    |    48|
-|7     |DSP_MULTIPLIER                |    48|
-|8     |DSP_M_DATA                    |    48|
-|9     |DSP_OUTPUT                    |    48|
-|10    |DSP_PREADD                    |    48|
-|11    |DSP_PREADD_DATA               |    48|
-|12    |LUT1                          |    84|
-|13    |LUT2                          |   918|
-|14    |LUT3                          |   379|
-|15    |LUT4                          |   255|
-|16    |LUT5                          |   345|
-|17    |LUT6                          |   733|
-|18    |RAM128X1S                     |    32|
-|19    |RAM16X1S                      |    32|
-|20    |FDCE                          |  1144|
-|21    |FDPE                          |    31|
-|22    |FDRE                          |    18|
-|23    |IBUF                          |    36|
-|24    |OBUF                          |    20|
+|3     |CARRY4                        |   321|
+|4     |DSP48E1                       |    48|
+|5     |LUT1                          |   140|
+|6     |LUT2                          |   782|
+|7     |LUT3                          |   415|
+|8     |LUT4                          |   103|
+|9     |LUT5                          |   308|
+|10    |LUT6                          |   840|
+|11    |RAM128X1S                     |    32|
+|12    |RAM16X1S                      |    32|
+|13    |FDCE                          |  1144|
+|14    |FDPE                          |    31|
+|15    |FDRE                          |    18|
+|16    |IBUF                          |    36|
+|17    |OBUF                          |    20|
 +------+------------------------------+------+
 
 Report Instance Areas: 
-+------+---------------------------------+-------------------------------+------+
-|      |Instance                         |Module                         |Cells |
-+------+---------------------------------+-------------------------------+------+
-|1     |top                              |                               |  4631|
-|2     |  u_CSYNC_CTRL                   |csync_ctrl                     |   501|
-|3     |  u_CSYNC_STAGE1                 |csync_stage1                   |   968|
-|4     |    u_ACQUISITION_CHECKER        |acquisition_checker            |    24|
-|5     |      o_peakFound2               |\u_CMPLX_MUL/o_Yr1_funnel__46  |     8|
-|6     |      o_peakFound1               |\u_CMPLX_MUL/o_Yr1_funnel__47  |     8|
-|7     |    u_ARCTAN                     |arctan                         |   379|
-|8     |      u_fixed_add1               |fixed_add                      |    17|
-|9     |      u_fixed_add2               |fixed_add__parameterized0      |    19|
-|10    |      u_divider                  |divider                        |   145|
-|11    |        u_fixed_add1             |fixed_add__parameterized1      |     2|
-|12    |    u_CMPLX_MUL                  |cmplx_mul_21                   |   102|
-|13    |      o_Yr1                      |\u_CMPLX_MUL/o_Yr1_funnel__41  |     8|
-|14    |      o_Yr1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__42  |     8|
-|15    |      o_Yi1                      |\u_CMPLX_MUL/o_Yr1_funnel__43  |     8|
-|16    |      o_Yi1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__44  |     8|
-|17    |    u_METRIC_FILTER              |metric_filter                  |    69|
-|18    |      u_CMPLX_MUL_2              |cmplx_mul_24                   |    30|
-|19    |        o_Yi1                    |\u_CMPLX_MUL/o_Yr1_funnel__40  |     8|
-|20    |        o_Yr1                    |\u_CMPLX_MUL/o_Yr1_funnel__45  |     8|
-|21    |    u_REDUCED_METRIC_ACCUMULATOR |accumulator_22                 |   154|
-|22    |    u_REG_FILE                   |symbol_regfile                 |    72|
-|23    |    u_SAMPLE_ACCUMULATOR         |two_samples_accumulator        |    68|
-|24    |    u_WINDOW_ACCUMULATOR         |accumulator_23                 |   100|
-|25    |  u_CSYNC_STAGE2                 |csync_stage2                   |  3016|
-|26    |    u_ACCUMULATOR_1              |accumulator                    |    80|
-|27    |    u_ACCUMULATOR_2              |accumulator_0                  |    80|
-|28    |    u_ACCUMULATOR_3              |accumulator_1                  |    80|
-|29    |    u_ACCUMULATOR_4              |accumulator_2                  |    80|
-|30    |    u_ACCUMULATOR_5              |accumulator_3                  |    80|
-|31    |    u_CMPLX_MUL_1                |cmplx_mul                      |    70|
-|32    |      o_Yr1                      |\u_CMPLX_MUL/o_Yr1_funnel__10  |     8|
-|33    |      o_Yr1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__11  |     8|
-|34    |      o_Yi1                      |\u_CMPLX_MUL/o_Yr1_funnel__12  |     8|
-|35    |      o_Yi1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__13  |     8|
-|36    |    u_CMPLX_MUL_2                |cmplx_mul_4                    |    70|
-|37    |      o_Yr1                      |\u_CMPLX_MUL/o_Yr1_funnel__14  |     8|
-|38    |      o_Yr1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__15  |     8|
-|39    |      o_Yi1                      |\u_CMPLX_MUL/o_Yr1_funnel__16  |     8|
-|40    |      o_Yi1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__17  |     8|
-|41    |    u_CMPLX_MUL_3                |cmplx_mul_5                    |    70|
-|42    |      o_Yr1                      |\u_CMPLX_MUL/o_Yr1_funnel__18  |     8|
-|43    |      o_Yr1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__19  |     8|
-|44    |      o_Yi1                      |\u_CMPLX_MUL/o_Yr1_funnel__20  |     8|
-|45    |      o_Yi1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__21  |     8|
-|46    |    u_CMPLX_MUL_4                |cmplx_mul_6                    |    70|
-|47    |      o_Yr1                      |\u_CMPLX_MUL/o_Yr1_funnel__22  |     8|
-|48    |      o_Yr1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__23  |     8|
-|49    |      o_Yi1                      |\u_CMPLX_MUL/o_Yr1_funnel__24  |     8|
-|50    |      o_Yi1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__25  |     8|
-|51    |    u_CMPLX_MUL_5                |cmplx_mul_7                    |    70|
-|52    |      o_Yr1                      |\u_CMPLX_MUL/o_Yr1_funnel__26  |     8|
-|53    |      o_Yr1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__27  |     8|
-|54    |      o_Yi1                      |\u_CMPLX_MUL/o_Yr1_funnel__28  |     8|
-|55    |      o_Yi1__0                   |\u_CMPLX_MUL/o_Yr1_funnel__29  |     8|
-|56    |    u_CORDIC_1                   |cordic_top                     |   401|
-|57    |      u_CMPLX_MUL                |cmplx_mul_19                   |    48|
-|58    |        o_Yr1                    |\u_CMPLX_MUL/o_Yr1_funnel      |     8|
-|59    |        o_Yi1                    |\u_CMPLX_MUL/o_Yr1_funnel__1   |     8|
-|60    |      u_CORDIC_CTRL              |cordic_ctrl_20                 |   265|
-|61    |    u_CORDIC_2                   |cordic_top_8                   |   401|
-|62    |      u_CMPLX_MUL                |cmplx_mul_17                   |    48|
-|63    |        o_Yr1                    |\u_CMPLX_MUL/o_Yr1_funnel__2   |     8|
-|64    |        o_Yi1                    |\u_CMPLX_MUL/o_Yr1_funnel__3   |     8|
-|65    |      u_CORDIC_CTRL              |cordic_ctrl_18                 |   265|
-|66    |    u_CORDIC_3                   |cordic_top_9                   |   401|
-|67    |      u_CMPLX_MUL                |cmplx_mul_15                   |    48|
-|68    |        o_Yr1                    |\u_CMPLX_MUL/o_Yr1_funnel__4   |     8|
-|69    |        o_Yi1                    |\u_CMPLX_MUL/o_Yr1_funnel__5   |     8|
-|70    |      u_CORDIC_CTRL              |cordic_ctrl_16                 |   265|
-|71    |    u_CORDIC_4                   |cordic_top_10                  |   401|
-|72    |      u_CMPLX_MUL                |cmplx_mul_13                   |    48|
-|73    |        o_Yr1                    |\u_CMPLX_MUL/o_Yr1_funnel__6   |     8|
-|74    |        o_Yi1                    |\u_CMPLX_MUL/o_Yr1_funnel__7   |     8|
-|75    |      u_CORDIC_CTRL              |cordic_ctrl_14                 |   265|
-|76    |    u_CORDIC_5                   |cordic_top_11                  |   402|
-|77    |      u_CMPLX_MUL                |cmplx_mul_12                   |    48|
-|78    |        o_Yr1                    |\u_CMPLX_MUL/o_Yr1_funnel__8   |     8|
-|79    |        o_Yi1                    |\u_CMPLX_MUL/o_Yr1_funnel__9   |     8|
-|80    |      u_CORDIC_CTRL              |cordic_ctrl                    |   266|
-|81    |    u_XCOR_ABS                   |xcor_abs                       |   260|
-|82    |      r_Intermediate1_Q_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__30  |     8|
-|83    |      r_Intermediate1_I_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__31  |     8|
-|84    |      r_Intermediate2_Q_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__32  |     8|
-|85    |      r_Intermediate2_I_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__33  |     8|
-|86    |      r_Intermediate3_Q_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__34  |     8|
-|87    |      r_Intermediate3_I_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__35  |     8|
-|88    |      r_Intermediate4_Q_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__36  |     8|
-|89    |      r_Intermediate4_I_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__37  |     8|
-|90    |      r_Intermediate5_Q_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__38  |     8|
-|91    |      r_Intermediate5_I_reg0     |\u_CMPLX_MUL/o_Yr1_funnel__39  |     8|
-|92    |  u_CSYNC_STORAGE                |csync_storage                  |    82|
-|93    |    u_DUAL_PORT_RAM              |dual_port_ram_wrapper          |    64|
-|94    |      dual_port_ram_i            |dual_port_ram                  |    64|
-+------+---------------------------------+-------------------------------+------+
++------+---------------------------------+--------------------------+------+
+|      |Instance                         |Module                    |Cells |
++------+---------------------------------+--------------------------+------+
+|1     |top                              |                          |  4336|
+|2     |  u_CSYNC_CTRL                   |csync_ctrl                |   511|
+|3     |  u_CSYNC_STAGE1                 |csync_stage1              |  1014|
+|4     |    u_ACQUISITION_CHECKER        |acquisition_checker       |    10|
+|5     |    u_ARCTAN                     |arctan                    |   401|
+|6     |      u_fixed_add1               |fixed_add                 |    17|
+|7     |      u_fixed_add2               |fixed_add__parameterized0 |    19|
+|8     |      u_divider                  |divider                   |   150|
+|9     |        u_fixed_add1             |fixed_add__parameterized1 |     4|
+|10    |    u_CMPLX_MUL                  |cmplx_mul_21              |    76|
+|11    |    u_METRIC_FILTER              |metric_filter             |    64|
+|12    |      u_CMPLX_MUL_2              |cmplx_mul_24              |     2|
+|13    |    u_REDUCED_METRIC_ACCUMULATOR |accumulator_22            |   145|
+|14    |    u_REG_FILE                   |symbol_regfile            |   104|
+|15    |    u_SAMPLE_ACCUMULATOR         |two_samples_accumulator   |   110|
+|16    |    u_WINDOW_ACCUMULATOR         |accumulator_23            |   104|
+|17    |  u_CSYNC_STAGE2                 |csync_stage2              |  2665|
+|18    |    u_ACCUMULATOR_1              |accumulator               |    64|
+|19    |    u_ACCUMULATOR_2              |accumulator_0             |    64|
+|20    |    u_ACCUMULATOR_3              |accumulator_1             |    64|
+|21    |    u_ACCUMULATOR_4              |accumulator_2             |    64|
+|22    |    u_ACCUMULATOR_5              |accumulator_3             |    64|
+|23    |    u_CMPLX_MUL_1                |cmplx_mul                 |    64|
+|24    |    u_CMPLX_MUL_2                |cmplx_mul_4               |    64|
+|25    |    u_CMPLX_MUL_3                |cmplx_mul_5               |    64|
+|26    |    u_CMPLX_MUL_4                |cmplx_mul_6               |    64|
+|27    |    u_CMPLX_MUL_5                |cmplx_mul_7               |    64|
+|28    |    u_CORDIC_1                   |cordic_top                |   362|
+|29    |      u_CMPLX_MUL                |cmplx_mul_19              |    34|
+|30    |      u_CORDIC_CTRL              |cordic_ctrl_20            |   243|
+|31    |    u_CORDIC_2                   |cordic_top_8              |   362|
+|32    |      u_CMPLX_MUL                |cmplx_mul_17              |    34|
+|33    |      u_CORDIC_CTRL              |cordic_ctrl_18            |   243|
+|34    |    u_CORDIC_3                   |cordic_top_9              |   362|
+|35    |      u_CMPLX_MUL                |cmplx_mul_15              |    34|
+|36    |      u_CORDIC_CTRL              |cordic_ctrl_16            |   243|
+|37    |    u_CORDIC_4                   |cordic_top_10             |   364|
+|38    |      u_CMPLX_MUL                |cmplx_mul_13              |    34|
+|39    |      u_CORDIC_CTRL              |cordic_ctrl_14            |   243|
+|40    |    u_CORDIC_5                   |cordic_top_11             |   365|
+|41    |      u_CMPLX_MUL                |cmplx_mul_12              |    34|
+|42    |      u_CORDIC_CTRL              |cordic_ctrl               |   244|
+|43    |    u_XCOR_ABS                   |xcor_abs                  |   210|
+|44    |  u_CSYNC_STORAGE                |csync_storage             |    82|
+|45    |    u_DUAL_PORT_RAM              |dual_port_ram_wrapper     |    64|
+|46    |      dual_port_ram_i            |dual_port_ram             |    64|
++------+---------------------------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:27 ; elapsed = 00:01:30 . Memory (MB): peak = 2414.480 ; gain = 945.809
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:21 ; elapsed = 00:01:22 . Memory (MB): peak = 1189.430 ; gain = 503.160
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:06 ; elapsed = 00:01:17 . Memory (MB): peak = 2414.480 ; gain = 803.773
-Synthesis Optimization Complete : Time (s): cpu = 00:01:27 ; elapsed = 00:01:30 . Memory (MB): peak = 2414.480 ; gain = 945.809
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:09 ; elapsed = 00:01:18 . Memory (MB): peak = 1189.430 ; gain = 367.824
+Synthesis Optimization Complete : Time (s): cpu = 00:01:22 ; elapsed = 00:01:23 . Memory (MB): peak = 1189.430 ; gain = 503.160
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 304 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 433 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 2440.020 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1189.430 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 150 instances were transformed.
-  BUFG => BUFGCE: 2 instances
-  DSP48E2 => DSP48E2 (DSP_ALU, DSP_A_B_DATA, DSP_C_DATA, DSP_MULTIPLIER, DSP_M_DATA, DSP_OUTPUT, DSP_PREADD_DATA, DSP_PREADD): 48 instances
-  IBUF => IBUF (IBUFCTRL, INBUF): 36 instances
+  A total of 64 instances were transformed.
   RAM128X1S => RAM128X1S (MUXF7, RAMS64E, RAMS64E): 32 instances
   RAM16X1S => RAM32X1S (RAMS32): 32 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-284 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+283 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:17 ; elapsed = 00:02:24 . Memory (MB): peak = 2440.020 ; gain = 2041.074
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2440.020 ; gain = 0.000
+synth_design: Time (s): cpu = 00:02:01 ; elapsed = 00:02:04 . Memory (MB): peak = 1189.430 ; gain = 802.168
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1189.430 ; gain = 0.000
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint 'D:/Graduation Project/Narrowband-IoT-Receiver/src/coarse_synchronizer/coarse_synchronizer.runs/synth_1/csync_top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file csync_top_utilization_synth.rpt -pb csync_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed May 25 01:53:54 2022...
+INFO: [Common 17-206] Exiting Vivado at Mon Jul 11 02:21:47 2022...
